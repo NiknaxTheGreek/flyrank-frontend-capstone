@@ -1,181 +1,335 @@
-type Stat = {
-  label: string;
-  value: string;
-  delta: string;
-  tone: 'positive' | 'neutral' | 'warning';
+import { useState, type FormEvent } from 'react';
+
+type NotificationType = 'rankingChanges' | 'siteHealth' | 'competitorActivity' | 'weeklySummary';
+type DeliveryChannel = 'email' | 'inApp';
+
+type Preferences = {
+  notifications: Record<NotificationType, Record<DeliveryChannel, boolean>>;
+  frequency: 'immediately' | 'daily' | 'weekly';
+  quietHoursEnabled: boolean;
+  quietStart: string;
+  quietEnd: string;
 };
 
-type Keyword = {
-  keyword: string;
-  position: number;
-  trend: number;
-  volume: string;
+const notificationOptions: {
+  id: NotificationType;
+  title: string;
+  description: string;
+}[] = [
+  {
+    id: 'rankingChanges',
+    title: 'Ranking changes',
+    description: 'When your tracked keywords move up or down in search results.',
+  },
+  {
+    id: 'siteHealth',
+    title: 'Site health alerts',
+    description: 'Important issues that could affect your site’s search performance.',
+  },
+  {
+    id: 'competitorActivity',
+    title: 'Competitor activity',
+    description: 'Notable ranking and content changes from your competitors.',
+  },
+  {
+    id: 'weeklySummary',
+    title: 'Weekly performance summary',
+    description: 'A roundup of your traffic, rankings, and opportunities.',
+  },
+];
+
+const defaultPreferences: Preferences = {
+  notifications: {
+    rankingChanges: { email: true, inApp: true },
+    siteHealth: { email: true, inApp: true },
+    competitorActivity: { email: false, inApp: true },
+    weeklySummary: { email: true, inApp: false },
+  },
+  frequency: 'immediately',
+  quietHoursEnabled: false,
+  quietStart: '22:00',
+  quietEnd: '08:00',
 };
 
-type Region = {
-  region: string;
-  visibility: string;
-  change: string;
-};
+const storageKey = 'flyrank-notification-preferences';
 
-const stats: Stat[] = [
-  { label: 'Organic clicks', value: '184.2K', delta: '+12.4%', tone: 'positive' },
-  { label: 'Avg. SERP position', value: '4.8', delta: '+0.6', tone: 'positive' },
-  { label: 'Conversion rate', value: '7.1%', delta: '+1.2%', tone: 'positive' },
-  { label: 'New ranking opportunities', value: '42', delta: '-3 this week', tone: 'warning' },
-];
+function isPreferences(value: unknown): value is Preferences {
+  if (typeof value !== 'object' || value === null) return false;
 
-const keywords: Keyword[] = [
-  { keyword: 'AI marketing platform', position: 2, trend: 18, volume: '32K' },
-  { keyword: 'SEO automation tools', position: 5, trend: 9, volume: '18K' },
-  { keyword: 'content strategy dashboard', position: 8, trend: 14, volume: '12K' },
-  { keyword: 'keyword monitoring software', position: 12, trend: 6, volume: '9K' },
-];
+  const candidate = value as Partial<Preferences>;
+  const notifications = candidate.notifications;
+  const notificationIds: NotificationType[] = [
+    'rankingChanges',
+    'siteHealth',
+    'competitorActivity',
+    'weeklySummary',
+  ];
 
-const regions: Region[] = [
-  { region: 'United States', visibility: '68%', change: '+4.3%' },
-  { region: 'United Kingdom', visibility: '61%', change: '+2.1%' },
-  { region: 'Germany', visibility: '54%', change: '+1.8%' },
-  { region: 'Canada', visibility: '47%', change: '+3.5%' },
-];
+  return (
+    typeof notifications === 'object' &&
+    notifications !== null &&
+    notificationIds.every((id) => {
+      const channels = notifications[id];
+      return (
+        typeof channels === 'object' &&
+        channels !== null &&
+        typeof channels.email === 'boolean' &&
+        typeof channels.inApp === 'boolean'
+      );
+    }) &&
+    ['immediately', 'daily', 'weekly'].includes(candidate.frequency ?? '') &&
+    typeof candidate.quietHoursEnabled === 'boolean' &&
+    typeof candidate.quietStart === 'string' &&
+    typeof candidate.quietEnd === 'string'
+  );
+}
 
-const navItems = ['Overview', 'Keywords', 'Content', 'Competitors', 'Reports'];
+function loadPreferences(): Preferences {
+  try {
+    const stored = window.localStorage.getItem(storageKey);
+    if (!stored) return defaultPreferences;
+
+    const parsed: unknown = JSON.parse(stored);
+    if (isPreferences(parsed)) return parsed;
+
+    console.error('Saved notification preferences were invalid; using defaults.');
+  } catch (error) {
+    console.error('Could not load saved notification preferences.', error);
+  }
+
+  return defaultPreferences;
+}
 
 function App() {
+  const [preferences, setPreferences] = useState<Preferences>(loadPreferences);
+  const [savedPreferences, setSavedPreferences] = useState<Preferences>(preferences);
+  const [saveMessage, setSaveMessage] = useState('');
+  const hasChanges = JSON.stringify(preferences) !== JSON.stringify(savedPreferences);
+
+  function updateChannel(
+    notification: NotificationType,
+    channel: DeliveryChannel,
+    enabled: boolean,
+  ) {
+    setPreferences((current) => ({
+      ...current,
+      notifications: {
+        ...current.notifications,
+        [notification]: {
+          ...current.notifications[notification],
+          [channel]: enabled,
+        },
+      },
+    }));
+    setSaveMessage('');
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify(preferences));
+      setSavedPreferences(preferences);
+      setSaveMessage('Your notification preferences have been saved.');
+    } catch (error) {
+      console.error('Could not save notification preferences.', error);
+      setSaveMessage('We couldn’t save your changes. Please try again.');
+    }
+  }
+
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <div className="brand-wrap">
-          <div className="brand-mark" aria-hidden="true">F</div>
-          <div>
-            <p className="eyebrow">Growth suite</p>
-            <h1>FlyRank</h1>
-          </div>
+        <div className="brand-wrap" aria-label="FlyRank">
+          <span className="brand-mark" aria-hidden="true">F</span>
+          <span>
+            <span className="eyebrow">Growth suite</span>
+            <span className="brand-name">FlyRank</span>
+          </span>
         </div>
 
+        <p className="nav-label">Workspace</p>
         <nav className="nav" aria-label="Main navigation">
-          {navItems.map((item) => (
-            <button
-              key={item}
-              type="button"
-              className={`nav-item${item === 'Overview' ? ' active' : ''}`}
-              aria-current={item === 'Overview' ? 'page' : undefined}
-            >
-              {item}
-            </button>
-          ))}
+          <button className="nav-item" type="button"><span aria-hidden="true">◫</span> Overview</button>
+          <button className="nav-item" type="button"><span aria-hidden="true">⌕</span> Keywords</button>
+          <button className="nav-item" type="button"><span aria-hidden="true">▤</span> Content</button>
+          <button className="nav-item" type="button"><span aria-hidden="true">♧</span> Competitors</button>
+          <button className="nav-item" type="button"><span aria-hidden="true">▥</span> Reports</button>
         </nav>
 
-        <div className="side-card">
-          <p className="label">Performance goal</p>
-          <strong>Top 3 rankings</strong>
-          <div className="progress" aria-label="72 percent of monthly target reached">
-            <span style={{ width: '72%' }} />
+        <div className="sidebar-bottom">
+          <button className="nav-item active" type="button" aria-current="page">
+            <span aria-hidden="true">⚙</span> Settings
+          </button>
+          <div className="profile">
+            <span className="profile-avatar" aria-hidden="true">AM</span>
+            <span className="profile-copy">
+              <strong>Alex Morgan</strong>
+              <span>Workspace admin</span>
+            </span>
+            <span className="profile-menu" aria-hidden="true">···</span>
           </div>
-          <small>72% of monthly target</small>
         </div>
       </aside>
 
-      <main className="main-panel">
-        <header className="topbar">
-          <div>
-            <p className="eyebrow">Campaign dashboard</p>
-            <h2>FlyRank SEO Performance</h2>
-          </div>
-          <button type="button" className="primary-btn">Export report</button>
-        </header>
+      <main className="main-panel" id="settings">
+        <div className="content-wrap">
+          <div className="breadcrumb"><span>Settings</span><span aria-hidden="true">/</span><strong>Notifications</strong></div>
 
-        <section className="stats-grid">
-          {stats.map((stat) => (
-            <article key={stat.label} className="stat-card">
-              <p>{stat.label}</p>
-              <div className="stat-row">
-                <strong>{stat.value}</strong>
-                <span className={`delta ${stat.tone}`}>{stat.delta}</span>
-              </div>
-            </article>
-          ))}
-        </section>
-
-        <section className="content-grid">
-          <div className="panel large-panel">
-            <div className="panel-header">
-              <div>
-                <p className="eyebrow">Ranking momentum</p>
-                <h3>Keyword growth</h3>
-              </div>
-              <span className="pill positive">+14.8% MoM</span>
+          <header className="page-header">
+            <div>
+              <p className="eyebrow">Your workspace</p>
+              <h1>Notification settings</h1>
+              <p className="page-description">
+                Choose what you hear about and how often we reach out.
+              </p>
             </div>
+            <span className="account-badge"><span aria-hidden="true">●</span> All changes are private</span>
+          </header>
 
-            <div className="chart" aria-label="Keyword growth chart">
-              {[40, 58, 52, 72, 66, 88, 96].map((height, index) => (
-                <div key={index} className="bar" style={{ height: `${height}%` }} />
-              ))}
-            </div>
-          </div>
-
-          <div className="panel">
-            <div className="panel-header">
-              <div>
-                <p className="eyebrow">Priority targets</p>
-                <h3>Top keywords</h3>
-              </div>
-            </div>
-
-            <div className="keyword-list">
-              {keywords.map(({ keyword, position, trend, volume }) => (
-                <div key={keyword} className="keyword-item">
-                  <div>
-                    <strong>{keyword}</strong>
-                    <p>{volume} monthly searches</p>
-                  </div>
-                  <div className="keyword-meta">
-                    <span className="position">#{position}</span>
-                    <span className="trend positive">+{trend}%</span>
-                  </div>
+          <form onSubmit={handleSubmit}>
+            <section className="settings-card" aria-labelledby="alerts-heading">
+              <div className="card-heading">
+                <div className="heading-icon" aria-hidden="true">♧</div>
+                <div>
+                  <h2 id="alerts-heading">Alert preferences</h2>
+                  <p>Choose which updates you’d like to receive.</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bottom-grid">
-          <div className="panel">
-            <div className="panel-header">
-              <div>
-                <p className="eyebrow">Regional impact</p>
-                <h3>Visibility by market</h3>
               </div>
-            </div>
 
-            <div className="region-list">
-              {regions.map(({ region, visibility, change }) => (
-                <div key={region} className="region-row">
-                  <div>
-                    <strong>{region}</strong>
-                    <p>{visibility} average visibility</p>
-                  </div>
-                  <span className="trend positive">{change}</span>
+              <div className="preference-table" role="table" aria-label="Notification channels">
+                <div className="table-header" role="row">
+                  <span role="columnheader">Notification</span>
+                  <span role="columnheader">Email</span>
+                  <span role="columnheader">In-app</span>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="panel insights-panel">
-            <div className="panel-header">
-              <div>
-                <p className="eyebrow">Optimization notes</p>
-                <h3>Actionable insights</h3>
+                {notificationOptions.map((option) => (
+                  <div className="preference-row" role="row" key={option.id}>
+                    <div className="notification-copy" role="rowheader">
+                      <strong>{option.title}</strong>
+                      <span>{option.description}</span>
+                    </div>
+                    <label className="switch-cell" role="cell">
+                      <span className="sr-only">Email notifications for {option.title}</span>
+                      <input
+                        type="checkbox"
+                        checked={preferences.notifications[option.id].email}
+                        onChange={(event) => updateChannel(option.id, 'email', event.target.checked)}
+                      />
+                      <span className="switch-track" aria-hidden="true" />
+                    </label>
+                    <label className="switch-cell" role="cell">
+                      <span className="sr-only">In-app notifications for {option.title}</span>
+                      <input
+                        type="checkbox"
+                        checked={preferences.notifications[option.id].inApp}
+                        onChange={(event) => updateChannel(option.id, 'inApp', event.target.checked)}
+                      />
+                      <span className="switch-track" aria-hidden="true" />
+                    </label>
+                  </div>
+                ))}
               </div>
-            </div>
+            </section>
 
-            <ul className="insights-list">
-              <li>Update product landing pages to target high-intent comparison keywords.</li>
-              <li>Expand FAQ blocks on service pages for better featured snippet capture.</li>
-              <li>Prioritize on-page internal linking for pages ranking in positions 7-12.</li>
-            </ul>
-          </div>
-        </section>
+            <section className="settings-card delivery-card" aria-labelledby="delivery-heading">
+              <div className="card-heading">
+                <div className="heading-icon" aria-hidden="true">◷</div>
+                <div>
+                  <h2 id="delivery-heading">Delivery schedule</h2>
+                  <p>Set the pace that works best for you.</p>
+                </div>
+              </div>
+
+              <div className="schedule-row">
+                <div className="field-copy">
+                  <label htmlFor="frequency">Email frequency</label>
+                  <span>Choose how often to bundle your email notifications.</span>
+                </div>
+                <select
+                  id="frequency"
+                  value={preferences.frequency}
+                  onChange={(event) => {
+                    const frequency = event.target.value;
+                    if (frequency !== 'immediately' && frequency !== 'daily' && frequency !== 'weekly') {
+                      return;
+                    }
+                    setPreferences((current) => ({
+                      ...current,
+                      frequency,
+                    }));
+                    setSaveMessage('');
+                  }}
+                >
+                  <option value="immediately">As they happen</option>
+                  <option value="daily">Daily digest</option>
+                  <option value="weekly">Weekly digest</option>
+                </select>
+              </div>
+
+              <div className="quiet-hours">
+                <div className="quiet-header">
+                  <div className="field-copy">
+                    <strong>Quiet hours</strong>
+                    <span>Pause email notifications during these hours.</span>
+                  </div>
+                  <label className="switch-cell quiet-switch">
+                    <span className="sr-only">Enable quiet hours</span>
+                    <input
+                      type="checkbox"
+                      checked={preferences.quietHoursEnabled}
+                      onChange={(event) => {
+                        setPreferences((current) => ({
+                          ...current,
+                          quietHoursEnabled: event.target.checked,
+                        }));
+                        setSaveMessage('');
+                      }}
+                    />
+                    <span className="switch-track" aria-hidden="true" />
+                  </label>
+                </div>
+                <div className="time-range">
+                  <label>
+                    <span className="sr-only">Quiet hours start time</span>
+                    <input
+                      type="time"
+                      value={preferences.quietStart}
+                      disabled={!preferences.quietHoursEnabled}
+                      onChange={(event) => {
+                        setPreferences((current) => ({ ...current, quietStart: event.target.value }));
+                        setSaveMessage('');
+                      }}
+                    />
+                  </label>
+                  <span className="time-separator">to</span>
+                  <label>
+                    <span className="sr-only">Quiet hours end time</span>
+                    <input
+                      type="time"
+                      value={preferences.quietEnd}
+                      disabled={!preferences.quietHoursEnabled}
+                      onChange={(event) => {
+                        setPreferences((current) => ({ ...current, quietEnd: event.target.value }));
+                        setSaveMessage('');
+                      }}
+                    />
+                  </label>
+                  <span className="timezone">Your local time</span>
+                </div>
+              </div>
+            </section>
+
+            <footer className="form-footer">
+              <p className={saveMessage.startsWith('We couldn’t') ? 'save-message error' : 'save-message'} role="status" aria-live="polite">
+                {saveMessage || (hasChanges ? 'You have unsaved changes.' : 'Your preferences are up to date.')}
+              </p>
+              <button className="primary-btn" type="submit" disabled={!hasChanges}>
+                {hasChanges ? 'Save changes' : 'Saved'}
+              </button>
+            </footer>
+          </form>
+        </div>
       </main>
     </div>
   );
