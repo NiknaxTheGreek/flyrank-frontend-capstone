@@ -1,17 +1,24 @@
 # FlyRank Frontend Capstone
 
-A new frontend capstone by Nicholas Perikli for the FlyRank AI-assisted frontend development track.
+A lightweight SEO growth dashboard designed to showcase FlyRank's analytics and optimization workflow.
 
-## Status
+## Overview
 
-Assignment 1: development environment and repository setup in progress. The application concept and stack have not yet been selected.
+This frontend capstone is built with React + Vite and presents a mock dashboard for keyword tracking, organic growth, and regional visibility. It is intended as a polished foundation for further feature work, such as interactive filters, lead generation flows, or a product landing page.
 
-## Development workflow
+## Getting started
 
-- Use GitHub Codespaces as the browser-based development environment from Android.
-- Use ChatGPT for guided development, code review, and explanations.
-- Record changes using Conventional Commits, such as `chore:`, `docs:`, `feat:`, and `fix:`.
+```bash
+npm install
+npm run dev
+```
 
-## AI assistance
+## Scripts
 
-This project uses ChatGPT. The assignment specifies Claude Code or Cursor; acceptance of this substitution has not been confirmed.
+- `npm run dev` — start the Vite dev server
+- `npm run build` — create a production build
+- `npm run preview` — preview the production build locally
+
+## Notes
+
+The project keeps the UI focused on a single-screen dashboard while remaining easy to extend with new pages or data-driven components.
