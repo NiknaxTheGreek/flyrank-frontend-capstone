@@ -39,30 +39,37 @@ const regions: Region[] = [
   { region: 'Canada', visibility: '47%', change: '+3.5%' },
 ];
 
+const navItems = ['Overview', 'Keywords', 'Content', 'Competitors', 'Reports'];
+
 function App() {
   return (
     <div className="app-shell">
       <aside className="sidebar">
         <div className="brand-wrap">
-          <div className="brand-mark">F</div>
+          <div className="brand-mark" aria-hidden="true">F</div>
           <div>
             <p className="eyebrow">Growth suite</p>
             <h1>FlyRank</h1>
           </div>
         </div>
 
-        <nav className="nav">
-          <button className="nav-item active">Overview</button>
-          <button className="nav-item">Keywords</button>
-          <button className="nav-item">Content</button>
-          <button className="nav-item">Competitors</button>
-          <button className="nav-item">Reports</button>
+        <nav className="nav" aria-label="Main navigation">
+          {navItems.map((item) => (
+            <button
+              key={item}
+              type="button"
+              className={`nav-item${item === 'Overview' ? ' active' : ''}`}
+              aria-current={item === 'Overview' ? 'page' : undefined}
+            >
+              {item}
+            </button>
+          ))}
         </nav>
 
         <div className="side-card">
           <p className="label">Performance goal</p>
           <strong>Top 3 rankings</strong>
-          <div className="progress">
+          <div className="progress" aria-label="72 percent of monthly target reached">
             <span style={{ width: '72%' }} />
           </div>
           <small>72% of monthly target</small>
@@ -75,7 +82,7 @@ function App() {
             <p className="eyebrow">Campaign dashboard</p>
             <h2>FlyRank SEO Performance</h2>
           </div>
-          <button className="primary-btn">Export report</button>
+          <button type="button" className="primary-btn">Export report</button>
         </header>
 
         <section className="stats-grid">
