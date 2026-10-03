@@ -1,3 +1,5 @@
+import NotificationSettings from './components/NotificationSettings';
+
 type Stat = {
   label: string;
   value: string;
@@ -176,6 +178,8 @@ function App() {
             </ul>
           </div>
         </section>
+
+        <NotificationSettings />
       </main>
     </div>
   );
