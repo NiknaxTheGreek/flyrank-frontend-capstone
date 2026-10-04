@@ -29,12 +29,14 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
 button:focus-visible,
 input:focus-visible,
+select:focus-visible,
 a:focus-visible {
   outline: 3px solid #f5ca72;
   outline-offset: 3px;
@@ -52,6 +54,24 @@ a:focus-visible {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.site-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+
+.site-navigation a {
+  color: #d4d2cd;
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.site-navigation a:hover {
+  color: var(--accent);
 }
 
 .brand {
@@ -209,6 +229,8 @@ h1 {
 
 .movie-card {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .poster-frame {
@@ -241,8 +263,153 @@ h1 {
   text-align: center;
 }
 
-.poster-fallback span:first-child {
+.poster-fallback-icon {
   font-size: 2rem;
+}
+
+.poster-fallback-title {
+  max-width: calc(100% - 24px);
+  color: #f3f1ed;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.genre-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 28px;
+}
+
+.genre-filter label {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.genre-filter select,
+.account-form input {
+  min-height: 44px;
+  border: 1px solid #464a4c;
+  border-radius: 9px;
+  background: #1b1e20;
+  color: #f3f1ed;
+  padding: 9px 12px;
+}
+
+.genre-sections {
+  display: grid;
+  gap: 32px;
+}
+
+.genre-section .section-heading h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.movie-summary {
+  display: -webkit-box;
+  min-height: 6.2em;
+  overflow: hidden;
+  margin: 12px 0 8px;
+  color: #c7c8c7;
+  font-size: 0.83rem;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.movie-imdb-link {
+  align-self: flex-start;
+  margin-top: auto;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.movie-imdb-link:hover {
+  color: #ffcb65;
+}
+
+.favorite-action {
+  margin-top: 10px;
+}
+
+.favorite-button {
+  justify-content: center;
+  text-align: center;
+}
+
+.movie-card > .favorite-action .favorite-button {
+  width: 100%;
+  min-height: 40px;
+  padding: 7px 10px;
+  font-size: 0.82rem;
+}
+
+.favorite-success,
+.favorite-error {
+  margin: 7px 0 0;
+  font-size: 0.82rem;
+}
+
+.favorite-success {
+  color: #a9d5a5;
+}
+
+.favorite-error,
+.account-error {
+  color: #ffaaa4;
+}
+
+.account-form {
+  display: grid;
+  max-width: 420px;
+  gap: 9px;
+  margin: 24px auto 14px;
+  text-align: left;
+}
+
+.account-form label {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.account-form input {
+  width: 100%;
+}
+
+.account-submit {
+  margin-top: 8px;
+}
+
+.account-switch {
+  color: var(--muted);
+}
+
+.account-switch button {
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.account-signout {
+  margin: 18px 0 0 10px;
+}
+
+.account-page > .account-error {
+  max-width: 620px;
+  margin-inline: auto;
 }
 
 .rating {
@@ -344,8 +511,12 @@ h1 {
     min-height: 66px;
   }
 
-  .header-note {
-    font-size: 0.76rem;
+  .site-navigation {
+    gap: 10px;
+  }
+
+  .site-navigation a {
+    font-size: 0.78rem;
   }
 
   .intro {
@@ -364,6 +535,15 @@ h1 {
   .movie-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px 14px;
+  }
+
+  .genre-filter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .genre-filter select {
+    width: 100%;
   }
 }
 

@@ -28,7 +28,13 @@ it('opens a detail URL directly and supplies a home link', () => {
   open('/movies/interstellar');
   expect(screen.getByRole('heading', { level: 1, name: 'Interstellar' })).toBeTruthy();
   expect(screen.getByRole('link', { name: 'Back to movies' }).getAttribute('href')).toBe('/');
+  expect(screen.getByRole('link', { name: 'Movies' }).getAttribute('href')).toBe('/movies');
   expect(document.title).toBe('Interstellar | Reel Good');
+});
+it('opens the browse collection at the Movies navigation route', () => {
+  open('/movies');
+  expect(screen.getByRole('heading', { name: 'Discover movies' })).toBeTruthy();
+  expect(screen.getAllByRole('article')).toHaveLength(6);
 });
 it.each([['/movies/missing', 'Movie not found'], ['/missing', 'Page not found']])('handles %s', async (path, heading) => {
   const user = userEvent.setup(); open(path);

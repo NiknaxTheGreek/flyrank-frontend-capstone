@@ -1,8 +1,9 @@
 import { MemoryRouter } from 'react-router-dom';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi, afterEach, describe, expect, it } from 'vitest';
 import App from './App';
+import { movies } from './data/movies';
 
 afterEach(cleanup);
 
@@ -15,6 +16,27 @@ describe('movie browsing home', () => {
     expect(screen.getAllByRole('article')).toHaveLength(6);
     expect(screen.getByRole('heading', { name: 'The Shawshank Redemption' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Spirited Away' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Drama' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Sci-Fi' })).toBeTruthy();
+    expect(screen.getAllByRole('link', { name: /^IMDb profile for / })).toHaveLength(6);
+    expect(document.querySelectorAll('.movie-summary')).toHaveLength(6);
+    for (const movie of movies) {
+      expect(movie.plot?.length).toBeGreaterThan(20);
+      expect(movie.imdbId).toMatch(/^tt\d{7,10}$/);
+      const card = screen.getByRole('heading', { name: movie.title }).closest('article');
+      expect(within(card!).getByRole('link', { name: `IMDb profile for ${movie.title}` }).getAttribute('href'))
+        .toBe(`https://www.imdb.com/title/${movie.imdbId}/`);
+    }
+  });
+
+  it('filters the popular collection by genre with a labelled control', async () => {
+    const user = userEvent.setup();
+    render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><App /></MemoryRouter>);
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Filter popular picks by genre' }), 'Sci-Fi');
+
+    expect(screen.getAllByRole('article')).toHaveLength(2);
+    expect(screen.getByRole('heading', { name: 'Sci-Fi' })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: 'Drama' })).toBeNull();
   });
 
   it('filters by title without case or surrounding whitespace sensitivity and clears the search', async () => {

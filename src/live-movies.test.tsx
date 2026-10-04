@@ -23,7 +23,7 @@ it('shows loading then paginated results and fetches live details', async () => 
   expect(getMovie).not.toHaveBeenCalled();
   await user.click(screen.getByRole('link', { name: 'View Inception' }));
   expect((await screen.findByRole('region', { name: 'Plot' })).textContent).toContain('A dream mission.');
-  const imdbLink = screen.getByRole('link', { name: 'View on IMDb ↗' });
+  const imdbLink = screen.getByRole('link', { name: 'View Inception on IMDb' });
   expect(imdbLink.getAttribute('href')).toBe('https://www.imdb.com/title/tt1375666/');
   expect(imdbLink.getAttribute('target')).toBe('_blank');
   expect(imdbLink.getAttribute('rel')).toBe('noopener noreferrer');

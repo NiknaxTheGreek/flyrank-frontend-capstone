@@ -1,8 +1,27 @@
 // Shared by the Vite development/preview middleware and a Node serverless host.
 export function createMovieHandler({ getKey = () => process.env.OMDB_API_KEY, fetcher = (...args) => fetch(...args), now = Date.now } = {}) {
   const cache = new Map();
+  const detailRequests = new Map();
+  const detailQueue = [];
+  let activeDetailRequests = 0;
   let windowStart = 0;
   let calls = 0;
+  const maxConcurrentDetails = 3;
+  const store = (cacheKey, body) => {
+    if (cache.size >= 200) cache.delete(cache.keys().next().value);
+    cache.set(cacheKey, { expires: now() + 300_000, body });
+  };
+  const withDetailLimit = (task) => new Promise((resolve, reject) => {
+    const run = () => {
+      activeDetailRequests++;
+      Promise.resolve().then(task).then(resolve, reject).finally(() => {
+        activeDetailRequests--;
+        detailQueue.shift()?.();
+      });
+    };
+    if (activeDetailRequests < maxConcurrentDetails) run();
+    else detailQueue.push(run);
+  });
   return async (req, res) => {
     const send = (status, body) => {
       res.statusCode = status;
@@ -42,12 +61,51 @@ export function createMovieHandler({ getKey = () => process.env.OMDB_API_KEY, fe
         const rating = Number(item.imdbRating);
         return { id: item.imdbID, title: item.Title, year: clean(item.Year), genre: clean(item.Genre), rating: Number.isFinite(rating) && rating >= 0 && rating <= 10 ? rating : null, posterUrl: /^https:\/\//.test(item.Poster ?? '') ? item.Poster : '', plot: clean(item.Plot), director: clean(item.Director), runtime: clean(item.Runtime) };
       };
+      const getMovieDetails = (movieId) => {
+        const detailsKey = new URLSearchParams({ i: movieId, plot: 'full' }).toString();
+        const detailsCached = cache.get(detailsKey);
+        if (detailsCached && detailsCached.expires > now()) return Promise.resolve(detailsCached.body.movie);
+        const existingRequest = detailRequests.get(detailsKey);
+        if (existingRequest) return existingRequest;
+        const request = withDetailLimit(async () => {
+          if (now() - windowStart >= 60_000) { windowStart = now(); calls = 0; }
+          if (calls >= 30) {
+            const error = new Error('Movie request limit reached.');
+            error.statusCode = 429;
+            throw error;
+          }
+          calls++;
+          const detailsParams = new URLSearchParams({ i: movieId, plot: 'full', apikey: key });
+          const detailsResponse = await fetcher(`https://www.omdbapi.com/?${detailsParams}`, { signal: AbortSignal.timeout(15000), redirect: 'error' });
+          if (!detailsResponse.ok) throw new Error('The movie service is unavailable.');
+          const detailsBody = await detailsResponse.json();
+          if (detailsBody.Response !== 'True') throw new Error('The movie service could not provide movie details.');
+          return mapMovie(detailsBody);
+        }).then((movie) => {
+          store(detailsKey, { movie });
+          return movie;
+        }).finally(() => detailRequests.delete(detailsKey));
+        detailRequests.set(detailsKey, request);
+        return request;
+      };
       if (body.Response !== 'True') throw new Error('Invalid response');
-      const result = id ? { movie: mapMovie(body) } : { movies: body.Search.map(mapMovie), total: Number(body.totalResults) || 0 };
-      if (cache.size >= 200) cache.delete(cache.keys().next().value);
-      cache.set(cacheKey, { expires: now() + 300_000, body: result });
+      const result = id
+        ? { movie: mapMovie(body) }
+        : {
+            movies: await Promise.all(body.Search.map(async (item) => {
+              const searchResult = mapMovie(item);
+              const details = await getMovieDetails(searchResult.id);
+              return { ...searchResult, ...details };
+            })),
+            total: Number(body.totalResults) || 0,
+          };
+      store(cacheKey, result);
       return send(200, result);
-    } catch {
+    } catch (error) {
+      if (error?.statusCode === 429) {
+        res.setHeader('Retry-After', '60');
+        return send(429, { error: 'Too many movie requests. Please retry in a minute.' });
+      }
       return send(502, { error: 'The movie service could not be reached. Please retry.' });
     }
   };

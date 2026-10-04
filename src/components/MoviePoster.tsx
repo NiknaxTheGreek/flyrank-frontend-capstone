@@ -6,7 +6,8 @@ export default function MoviePoster({ movie }: { movie: Movie }) {
       <div className="poster-frame">
         {posterFailed || !movie.posterUrl ? (
           <div className="poster-fallback" role="img" aria-label={`Poster unavailable for ${movie.title}`}>
-            <span aria-hidden="true">🎞</span>
+            <span className="poster-fallback-icon" aria-hidden="true">🎞</span>
+            <span className="poster-fallback-title">{movie.title}</span>
             <span>Poster unavailable</span>
           </div>
         ) : (
