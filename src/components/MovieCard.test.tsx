@@ -1,3 +1,4 @@
+import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import MovieCard from './MovieCard';
@@ -14,7 +15,7 @@ const movie: Movie = {
 
 describe('MovieCard', () => {
   it('shows a poster fallback on image error while retaining the movie title and rating', () => {
-    render(<MovieCard movie={movie} />);
+    render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><MovieCard movie={movie} /></MemoryRouter>);
 
     fireEvent.error(screen.getByRole('img', { name: 'Poster for Pulp Fiction' }));
 
@@ -23,3 +24,4 @@ describe('MovieCard', () => {
     expect(screen.getByLabelText('Rated 8.9 out of 10')).toBeTruthy();
   });
 });
+

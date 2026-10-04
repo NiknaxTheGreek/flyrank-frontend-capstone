@@ -375,3 +375,19 @@ h1 {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+.movie-link { display: block; color: inherit; text-decoration: none; border-radius: 11px; }
+.movie-link:hover h3, .back-link { color: var(--accent); }
+a.button { display: inline-flex; align-items: center; text-decoration: none; }
+.detail-page { padding-top: 32px; }
+.back-link { display: inline-block; padding: 12px 0; margin-bottom: 24px; }
+.detail-layout { display: grid; grid-template-columns: minmax(180px, 300px) 1fr; gap: 40px; align-items: start; }
+.movie-facts { display: flex; flex-wrap: wrap; gap: 28px; margin: 32px 0; }
+.movie-facts dt { color: var(--muted); font-size: .85rem; }
+.movie-facts dd { margin: 6px 0 0; font-weight: 700; }
+@media (max-width: 600px) {
+ .detail-layout { grid-template-columns: 1fr; gap: 28px; }
+ .detail-layout > .poster-frame { width: min(260px, 100%); margin-inline: auto; }
+ .movie-details h3 { white-space: normal; overflow-wrap: anywhere; }
+}

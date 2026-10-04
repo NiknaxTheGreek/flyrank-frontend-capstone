@@ -1,3 +1,4 @@
+import { MemoryRouter } from 'react-router-dom';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -7,7 +8,7 @@ afterEach(cleanup);
 
 describe('movie browsing home', () => {
   it('shows all six sample movies initially', () => {
-    render(<App />);
+    render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><App /></MemoryRouter>);
 
     expect(screen.getByRole('heading', { name: 'Discover movies' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Popular picks' })).toBeTruthy();
@@ -18,7 +19,7 @@ describe('movie browsing home', () => {
 
   it('filters by title without case or surrounding whitespace sensitivity and clears the search', async () => {
     const user = userEvent.setup();
-    render(<App />);
+    render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><App /></MemoryRouter>);
     const search = screen.getByRole('searchbox', { name: 'Search movies by title' });
 
     await user.type(search, '  iNcEpTiOn  ');
@@ -37,7 +38,7 @@ describe('movie browsing home', () => {
 
   it('shows an informative empty state for a search with no matches', async () => {
     const user = userEvent.setup();
-    render(<App />);
+    render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><App /></MemoryRouter>);
 
     await user.type(screen.getByRole('searchbox', { name: 'Search movies by title' }), 'not a movie');
     await user.click(screen.getByRole('button', { name: 'Search' }));
@@ -48,3 +49,4 @@ describe('movie browsing home', () => {
     expect(screen.getByRole('button', { name: 'Clear search' })).toBeTruthy();
   });
 });
+

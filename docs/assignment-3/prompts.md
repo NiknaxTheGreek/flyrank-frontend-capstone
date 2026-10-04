@@ -41,3 +41,10 @@
 > 5. Record this prompt in docs/assignment-3/prompts.md.
 > 6. Run npm test, npm run build and git diff --check.
 > 7. Report the results. Do not commit yet.
+
+
+## Milestone 2 — routing and details
+
+User instruction: “Go”, accepting the proposed routing and movie-details milestone.
+
+Assistant implementation scope: add Home and /movies/:movieId routes, clickable movie cards, direct-link and unknown-route handling; retain search in the URL; share poster fallback rendering; test navigation and search restoration. Codex edited and ran commands directly using the pushed source snapshot.

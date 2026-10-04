@@ -1,9 +1,12 @@
-import { useMemo, useState, type FormEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import type { Movie } from '../types/movie';
 
 export function useMovieSearch(movies: Movie[]) {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [submittedTerm, setSubmittedTerm] = useState('');
+  const [params, setParams] = useSearchParams();
+  const submittedTerm = (params.get('q') ?? '').trim();
+  const [searchTerm, setSearchTerm] = useState(submittedTerm);
+  useEffect(() => setSearchTerm(submittedTerm), [submittedTerm]);
 
   const filteredMovies = useMemo(() => {
     const normalizedTerm = submittedTerm.trim().toLowerCase();
@@ -19,15 +22,16 @@ export function useMovieSearch(movies: Movie[]) {
 
   function submitSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmittedTerm(searchTerm.trim());
+    setParams(searchTerm.trim() ? { q: searchTerm.trim() } : {});
   }
 
   function clearSearch() {
     setSearchTerm('');
-    setSubmittedTerm('');
+    setParams({});
   }
 
   return {
+    submittedTerm,
     searchTerm,
     setSearchTerm,
     submitSearch,
@@ -36,3 +40,4 @@ export function useMovieSearch(movies: Movie[]) {
     hasSearched: submittedTerm.length > 0,
   };
 }
+

@@ -21,3 +21,12 @@ The changes in this log describe work performed by the coding assistant in respo
 - **Diagnosis — coding assistant:** The configured TMDB image URLs were checked directly. Both returned HTTP 404 with `text/html`: Pulp Fiction's `d5iIlFn5s0ImszYzBPb8JPIfbXP.jpg` and Interstellar's `gEU2QniE6E77NI6lCU6M.jpg`. For comparison, the checked Shawshank Redemption and The Dark Knight poster URLs returned HTTP 200 with `image/jpeg`.
 - **Fix — coding assistant:** Read each movie's poster path from its corresponding TMDB movie page (Pulp Fiction: https://www.themoviedb.org/movie/680-pulp-fiction; Interstellar: https://www.themoviedb.org/movie/157336-interstellar), then verified the resulting image URLs directly. The replacement Pulp Fiction path `vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg` and Interstellar path `yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg` both returned HTTP 200 with `image/jpeg`. Updated the sample data with those verified paths.
 - **Fallback — coding assistant:** Kept MovieCard's existing image-error fallback and added a component test confirming that a failed poster shows the accessible fallback while preserving the movie title and rating.
+
+
+## Milestone 2 — AI code review and refactoring
+
+Codex extracted HomePage from App and shared MoviePoster between cards and the new details view, avoiding duplicate fallback logic. Movie cards now use semantic links; detail navigation focuses the new heading and updates the document title. Mobile card titles wrap instead of being truncated.
+
+Code review found that the empty-state text used the draft input even though results used the last submitted input. Codex corrected it to use the submitted query and added a regression test. Submitted searches now live in the q URL parameter, allowing direct links and history navigation to restore results. These changes were implemented by AI; no manual user code edits are claimed.
+
+Validation: 19 tests and TypeScript/Vite build passed locally. Routing tests cover detail navigation, search restoration, history back/forward, direct detail entry, unknown movie/page recovery, and stable empty-state copy. No new user visual review is claimed.
