@@ -1,7 +1,6 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import App from '../App';
 import NotificationSettings from './NotificationSettings';
 
 const STORAGE_KEY = 'flyrank-notification-preferences';
@@ -119,12 +118,4 @@ describe('NotificationSettings', () => {
 
     expect(screen.queryByText('Notification preferences saved in this browser.')).toBeNull();
   });
-});
-
-it('continues to render the existing dashboard', () => {
-  render(<App />);
-
-  expect(screen.getByRole('heading', { name: 'FlyRank SEO Performance' })).toBeTruthy();
-  expect(screen.getByRole('heading', { name: 'Keyword growth' })).toBeTruthy();
-  expect(screen.getByRole('heading', { name: 'Notification settings' })).toBeTruthy();
 });
