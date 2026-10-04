@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => {
     port: 5173,
   },
   preview: {
+    allowedHosts: ['nicholas-perikli-reel-good.onrender.com'],
     host: '0.0.0.0',
     port: 4173,
   },
