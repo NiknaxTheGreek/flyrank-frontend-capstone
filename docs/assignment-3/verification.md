@@ -19,7 +19,7 @@ Verification status for the current `fe03-movie-app` worktree. Only completed ch
 - Firebase project configuration is absent, so real sign-up/sign-in/out, actual Realtime Database reads/writes, persistence across refresh, and cross-user isolation are unverified.
 - Full human browser verification of the requested end-to-end sequence, retry/network conditions, keyboard-only navigation, mobile layout and missing-poster rendering is not evidenced.
 - No browser automation/screenshot tool was available in this session. The learner should capture genuine screenshots of home/genre browsing, search/detail/IMDb, account/favorites and mobile layout after configuring Firebase.
-- GitHub CLI cannot retrieve the active Codespaces forwarded URL because it lacks the `codespace` OAuth scope. Final commit and remote push are pending.
+- GitHub CLI cannot retrieve the active Codespaces forwarded URL because it lacks the `codespace` OAuth scope. The implementation and evidence commits are pushed to `fe03-movie-app`; the remote ref matched local HEAD. The requested forwarded URL is still not verified.
 
 ## Screenshots the learner still needs to capture
 

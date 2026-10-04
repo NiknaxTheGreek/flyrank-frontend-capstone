@@ -1,11 +1,11 @@
 # Assignment 3 submission draft
 
-**Status: not ready to submit.** Tests and production build pass, but Firebase is not configured or live-verified; emulator isolation, the end-to-end manual/browser checks and screenshots are outstanding. Changes are not yet committed or pushed.
+**Status: not ready to submit.** Tests and production build pass, but Firebase is not configured or live-verified; emulator isolation, the end-to-end manual/browser checks and screenshots are outstanding. The reviewed changes and evidence are committed and pushed to `fe03-movie-app`.
 
 ## App and source
 
 - App preview: fresh production preview verified locally, but the current Codespaces forwarded URL is unavailable to this GitHub CLI session. Obtain it from the Codespaces Ports view before sharing. Any Codespaces URL will be a **temporary preview**, not a permanent deployment.
-- Source: [fe03-movie-app branch](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe03-movie-app) (push status for these changes pending).
+- Source: [fe03-movie-app branch](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe03-movie-app).
 
 ## Evidence
 
