@@ -23,7 +23,7 @@ it('shows loading then paginated results and fetches live details', async () => 
   expect(getMovie).not.toHaveBeenCalled();
   await user.click(screen.getByRole('link', { name: 'View Inception' }));
   expect((await screen.findByRole('region', { name: 'Plot' })).textContent).toContain('A dream mission.');
-  const imdbLink = screen.getByRole('link', { name: 'View on IMDb ↗' });
+  const imdbLink = screen.getByRole('link', { name: 'View Inception on IMDb' });
   expect(imdbLink.getAttribute('href')).toBe('https://www.imdb.com/title/tt1375666/');
   expect(imdbLink.getAttribute('target')).toBe('_blank');
   expect(imdbLink.getAttribute('rel')).toBe('noopener noreferrer');
@@ -45,10 +45,12 @@ it('displays detail errors and supports retry', async () => {
   await user.click(screen.getByRole('button', { name: 'Retry details' }));
   expect(await screen.findByText('A dream mission.')).toBeTruthy();
 });
-it('does not show an IMDb link for sample movies without an IMDb ID', async () => {
+it('shows sample movie details and its IMDb profile without making a live request', async () => {
   open('/movies/inception');
   expect(await screen.findByRole('heading', { name: 'Inception' })).toBeTruthy();
-  expect(screen.queryByRole('link', { name: /View on IMDb/ })).toBeNull();
+  expect(screen.getByText(/A skilled thief enters layered dreams/)).toBeTruthy();
+  expect(screen.getByRole('link', { name: 'View Inception on IMDb' }).getAttribute('href'))
+    .toBe('https://www.imdb.com/title/tt1375666/');
   expect(getMovie).not.toHaveBeenCalled();
 });
 it('does not let a delayed search overwrite cleared results', async () => {

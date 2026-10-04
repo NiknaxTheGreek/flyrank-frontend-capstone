@@ -52,3 +52,23 @@ Assistant implementation scope: add Home and /movies/:movieId routes, clickable 
 ## Milestone 3 — live OMDb integration
 
 User confirmed “Activated” after registering the OMDb key. This authorized the previously proposed live search and details implementation. Codex implemented a server-only key boundary, normalized movie responses, pagination, cancellation, loading/error/empty states and retry. The supplied credential is intentionally omitted from this evidence.
+
+## Assignment 3 movie browsing improvements
+
+> Continue Assignment 3 in flyrank-frontend-capstone on fe03-movie-app.
+>
+> First inspect the branch, working tree, project instructions and existing implementation. Preserve all uncommitted work, including Firebase changes. Do not reset, overwrite or blindly pull over local changes.
+>
+> Fix the movie-browsing experience:
+> - Every popular/recommended movie must have a meaningful description and a working IMDb profile link using its verified IMDb ID.
+> - Apply this to the initial collection as well as live movie details.
+> - Verify poster URLs. Correct broken URLs using verified movie metadata; never guess image paths.
+> - For unavailable posters, show an intentional fallback with a film icon and movie title, keeping card dimensions consistent.
+> - Organize the initial collection into clearly labelled genre sections and add an accessible genre filter.
+> - Do not invent genres for OMDb search results: search responses omit genres. Fetch/cache details where needed, limit concurrency and avoid repeated requests on every render.
+> - Keep movie navigation and IMDb links as separate accessible controls; do not nest links.
+> - Preserve search pagination, loading, empty/error states, retry, URL state and mobile responsiveness.
+>
+> Run appropriate tests and npm run build. Report actual results and unresolved issues. Record this prompt without any credentials in docs/assignment-3/prompts.md and document the changes in review-log.md.
+>
+> Do not mark Assignment 3 complete yet.

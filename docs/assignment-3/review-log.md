@@ -40,3 +40,21 @@ Build review caught missing Node type definitions in the Vite server configurati
 Live search diagnosis: a bounded direct request succeeded in 9.7 seconds, exceeding the initial eight-second timeout. Codex raised the server timeout to 15 seconds; the upstream response had 10 results and 38 total matches for Inception.
 
 Final live verification: the Vite /api/movies search endpoint returned HTTP 200, 10 movies and 38 total matches after the timeout adjustment. All 27 tests and the production build passed again.
+
+## Assignment 3 movie-browsing improvements — 2026-10-04
+
+- Inspected `fe03-movie-app` and the existing worktree before editing. Preserved the pre-existing Firebase/authentication and other uncommitted changes; no reset, pull, or commit was performed.
+- Confirmed all six curated poster image URLs returned HTTP 200 with `image/jpeg`. The shared poster fallback now visibly includes a film icon and movie title inside the same 2:3 poster frame.
+- Verified the six curated IMDb IDs against live OMDb detail responses. Each returned HTTP 200 with the matching title and IMDb ID, a plot description, genre, and poster metadata. The curated movie cards have meaningful plot summaries and separate, secure IMDb profile links; tests assert the ID-based URLs and that the links are not nested inside the movie-navigation link.
+- Added an accessible genre selector for the initial collection while retaining its labelled genre sections. Search genres are taken from the OMDb detail response, not inferred from the title-search response.
+- Enriched live search results through IMDb-ID detail calls. Detail results are shared with direct movie-detail requests, cached for five minutes, deduplicated while in flight, and limited to three concurrent upstream detail requests. Live movie details display the returned plot and IMDb profile link; unavailable plot/genre values are labelled rather than fabricated.
+- Recorded the request in `prompts.md` without credentials. Updated the Assignment 3 README to describe live detail enrichment. Assignment 3 remains in progress; Firebase setup and final end-to-end/submission work are still pending.
+
+Validation:
+
+- `npm test`: 7 test files passed, 36 tests passed.
+- `npm run build`: passed TypeScript and Vite production build. Vite reports the existing large JavaScript bundle advisory (>500 kB); the build succeeds.
+- Focused API/UI tests: 5 files passed, 22 tests passed, including detail caching and the three-request concurrency limit.
+- Live Vite preview: `/api/movies?q=Inception` returned 10 results (38 total) with OMDb-supplied genre, plot, IMDb ID, and poster. Direct detail requests for all six curated IMDb IDs returned matching metadata and plots.
+- Poster URL check: all six curated image URLs returned HTTP 200 with `image/jpeg`.
+- `git diff --check`: passed.

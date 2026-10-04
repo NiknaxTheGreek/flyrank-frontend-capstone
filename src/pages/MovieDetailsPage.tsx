@@ -2,6 +2,7 @@ import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useMovieDetails } from '../hooks/useMovieDetails';
 import MoviePoster from '../components/MoviePoster';
+import FavoriteButton from '../components/FavoriteButton';
 import NotFoundPage from './NotFoundPage';
 
 export default function MovieDetailsPage() {
@@ -20,6 +21,7 @@ export default function MovieDetailsPage() {
   if (!movie) return <NotFoundPage movie />;
   const query = params.get('q');
   const backTo = query ? `/?${new URLSearchParams({ q: query, ...(params.get('page') ? { page: params.get('page')! } : {}) })}` : '/';
+  const imdbId = movie.imdbId ?? (live ? movie.id : undefined);
   return <section className="detail-page">
     <Link className="back-link" to={backTo}>{query ? 'Back to search results' : 'Back to movies'}</Link>
     <div className="detail-layout">
@@ -29,20 +31,22 @@ export default function MovieDetailsPage() {
         <h1 tabIndex={-1}>{movie.title}</h1>
         <dl className="movie-facts">
           <div><dt>Release year</dt><dd>{movie.year}</dd></div>
-          <div><dt>Genre</dt><dd>{movie.genre}</dd></div>
+          <div><dt>Genre</dt><dd>{movie.genre || 'Unavailable'}</dd></div>
           <div><dt>Rating</dt><dd>{movie.rating === null ? 'Not rated' : `${movie.rating.toFixed(1)} / 10`}</dd></div>
         </dl>
         {movie.director && <p>Directed by {movie.director}</p>}
         {movie.runtime && <p>Runtime: {movie.runtime}</p>}
-        {movie.plot && <section className="plot-section" aria-labelledby="plot-heading">
+        <FavoriteButton movie={movie} />
+        <section className="plot-section" aria-labelledby="plot-heading">
           <h2 id="plot-heading">Plot</h2>
-          <p className="plot">{movie.plot}</p>
-        </section>}
-        {live && /^tt\d{7,10}$/.test(movie.id) && <a
+          <p className="plot">{movie.plot || 'Plot description unavailable from OMDb.'}</p>
+        </section>
+        {imdbId && /^tt\d{7,10}$/.test(imdbId) && <a
           className="button button-secondary imdb-link"
-          href={`https://www.imdb.com/title/${movie.id}/`}
+          href={`https://www.imdb.com/title/${imdbId}/`}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`View ${movie.title} on IMDb`}
         >
           View on IMDb ↗
         </a>}

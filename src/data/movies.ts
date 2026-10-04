@@ -10,6 +10,8 @@ export const movies: Movie[] = [
     genre: 'Drama',
     rating: 9.3,
     posterUrl: `${posterBaseUrl}/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg`,
+    imdbId: 'tt0111161',
+    plot: 'A banker sentenced to life in prison builds an unexpected friendship and quietly holds on to hope.',
   },
   {
     id: 'dark-knight',
@@ -18,6 +20,8 @@ export const movies: Movie[] = [
     genre: 'Action',
     rating: 9.0,
     posterUrl: `${posterBaseUrl}/qJ2tW6WMUDux911r6m7haRef0WH.jpg`,
+    imdbId: 'tt0468569',
+    plot: 'Batman faces a criminal mastermind whose escalating chaos tests Gotham and everyone trying to protect it.',
   },
   {
     id: 'inception',
@@ -26,6 +30,8 @@ export const movies: Movie[] = [
     genre: 'Sci-Fi',
     rating: 8.8,
     posterUrl: `${posterBaseUrl}/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg`,
+    imdbId: 'tt1375666',
+    plot: 'A skilled thief enters layered dreams for one final job that could give him a chance to return home.',
   },
   {
     id: 'pulp-fiction',
@@ -34,6 +40,8 @@ export const movies: Movie[] = [
     genre: 'Crime',
     rating: 8.9,
     posterUrl: `${posterBaseUrl}/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg`,
+    imdbId: 'tt0110912',
+    plot: 'Interwoven stories follow a group of Los Angeles criminals, boxers, and companions through a violent day.',
   },
   {
     id: 'interstellar',
@@ -42,6 +50,8 @@ export const movies: Movie[] = [
     genre: 'Sci-Fi',
     rating: 8.7,
     posterUrl: `${posterBaseUrl}/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg`,
+    imdbId: 'tt0816692',
+    plot: 'As Earth becomes harder to inhabit, a former pilot joins a mission searching for a future among the stars.',
   },
   {
     id: 'spirited-away',
@@ -50,5 +60,7 @@ export const movies: Movie[] = [
     genre: 'Animation',
     rating: 8.6,
     posterUrl: `${posterBaseUrl}/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg`,
+    imdbId: 'tt0245429',
+    plot: 'A young girl enters a mysterious spirit world and must find courage while working to free her parents.',
   },
 ];

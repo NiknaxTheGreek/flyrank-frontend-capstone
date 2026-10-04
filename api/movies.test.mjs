@@ -8,6 +8,7 @@ async function run(handler, query, method = 'GET') {
   return { status: res.statusCode, body, headers };
 }
 const raw = { imdbID: 'tt1375666', Title: 'Inception', Year: '2010', Poster: 'N/A' };
+const details = { ...raw, Genre: 'Sci-Fi, Thriller', Plot: 'A skilled thief enters dreams to steal secrets.', Poster: 'N/A' };
 it('validates input before contacting OMDb', async () => {
   const fetcher = vi.fn(); const h = createMovieHandler({ getKey: () => 'test-key', fetcher });
   expect((await run(h, 'q=a')).status).toBe(400);
@@ -16,14 +17,46 @@ it('validates input before contacting OMDb', async () => {
   expect((await run(h, 'q=Batman', 'POST')).status).toBe(405);
   expect(fetcher).not.toHaveBeenCalled();
 });
-it('normalizes missing metadata, caches repeated search and hides the key', async () => {
-  const fetcher = vi.fn().mockResolvedValue({ ok: true, json: async () => ({ Response: 'True', Search: [raw], totalResults: '1' }) });
+it('enriches search results with cached details and hides the key', async () => {
+  const fetcher = vi.fn(async (url) => ({
+    ok: true,
+    json: async () => new URL(url).searchParams.has('i')
+      ? { Response: 'True', ...details }
+      : { Response: 'True', Search: [raw], totalResults: '1' },
+  }));
   const h = createMovieHandler({ getKey: () => 'test-key', fetcher });
   const result = await run(h, 'q=Inception');
   expect(result.body.movies[0].rating).toBe(null);
   expect(result.body.movies[0].posterUrl).toBe('');
+  expect(result.body.movies[0].genre).toBe('Sci-Fi, Thriller');
+  expect(result.body.movies[0].plot).toBe(details.Plot);
   expect(JSON.stringify(result)).not.toContain('test-key');
-  await run(h, 'q=Inception'); expect(fetcher).toHaveBeenCalledTimes(1);
+  await run(h, 'q=Inception');
+  await run(h, 'id=tt1375666');
+  expect(fetcher).toHaveBeenCalledTimes(2);
+});
+it('limits concurrent movie-detail lookups', async () => {
+  let active = 0;
+  let maximumActive = 0;
+  const searchResults = Array.from({ length: 7 }, (_, index) => ({
+    imdbID: `tt${String(1000000 + index)}`,
+    Title: `Movie ${index}`,
+    Year: '2020',
+    Poster: 'N/A',
+  }));
+  const fetcher = vi.fn(async (url) => {
+    const params = new URL(url).searchParams;
+    if (!params.has('i')) return { ok: true, json: async () => ({ Response: 'True', Search: searchResults, totalResults: '7' }) };
+    active++;
+    maximumActive = Math.max(maximumActive, active);
+    await new Promise((resolve) => setTimeout(resolve, 5));
+    active--;
+    return { ok: true, json: async () => ({ Response: 'True', ...searchResults.find((item) => item.imdbID === params.get('i')), Genre: 'Drama', Plot: 'A complete plot description.' }) };
+  });
+  const result = await run(createMovieHandler({ getKey: () => 'test-key', fetcher }), 'q=Movie');
+  expect(result.status).toBe(200);
+  expect(result.body.movies).toHaveLength(7);
+  expect(maximumActive).toBe(3);
 });
 it('distinguishes not found, provider errors and unconfigured service', async () => {
   expect((await run(createMovieHandler({ getKey: () => '' }), 'q=Batman')).status).toBe(503);

@@ -1,0 +1,34 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId}/favorites/{movieId} {
+      function isOwner() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function validFavorite() {
+        let data = request.resource.data;
+        return data.keys().hasAll(['id', 'title', 'year', 'genre', 'rating', 'posterUrl'])
+          && data.keys().hasOnly([
+            'id', 'title', 'year', 'genre', 'rating', 'posterUrl',
+            'imdbId', 'plot', 'director', 'runtime'
+          ])
+          && data.id == movieId
+          && data.title is string
+          && (data.year is int || data.year is string)
+          && data.genre is string
+          && (data.rating == null || data.rating is int || data.rating is float)
+          && data.posterUrl is string
+          && (!('imdbId' in data) || data.imdbId is string)
+          && (!('plot' in data) || data.plot is string)
+          && (!('director' in data) || data.director is string)
+          && (!('runtime' in data) || data.runtime is string);
+      }
+
+      allow read: if isOwner();
+      allow create, update: if isOwner() && validFavorite();
+      allow delete: if isOwner();
+    }
+  }
+}

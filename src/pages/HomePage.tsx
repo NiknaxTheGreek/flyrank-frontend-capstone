@@ -1,8 +1,16 @@
 import MovieCard from '../components/MovieCard';
 import { movies } from '../data/movies';
 import { useMovieSearch } from '../hooks/useMovieSearch';
+import { useState } from 'react';
+
+const genreGroups = [...new Set(movies.map((movie) => movie.genre))].map((genre) => ({
+  genre,
+  movies: movies.filter((movie) => movie.genre === genre),
+}));
+const genres = ['All genres', ...genreGroups.map(({ genre }) => genre)];
 
 function HomePage() {
+  const [selectedGenre, setSelectedGenre] = useState('All genres');
   const {
     searchTerm,
     setSearchTerm,
@@ -46,6 +54,12 @@ function HomePage() {
           <h2 id="movies-heading">{hasSearched ? 'Search results' : 'Popular picks'}</h2>
           <span className="result-count">{loading ? 'Searching…' : `${total} movies`}</span>
         </div>
+        {!hasSearched && <div className="genre-filter">
+          <label htmlFor="genre-filter">Filter popular picks by genre</label>
+          <select id="genre-filter" value={selectedGenre} onChange={(event) => setSelectedGenre(event.target.value)}>
+            {genres.map((genre) => <option key={genre}>{genre}</option>)}
+          </select>
+        </div>}
 
         <p className="visually-hidden" role="status" aria-live="polite">
           {loading ? 'Searching movies…' : error ? 'Search failed.' : hasSearched
@@ -53,9 +67,26 @@ function HomePage() {
             : `${loading ? 'Searching…' : `${total} movies`} available.`}
         </p>
 
-        {loading ? <p role="status">Loading movies…</p> : error ? <div className="empty-state"><p role="alert">{error}</p><button className="button button-primary" onClick={retry}>Retry search</button></div> : filteredMovies.length > 0 ? (
+        {loading ? <p role="status">Loading movies…</p> : error ? <div className="empty-state"><p role="alert">{error}</p><button className="button button-primary" onClick={retry}>Retry search</button></div> : filteredMovies.length > 0 ? hasSearched ? (
           <div className="movie-grid">
             {filteredMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+          </div>
+        ) : (
+          <div className="genre-sections">
+            {genreGroups.map(({ genre, movies: genreMovies }) => {
+              if (selectedGenre !== 'All genres' && selectedGenre !== genre) return null;
+              const picks = genreMovies.filter((movie) => filteredMovies.some((match) => match.id === movie.id));
+              if (picks.length === 0) return null;
+              return <section className="genre-section" key={genre} aria-labelledby={`genre-${genre}`}>
+                <div className="section-heading">
+                  <h3 id={`genre-${genre}`}>{genre}</h3>
+                  <span className="result-count">{picks.length} {picks.length === 1 ? 'pick' : 'picks'}</span>
+                </div>
+                <div className="movie-grid">
+                  {picks.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+                </div>
+              </section>;
+            })}
           </div>
         ) : (
           <div className="empty-state">
@@ -75,4 +106,3 @@ function HomePage() {
 }
 
 export default HomePage;
-

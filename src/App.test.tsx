@@ -3,6 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi, afterEach, describe, expect, it } from 'vitest';
 import App from './App';
+import { movies } from './data/movies';
 
 afterEach(cleanup);
 
@@ -15,6 +16,31 @@ describe('movie browsing home', () => {
     expect(screen.getAllByRole('article')).toHaveLength(6);
     expect(screen.getByRole('heading', { name: 'The Shawshank Redemption' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Spirited Away' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Drama' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Sci-Fi' })).toBeTruthy();
+    expect(screen.getAllByRole('link', { name: /^IMDb profile for / })).toHaveLength(6);
+    expect(screen.getAllByRole('img', { name: /^Poster for / })).toHaveLength(6);
+    expect(document.querySelectorAll('.movie-summary')).toHaveLength(6);
+    expect(screen.getByText(/A banker sentenced to life in prison/)).toBeTruthy();
+    for (const movie of movies) {
+      expect(movie.plot?.length).toBeGreaterThan(20);
+      expect(movie.imdbId).toMatch(/^tt\d{7,10}$/);
+      const profile = screen.getByRole('link', { name: `IMDb profile for ${movie.title}` });
+      expect(profile.getAttribute('href')).toBe(`https://www.imdb.com/title/${movie.imdbId}/`);
+      expect(profile.getAttribute('target')).toBe('_blank');
+      expect(profile.getAttribute('rel')).toBe('noopener noreferrer');
+      expect(profile.closest('.movie-card')?.querySelector('.movie-link')?.contains(profile)).toBe(false);
+    }
+  });
+
+  it('filters the initial collection with an accessible genre selector', async () => {
+    const user = userEvent.setup();
+    render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><App /></MemoryRouter>);
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Filter popular picks by genre' }), 'Sci-Fi');
+
+    expect(screen.getAllByRole('article')).toHaveLength(2);
+    expect(screen.getByRole('heading', { name: 'Sci-Fi' })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: 'Drama' })).toBeNull();
   });
 
   it('filters by title without case or surrounding whitespace sensitivity and clears the search', async () => {
