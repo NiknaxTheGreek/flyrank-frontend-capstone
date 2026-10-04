@@ -20,8 +20,13 @@ it('shows loading then paginated results and fetches live details', async () => 
   await user.click(screen.getByRole('button', { name: 'Next page' }));
   await screen.findByText('Page 2 of 2');
   expect(vi.mocked(searchMovies).mock.calls.at(-1)?.[1]).toBe(2);
+  expect(getMovie).not.toHaveBeenCalled();
   await user.click(screen.getByRole('link', { name: 'View Inception' }));
-  expect(await screen.findByText('A dream mission.')).toBeTruthy();
+  expect((await screen.findByRole('region', { name: 'Plot' })).textContent).toContain('A dream mission.');
+  const imdbLink = screen.getByRole('link', { name: 'View on IMDb ↗' });
+  expect(imdbLink.getAttribute('href')).toBe('https://www.imdb.com/title/tt1375666/');
+  expect(imdbLink.getAttribute('target')).toBe('_blank');
+  expect(imdbLink.getAttribute('rel')).toBe('noopener noreferrer');
   expect(screen.getByRole('link', { name: 'Back to search results' }).getAttribute('href')).toBe('/?q=Inception&page=2');
 });
 it('displays a search error and retries successfully', async () => {
@@ -39,6 +44,12 @@ it('displays detail errors and supports retry', async () => {
   await screen.findByRole('alert');
   await user.click(screen.getByRole('button', { name: 'Retry details' }));
   expect(await screen.findByText('A dream mission.')).toBeTruthy();
+});
+it('does not show an IMDb link for sample movies without an IMDb ID', async () => {
+  open('/movies/inception');
+  expect(await screen.findByRole('heading', { name: 'Inception' })).toBeTruthy();
+  expect(screen.queryByRole('link', { name: /View on IMDb/ })).toBeNull();
+  expect(getMovie).not.toHaveBeenCalled();
 });
 it('does not let a delayed search overwrite cleared results', async () => {
   const user = userEvent.setup();

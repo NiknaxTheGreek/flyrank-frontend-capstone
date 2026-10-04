@@ -394,4 +394,18 @@ a.button { display: inline-flex; align-items: center; text-decoration: none; }
 
 .pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; margin-top: 32px; }
 .button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-.plot { max-width: 65ch; line-height: 1.8; }
+.plot-section {
+  max-width: 65ch;
+  margin: 28px 0;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(27, 30, 32, 0.72);
+}
+.plot-section h2 { margin: 0 0 8px; font-size: 1.1rem; }
+.plot { margin: 0; color: #d4d2cd; line-height: 1.8; }
+.imdb-link { max-width: 100%; }
+@media (max-width: 600px) {
+  .plot-section { margin: 24px 0; padding: 16px; }
+  .imdb-link { width: 100%; justify-content: center; }
+}

@@ -34,7 +34,18 @@ export default function MovieDetailsPage() {
         </dl>
         {movie.director && <p>Directed by {movie.director}</p>}
         {movie.runtime && <p>Runtime: {movie.runtime}</p>}
-        {movie.plot && <p className="plot">{movie.plot}</p>}
+        {movie.plot && <section className="plot-section" aria-labelledby="plot-heading">
+          <h2 id="plot-heading">Plot</h2>
+          <p className="plot">{movie.plot}</p>
+        </section>}
+        {live && /^tt\d{7,10}$/.test(movie.id) && <a
+          className="button button-secondary imdb-link"
+          href={`https://www.imdb.com/title/${movie.id}/`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View on IMDb ↗
+        </a>}
         <p className="intro-copy">{live ? 'Movie information supplied by OMDb.' : 'Sample collection data. Search above from Home for live OMDb results.'}</p>
       </div>
     </div>
