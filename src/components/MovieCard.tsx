@@ -9,7 +9,7 @@ type MovieCardProps = {
 function MovieCard({ movie }: MovieCardProps) {
   const [params] = useSearchParams();
   const query = params.get('q');
-  const suffix = query ? `?${new URLSearchParams({ q: query })}` : '';
+  const suffix = query ? `?${new URLSearchParams({ q: query, page: params.get('page') ?? '1' })}` : '';
 
   return (
     <article className="movie-card">

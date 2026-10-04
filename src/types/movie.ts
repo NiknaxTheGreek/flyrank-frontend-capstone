@@ -1,8 +1,12 @@
 export type Movie = {
   id: string;
   title: string;
-  year: number;
+  year: number | string;
   genre: string;
-  rating: number;
+  rating: number | null;
+  plot?: string;
+  director?: string;
+  runtime?: string;
   posterUrl: string;
 };
+

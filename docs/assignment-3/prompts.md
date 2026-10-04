@@ -48,3 +48,7 @@
 User instruction: “Go”, accepting the proposed routing and movie-details milestone.
 
 Assistant implementation scope: add Home and /movies/:movieId routes, clickable movie cards, direct-link and unknown-route handling; retain search in the URL; share poster fallback rendering; test navigation and search restoration. Codex edited and ran commands directly using the pushed source snapshot.
+
+## Milestone 3 — live OMDb integration
+
+User confirmed “Activated” after registering the OMDb key. This authorized the previously proposed live search and details implementation. Codex implemented a server-only key boundary, normalized movie responses, pagination, cancellation, loading/error/empty states and retry. The supplied credential is intentionally omitted from this evidence.

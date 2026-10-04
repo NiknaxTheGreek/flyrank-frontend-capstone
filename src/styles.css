@@ -391,3 +391,7 @@ a.button { display: inline-flex; align-items: center; text-decoration: none; }
  .detail-layout > .poster-frame { width: min(260px, 100%); margin-inline: auto; }
  .movie-details h3 { white-space: normal; overflow-wrap: anywhere; }
 }
+
+.pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; margin-top: 32px; }
+.button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.plot { max-width: 65ch; line-height: 1.8; }

@@ -1,6 +1,6 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { afterEach, expect, it } from 'vitest';
+import { vi, afterEach, expect, it } from 'vitest';
 import { MemoryRouter, useNavigate } from 'react-router-dom';
 import App from './App';
 afterEach(cleanup);
@@ -14,7 +14,7 @@ function open(path = '/') {
 it('opens details and returns to the submitted search, including browser history', async () => {
   const user = userEvent.setup();
   open('/?q=Inception');
-  expect(screen.getAllByRole('article')).toHaveLength(1);
+  expect(await screen.findAllByRole('article')).toHaveLength(1);
   await user.click(screen.getByRole('link', { name: 'View Inception' }));
   expect(screen.getByRole('heading', { level: 1, name: 'Inception' })).toBe(document.activeElement);
   expect(screen.getByText('2010')).toBeTruthy();
@@ -22,7 +22,7 @@ it('opens details and returns to the submitted search, including browser history
   expect((screen.getByRole('searchbox') as HTMLInputElement).value).toBe('Inception');
   await user.click(screen.getByRole('button', { name: 'History forward' }));
   await user.click(screen.getByRole('link', { name: 'Back to search results' }));
-  expect(screen.getAllByRole('article')).toHaveLength(1);
+  expect(await screen.findAllByRole('article')).toHaveLength(1);
 });
 it('opens a detail URL directly and supplies a home link', () => {
   open('/movies/interstellar');
@@ -42,4 +42,12 @@ it('keeps the empty-state message tied to the submitted query', async () => {
   await user.type(screen.getByRole('searchbox'), 'Inception');
   expect(screen.getByText(/matching “zzzz”/)).toBeTruthy();
   expect(screen.queryAllByRole('article')).toHaveLength(0);
+});
+
+vi.mock('./services/movies', async () => {
+  const { movies } = await import('./data/movies');
+  return { searchMovies: vi.fn(async (q: string) => {
+    const found = movies.filter(m => m.title.toLowerCase().includes(q.trim().toLowerCase()));
+    return { movies: found, total: found.length };
+  }) };
 });

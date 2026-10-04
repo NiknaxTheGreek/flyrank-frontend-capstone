@@ -1,7 +1,7 @@
 import { MemoryRouter } from 'react-router-dom';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { afterEach, describe, expect, it } from 'vitest';
+import { vi, afterEach, describe, expect, it } from 'vitest';
 import App from './App';
 
 afterEach(cleanup);
@@ -25,7 +25,7 @@ describe('movie browsing home', () => {
     await user.type(search, '  iNcEpTiOn  ');
     await user.click(screen.getByRole('button', { name: 'Search' }));
 
-    expect(screen.getAllByRole('article')).toHaveLength(1);
+    expect(await screen.findAllByRole('article')).toHaveLength(1);
     expect(screen.getByRole('heading', { name: 'Inception' })).toBeTruthy();
     expect(screen.queryByRole('heading', { name: 'Interstellar' })).toBeNull();
 
@@ -44,9 +44,17 @@ describe('movie browsing home', () => {
     await user.click(screen.getByRole('button', { name: 'Search' }));
 
     expect(screen.queryAllByRole('article')).toHaveLength(0);
-    expect(screen.getByRole('heading', { name: 'No movies found' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: 'No movies found' })).toBeTruthy();
     expect(screen.getByText(/We couldn’t find a title matching “not a movie”/)).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Clear search' })).toBeTruthy();
   });
 });
 
+
+vi.mock('./services/movies', async () => {
+  const { movies } = await import('./data/movies');
+  return { searchMovies: vi.fn(async (q: string) => {
+    const found = movies.filter(m => m.title.toLowerCase().includes(q.trim().toLowerCase()));
+    return { movies: found, total: found.length };
+  }) };
+});

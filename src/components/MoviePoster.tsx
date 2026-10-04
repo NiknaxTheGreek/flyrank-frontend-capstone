@@ -4,7 +4,7 @@ export default function MoviePoster({ movie }: { movie: Movie }) {
   const [posterFailed, setPosterFailed] = useState(false);
   return (
       <div className="poster-frame">
-        {posterFailed ? (
+        {posterFailed || !movie.posterUrl ? (
           <div className="poster-fallback" role="img" aria-label={`Poster unavailable for ${movie.title}`}>
             <span aria-hidden="true">🎞</span>
             <span>Poster unavailable</span>
@@ -18,9 +18,9 @@ export default function MoviePoster({ movie }: { movie: Movie }) {
             onError={() => setPosterFailed(true)}
           />
         )}
-        <span className="rating" aria-label={`Rated ${movie.rating} out of 10`}>
+        {movie.rating !== null && <span className="rating" aria-label={`Rated ${movie.rating} out of 10`}>
           <span aria-hidden="true">★</span> {movie.rating.toFixed(1)}
-        </span>
+        </span>}
       </div>
   );
 }

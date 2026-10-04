@@ -1,8 +1,14 @@
 import { defineConfig } from 'vitest/config';
+import { loadEnv } from 'vite';
+import { createMovieHandler } from './api/movies.mjs';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig({
-  plugins: [react()],
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), 'OMDB_');
+  const handler = createMovieHandler({ getKey: () => env.OMDB_API_KEY });
+  const middleware = (server) => { server.middlewares.use('/api/movies', handler); };
+  return {
+  plugins: [react(), { name: 'omdb-api', configureServer: middleware, configurePreviewServer: middleware }],
   test: {
     environment: 'jsdom',
     exclude: ['**/node_modules/**', '**/dist/**'],
@@ -15,4 +21,6 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 4173,
   },
+};
 });
+

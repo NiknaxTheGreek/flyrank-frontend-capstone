@@ -30,3 +30,13 @@ Codex extracted HomePage from App and shared MoviePoster between cards and the n
 Code review found that the empty-state text used the draft input even though results used the last submitted input. Codex corrected it to use the submitted query and added a regression test. Submitted searches now live in the q URL parameter, allowing direct links and history navigation to restore results. These changes were implemented by AI; no manual user code edits are claimed.
 
 Validation: 19 tests and TypeScript/Vite build passed locally. Routing tests cover detail navigation, search restoration, history back/forward, direct detail entry, unknown movie/page recovery, and stable empty-state copy. No new user visual review is claimed.
+
+## Milestone 3 — live data review
+
+Codex replaced local filtering for submitted searches with a typed API service. Review identified that OMDb search results lack ratings and genres: these stay unavailable until details are fetched rather than becoming invented values. Shared poster rendering handles empty URLs. No user manual code edits are claimed.
+
+Build review caught missing Node type definitions in the Vite server configuration; Codex added @types/node. Validation: 27 automated tests passed, including mocked API normalization, cache, input checks, rate limiting, errors/retry, pagination, details and cancelled search. Production build passed. Secret scan confirmed the activated key is absent from dist. Real detail request returned HTTP 200 for Inception; first live search timed out and was retried separately. Local development API was exercised through Vite middleware, not just direct function calls.
+
+Live search diagnosis: a bounded direct request succeeded in 9.7 seconds, exceeding the initial eight-second timeout. Codex raised the server timeout to 15 seconds; the upstream response had 10 results and 38 total matches for Inception.
+
+Final live verification: the Vite /api/movies search endpoint returned HTTP 200, 10 movies and 38 total matches after the timeout adjustment. All 27 tests and the production build passed again.

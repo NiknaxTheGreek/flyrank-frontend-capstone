@@ -10,7 +10,7 @@ function HomePage() {
     clearSearch,
     filteredMovies,
     hasSearched,
-    submittedTerm,
+    submittedTerm, loading, error, total, page, setPage, retry,
   } = useMovieSearch(movies);
 
   return (
@@ -26,6 +26,7 @@ function HomePage() {
             <input
               id="movie-search"
               type="search"
+              maxLength={100}
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
               placeholder="Try a movie title"
@@ -43,16 +44,16 @@ function HomePage() {
       <section className="movie-section" aria-labelledby="movies-heading">
         <div className="section-heading">
           <h2 id="movies-heading">{hasSearched ? 'Search results' : 'Popular picks'}</h2>
-          <span className="result-count">{filteredMovies.length} movies</span>
+          <span className="result-count">{loading ? 'Searching…' : `${total} movies`}</span>
         </div>
 
         <p className="visually-hidden" role="status" aria-live="polite">
-          {hasSearched
+          {loading ? 'Searching movies…' : error ? 'Search failed.' : hasSearched
             ? `${filteredMovies.length} ${filteredMovies.length === 1 ? 'movie' : 'movies'} found.`
-            : `${filteredMovies.length} movies available.`}
+            : `${loading ? 'Searching…' : `${total} movies`} available.`}
         </p>
 
-        {filteredMovies.length > 0 ? (
+        {loading ? <p role="status">Loading movies…</p> : error ? <div className="empty-state"><p role="alert">{error}</p><button className="button button-primary" onClick={retry}>Retry search</button></div> : filteredMovies.length > 0 ? (
           <div className="movie-grid">
             {filteredMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
           </div>
@@ -63,6 +64,11 @@ function HomePage() {
             <p>We couldn’t find a title matching “{submittedTerm}”. Try another title, or use Clear search above to browse all movies.</p>
           </div>
         )}
+        {hasSearched && !loading && !error && total > 10 && <nav className="pagination" aria-label="Search result pages">
+          <button className="button button-secondary" disabled={page === 1} onClick={() => setPage(page - 1)}>Previous page</button>
+          <span>Page {page} of {Math.min(100, Math.ceil(total / 10))}</span>
+          <button className="button button-secondary" disabled={page >= Math.min(100, Math.ceil(total / 10))} onClick={() => setPage(page + 1)}>Next page</button>
+        </nav>}
       </section>
     </>
   );
