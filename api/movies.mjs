@@ -44,7 +44,7 @@ export function createMovieHandler({ getKey = () => process.env.OMDB_API_KEY, fe
     const cached = cache.get(cacheKey);
     if (cached && cached.expires > now()) return send(200, cached.body);
     if (now() - windowStart >= 60_000) { windowStart = now(); calls = 0; }
-    if (calls >= 30) { res.setHeader('Retry-After', '60'); return send(429, { error: 'Too many movie requests. Please retry in a minute.' }); }
+    if (calls >= 60) { res.setHeader('Retry-After', '60'); return send(429, { error: 'Too many movie requests. Please retry in a minute.' }); }
     calls++;
     params.set('apikey', key);
     try {
@@ -52,8 +52,10 @@ export function createMovieHandler({ getKey = () => process.env.OMDB_API_KEY, fe
       if (!response.ok) return send(502, { error: 'The movie service is unavailable. Please retry.' });
       const body = await response.json();
       if (body.Response === 'False') {
-        if (/not found/i.test(body.Error ?? '')) return send(200, id ? { movie: null } : { movies: [], total: 0 });
-        return send(502, { error: /limit/i.test(body.Error ?? '') ? 'The movie service request limit was reached. Try later.' : 'The movie service could not complete this request. Check configuration or try a more specific title.' });
+        const providerError = body.Error ?? '';
+        if (/not found/i.test(providerError)) return send(200, id ? { movie: null } : { movies: [], total: 0 });
+        if (/too many results/i.test(providerError)) return send(400, { error: 'Too many results. Try a more specific movie title.' });
+        return send(502, { error: /limit/i.test(providerError) ? 'The movie service request limit was reached. Try later.' : 'The movie service could not complete this request. Please retry.' });
       }
       const clean = (v) => typeof v === 'string' && v !== 'N/A' ? v : '';
       const mapMovie = (item) => {
@@ -69,7 +71,7 @@ export function createMovieHandler({ getKey = () => process.env.OMDB_API_KEY, fe
         if (existingRequest) return existingRequest;
         const request = withDetailLimit(async () => {
           if (now() - windowStart >= 60_000) { windowStart = now(); calls = 0; }
-          if (calls >= 30) {
+          if (calls >= 60) {
             const error = new Error('Movie request limit reached.');
             error.statusCode = 429;
             throw error;

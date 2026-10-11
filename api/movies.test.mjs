@@ -76,7 +76,7 @@ it('distinguishes not found, provider errors and unconfigured service', async ()
 it('limits uncached upstream requests', async () => {
   const fetcher = vi.fn().mockResolvedValue({ ok: false });
   const h = createMovieHandler({ getKey: () => 'test-key', fetcher, now: () => 100_000 });
-  for (let i = 0; i < 30; i++) await run(h, 'q=Batman');
+  for (let i = 0; i < 60; i++) await run(h, 'q=Batman');
   expect((await run(h, 'q=Batman')).status).toBe(429);
-  expect(fetcher).toHaveBeenCalledTimes(30);
+  expect(fetcher).toHaveBeenCalledTimes(60);
 });

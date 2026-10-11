@@ -4,7 +4,8 @@ import type { User } from 'firebase/auth';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
-import { movies } from './data/movies';
+import { featuredMovieFixtures, inceptionMovie } from './test/movieFixtures';
+import { getMovie } from './services/movies';
 import type { Movie } from './types/movie';
 
 const mocks = vi.hoisted(() => ({
@@ -33,7 +34,7 @@ vi.mock('./services/favorites', () => ({
 
 vi.mock('./services/movies', () => ({
   searchMovies: vi.fn(async () => ({ movies: [], total: 0 })),
-  getMovie: vi.fn(async () => ({ movie: null })),
+  getMovie: vi.fn(),
 }));
 
 const signedInUser = { uid: 'viewer-a', email: 'viewer@example.test' } as User;
@@ -55,6 +56,9 @@ function resolveAuth(user: User | null) {
 
 beforeEach(() => {
   vi.clearAllMocks();
+  vi.mocked(getMovie).mockImplementation(async (id) => ({
+    movie: featuredMovieFixtures.find((movie) => movie.id === id) ?? null,
+  }));
   authListener = undefined;
   favoriteListeners = new Map();
   savedByUser = new Map();
@@ -122,7 +126,7 @@ it('saves and removes favorites with pending and success feedback and stable IMD
   const user = userEvent.setup();
   renderApp('/');
   resolveAuth(signedInUser);
-  const inceptionCard = screen.getByRole('heading', { name: 'Inception' }).closest('article')!;
+  const inceptionCard = (await screen.findByRole('heading', { name: 'Inception' })).closest('article')!;
   const addButton = within(inceptionCard).getByRole('button', { name: 'Add to favorites' });
   let finishSave!: () => void;
   mocks.saveFavorite.mockImplementationOnce(() => new Promise<void>((resolve) => { finishSave = resolve; }));
@@ -134,7 +138,7 @@ it('saves and removes favorites with pending and success feedback and stable IMD
   expect(mocks.saveFavorite).toHaveBeenCalledTimes(1);
   finishSave();
   expect(await within(inceptionCard).findByRole('status')).toBeTruthy();
-  expect(mocks.saveFavorite).toHaveBeenCalledWith('viewer-a', expect.objectContaining({ id: 'inception', imdbId: 'tt1375666' }));
+  expect(mocks.saveFavorite).toHaveBeenCalledWith('viewer-a', expect.objectContaining({ id: 'tt1375666', imdbId: 'tt1375666' }));
 
   mocks.saveFavorite.mockImplementation(async (userId: string, movie: Movie) => {
     const saved = { ...movie, id: movie.imdbId! };
@@ -153,20 +157,20 @@ it('reports a failed favorite write and clears another user’s saved state', as
   const user = userEvent.setup();
   renderApp('/');
   resolveAuth(signedInUser);
-  const shawshankCard = screen.getByRole('heading', { name: 'The Shawshank Redemption' }).closest('article')!;
+  const shawshankCard = (await screen.findByRole('heading', { name: 'The Shawshank Redemption' })).closest('article')!;
   mocks.saveFavorite.mockRejectedValueOnce(new Error('Firebase denied this write.'));
   await user.click(within(shawshankCard).getByRole('button', { name: 'Add to favorites' }));
   expect((await within(shawshankCard).findByRole('alert')).textContent).toContain('Firebase denied this write.');
 
   savedByUser.set('viewer-b', []);
   resolveAuth({ uid: 'viewer-b', email: 'second@example.test' } as User);
-  const secondInceptionCard = screen.getByRole('heading', { name: 'Inception' }).closest('article')!;
+  const secondInceptionCard = (await screen.findByRole('heading', { name: 'Inception' })).closest('article')!;
   expect(await within(secondInceptionCard).findByRole('button', { name: 'Add to favorites' })).toBeTruthy();
   expect(screen.queryByRole('button', { name: 'Remove from favorites' })).toBeNull();
 });
 
 it('renders only favorites belonging to the signed-in uid and restores them after reauthentication', async () => {
-  const favorite = { ...movies[2], id: 'tt1375666', imdbId: 'tt1375666' };
+  const favorite = { ...inceptionMovie, id: 'tt1375666', imdbId: 'tt1375666' };
   savedByUser.set('viewer-a', [favorite]);
   const { unmount } = renderApp('/favorites');
   resolveAuth(signedInUser);

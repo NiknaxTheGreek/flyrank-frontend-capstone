@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { movies } from '../data/movies';
+import { inceptionMovie } from '../test/movieFixtures';
 import { deleteFavorite, observeFavorites, saveFavorite } from './favorites';
 
 const mocks = vi.hoisted(() => ({
@@ -15,7 +15,7 @@ vi.mock('./firebase', () => ({ getFirebaseDatabase: () => ({}) }));
 afterEach(() => vi.clearAllMocks());
 
 it('stores initial and live movies under their canonical verified IMDb IDs', async () => {
-  await saveFavorite('viewer-a', movies[2]);
+  await saveFavorite('viewer-a', inceptionMovie);
 
   expect(mocks.ref).toHaveBeenCalledWith({}, 'users/viewer-a/favorites/tt1375666');
   expect(mocks.set).toHaveBeenCalledWith(
@@ -40,7 +40,7 @@ it('validates database records before exposing favorites to the UI', () => {
   const onError = vi.fn();
   observeFavorites('viewer-a', onMovies, onError);
 
-  receive({ val: () => ({ tt1375666: { ...movies[2], id: 'wrong-id', imdbId: 'tt1375666' } }) });
+  receive({ val: () => ({ tt1375666: { ...inceptionMovie, id: 'wrong-id', imdbId: 'tt1375666' } }) });
 
   expect(onMovies).not.toHaveBeenCalled();
   expect(onError).toHaveBeenCalledWith(expect.objectContaining({ message: 'A saved favorite has invalid movie data.' }));
