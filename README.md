@@ -1,3 +1,23 @@
+# Reel Good — Assignment 4
+
+This branch scaffolds Reel Good using **Next.js App Router, TypeScript and Tailwind**.
+
+```bash
+npm ci
+npm run verify
+npm start
+```
+
+Use Node 24 and open http://localhost:3000. No secrets are needed to explore the scaffold.
+
+See [Assignment 4 setup, routes and deployment](docs/assignment-04/README.md), [verification](docs/assignment-04/verification.md), and [submission status](docs/assignment-04/submission.md).
+
+**Hosting verification is pending.** Account/favorites and movie data are explicitly scaffolded; this branch does not claim feature parity with Assignment 3. Assignment 3 remains available at immutable tag `assignment-03-final`.
+
+---
+
+## Earlier assignment documentation (historical)
+
 # Reel Good — Assignment 3
 
 Reel Good is a responsive movie discovery app built with React, TypeScript and Vite. Browse a small hand-picked collection by genre, search live OMDb movie data, inspect movie details, follow verified IMDb links, and (after Firebase setup) save personal favorites.
