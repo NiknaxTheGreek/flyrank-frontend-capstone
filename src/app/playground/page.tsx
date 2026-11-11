@@ -1,3 +1,4 @@
+import ShadcnComparison from "../../../playground/ShadcnComparison";
 import Modal from "../../../playground/Modal";
 import Tabs from "../../../playground/Tabs";
 import Disclosure from "../../../playground/Disclosure";
@@ -37,6 +38,7 @@ export default function PlaygroundPage() {
         <h2 className="text-2xl font-semibold">Modal dialog</h2>
         <Modal />
       </section>
+      <ShadcnComparison />
     </main>
   );
 }
