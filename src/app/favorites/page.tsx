@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function FavoritesPage() {return <section className="space-y-6"><h1 className="text-3xl font-bold">Your favorites</h1><p>Sign in to access your saved movies when authentication is connected.</p><p className="rounded bg-surface p-4">Protected-screen placeholder. No user records are fetched or displayed in this scaffold.</p><Link href="/account?returnTo=%2Ffavorites" className="inline-block text-accent underline">Go to sign in</Link></section>;}

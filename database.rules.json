@@ -1,0 +1,48 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        "favorites": {
+          ".read": "auth != null && auth.uid === $uid",
+          "$movieId": {
+            ".write": "auth != null && auth.uid === $uid && $movieId.matches(/^tt[0-9]{7,10}$/)",
+            ".validate": "newData.hasChildren(['id', 'imdbId', 'title', 'year', 'genre', 'posterUrl']) && newData.child('id').val() === $movieId && newData.child('imdbId').val() === $movieId",
+            "id": {
+              ".validate": "newData.isString() && newData.val().matches(/^tt[0-9]{7,10}$/)"
+            },
+            "imdbId": {
+              ".validate": "newData.isString() && newData.val() === $movieId"
+            },
+            "title": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 200"
+            },
+            "year": {
+              ".validate": "newData.isString() || newData.isNumber()"
+            },
+            "genre": {
+              ".validate": "newData.isString() && newData.val().length <= 300"
+            },
+            "rating": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 10"
+            },
+            "posterUrl": {
+              ".validate": "newData.isString() && (newData.val() === '' || newData.val().matches(/^https:\\/\\/\\S+$/))"
+            },
+            "plot": {
+              ".validate": "newData.isString() && newData.val().length <= 2000"
+            },
+            "director": {
+              ".validate": "newData.isString() && newData.val().length <= 200"
+            },
+            "runtime": {
+              ".validate": "newData.isString() && newData.val().length <= 50"
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

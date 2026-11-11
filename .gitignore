@@ -13,3 +13,4 @@ test-results/
 .vite
 *.tsbuildinfo
 .DS_Store
+.env.local

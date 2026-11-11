@@ -4,19 +4,44 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview --host 0.0.0.0"
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build",
+    "preview": "next start --hostname 0.0.0.0",
+    "test": "vitest run --pool=threads --maxWorkers=1",
+    "start": "next start --hostname 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "legacy:dev": "vite --host 0.0.0.0",
+    "smoke": "node scripts/smoke.mjs",
+    "verify": "npm test && npm run build"
   },
   "dependencies": {
+    "firebase": "^12.19.0",
+    "next": "16.4.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "7.18.5"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "4.3.5",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^22.20.5",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "6.1.2",
+    "jsdom": "^25.0.1",
+    "playwright": "1.65.0",
+    "postcss": "8.5.32",
+    "tailwindcss": "4.3.5",
     "typescript": "^5.5.4",
-    "vite": "^5.4.10"
+    "vite": "8.3.4",
+    "vitest": "5.0.5"
+  },
+  "overrides": {
+    "@grpc/grpc-js": "^1.13.6"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }
