@@ -98,3 +98,27 @@ Unknown pages and movie IDs show a recovery path. Vite's SPA fallback serves app
 - OMDb availability, quota, and an activated key are external dependencies.
 
 See [Assignment 3 verification](./docs/assignment-3/verification.md), [review log](./docs/assignment-3/review-log.md), and [submission draft](./docs/assignment-3/submission.md).
+
+## Assignment 6 — Streaming movie picker
+
+Open **Movie picker** in the navigation, choose **Try an example**, then send.
+The reply appears as it arrives. Choose **Stop generation** halfway through,
+then ask “Anything lighter?” to check that the follow-up uses the partial reply.
+Scroll up during a longer reply to check that the transcript keeps your place;
+**Jump to latest** resumes following new text.
+
+- [Chat component](src/components/MovieChat.tsx): what the user sees and clicks.
+- [API route](api/movie-chat.mjs) and [stream handler](server/movie-chat-handler.mjs):
+  validate the conversation, call OpenAI, and stream the reply back.
+- [Model and instructions](server/movie-chat-config.mjs): server-only settings.
+
+Set `OPENAI_API_KEY` in your local `.env.local` for Vite and as a server-side
+**Preview** environment variable in Vercel. Redeploy the branch after setting it.
+`OPENAI_MODEL` is an optional server environment override. Never put the key
+in a `VITE_` variable. The movie picker does not require OMDb or Firebase
+credentials; those are for the existing search and favourites features.
+
+ChatGPT assisted with development. The app calls the OpenAI Responses API at
+runtime. This replaces the Claude provider named in the original brief.
+Run `npm test` for the mocked streaming checks and `npm run build` to verify
+the production bundle. The preview needs its own API credentials for live testing.

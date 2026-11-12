@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { expect, it, vi } from 'vitest';
-import { createMovieHandler } from './movies.mjs';
+import { createMovieHandler } from '../api/movies.mjs';
 async function run(handler, query, method = 'GET') {
   let body; const headers = {};
   const res = { statusCode: 0, setHeader: (k,v) => { headers[k] = v; }, end: value => { body = JSON.parse(value); } };

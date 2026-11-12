@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { FavoritesProvider } from './contexts/FavoritesContext';
+import MovieChat from './components/MovieChat';
 import AccountPage from './pages/AccountPage';
 import FavoritesPage from './pages/FavoritesPage';
 import HomePage from './pages/HomePage';
@@ -37,6 +38,7 @@ function AppLayout() {
         </Link>
         <nav className="site-navigation" aria-label="Main navigation">
           <Link to="/movies">Movies</Link>
+          <Link to="/pick-a-movie">Movie picker</Link>
           <Link to="/favorites">Favorites</Link>
           <Link to="/account">{user ? 'Account' : 'Sign in'}</Link>
         </nav>
@@ -46,6 +48,7 @@ function AppLayout() {
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<HomePage />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+          <Route path="/pick-a-movie" element={<MovieChat />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/favorites" element={<RequireAuth><FavoritesPage /></RequireAuth>} />
           <Route path="*" element={<NotFoundPage />} />
