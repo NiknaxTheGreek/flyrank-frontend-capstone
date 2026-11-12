@@ -122,3 +122,5 @@ ChatGPT assisted with development. The app calls the OpenAI Responses API at
 runtime. This replaces the Claude provider named in the original brief.
 Run `npm test` for the mocked streaming checks and `npm run build` to verify
 the production bundle. The preview needs its own API credentials for live testing.
+
+On Vercel, verify **Source** is `fe06-reel-good-movie-chat` as well as **Environment** being **Preview**. A Preview built from `main` shows the assignment index and does not include the movie picker.
