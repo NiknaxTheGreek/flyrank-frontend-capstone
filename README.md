@@ -125,4 +125,4 @@ the production bundle. The preview needs its own API credentials for live testin
 
 On Vercel, verify **Source** is `fe06-reel-good-movie-chat` as well as **Environment** being **Preview**. A Preview built from `main` shows the assignment index and does not include the movie picker.
 
-The default model is gemini-2.5-flash-lite. Keep Google Cloud billing disabled to use only your available free-tier quota; quota exhaustion returns an error, with no paid-provider fallback. Deploy branch fe06-reel-good-movie-chat, not main.
+The default model is gemini-3.5-flash-lite. Keep Google Cloud billing disabled to use only your available free-tier quota; quota exhaustion returns an error, with no paid-provider fallback. Deploy branch fe06-reel-good-movie-chat, not main.
