@@ -1,3 +1,5 @@
+import AuditChat from "./AuditChat";
+
 type Stat = {
   label: string;
   value: string;
@@ -64,6 +66,7 @@ function App() {
               {item}
             </button>
           ))}
+          <a className="nav-item" href="#audit-chat">Audit assistant</a>
         </nav>
 
         <div className="side-card">
@@ -176,6 +179,7 @@ function App() {
             </ul>
           </div>
         </section>
+        <AuditChat />
       </main>
     </div>
   );

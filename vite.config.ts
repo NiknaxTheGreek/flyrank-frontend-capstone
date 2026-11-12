@@ -5,10 +5,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
+    proxy: { '/api/audit': 'http://127.0.0.1:8787' },
     port: 5173,
   },
   preview: {
     host: '0.0.0.0',
+    proxy: { '/api/audit': 'http://127.0.0.1:8787' },
     port: 4173,
   },
 });
