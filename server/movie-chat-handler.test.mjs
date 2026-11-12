@@ -49,3 +49,14 @@ test('rejects system messages and returns a clear error for missing credentials'
   expect((await handler(request([user('Help')]))).status).toBe(503);
   expect(fetcher).not.toHaveBeenCalled();
 });
+
+test('reports quota errors without exposing the provider payload', async () => {
+  const fetcher = vi.fn(async () => Response.json({
+    error: { code: 'insufficient_quota', message: 'private provider details' },
+  }, { status: 429 }));
+  const response = await createMovieChatHandler({ getKey: () => 'test-key', fetcher })(request([user('Begin')]));
+  expect(response.status).toBe(429);
+  const body = await response.text();
+  expect(body).toContain('Check API billing');
+  expect(body).not.toContain('private provider details');
+});

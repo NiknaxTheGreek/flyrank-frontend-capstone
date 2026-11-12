@@ -3,6 +3,13 @@ import { movieChatConfig } from './movie-chat-config.mjs';
 const error = (message, status) => Response.json({ error: message }, { status });
 const encoder = new TextEncoder();
 
+function providerMessage(code) {
+  if (code === 'insufficient_quota' || code === 'billing_hard_limit_reached') return 'OpenAI API credits are unavailable. Check API billing for the project that owns the key.';
+  if (code === 'invalid_api_key') return 'OpenAI rejected the API key. Check the Preview secret in Vercel.';
+  if (code === 'model_not_found') return 'This OpenAI project cannot access the configured model.';
+  if (code === 'rate_limit_exceeded') return 'The movie picker is busy. Wait a moment and try again.';
+}
+
 async function readMessages(request) {
   const reader = request.body?.getReader();
   if (!reader) throw new Error();
@@ -71,7 +78,9 @@ export function createMovieChatHandler({ getKey = () => process.env.OPENAI_API_K
       });
     } catch { return error('Could not start the movie reply. Try again shortly.', 502); }
     if (!upstream.ok || !upstream.body) {
-      await upstream.body?.cancel().catch(() => {});
+      const payload = await upstream.json().catch(() => null);
+      const hint = providerMessage(payload?.error?.code);
+      if (hint) return error(hint, upstream.status === 429 ? 429 : 502);
       return upstream.status === 429
         ? error('The movie picker is busy. Wait a moment and try again.', 429)
         : error('Could not start the movie reply. Try again shortly.', 502);
@@ -89,9 +98,13 @@ export function createMovieChatHandler({ getKey = () => process.env.OPENAI_API_K
               if (typeof event.delta === 'string') send({ type: 'text', delta: event.delta });
             }
             if (event.type === 'response.completed') { send({ type: 'done' }); return; }
-            if (['response.incomplete', 'response.failed', 'error'].includes(event.type)) break;
+            if (['response.incomplete', 'response.failed', 'error'].includes(event.type)) {
+              send({ type: 'error', message: providerMessage(event.code ?? event.error?.code ?? event.response?.error?.code)
+                ?? 'OpenAI stopped the reply before finishing. Try sending the message again.' });
+              return;
+            }
           }
-          send({ type: 'error', message: 'The movie reply ended early. You can send another message.' });
+          send({ type: 'error', message: 'The connection to OpenAI closed before the reply finished. Try again.' });
         } catch {
           send({ type: 'error', message: 'The movie reply was interrupted. You can send another message.' });
         } finally {
