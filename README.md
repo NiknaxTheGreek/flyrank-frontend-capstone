@@ -109,18 +109,20 @@ Scroll up during a longer reply to check that the transcript keeps your place;
 
 - [Chat component](src/components/MovieChat.tsx): what the user sees and clicks.
 - [API route](api/movie-chat.mjs) and [stream handler](server/movie-chat-handler.mjs):
-  validate the conversation, call OpenAI, and stream the reply back.
+  validate the conversation, call Gemini, and stream the reply back.
 - [Model and instructions](server/movie-chat-config.mjs): server-only settings.
 
-Set `OPENAI_API_KEY` in your local `.env.local` for Vite and as a server-side
+Set `GEMINI_API_KEY` in your local `.env.local` for Vite and as a server-side
 **Preview** environment variable in Vercel. Redeploy the branch after setting it.
-`OPENAI_MODEL` is an optional server environment override. Never put the key
+`GEMINI_MODEL` is an optional server environment override. Never put the key
 in a `VITE_` variable. The movie picker does not require OMDb or Firebase
 credentials; those are for the existing search and favourites features.
 
-ChatGPT assisted with development. The app calls the OpenAI Responses API at
+ChatGPT assisted with development. The app calls the Gemini streaming API at
 runtime. This replaces the Claude provider named in the original brief.
 Run `npm test` for the mocked streaming checks and `npm run build` to verify
 the production bundle. The preview needs its own API credentials for live testing.
 
 On Vercel, verify **Source** is `fe06-reel-good-movie-chat` as well as **Environment** being **Preview**. A Preview built from `main` shows the assignment index and does not include the movie picker.
+
+The default model is gemini-2.5-flash-lite. Keep Google Cloud billing disabled to use only your available free-tier quota; quota exhaustion returns an error, with no paid-provider fallback. Deploy branch fe06-reel-good-movie-chat, not main.

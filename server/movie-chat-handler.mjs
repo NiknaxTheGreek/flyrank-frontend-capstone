@@ -4,10 +4,9 @@ const error = (message, status) => Response.json({ error: message }, { status })
 const encoder = new TextEncoder();
 
 function providerMessage(code) {
-  if (code === 'insufficient_quota' || code === 'billing_hard_limit_reached') return 'OpenAI API credits are unavailable. Check API billing for the project that owns the key.';
-  if (code === 'invalid_api_key') return 'OpenAI rejected the API key. Check the Preview secret in Vercel.';
-  if (code === 'model_not_found') return 'This OpenAI project cannot access the configured model.';
-  if (code === 'rate_limit_exceeded') return 'The movie picker is busy. Wait a moment and try again.';
+  if (code === 'RESOURCE_EXHAUSTED' || code === 429) return 'Gemini free-tier quota is unavailable or exhausted. Check your AI Studio limits and try again later.';
+  if (['UNAUTHENTICATED', 'PERMISSION_DENIED', 'INVALID_ARGUMENT', 400, 401, 403].includes(code)) return 'Gemini rejected this request. Check the GEMINI_API_KEY Preview secret and model access.';
+  if (code === 'NOT_FOUND' || code === 404) return 'The configured Gemini model is unavailable.';
 }
 
 async function readMessages(request) {
@@ -32,7 +31,7 @@ async function readMessages(request) {
   } finally { reader.releaseLock(); }
 }
 
-async function* openAIEvents(body) {
+async function* geminiEvents(body) {
   const reader = body.pipeThrough(new TextDecoderStream()).getReader();
   let buffer = '';
   try {
@@ -55,7 +54,7 @@ async function* openAIEvents(body) {
   }
 }
 
-export function createMovieChatHandler({ getKey = () => process.env.OPENAI_API_KEY, fetcher = fetch } = {}) {
+export function createMovieChatHandler({ getKey = () => process.env.GEMINI_API_KEY, fetcher = fetch } = {}) {
   return async function movieChat(request) {
     if (request.method !== 'POST') return new Response(null, { status: 405, headers: { Allow: 'POST' } });
     let input;
@@ -67,19 +66,22 @@ export function createMovieChatHandler({ getKey = () => process.env.OPENAI_API_K
     const signal = AbortSignal.any([request.signal, disconnect.signal, AbortSignal.timeout(40_000)]);
     let upstream;
     try {
-      upstream = await fetcher('https://api.openai.com/v1/responses', {
+      upstream = await fetcher('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(movieChatConfig.model) + ':streamGenerateContent?alt=sse', {
         method: 'POST',
-        headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' },
+        headers: { 'x-goog-api-key': key, 'Content-Type': 'application/json' },
         signal,
         body: JSON.stringify({
-          model: movieChatConfig.model, instructions: movieChatConfig.instructions,
-          max_output_tokens: movieChatConfig.maxOutputTokens, input, stream: true, store: false,
+          systemInstruction: { parts: [{ text: movieChatConfig.instructions }] },
+          contents: input.map(({ role, content }) => ({
+            role: role === 'assistant' ? 'model' : 'user', parts: [{ text: content }],
+          })),
+          generationConfig: { maxOutputTokens: movieChatConfig.maxOutputTokens },
         }),
       });
     } catch { return error('Could not start the movie reply. Try again shortly.', 502); }
     if (!upstream.ok || !upstream.body) {
       const payload = await upstream.json().catch(() => null);
-      const hint = providerMessage(payload?.error?.code);
+      const hint = providerMessage(payload?.error?.status ?? payload?.error?.code);
       if (hint) return error(hint, upstream.status === 429 ? 429 : 502);
       return upstream.status === 429
         ? error('The movie picker is busy. Wait a moment and try again.', 429)
@@ -93,18 +95,25 @@ export function createMovieChatHandler({ getKey = () => process.env.OPENAI_API_K
           }
         };
         try {
-          for await (const event of openAIEvents(upstream.body)) {
-            if (event.type === 'response.output_text.delta' || event.type === 'response.refusal.delta') {
-              if (typeof event.delta === 'string') send({ type: 'text', delta: event.delta });
+          for await (const event of geminiEvents(upstream.body)) {
+            if (event.error || event.promptFeedback?.blockReason) {
+              send({ type: 'error', message: providerMessage(event.error?.status ?? event.error?.code)
+                ?? 'Gemini could not answer that request. Try another movie preference.' });
+              return;
             }
-            if (event.type === 'response.completed') { send({ type: 'done' }); return; }
-            if (['response.incomplete', 'response.failed', 'error'].includes(event.type)) {
-              send({ type: 'error', message: providerMessage(event.code ?? event.error?.code ?? event.response?.error?.code)
-                ?? 'OpenAI stopped the reply before finishing. Try sending the message again.' });
+            const candidate = event.candidates?.[0];
+            for (const part of candidate?.content?.parts ?? []) {
+              if (typeof part.text === 'string' && !part.thought) send({ type: 'text', delta: part.text });
+            }
+            if (candidate?.finishReason) {
+              if (candidate.finishReason === 'STOP') send({ type: 'done' });
+              else send({ type: 'error', message: candidate.finishReason === 'MAX_TOKENS'
+                ? 'The reply reached its length limit. Ask me to continue.'
+                : 'Gemini stopped this reply. Try another movie preference.' });
               return;
             }
           }
-          send({ type: 'error', message: 'The connection to OpenAI closed before the reply finished. Try again.' });
+          send({ type: 'error', message: 'The connection to Gemini closed before the reply finished. Try again.' });
         } catch {
           send({ type: 'error', message: 'The movie reply was interrupted. You can send another message.' });
         } finally {
