@@ -103,7 +103,7 @@ export default function AuditChat() {
       if (outcome) setMessages(current => output.trim()
         ? current.map(m => m.id === assistant.id ? { ...m, outcome } : m)
         : current.filter(m => m.id !== assistant.id &&
-          (outcome !== 'interrupted' || m.id !== conversation.at(-1)?.id)));
+          (outcome !== 'interrupted' || m.id !== conversation[conversation.length - 1].id)));
       running.current = null;
       setActiveId(undefined);
     }
