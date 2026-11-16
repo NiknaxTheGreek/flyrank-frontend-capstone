@@ -1,4 +1,13 @@
+import { randomUUID } from 'node:crypto';
+import { z } from 'zod';
 import { movieChatConfig } from './movie-chat-config.mjs';
+import { lookupMovie } from './lookup-movie-tool.mjs';
+
+const movieToolDeclaration = {
+  name: lookupMovie.name,
+  description: lookupMovie.description,
+  parametersJsonSchema: z.toJSONSchema(lookupMovie.inputSchema, { io: 'input' }),
+};
 
 const error = (message, status) => Response.json({ error: message }, { status });
 const encoder = new TextEncoder();
@@ -54,7 +63,9 @@ async function* geminiEvents(body) {
   }
 }
 
-export function createMovieChatHandler({ getKey = () => process.env.GEMINI_API_KEY, fetcher = fetch } = {}) {
+export function createMovieChatHandler({ getKey = () => process.env.GEMINI_API_KEY, fetcher = fetch,
+  executeMovieLookup = lookupMovie.execute,
+} = {}) {
   return async function movieChat(request) {
     if (request.method !== 'POST') return new Response(null, { status: 405, headers: { Allow: 'POST' } });
     let input;
@@ -71,7 +82,10 @@ export function createMovieChatHandler({ getKey = () => process.env.GEMINI_API_K
         headers: { 'x-goog-api-key': key, 'Content-Type': 'application/json' },
         signal,
         body: JSON.stringify({
-          systemInstruction: { parts: [{ text: movieChatConfig.instructions }] },
+          systemInstruction: { parts: [{ text: movieChatConfig.instructions +
+            '\\nUse lookupMovie when the user asks for factual details about one named movie. ' +
+            'Use it at most once in a reply. For general recommendations, respond normally.' }] },
+          tools: [{ functionDeclarations: [movieToolDeclaration] }],
           contents: input.map(({ role, content }) => ({
             role: role === 'assistant' ? 'model' : 'user', parts: [{ text: content }],
           })),
@@ -103,6 +117,37 @@ export function createMovieChatHandler({ getKey = () => process.env.GEMINI_API_K
             }
             const candidate = event.candidates?.[0];
             for (const part of candidate?.content?.parts ?? []) {
+              if (part.functionCall?.name === lookupMovie.name) {
+                const toolEvent = {
+                  type: 'tool',
+                  toolName: lookupMovie.name,
+                  toolCallId: randomUUID(),
+                };
+                send({ ...toolEvent, state: 'input-streaming' });
+
+                const parsed = lookupMovie.inputSchema.safeParse(part.functionCall.args);
+                if (!parsed.success) {
+                  send({ ...toolEvent, state: 'output-error',
+                    errorText: 'I need a movie title. Try asking for one movie by name.' });
+                  send({ type: 'done' });
+                  return;
+                }
+
+                const input = parsed.data;
+                send({ ...toolEvent, state: 'input-available', input });
+                try {
+                  const output = await executeMovieLookup(input, { signal });
+                  send({ ...toolEvent, state: 'output-available', input, output });
+                } catch (err) {
+                  const errorText = err instanceof Error &&
+                    err.message === 'No matching movie. Check the title and try again.'
+                    ? err.message
+                    : 'Movie lookup is unavailable. Try again shortly.';
+                  send({ ...toolEvent, state: 'output-error', input, errorText });
+                }
+                send({ type: 'done' });
+                return;
+              }
               if (typeof part.text === 'string' && !part.thought) send({ type: 'text', delta: part.text });
             }
             if (candidate?.finishReason) {

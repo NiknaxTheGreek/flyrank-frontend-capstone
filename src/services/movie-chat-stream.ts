@@ -1,4 +1,7 @@
+import { movieToolPart, type MovieToolPart } from './movie-tool-part';
+
 export type MovieChatEvent =
+  | MovieToolPart
   | { type: 'text'; delta: string }
   | { type: 'done' }
   | { type: 'error'; message: string };
@@ -7,6 +10,7 @@ function decode(frame: string): MovieChatEvent {
   if (!frame.startsWith('data: ')) throw new Error('Unexpected movie reply.');
   const event: unknown = JSON.parse(frame.slice(6));
   if (!event || typeof event !== 'object' || !('type' in event)) throw new Error('Unexpected movie reply.');
+  if (event.type === 'tool') return movieToolPart.parse(event);
   if (event.type === 'done') return { type: 'done' };
   if (event.type === 'text' && 'delta' in event && typeof event.delta === 'string') return { type: 'text', delta: event.delta };
   if (event.type === 'error' && 'message' in event && typeof event.message === 'string') return { type: 'error', message: event.message };
@@ -28,7 +32,7 @@ export async function* readMovieChatEvents(response: Response): AsyncGenerator<M
         const event = decode(buffer.slice(0, boundary));
         buffer = buffer.slice(boundary + 2);
         yield event;
-        if (event.type !== 'text') return;
+        if (event.type === 'done' || event.type === 'error') return;
       }
     }
   } finally {

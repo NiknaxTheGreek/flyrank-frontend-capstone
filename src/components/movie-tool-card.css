@@ -1,0 +1,27 @@
+.movie-tool-card {
+  box-sizing: border-box;
+  min-block-size: 5.5rem;
+  margin-block-start: .5rem;
+  padding: .85rem;
+  border: 1px solid #66718a;
+  border-radius: .75rem;
+  background: #151b2b;
+  color: #f0f3fb;
+  overflow-wrap: anywhere;
+}
+.movie-tool-card p, .movie-tool-card h2 { margin: .35rem 0; }
+.movie-tool-card h2 { font-size: 1.2rem; }
+.movie-tool-card a { color: #c0dcff; text-decoration: underline; }
+.movie-tool-card a:focus-visible { outline: 2px solid #c0dcff; outline-offset: 3px; }
+.movie-tool-input-streaming { border-style: dashed; }
+.movie-tool-input-available { border-inline-start: 4px solid #91baff; }
+.movie-tool-output-available { border-inline-start: 4px solid #80d8b0; }
+.movie-tool-output-error { border-inline-start: 4px solid #ffa6a6; background: #38232b; }
+.movie-tool-pending { display: flex; align-items: center; gap: .6rem; }
+.movie-tool-pending span { width: .65rem; height: .65rem; border-radius: 50%; background: #91baff; }
+.movie-tool-card dl { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin: .5rem 0; }
+.movie-tool-card dt { font-size: .8rem; color: #c9d2e5; }
+.movie-tool-card dd { margin: 0; }
+.movie-tool-content { animation: movie-tool-enter 200ms ease-out both; }
+@keyframes movie-tool-enter { from { opacity: .35; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .movie-tool-content { animation: none; } }
