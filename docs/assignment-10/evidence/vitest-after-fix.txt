@@ -1,0 +1,33 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> flyrank-frontend-capstone@1.0.0 test:ci
+> vitest run --pool=threads --maxWorkers=1 --minWorkers=1 --reporter=default --reporter=json --reporter=junit --outputFile.json=test-results/vitest-results.json --outputFile.junit=test-results/vitest-junit.xml
+
+
+ RUN  v2.1.9 /workspace/scratch/054bdea81842/flyrank-frontend-capstone
+
+ ✓ src/auth-favorites.test.tsx (6 tests) 594ms
+ ✓ src/components/MovieChat.test.tsx (7 tests) 285ms
+ ✓ src/components/NotificationSettings.test.tsx (10 tests) 529ms
+ ✓ src/components/AsyncActionButton.test.tsx (6 tests) 129ms
+ ✓ src/App.test.tsx (4 tests) 621ms
+ ✓ src/components/MovieMessage.test.tsx (10 tests) 95ms
+ ✓ src/routing.test.tsx (6 tests) 385ms
+ ✓ src/live-movies.test.tsx (5 tests) 245ms
+ ✓ src/components/MovieChat.lifecycle.test.tsx (3 tests) 909ms
+   ✓ a mocked stream transitions through every successful tool state and then completes 742ms
+ ✓ src/components/MovieToolCard.test.tsx (9 tests) 79ms
+ ✓ src/pages/MotionLabPage.test.tsx (5 tests) 188ms
+ ✓ src/components/MovieCard.test.tsx (2 tests) 57ms
+ ✓ src/services/favorites.test.ts (3 tests) 4ms
+ ✓ src/components/RouteErrorBoundary.test.tsx (1 test) 63ms
+ ✓ server/movies.test.mjs (5 tests) 22ms
+ ✓ server/movie-chat-handler.test.mjs (4 tests) 14ms
+
+ Test Files  16 passed (16)
+      Tests  86 passed (86)
+   Start at  21:39:06
+   Duration  10.55s (transform 358ms, setup 402ms, collect 1.32s, tests 4.22s, environment 2.78s, prepare 532ms)
+
+JSON report written to /workspace/scratch/054bdea81842/flyrank-frontend-capstone/test-results/vitest-results.json
+JUNIT report written to /workspace/scratch/054bdea81842/flyrank-frontend-capstone/test-results/vitest-junit.xml

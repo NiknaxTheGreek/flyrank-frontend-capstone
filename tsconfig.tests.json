@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["vite/client", "node", "@testing-library/jest-dom"]
+  },
+  "include": ["src", "e2e", "playwright.config.ts"],
+  "exclude": []
+}
