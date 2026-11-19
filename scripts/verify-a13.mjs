@@ -77,7 +77,9 @@ async function eventually(predicate, message) {
   throw new Error(message);
 }
 async function noDraws(page, message) {
-  await delay(160);
+  // GPU-heavy software rendering may delay observer delivery. Wait for the
+  // application's scheduler to stop, then verify that it stays stopped.
+  await eventually(async () => (await state(page)).pendingFrames === 0, message);
   const before = (await state(page)).draws;
   await delay(350);
   assert.equal((await state(page)).draws, before, message);
@@ -200,6 +202,7 @@ try {
     document.body.append(spacer);
     window.scrollTo(0, document.body.scrollHeight);
   });
+  await eventually(() => page.locator('canvas').evaluate(el => el.getBoundingClientRect().bottom <= 0), 'Hero did not scroll out of view');
   await noDraws(page, 'Offscreen hero kept drawing');
   const offscreenDraws = (await state(page)).draws;
   await page.evaluate(() => { document.getElementById('a13-verification-spacer').remove(); window.scrollTo(0, 0); });
