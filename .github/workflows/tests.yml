@@ -13,10 +13,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  components:
-    name: Component tests and TypeScript
+  verification:
+    name: A10 merge gate
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -31,56 +31,13 @@ jobs:
       - name: Publish component test summary
         if: always()
         run: node scripts/ci-test-summary.mjs
-      - name: Upload test reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: vitest-report
-          path: test-results/vitest-*
-          retention-days: 30
-  e2e:
-    name: Playwright desktop and phone
-    needs: components
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: npm run build
-      - name: Run mocked primary flow and retry journeys
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Build the production application
+        run: npm run build
+      - name: Run Playwright desktop and phone journeys
         run: npm run test:e2e
-      - name: Download component results for CI evidence
-        uses: actions/download-artifact@v4
-        with:
-          name: vitest-report
-          path: test-results
-      - name: Capture screenshot of the actual CI test reports
+      - name: Capture actual CI test reports
         run: node scripts/ci-evidence.mjs
-      - name: Upload browser report and screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: |
-            playwright-report/
-            test-results/
-          retention-days: 30
-  merge-gate:
-    name: A10 merge gate
-    if: always()
-    needs: [components, e2e]
-    runs-on: ubuntu-latest
-    timeout-minutes: 2
-    steps:
-      - name: Require both suites to pass
-        env:
-          COMPONENTS_RESULT: ${{ needs.components.result }}
-          E2E_RESULT: ${{ needs.e2e.result }}
-        run: |
-          test "$COMPONENTS_RESULT" = success
-          test "$E2E_RESULT" = success
+      # Evidence is emitted in bounded log chunks and committed to the submission
+      # folder by the assistant. This does not depend on Actions artifact storage.

@@ -50,7 +50,20 @@ const browser = await chromium.launch({ executablePath: process.env.PLAYWRIGHT_C
 try {
   const page = await browser.newPage({ viewport: { width: 1280, height: 1000 }, deviceScaleFactor: 1 });
   await page.goto(pathToFileURL(resolve('test-results/ci-suite.html')).href);
-  await page.screenshot({ path: 'test-results/ci-suite.png', fullPage: true });
+  const screenshot = await page.screenshot({ path: 'test-results/ci-suite.png', fullPage: true });
+  if (inCI) {
+    const encoded = screenshot.toString('base64');
+    console.log('A10_CI_SCREENSHOT_BEGIN');
+    for (let offset = 0; offset < encoded.length; offset += 12_000) {
+      console.log(`A10_CI_SCREENSHOT_CHUNK ${offset / 12_000} ${encoded.slice(offset, offset + 12_000)}`);
+    }
+    console.log('A10_CI_SCREENSHOT_END');
+    console.log('A10_VERIFIED_RESULTS ' + JSON.stringify({
+      source: 'GitHub Actions', runUrl, sha: process.env.GITHUB_SHA,
+      vitest: { passed: vitest.numPassedTests, total: vitest.numTotalTests, failed: vitest.numFailedTests },
+      playwright: playwright.stats,
+    }));
+  }
 } finally {
   await browser.close();
 }

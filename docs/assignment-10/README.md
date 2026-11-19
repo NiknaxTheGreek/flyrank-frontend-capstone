@@ -80,14 +80,20 @@ The requirement and assertion were retained. The implementation was corrected.
 
 1. Install the committed lockfile, type-check app/test source, run Vitest.
 2. Build the app and run Playwright desktop and phone journeys.
-3. Report `A10 merge gate` as passing only when both jobs succeeded.
+3. Report the single `A10 merge gate` job as passing only when type checks,
+   both suites, the build and evidence capture succeeded.
 
 The GitHub Actions runner captures `test-results/ci-suite.png` directly from the
 actual Vitest and Playwright JSON reports after both suites pass. This is a
 labelled test report, not a reconstruction of GitHub's interface. It includes
-the real run URL and commit. The screenshot and machine reports are uploaded as
-workflow artifacts; the final submission evidence is also committed to this
-folder so it does not depend on artifact retention.
+the real run URL and commit. The image is emitted in bounded workflow-log chunks
+and copied into this folder as final submission evidence. It does not depend
+on artifact retention or artifact storage quota.
+
+The first CI attempt passed all 86 tests and then failed while uploading reports
+because this account's Actions artifact quota was full. The workflow now runs
+all verification in one job and captures evidence through its logs. Test
+failures still fail the job normally; no test step uses `continue-on-error`.
 
 **Merge protection is a separate repository setting.** Require `A10 merge gate`
 for the target branch in GitHub's branch protection/ruleset settings to prevent
