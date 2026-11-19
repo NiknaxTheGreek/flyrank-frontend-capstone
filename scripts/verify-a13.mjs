@@ -16,10 +16,29 @@ let serverLog = '';
 server?.stdout.on('data', chunk => { serverLog += chunk; });
 server?.stderr.on('data', chunk => { serverLog += chunk; });
 let browser;
+let windowManager;
 
 // Instrument native calls in the test page only; the production app has no debug API.
 function instrument() {
-  window.__a13 = { draws: 0, contexts: 0, deletes: 0, uniforms: {} };
+  window.__a13 = { draws: 0, contexts: 0, deletes: 0, pendingFrames: 0, uniforms: {} };
+  const pendingFrames = new Set();
+  const schedule = window.requestAnimationFrame.bind(window);
+  const cancel = window.cancelAnimationFrame.bind(window);
+  window.requestAnimationFrame = callback => {
+    const id = schedule(time => {
+      pendingFrames.delete(id);
+      window.__a13.pendingFrames = pendingFrames.size;
+      callback(time);
+    });
+    pendingFrames.add(id);
+    window.__a13.pendingFrames = pendingFrames.size;
+    return id;
+  };
+  window.cancelAnimationFrame = id => {
+    pendingFrames.delete(id);
+    window.__a13.pendingFrames = pendingFrames.size;
+    cancel(id);
+  };
   const locations = new WeakMap();
   const context = HTMLCanvasElement.prototype.getContext;
   HTMLCanvasElement.prototype.getContext = function(type, ...args) {
@@ -78,6 +97,11 @@ try {
     }
     assert(available, `Preview did not start: ${serverLog}`);
   }
+  if (process.env.A13_HEADFUL === '1') {
+    // Xvfb supplies a display; Openbox supplies real minimize/restore events.
+    windowManager = spawn('openbox', ['--sm-disable'], { stdio: 'ignore' });
+    windowManager.on('error', error => { errors.push(`Window manager: ${error.message}`); });
+  }
   browser = await chromium.launch({ headless: process.env.A13_HEADFUL !== '1', args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 2, reducedMotion: 'no-preference' });
   await context.addInitScript(instrument);
@@ -125,20 +149,20 @@ try {
   // Turn off that test override before checking the real Page Visibility API.
   const visibilitySession = await context.newCDPSession(page);
   await visibilitySession.send('Emulation.setFocusEmulationEnabled', { enabled: false });
-  const other = await context.newPage();
-  await other.goto('about:blank');
-  await other.bringToFront();
-  await eventually(() => page.evaluate(() => document.hidden), 'Background tab did not become hidden');
+  const { windowId } = await visibilitySession.send('Browser.getWindowForTarget');
+  await visibilitySession.send('Browser.setWindowBounds', { windowId, bounds: { windowState: 'minimized' } });
+  await eventually(() => page.evaluate(() => document.hidden), 'Minimized document did not become hidden');
   const timeBeforeHide = (await state(page)).uniforms.u_time[0];
   await noDraws(page, 'Hidden tab kept drawing');
+  assert.equal((await state(page)).pendingFrames, 0, 'Hidden document retained a scheduled animation frame');
+  await visibilitySession.send('Browser.setWindowBounds', { windowId, bounds: { windowState: 'normal' } });
   await page.bringToFront();
   await eventually(() => page.evaluate(() => !document.hidden), 'Foreground tab did not become visible');
   await eventually(async () => (await state(page)).uniforms.u_time[0] > timeBeforeHide, 'Visible tab did not resume');
   assert((await state(page)).uniforms.u_time[0] - timeBeforeHide < 0.4, 'Hidden time leaked into active animation');
-  await other.close();
   await visibilitySession.send('Emulation.setFocusEmulationEnabled', { enabled: true });
   await visibilitySession.detach();
-  checks.push({ name: 'Actual hidden tab stops drawing and resumes without a time jump', passed: true });
+  checks.push({ name: 'Actual hidden document cancels scheduled frames and resumes without a time jump', passed: true });
 
   await page.evaluate(() => {
     const spacer = document.createElement('div');
@@ -234,6 +258,7 @@ try {
   process.exitCode = 1;
 } finally {
   await browser?.close();
+  windowManager?.kill('SIGTERM');
   // npm starts Vite as a child: terminate the owned group so no pipe keeps Node alive.
   if (server?.pid) {
     try {
