@@ -11,7 +11,8 @@ Status: TESTS AND CI VERIFIED — REQUIRED MERGE CHECK SETTING PENDING.
   `.github/workflows/tests.yml`.
 - Full coverage and actual failure/fix evidence: [README](./README.md).
 - Local checks: 86 Vitest tests, application/test type checks and production build pass.
-- [Successful CI run](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44601240817)
+- [Successful CI run](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44602615431)
+- [Successful pull-request CI run](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44602627425)
 - [Screenshot of the actual CI results](./evidence/ci-suite.png)
 - [Machine-readable CI result](./evidence/ci-verified-results.json)
 - [Full CI transcript](./evidence/ci-run.txt)
