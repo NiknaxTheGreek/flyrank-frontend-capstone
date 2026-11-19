@@ -7,10 +7,15 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const evidence = new URL('../docs/assignment-11/evidence/', import.meta.url);
 await mkdir(evidence, { recursive: true });
 const browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH, args: ['--enable-unsafe-swiftshader'] });
-const report = { date: new Date().toISOString(), browser: browser.version(), environment: 'Headless Linux Chromium, software WebGL. Mobile is viewport/touch emulation, not a physical phone.', assets: [], runs: [] };
+const report = { date: new Date().toISOString(), source: base, browser: browser.version(), environment: 'Headless Linux Chromium, software WebGL. Mobile is viewport/touch emulation, not a physical phone.', assets: [], publicAssets: [], runs: [] };
 const assetsDir = new URL('../dist/assets/', import.meta.url);
 for (const name of await readdir(assetsDir)) {
   if (/Planet|index/.test(name)) { const content = await readFile(new URL(name, assetsDir)); report.assets.push({ name, bytes: content.length, gzipBytes: gzipSync(content).length }); }
+}
+const publicAssetsDir = new URL('../dist-planet/assets/', import.meta.url);
+for (const name of await readdir(publicAssetsDir)) {
+  const content = await readFile(new URL(name, publicAssetsDir));
+  report.publicAssets.push({ name, bytes: content.length, gzipBytes: gzipSync(content).length });
 }
 try {
   for (const [name, viewport, mobile] of [['desktop', { width: 1440, height: 1100 }, false], ['mobile', { width: 375, height: 812 }, true]]) {

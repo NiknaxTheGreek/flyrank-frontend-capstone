@@ -87,7 +87,7 @@ export default function PlanetCanvas({ settings, onReady, onFailure }: PlanetCan
     });
     group.add(new Mesh(atmosphereGeometry, atmosphereMaterial));
     const rings = new Group();
-    rings.rotation.x = Math.PI / 2.35;
+    rings.rotation.x = Math.PI / 3.2;
     const ringGeometries: RingGeometry[] = [], ringMaterials: MeshStandardMaterial[] = [];
     for (let i = 0; i < 7; i++) {
       const inner = 1.62 + i * .094;

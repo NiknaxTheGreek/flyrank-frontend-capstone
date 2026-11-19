@@ -2,6 +2,8 @@
 
 Planet studio is an interactive world-building side quest inside Reel Good. Shape a fictional sci-fi setting: choose Dune, Ocean or Glacier, add or remove rings, move the sun, rotate the planet and adjust the camera. It uses React, TypeScript and raw Three.js at `/planet-studio`.
 
+**Public demo:** https://reel-good-planet-studio.vercel.app/planet-studio — no sign-in or expiring share token. Choose **Launch 3D** to enter the real scene.
+
 Branch: `fe11-planet-studio`, based on the preserved A9 snapshot `34f9f6d6e20c5d057064655a541fab58fed2f4d9`. Earlier assignment branches are preserved.
 
 ## Run
@@ -34,13 +36,15 @@ The scenes are artistic fictional worlds, not scientific planet simulations. The
 
 ## Performance review (FE-10 lens)
 
-The local production build measured the optional `PlanetCanvas` chunk at **531.86 KB minified / 133.54 KB gzipped**. The page UI is a separate small lazy chunk. **No external model or texture files are downloaded:** surfaces are seamless 512×256 textures generated only when needed, cached for at most three worlds. No DRACO decoder is needed because there is no imported model.
+The optional `PlanetCanvas` chunk is about **532 KB minified / 134 KB gzipped**. The public standalone entry is about **50 KB gzip**, including React and the UI. **No external model or texture files are downloaded:** surfaces are seamless 512×256 textures generated only when needed, cached for at most three worlds. No DRACO decoder is needed because there is no imported model.
 
 Budgets: scene chunk ≤150 KB gzip; zero scene downloads before opt-in; DPR ≤1 on phone widths and ≤1.5 on desktop; ≤30 rendered animation frames/second; zero continuous redraws while idle, offscreen or hidden. Use no postprocessing or realtime shadow maps. Dispose geometry, textures, materials and renderer on unmount.
 
 The inherited application entry chunk is about **167.53 KB gzip** (including existing features such as Firebase). It remains a separate optimization opportunity. Vite's 500 KB uncompressed chunk warning is retained and documented; lazy loading defers the cost rather than removing it.
 
-Initial verification: **70 Vitest tests passed**, including six new behavioural tests, and the TypeScript/production build passed. The local execution sandbox blocked Chromium startup before page navigation; that failed launch is not counted as a browser test. The A11 GitHub Actions workflow runs the actual desktop/mobile browser checks and captures measurements and screenshots. Final measured results and deployment verification are recorded in `performance.json` and `submission.md` after those runs complete.
+Verification: **70 Vitest tests passed**, including six new behavioural tests; the TypeScript/production build passed. Four real browser tests passed across desktop and phone profiles, including context-loss recovery, keyboard selection and reduced motion. The local execution sandbox blocked Chromium startup before page navigation; real browser execution ran in GitHub Actions. CI measures and captures the page, and final evidence is committed here instead of relying on temporary artifact downloads. See [PERFORMANCE.md](PERFORMANCE.md), `performance.json` and `submission.md`.
+
+The public release uses `src/planet-standalone.tsx`, `planet.html`, `vite.planet.config.ts` and `deploy/planet-vercel.json`. Build it with `npm run build:planet`. It is an isolated static deployment with no AI routes, authentication, Firebase initialization or environment credentials. The integrated capstone route remains available in this branch. The public URL was verified anonymously; the cloud browser's unavailable WebGL context also demonstrated the designed fallback.
 
 Measurements from a CI software renderer or emulated phone are not physical-phone thermal or battery results. A physical Android/iOS device check is a useful follow-up.
 
@@ -55,6 +59,8 @@ Measurements from a CI software renderer or emulated phone are not physical-phon
 - `scripts/measure-planet.mjs`: bundle sizes, load-to-first-scene time, frame counts, idle/visibility checks, touch gestures and screenshots.
 
 Raw Three.js keeps the existing React 18 stack intact and makes resource disposal and on-demand rendering explicit. The app route and canvas are separate lazy boundaries. A fixed-size stage prevents layout movement when the canvas appears. The renderer targets low power and caps resolution rather than using device DPR without bounds.
+
+![Desktop 3D scene](evidence/desktop-dune-3d.jpg)
 
 AI assistance: ChatGPT inspected the repository, designed and implemented the page, tests and deployment workflow, ran the suite, corrected the light slider's changing accessible name and ambiguous test query, and recorded actual results. Nicholas supplied the assignment; his final hands-on review is pending. No claim is made that Nicholas manually wrote or independently reviewed every line.
 
