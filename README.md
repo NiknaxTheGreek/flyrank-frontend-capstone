@@ -1,5 +1,7 @@
 # Reel Good — Assignment 3
 
+Assignment 9: open **[Motion lab](./docs/assignment-9/README.md)** at `/motion-lab` for the reusable Send/Save button lifecycle demo, forced success/failure controls, motion rationale, and verification details. It needs no credentials or API key.
+
 Reel Good is a responsive movie discovery app built with React, TypeScript and Vite. Browse a small hand-picked collection by genre, search live OMDb movie data, inspect movie details, follow verified IMDb links, and (after Firebase setup) save personal favorites.
 
 ## Implemented features
@@ -146,3 +148,4 @@ Open **Movie picker** (`/pick-a-movie`) and ask:
 
 Verified in Codespaces: Inception returned a movie card, an unknown title
 showed an inline error, and The Matrix returned a card in the same chat.
+

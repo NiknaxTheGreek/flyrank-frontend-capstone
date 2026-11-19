@@ -3,6 +3,7 @@
   "framework": "vite",
   "functions": { "api/movie-chat.mjs": { "maxDuration": 60 } },
   "rewrites": [
+    { "source": "/motion-lab", "destination": "/index.html" },
     { "source": "/pick-a-movie", "destination": "/index.html" },
     { "source": "/movies/:path*", "destination": "/index.html" },
     { "source": "/favorites", "destination": "/index.html" },
