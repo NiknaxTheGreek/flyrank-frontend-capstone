@@ -1,0 +1,48 @@
+name: A11 planet studio
+
+on:
+  push:
+    branches: [fe11-planet-studio]
+    paths-ignore: ['docs/**', 'README.md']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Desktop and mobile browser checks
+        run: npm run test:3d
+      - name: Measure and capture evidence
+        run: |
+          npm run preview -- --host 127.0.0.1 > /tmp/planet-preview.log 2>&1 &
+          PREVIEW_PID=$!
+          trap 'kill "$PREVIEW_PID"' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then break; fi
+            sleep 1
+          done
+          npm run perf:3d
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: assignment-11-browser-evidence
+          path: |
+            docs/assignment-11/evidence/
+            docs/assignment-11/performance.json
+            test-results/
+          retention-days: 90
