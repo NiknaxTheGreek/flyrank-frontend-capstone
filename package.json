@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
+    "build:planet": "vite build --config vite.planet.config.ts",
     "preview": "vite preview --host 0.0.0.0",
     "test": "vitest run --pool=threads --maxWorkers=1 --minWorkers=1",
     "test:3d": "playwright test",

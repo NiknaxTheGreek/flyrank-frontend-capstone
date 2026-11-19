@@ -1,0 +1,13 @@
+:root { font-family: Inter, 'Segoe UI', sans-serif; line-height: 1.5; font-weight: 400; color: #f3f1ed; background: #111315; font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+* { box-sizing: border-box; }
+body { min-width: 320px; min-height: 100vh; margin: 0; background: radial-gradient(ellipse at 50% -20%, #f1b84b12, transparent 48%), #111315; }
+button, input, select { font: inherit; }
+button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline: 3px solid #f5ca72; outline-offset: 3px; }
+h1, h2, h3, p { margin-top: 0; }
+.home { width: min(1200px, 100% - 48px); margin-inline: auto; padding-bottom: 56px; }
+.site-header { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid #ffffff17; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: #f3f1ed; text-decoration: none; font-size: 1.12rem; font-weight: 750; letter-spacing: -.03em; }
+.brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 11px; background: #f1b84b; color: #17130b; font-size: 1.1rem; }
+.planet-header-note { font: 9px/1.6 Consolas, monospace; letter-spacing: .1em; color: #98a3b4; text-align: right; }
+@media (max-width: 600px) { .home { width: min(100% - 32px, 460px); } .site-header { min-height: 72px; } .planet-header-note { max-width: 125px; font-size: 7px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }

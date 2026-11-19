@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build:planet",
+  "outputDirectory": "dist-planet",
+  "rewrites": [
+    { "source": "/", "destination": "/planet.html" },
+    { "source": "/planet-studio", "destination": "/planet.html" }
+  ]
+}
