@@ -1,21 +1,21 @@
 # FE-10 performance review — Planet studio
 
-Measured on 19 November 2026 using a GitHub-hosted Ubuntu 24.04 runner, headless Chromium 145 and software WebGL. The phone run emulates a 375×812 touch viewport with device scale factor 2. These are demonstration measurements, not physical-phone battery/thermal claims. Runs use the built capstone page at localhost; network numbers are not internet-load benchmarks.
+Measured on 19 November 2026 using a GitHub-hosted Ubuntu 24.04 runner, headless Chromium 145 and software WebGL, against https://reel-good-planet-studio.vercel.app/planet-studio. The phone run emulates a 375×812 touch viewport with device scale factor 2. These are demonstration measurements, not physical-phone battery/thermal claims. Click-to-scene time includes the optional engine download and first render in a fresh browser context; it is one run per profile, not a network benchmark.
 
 | Check | Desktop 1440×1100 | Emulated phone 375×812 |
 | --- | ---: | ---: |
 | 3D engine requests before Launch | 0 | 0 |
-| Click to first live scene | 533 ms | 509 ms |
-| Observed rotation frame rate | 22.2 FPS | 22.3 FPS |
+| Click to first live scene | 523 ms | 444 ms |
+| Observed rotation frame rate | 22.7 FPS | 22.8 FPS |
 | Extra rendered frames during 1 s idle | 0 | 0 |
 | Extra frames during 700 ms hidden | 0 | 0 |
 | Horizontal page overflow | No | No |
 | Console / uncaught page errors in measured happy path | 0 | 0 |
 | Touch drag / pinch | Not applicable | Both worked |
 
-Reduced-motion run: zero canvases mounted and zero engine requests. Context loss was exercised in a real WebGL context; the static preview preserved the world, and retry created a working new scene. Four browser tests passed across desktop and phone profiles. All 70 unit/component/server tests passed too.
+Reduced-motion run: zero canvases mounted and zero engine requests. Context loss was exercised in a real WebGL context; the static preview preserved the world, and retry created a working new scene. Four browser tests passed against the built capstone and four more against the public production site. All 70 unit/component/server tests passed too. [Green CI run](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44603515494).
 
-The scene rendered 8,560 triangles and 17 draw calls with all ring bands visible, including the transparent-material passes. DPR is capped at 1 on phone widths and 1.5 on desktop. Continuous rotation has a 30 FPS ceiling; the software renderer measured roughly 22 FPS. A paused world redraws only after input, settings, resize or visibility changes.
+The scene rendered 8,560 triangles and 17 draw calls with all ring bands visible, including the transparent-material passes. DPR is capped at 1 on phone widths and 1.5 on desktop. Continuous rotation has a 30 FPS ceiling; the software renderer measured roughly 23 FPS. A paused world redraws only after input, settings, resize or visibility changes.
 
 ## Load cost
 
