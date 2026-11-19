@@ -38,12 +38,5 @@ jobs:
             sleep 1
           done
           npm run perf:3d
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        if: always()
-        with:
-          name: assignment-11-browser-evidence
-          path: |
-            docs/assignment-11/evidence/
-            docs/assignment-11/performance.json
-            test-results/
-          retention-days: 90
+      - name: Export evidence for the permanent submission copy
+        run: node scripts/export-planet-evidence.mjs
