@@ -6,7 +6,7 @@ A responsive movie discovery app: browse and search films, inspect OMDb details,
 **Release source:** `fe14-production-release`  
 **Checkpoint 2:** [release verification and remaining checks](docs/assignment-14/README.md)
 
-![Movie picker](docs/assignment-14/evidence/movie-picker.png)
+![Movie picker](docs/assignment-14/evidence/chromium.png)
 
 ## Clone and run
 
@@ -57,7 +57,7 @@ npx firebase-tools use --add
 npx firebase-tools deploy --only database
 ```
 
-Rules restrict records to their authenticated UID and validate movie fields. Firebase emulator isolation and real cross-account persistence are separate checks from the mocked UI suite.
+Rules restrict records to their authenticated UID and validate movie fields. A separate live REST smoke verified signup, owner-only favorite persistence and rejection of anonymous/other-user reads, then removed its temporary records and accounts. This does not replace an emulator suite or a real-device sign-in check.
 
 ## Main flow
 
@@ -99,7 +99,7 @@ OMDb has a separate per-instance 60-upstream-call/minute guard, three concurrent
 
 ## Tests and release verification
 
-Vitest and React Testing Library query controls by role and label. Tests cover chat pending/streaming/error states, all tool states, validated forms, routing, favorites behavior, button lifecycle, server validation, rate limiting and cancellation. Provider calls are mocked; tests never consume AI credits. Playwright walks the primary flow and interruption/retry on desktop and phone-sized Chromium. CI runs type checks, tests, build and Playwright on pushes and pull requests.
+Vitest and React Testing Library query controls by role and label. Tests cover chat pending/streaming/error states, all tool states, validated forms, routing, favorites behavior, button lifecycle, server validation, rate limiting and cancellation. Provider calls are mocked; tests never consume AI credits. Playwright walks the primary flow and interruption/retry on desktop/phone Chromium, Firefox, desktop WebKit and iPhone-sized WebKit. CI runs type checks, tests, build and Playwright on pushes and pull requests.
 
 See [Assignment 10](docs/assignment-10/README.md) for the original failure/fix demonstration. A green workflow is distinct from a repository branch protection rule. See [Assignment 14](docs/assignment-14/README.md) for actual release results and browser limitations; Playwright WebKit is not proof of testing real Safari on an iPhone.
 

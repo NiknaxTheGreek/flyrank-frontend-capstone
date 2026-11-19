@@ -20,9 +20,28 @@ Release branch: `fe14-production-release`, based on the tested A10 Reel Good app
 - Local Playwright launch was blocked by the workspace's socket restrictions; no local browser pass is claimed. A release workflow runs the same mocked journey in Chromium, Firefox, desktop WebKit and iPhone-sized WebKit on GitHub Actions.
 - Production OMDb and Firebase environment targets were configured; existing production Gemini credential retained. Values were not committed.
 
-## Pending release results
+## Release results — 19 November 2026
 
-CI results, screenshots, deployment ID/commit and live smoke results will be added after the release build completes. Real Safari and mobile Safari are not equivalent to Linux Playwright WebKit and remain manual device checks. Live Firebase sign-in/favorite persistence also needs a test account and authorized-domain verification; configuration presence alone does not prove it works.
+- Production deployment `dpl_BahYrzoPYiLx815NW1EQPooJTLhG`: READY, source `d03e1ec9d7f755e474ef5e084a3da10765666728`, Node 24, Vite; remote build about 35 seconds. Later release commits add documentation/evidence/test improvements and page metadata.
+- Public `/pick-a-movie` returned HTTP 200 without authentication or a share token.
+- Live OMDb request returned Inception, rating 8.8, and full details.
+- Live Gemini request returned all lookup lifecycle events, Inception's 148-minute runtime and verified IMDb ID, then completion.
+- Foreign origin returned HTTP 403; oversized message returned HTTP 400 before model invocation.
+- Live browser smoke passed in **Chromium, Firefox, desktop WebKit and iPhone-sized WebKit**, with real tool calls, no page exceptions and no horizontal overflow. [Workflow](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44603529178).
+- Release CI passed: **89/89 Vitest tests and 10/10 Playwright journeys**, no skips or retries/flaky results. [Workflow](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44603529128), source `a1d1fc39af88f40672bf59dd79a14b879271821c`.
+- Live Firebase REST check: two temporary users created; owner wrote/read a favorite; anonymous and other-user reads rejected with 401; test favorite and both users deleted successfully. [Results](evidence/firebase-smoke.json).
+- Runtime error/fatal log scan for the production deployment returned no matching entries at the time checked. This is a point-in-time check, not continuous monitoring; no new log drain was configured.
+- Eleven sequential invalid live requests returned 400; this slow run did not demonstrate a live 429. Deterministic tests verify the limiter's 429/Retry-After behavior. Cold starts and multiple instances remain a documented limitation.
+
+![Live movie picker in Chromium](evidence/chromium.png)
+![Live movie picker in mobile WebKit](evidence/mobile-webkit.png)
+![Actual passing CI report](evidence/ci-suite.png)
+
+Other screenshots: [Firefox](evidence/firefox.png), [desktop WebKit](evidence/webkit.png).
+
+## Honest remaining checks
+
+Real Safari and mobile Safari remain manual device checks: Linux Playwright WebKit is not the Safari app on Apple hardware. Live Firebase backend persistence/isolation passed; browser sign-in/favorite interactions are covered with mocks, not a new production UI account walkthrough. Reviewer repository access must be granted while the source repository is private. The public website itself needs no login for movie search/chat. No Portal submission has been performed.
 
 ## Reviewer walkthrough
 
