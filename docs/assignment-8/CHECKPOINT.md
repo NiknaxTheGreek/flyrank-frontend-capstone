@@ -1,47 +1,61 @@
 # A8 — Resilience / Checkpoint 1
 
-Status: code implemented; all 50 automated tests and production build passed. Live review, screenshots and real-device mobile Safari pass pending.
+Status: implementation and available-device verification complete; awaiting Portal submission. Mobile Safari is explicitly untested because no Apple device was available.
 
-Preview deployment: https://flyrank-frontend-capstone-ggwkcwu3d-niknaxthegreek.vercel.app/pick-a-movie
-Vercel Authentication currently blocks anonymous access. Creating a shareable review link was blocked by automatic approval review pending explicit user authorization.
+Reviewed deployment: https://flyrank-frontend-capstone-1o85s91sn-niknaxthegreek.vercel.app/pick-a-movie
+Branch: fe08-resilience-checkpoint
+Verification date: 19 November 2026
 
-Local Chromium browser verification was attempted but blocked by workspace socket restrictions; no browser, console-clean, layout-shift or Safari pass is claimed.
+The deployment is protected by Vercel Authentication. Use the separately supplied seven-day share link for reviewer access; the bare URL requires authentication. Renew reviewer access before submitting if the link has expired. No permanent anonymous production URL is claimed.
 
-## Failure inventory
+## Verification results
 
-| Case | Handling | Verification |
+| Case | Handling | Evidence |
 |---|---|---|
-| Network unavailable before send | Error panel, retained user message and retry | Component sabotage test |
-| Connection dies mid-stream | Partial answer marked interrupted; retry replaces only that turn | Component sabotage test |
-| 429 / API unavailable | Provider-safe error and retry action | Component and server tests |
-| Malformed tool result | Validated at stream boundary; readable error instead of JSON/crash | Component sabotage test |
-| No matching movie | Designed tool error; retry or edit title | Manual live check pending |
-| Empty input | Send disabled for whitespace | Existing guard; manual live check pending |
-| First run | Explanation and click-to-fill example | Existing UI; manual live check pending |
-| Slow response | Pending skeleton; after 8 seconds wait/stop guidance | Manual throttling pending |
-| Route rendering failure | React boundary with retry and catalogue link | Manual check pending |
-| Refusal / reply length cap | Stream error explaining alternate prompt/continue | Server handling; manual check pending |
+| Happy path and multiple turns | Streaming text, retained history | Desktop screenshots; successful live interaction |
+| Happy-path console | No new console errors in the cleared Console during a completed request | image(20261119-181933).png |
+| Offline before send | Error panel, retained conversation and retry | image(20261119-155900).png |
+| Recovery after network restored | Failed turn can be retried | image(20261119-160035).png |
+| Interruption after partial output | Partial answer marked interrupted with error and retry | image(20261119-160734).png |
+| Recovery after interrupted output | Reply completes after retry | image(20261119-161330).png; automated retry tests |
+| 429 rate limit | Error then successful retry, single user message | Injected HTTP 429 component test; provider-error server test |
+| Malformed tool output | Friendly validation error then successful retry | Injected invalid SSE tool result component test |
+| Abrupt stream closure | Partial answer retained and retry offered when done is missing | Truncated stream component test |
+| No matching movie | Designed error says check title and try again | image(20261119-183216).png; assistant live check |
+| Valid movie lookup | Arrival card with rating, genre, runtime and IMDb link | image(20261119-183241).png; assistant live check |
+| Whitespace input | Send remains disabled | User confirmed manual check |
+| First run | Instructions and click-to-fill example enable Send | User confirmed manual check; assistant live check |
+| Slow response | Skeleton; wait/stop guidance after 8 seconds; Stop clears pending state | Controlled-timer component test |
+| Route rendering failure | Page retry and catalogue link; successful recovery | Injected rendering exception component test |
+| Android mobile | Keyboard/input/Send reachable; reply readable; vertical scroll works without horizontal scrolling | 1000160253.jpg and user confirmation |
+| Safari / mobile Safari | Not tested | No Apple device available; Android is not a substitute |
+
+429, malformed output, slow-timer and route-boundary sabotage were automated in the real React components using mocked network responses. They were not injected into the deployed browser. No public sabotage endpoint was added. The mid-stream screenshot shows an interrupted response while offline; its provider error message alone does not establish which upstream event caused the interruption. Transport-closure detection is separately verified by the automated test.
+
+## Final automated checks
+
+- npm test: 53 tests passed across 11 files.
+- npm run build: passed, including TypeScript compilation.
+- Existing bundle-size and dependency annotation warnings remain; neither fails the build.
+- Automated tests make no real AI calls.
+- Browser layout-shift/CLS measurement was not performed.
+
+## Configuration defect found and fixed
+
+The first A8 preview inherited an older default OMDB_API_KEY. A7 had a corrected branch-specific override, so both nonexistent titles and Arrival returned the generic unavailable error on A8. The corrected key was made the active Preview default and A8 was redeployed. The old default remains scoped to the existing backup branch; A7 continues to resolve the corrected default. No key value was read, printed or committed. Live checks on the corrected deployment verified Arrival and the explicit no-match response.
 
 ## Retry contract
 
-“Retry failed message” resends the failed user turn with its earlier conversation context. It replaces the failed assistant attempt; it does not add another user message or regenerate previous turns. A synchronous in-flight guard prevents double requests. Stop remains available during the retry. A successful new send clears the old retry target. Tool execution errors also expose retry.
+Retry failed message resends the failed user turn with earlier conversation context. It replaces the failed assistant attempt without regenerating earlier turns or appending another user message. A synchronous in-flight guard blocks duplicate clicks. Stop works during retry. A new send clears the previous retry target. Tool execution errors also expose retry.
 
 ## Stack adaptation
 
-This branch is React/Vite + React Router, Gemini REST streaming and a typed SSE consumer. `RouteErrorBoundary` is the equivalent of Next.js `error.tsx`; chat recovery uses local error state rather than `useChat.error`. It preserves the movie catalogue, OMDb lookup, favorites and authentication from A7.
+The app uses React/Vite, React Router, Gemini REST streaming and a typed SSE consumer. RouteErrorBoundary supplies the route error-boundary behavior requested as Next.js error.tsx. Chat recovery uses local error state rather than useChat.error. The movie catalogue, lookup tool, favorites and authentication remain part of the application; favorites/auth were covered by the automated suite, not manually re-verified on this preview.
 
-## Manual sabotage order
+## Evidence and submission
 
-1. Open `/pick-a-movie` in a new tab. Confirm the example fills the field and whitespace cannot send.
-2. Send a normal recommendation request; verify streaming, follow-up context and no happy-path console errors.
-3. DevTools → Network → Offline before sending. Restore connectivity, click Retry failed message; confirm one user turn.
-4. Slow the network, send, then switch Offline after text starts. Confirm partial output/error and successful retry after restoring connection.
-5. Intercept `/api/movie-chat` with a 429 response; verify recovery. Do not ship public sabotage flags.
-6. Intercept its SSE response with malformed tool output; verify the friendly error.
-7. Ask for a deliberately nonexistent title; use a corrected title next.
-8. Check at 375px and desktop width; test an actual iPhone Safari keyboard, scrolling, Stop and Retry. Prior A6 mobile verification does not prove this branch passed.
-9. Capture happy path and at least two failures, with recovery; upload to Checkpoint 1 with the public preview URL.
+Screenshots were uploaded in the A8 conversation. See EVIDENCE.md for the attachment inventory and SUBMISSION.md for the Portal text. Portal submission has not been performed.
 
 ## AI assistance
 
-ChatGPT inspected A7, added failure recovery and a route boundary, then used mocked stream/network/tool responses to verify behavior. Tests use no paid AI calls. A first test run exposed ambiguous text queries and raw Zod validation text; both were corrected before final checks.
+ChatGPT inspected A7, added recovery and a route boundary, ran deterministic sabotage tests, and diagnosed the Preview environment mismatch. The learner manually tested the deployed app, captured desktop/mobile evidence, and confirmed keyboard and scrolling behavior. Ambiguous text queries and raw Zod validation messages found during the first test run were corrected.
