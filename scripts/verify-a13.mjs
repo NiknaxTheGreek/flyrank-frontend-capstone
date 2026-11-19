@@ -2,7 +2,9 @@
 // Install playwright@1.62.1 and its Chromium, build, then: node scripts/verify-a13.mjs
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 const { chromium } = await import(process.env.A13_PLAYWRIGHT_MODULE || 'playwright');
 
@@ -86,6 +88,52 @@ function watch(page) {
   page.on('console', entry => { if (entry.type() === 'error') errors.push(entry.text()); });
 }
 
+async function verifyActualVisibility() {
+  // Focus emulation is per DevTools session: a second session cannot remove
+  // Playwright's existing capturer. Use an owned browser with no default overrides.
+  const profile = await mkdtemp(join(tmpdir(), 'a13-visibility-'));
+  const ownedChrome = spawn(chromium.executablePath(), [
+    '--remote-debugging-port=0', `--user-data-dir=${profile}`, '--no-first-run',
+    '--no-sandbox', '--disable-extensions', '--use-angle=swiftshader',
+    '--enable-unsafe-swiftshader', '--window-size=1000,1000', 'about:blank',
+  ], { stdio: 'ignore', detached: true });
+  let actualBrowser;
+  try {
+    let port;
+    await eventually(async () => {
+      try { port = (await readFile(join(profile, 'DevToolsActivePort'), 'utf8')).split('\n')[0]; return Boolean(port); }
+      catch { return false; }
+    }, 'Visibility browser did not start');
+    actualBrowser = await chromium.connectOverCDP(`http://127.0.0.1:${port}`, { noDefaults: true });
+    const actualContext = actualBrowser.contexts()[0];
+    await actualContext.addInitScript(instrument);
+    const actualPage = await actualContext.newPage();
+    watch(actualPage);
+    await actualPage.setViewportSize({ width: 1000, height: 900 });
+    await actualPage.goto(`${base}/shader-lab`, { waitUntil: 'networkidle' });
+    await actualPage.getByRole('button', { name: 'Pause animation' }).waitFor();
+    await eventually(async () => (await state(actualPage)).draws > 2, 'Visibility browser did not render shader');
+    const session = await actualContext.newCDPSession(actualPage);
+    const { windowId } = await session.send('Browser.getWindowForTarget');
+    await session.send('Browser.setWindowBounds', { windowId, bounds: { windowState: 'minimized' } });
+    await eventually(() => actualPage.evaluate(() => document.hidden), 'Minimized document did not become hidden');
+    const timeBeforeHide = (await state(actualPage)).uniforms.u_time[0];
+    await noDraws(actualPage, 'Hidden document kept drawing');
+    assert.equal((await state(actualPage)).pendingFrames, 0, 'Hidden document retained a scheduled animation frame');
+    await session.send('Browser.setWindowBounds', { windowId, bounds: { windowState: 'normal' } });
+    await actualPage.bringToFront();
+    await eventually(() => actualPage.evaluate(() => !document.hidden), 'Restored document did not become visible');
+    await eventually(async () => (await state(actualPage)).uniforms.u_time[0] > timeBeforeHide, 'Visible document did not resume');
+    assert((await state(actualPage)).uniforms.u_time[0] - timeBeforeHide < 0.4, 'Hidden time leaked into active animation');
+    checks.push({ name: 'Actual hidden document cancels scheduled frames and resumes without a time jump', passed: true });
+  } finally {
+    await actualBrowser?.close();
+    try { process.kill(-ownedChrome.pid, 'SIGTERM'); } catch {}
+    ownedChrome.unref();
+    await rm(profile, { recursive: true, force: true }).catch(() => {});
+  }
+}
+
 try {
   if (server) {
     let available = false;
@@ -144,25 +192,6 @@ try {
   await page.mouse.move(hero.x + hero.width * 0.9, hero.y + hero.height * 0.2);
   await eventually(async () => (await state(page)).uniforms.u_mouse[0] > 0.6, 'Mouse did not influence shader');
   checks.push({ name: 'Pointer reaches the shader as a smoothed uniform', passed: true });
-
-  // Playwright normally forces every page to appear active, even in background.
-  // Turn off that test override before checking the real Page Visibility API.
-  const visibilitySession = await context.newCDPSession(page);
-  await visibilitySession.send('Emulation.setFocusEmulationEnabled', { enabled: false });
-  const { windowId } = await visibilitySession.send('Browser.getWindowForTarget');
-  await visibilitySession.send('Browser.setWindowBounds', { windowId, bounds: { windowState: 'minimized' } });
-  await eventually(() => page.evaluate(() => document.hidden), 'Minimized document did not become hidden');
-  const timeBeforeHide = (await state(page)).uniforms.u_time[0];
-  await noDraws(page, 'Hidden tab kept drawing');
-  assert.equal((await state(page)).pendingFrames, 0, 'Hidden document retained a scheduled animation frame');
-  await visibilitySession.send('Browser.setWindowBounds', { windowId, bounds: { windowState: 'normal' } });
-  await page.bringToFront();
-  await eventually(() => page.evaluate(() => !document.hidden), 'Foreground tab did not become visible');
-  await eventually(async () => (await state(page)).uniforms.u_time[0] > timeBeforeHide, 'Visible tab did not resume');
-  assert((await state(page)).uniforms.u_time[0] - timeBeforeHide < 0.4, 'Hidden time leaked into active animation');
-  await visibilitySession.send('Emulation.setFocusEmulationEnabled', { enabled: true });
-  await visibilitySession.detach();
-  checks.push({ name: 'Actual hidden document cancels scheduled frames and resumes without a time jump', passed: true });
 
   await page.evaluate(() => {
     const spacer = document.createElement('div');
@@ -245,6 +274,8 @@ try {
     assert.equal(await phone.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `Horizontal overflow at ${width}px`);
   }
   checks.push({ name: 'Touch controls, DPR 3 cap and no horizontal overflow at 320/360/375/768px', buffer: [mobileSize.w, mobileSize.h], passed: true });
+
+  await verifyActualVisibility();
 
   assert.deepEqual(errors, [], 'Application console errors');
   checks.push({ name: 'Zero application console errors during all checks', passed: true });
