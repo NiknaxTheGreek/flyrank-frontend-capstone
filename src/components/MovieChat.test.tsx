@@ -1,8 +1,8 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, test, vi } from 'vitest';
 import MovieChat from './MovieChat';
 
-afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); vi.useRealTimers(); });
 
 test('shows thinking, preserves stopped text and includes it in the next request', async () => {
   let stream: ReadableStreamDefaultController<Uint8Array>;
@@ -75,15 +75,57 @@ test('mid-stream failure keeps partial text and retries only the failed turn onc
 });
 
 test.each(['network', 'rate limit', 'malformed tool'])('%s failure offers recovery', async kind => {
-  vi.stubGlobal('fetch', vi.fn(async () => {
+  let attempts = 0;
+  const fetcher = vi.fn(async () => {
+    if (++attempts > 1) return new Response('data: {"type":"text","delta":"Recovered reply"}\n\ndata: {"type":"done"}\n\n', { headers: { 'Content-Type': 'text/event-stream' } });
     if (kind === 'network') throw new TypeError('Network unavailable');
     if (kind === 'rate limit') return Response.json({ error: 'Please wait before retrying.' }, { status: 429 });
     return new Response('data: {"type":"tool","state":"output-available","output":{}}\n\n', { headers: { 'Content-Type': 'text/event-stream' } });
-  }));
+  });
+  vi.stubGlobal('fetch', fetcher);
   render(<MovieChat />);
   fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Find Arrival' } });
   fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true }));
   await screen.findByRole('alert');
   expect(screen.getByRole('button', { name: 'Retry failed message' })).toBeTruthy();
   expect(screen.getByText('Find Arrival', { selector: 'p' })).toBeTruthy();
+  if (kind === 'malformed tool') expect(screen.getByRole('alert').textContent).toContain('incomplete movie details');
+  fireEvent.click(screen.getByRole('button', { name: 'Retry failed message' }));
+  await screen.findByText('Movie recommendations ready.');
+  expect(screen.getByText('Recovered reply')).toBeTruthy();
+  expect(screen.queryByRole('alert')).toBeNull();
+  expect(fetcher).toHaveBeenCalledTimes(2);
+  expect(screen.getAllByText('Find Arrival', { selector: 'p' })).toHaveLength(1);
+});
+
+
+test('a transport that closes without done is interrupted and retryable', async () => {
+  vi.stubGlobal('fetch', vi.fn(async () => new Response(
+    'data: {"type":"text","delta":"An unfinished reply"}\n\n',
+    { headers: { 'Content-Type': 'text/event-stream' } },
+  )));
+  render(<MovieChat />);
+  fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Suggest a movie' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true }));
+  await screen.findByRole('alert');
+  expect(screen.getByText('An unfinished reply')).toBeTruthy();
+  expect(screen.getByText('Interrupted · partial response')).toBeTruthy();
+  expect(screen.getByRole('button', { name: 'Retry failed message' })).toBeTruthy();
+});
+
+test('slow requests explain the wait and remain stoppable', async () => {
+  vi.useFakeTimers();
+  vi.stubGlobal('fetch', vi.fn((_url: string, options: RequestInit) => new Promise<Response>((_resolve, reject) => {
+    options.signal?.addEventListener('abort', () => reject(new Error('Stopped')), { once: true });
+  })));
+  render(<MovieChat />);
+  fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Suggest a movie' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true }));
+  expect(screen.getByText('Thinking…')).toBeTruthy();
+  await act(async () => { await vi.advanceTimersByTimeAsync(8000); });
+  expect(screen.getByText('This is taking longer than usual. You can wait or stop generation.')).toBeTruthy();
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Stop generation' })); });
+  expect(screen.queryByText('Thinking…')).toBeNull();
+  expect(screen.queryByText('This is taking longer than usual. You can wait or stop generation.')).toBeNull();
+  expect(screen.getByRole('button', { name: 'Stop generation' }).hasAttribute('disabled')).toBe(true);
 });
