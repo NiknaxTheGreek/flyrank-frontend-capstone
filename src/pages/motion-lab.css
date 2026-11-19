@@ -2,6 +2,7 @@
 .motion-intro { max-inline-size: 740px; margin-block-end: 42px; }
 .motion-intro h1 { font-size: clamp(2.6rem, 6vw, 4.7rem); line-height: 1.04; margin-block: 18px 20px; }
 .motion-intro h1 span { color: #aeb3b3; }
+.motion-intro h1:focus { outline: none; }
 .motion-intro > p:not(.eyebrow) { color: #b7bbbc; font-size: 1.04rem; max-inline-size: 510px; }
 .motion-intro__tag { display: inline-flex; align-items: center; gap: 8px; color: #aeb4b4; font-size: 0.75rem; margin-block-start: 5px; }
 .motion-intro__tag > span { color: #b1dfc3; font-size: 0.6rem; }
@@ -11,6 +12,7 @@
 .motion-index { color: #b6bdbc; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.72rem; letter-spacing: 0.03em; }
 .motion-card-heading .motion-index { color: #edc472; }
 .motion-card-heading__mark { margin-inline-start: auto; font-size: 1.4rem; }
+.motion-card-heading__mark svg { display: block; inline-size: 18px; block-size: 18px; }
 .motion-stage__body { padding: 35px 36px 10px; text-align: center; }
 .motion-chat-mark { display: grid; place-items: center; inline-size: 55px; block-size: 55px; margin: 0 auto 20px; background: #302b20; border: 1px solid #5f5031; border-radius: 16px; color: #f1c36c; transform: rotate(-5deg); }
 .motion-chat-mark svg { inline-size: 28px; block-size: 28px; }
@@ -59,6 +61,7 @@
 .motion-note-grid p { color: #aeb7b6; font-size: 0.8rem; line-height: 1.75; }
 .motion-demo-note { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid #343c3e; padding-block-start: 23px; color: #b1b9b7; font-size: 0.75rem; }
 .motion-demo-note a { color: #ebc374; text-underline-offset: 4px; }
+.motion-demo-note a svg { inline-size: 14px; block-size: 14px; vertical-align: -3px; }
 
 @media (max-width: 900px) {
   .motion-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: 14px; }

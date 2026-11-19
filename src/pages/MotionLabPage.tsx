@@ -40,14 +40,14 @@ export default function MotionLabPage() {
   return <div className="motion-lab" data-reduced-motion={reducedMotion}>
     <section className="motion-intro" aria-labelledby="motion-title">
       <p className="eyebrow">Assignment 09 / Interaction study</p>
-      <h1 id="motion-title" tabIndex={-1}>A small action.<br /><span>A clear response.</span></h1>
+      <h1 id="motion-title" tabIndex={-1}>A small action.{' '}<br /><span>A clear response.</span></h1>
       <p>Every click has a story. The button should tell you where you are in it.</p>
       <span className="motion-intro__tag"><span aria-hidden="true">●</span> A motion study for Reel Good</span>
     </section>
 
     <div className="motion-grid">
       <section className="motion-stage" aria-labelledby="send-title" data-action-state={sendState}>
-        <div className="motion-card-heading"><span className="motion-index">01</span><span>The conversation starter</span><span className="motion-card-heading__mark" aria-hidden="true">↗</span></div>
+        <div className="motion-card-heading"><span className="motion-index">01</span><span>The conversation starter</span><span className="motion-card-heading__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6 18 18 6M6 6h12v12" /></svg></span></div>
         <div className="motion-stage__body">
           <div className="motion-chat-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M7 5h18a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H14l-8 5v-5a3 3 0 0 1-3-3V9a4 4 0 0 1 4-4Z" /><path d="M10 12h12M10 17h8" /></svg></div>
           <h2 id="send-title">Set the mood for movie night.</h2>
@@ -105,7 +105,7 @@ export default function MotionLabPage() {
         <article><span>02 / Easing</span><h3>A soft landing.</h3><p>cubic-bezier(0.2, 0.8, 0.2, 1) starts promptly and settles gently. The 800 ms spinner uses linear easing to keep a steady pace.</p></article>
         <article><span>03 / Restraint</span><h3>Only transform + opacity.</h3><p>The button holds its size. Labels, icons and surfaces stay mounted and dissolve between states. Reduced motion uses a 100 ms fade, with no spin, slide or shake.</p></article>
       </div>
-      <p className="motion-demo-note">Simulated requests take 0.9–1.8 seconds. No sign-in or API key needed. <Link to="/pick-a-movie">Visit the movie picker <span aria-hidden="true">↗</span></Link></p>
+      <p className="motion-demo-note">Simulated requests take 0.9–1.8 seconds. No sign-in or API key needed. <Link to="/pick-a-movie">Visit the movie picker <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6 18 18 6M6 6h12v12" /></svg></Link></p>
     </section>
   </div>;
 }
