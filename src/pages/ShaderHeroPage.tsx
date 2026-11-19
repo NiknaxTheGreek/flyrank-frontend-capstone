@@ -67,7 +67,7 @@ export default function ShaderHeroPage() {
 
       <div className="afterlight__content">
         <p className="afterlight__eyebrow"><span aria-hidden="true" /> STORIES WORTH GETTING LOST IN</p>
-        <h1 id="afterlight-title" tabIndex={-1}>A little light.<br /><em>A different world.</em></h1>
+        <h1 id="afterlight-title" tabIndex={-1}>A little light.<br />{' '}<em>A different world.</em></h1>
         <p className="afterlight__copy">For the nights you want to feel something.<br className="afterlight__desktop-break" /> Find a film that stays with you.</p>
         <div className="afterlight__actions">
           <Link className="afterlight__primary" to="/pick-a-movie">Find my next film</Link>

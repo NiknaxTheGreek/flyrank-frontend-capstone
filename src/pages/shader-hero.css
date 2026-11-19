@@ -2,7 +2,7 @@
 .home:has(.afterlight) > .site-header { width: min(1360px, 100% - 80px); margin-inline: auto; min-height: 88px; border-bottom: 0; }
 .home:has(.afterlight) .brand-mark { background: #eee6d9; color: #141520; border-radius: 50%; }
 .home:has(.afterlight) .site-navigation { gap: 24px; }
-.home:has(.afterlight) .site-navigation a { font-size: 0.76rem; font-weight: 500; }
+.home:has(.afterlight) .site-navigation a { font-size: 0.875rem; font-weight: 500; }
 .home:has(.afterlight) .site-navigation a[href='/shader-lab'] { color: #ffd2b3; }
 
 .afterlight {
@@ -42,7 +42,7 @@
 .afterlight h1:focus { outline: none; }
 .afterlight__copy { color: #d5cbd2; font-size: clamp(0.94rem, 1.15vw, 1.08rem); font-weight: 400; line-height: 1.9; margin-bottom: 34px; }
 .afterlight__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 30px; }
-.afterlight__primary, .afterlight__secondary { min-height: 48px; display: inline-flex; align-items: center; gap: 28px; font-size: 0.78rem; font-weight: 600; text-decoration: none; }
+.afterlight__primary, .afterlight__secondary { min-height: 48px; display: inline-flex; align-items: center; gap: 28px; font-size: 0.875rem; font-weight: 600; text-decoration: none; }
 .afterlight__primary { padding: 13px 22px; color: #151727; background: #f2e7d8; border: 1px solid #f2e7d8; border-radius: 2px; transition: transform 180ms ease, opacity 180ms ease; }
 .afterlight__primary:hover { transform: translateY(-2px); opacity: 0.92; }
 .afterlight__primary span { font-size: 1.2rem; font-weight: 400; }
@@ -54,11 +54,11 @@
 .afterlight__footer { position: relative; display: flex; justify-content: space-between; align-items: end; gap: 24px; border-top: 1px solid rgba(255, 230, 207, 0.13); padding-top: 24px; }
 .afterlight__invitation { display: flex; align-items: center; gap: 16px; }
 .afterlight__invitation > span { font-size: 1.8rem; color: #e5b895; }
-.afterlight__invitation p { margin: 0; font-size: 0.74rem; color: #e8d9d5; }
-.afterlight__invitation small { display: block; color: #b8aab6; font-size: 0.64rem; margin-top: 5px; }
+.afterlight__invitation p { margin: 0; font-size: 0.875rem; color: #e8d9d5; }
+.afterlight__invitation small { display: block; color: #b8aab6; font-size: 0.75rem; margin-top: 5px; }
 .afterlight__controls { display: flex; gap: 30px; align-items: end; }
 .afterlight__moods { border: 0; padding: 0; margin: 0; display: flex; gap: 8px; }
-.afterlight__moods legend { padding: 0; margin-bottom: 9px; font-size: 0.6rem; color: #b8aab6; letter-spacing: 0.06em; }
+.afterlight__moods legend { padding: 0; margin-bottom: 9px; font-size: 0.75rem; color: #b8aab6; letter-spacing: 0.06em; }
 .afterlight__mood, .afterlight__pause { min-height: 44px; padding: 7px 10px; border: 1px solid transparent; background: rgba(6, 9, 23, 0.5); border-radius: 3px; color: #cdbec7; cursor: pointer; font-size: 0.875rem; }
 .afterlight__mood { display: inline-flex; align-items: center; gap: 7px; }
 .afterlight__mood[aria-pressed='true'] { color: #fff0e6; border-color: #987a73; background: rgba(242, 214, 191, 0.08); }
@@ -68,7 +68,7 @@
 .afterlight__mood > [data-swatch='2'] { background: linear-gradient(135deg, #b24f79, #ffb45d); }
 .afterlight__pause { min-width: 80px; border-color: #756572; display: inline-flex; align-items: center; justify-content: center; gap: 9px; }
 .afterlight__pause span { font-size: 0.9rem; }
-.afterlight__still { min-height: 44px; display: flex; align-items: center; color: #c7b6c0; font-size: 0.68rem; }
+.afterlight__still { min-height: 44px; display: flex; align-items: center; color: #c7b6c0; font-size: 0.75rem; }
 .afterlight a:focus-visible, .afterlight button:focus-visible { outline: 2px solid #ffe7a8; outline-offset: 5px; }
 .afterlight__sr-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 
@@ -82,7 +82,7 @@
   .home:has(.afterlight) > .site-header { width: calc(100% - 40px); padding: 18px 0; min-height: 112px; gap: 14px; flex-wrap: wrap; }
   .home:has(.afterlight) .brand { font-size: 1rem; }
   .home:has(.afterlight) .site-navigation { gap: 12px; }
-  .home:has(.afterlight) .site-navigation a { font-size: 0.66rem; }
+  .home:has(.afterlight) .site-navigation a { font-size: 0.875rem; }
   .afterlight { min-height: max(760px, calc(100svh - 112px)); padding: 30px 26px 26px; }
   .afterlight__frame { inset: 10px; }
   .afterlight__topline { min-height: 20px; }

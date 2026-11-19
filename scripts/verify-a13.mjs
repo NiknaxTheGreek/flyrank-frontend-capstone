@@ -11,7 +11,7 @@ await mkdir(output, { recursive: true });
 const checks = [];
 const errors = [];
 const base = process.env.A13_URL || 'http://127.0.0.1:4183';
-const server = process.env.A13_URL ? null : spawn('npm', ['run', 'preview', '--', '--host', '127.0.0.1', '--port', '4183'], { stdio: 'pipe' });
+const server = process.env.A13_URL ? null : spawn('npm', ['run', 'preview', '--', '--host', '127.0.0.1', '--port', '4183'], { stdio: 'pipe', detached: process.platform !== 'win32' });
 let serverLog = '';
 server?.stdout.on('data', chunk => { serverLog += chunk; });
 server?.stderr.on('data', chunk => { serverLog += chunk; });
@@ -92,6 +92,13 @@ try {
   assert(size.w * size.h <= 1_600_000);
   assert.deepEqual((await state(page)).uniforms.u_resolution, [size.w, size.h]);
   checks.push({ name: 'Real WebGL rendering and resolution caps at desktop DPR 2', buffer: [size.w, size.h], passed: true });
+  const drawStart = (await state(page)).draws;
+  const measuredAt = performance.now();
+  await delay(1100);
+  const elapsedSeconds = (performance.now() - measuredAt) / 1000;
+  const measuredDraws = (await state(page)).draws - drawStart;
+  assert(measuredDraws > 0 && measuredDraws <= Math.ceil(elapsedSeconds * 30) + 3);
+  checks.push({ name: 'GPU draw rate stays within the 30 fps budget', draws: measuredDraws, seconds: elapsedSeconds, passed: true });
 
   await pause.click();
   assert.equal(await pause.getAttribute('aria-pressed'), 'true');
@@ -222,5 +229,14 @@ try {
   process.exitCode = 1;
 } finally {
   await browser?.close();
-  server?.kill('SIGTERM');
+  // npm starts Vite as a child: terminate the owned group so no pipe keeps Node alive.
+  if (server?.pid) {
+    try {
+      if (process.platform === 'win32') server.kill('SIGTERM');
+      else process.kill(-server.pid, 'SIGTERM');
+    } catch {}
+    server.stdout.destroy();
+    server.stderr.destroy();
+    server.unref();
+  }
 }
