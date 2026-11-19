@@ -36,7 +36,8 @@ export default function ShaderHeroPage() {
         renderer.setPalette(settings.current.palette);
         renderer.setPaused(settings.current.paused);
         setReady(true);
-      } catch {
+      } catch (error) {
+        console.warn('Afterlight is using its static gradient:', error instanceof Error ? error.message : 'renderer unavailable');
         setReady(false); // Same content and controls survive a GPU/compile failure.
       }
     }).catch(() => { if (!cancelled) setReady(false); });
@@ -69,12 +70,12 @@ export default function ShaderHeroPage() {
         <h1 id="afterlight-title" tabIndex={-1}>A little light.<br /><em>A different world.</em></h1>
         <p className="afterlight__copy">For the nights you want to feel something.<br className="afterlight__desktop-break" /> Find a film that stays with you.</p>
         <div className="afterlight__actions">
-          <Link className="afterlight__primary" to="/pick-a-movie">Find my next film <span aria-hidden="true">↗</span></Link>
-          <Link className="afterlight__secondary" to="/movies">Explore the collection <span aria-hidden="true">→</span></Link>
+          <Link className="afterlight__primary" to="/pick-a-movie">Find my next film</Link>
+          <Link className="afterlight__secondary" to="/movies">Explore the collection</Link>
         </div>
       </div>
 
-      <div className="afterlight__caption" aria-hidden="true"><span>FIG. 013</span><p>In the quiet<br />before the story.</p></div>
+      <div className="afterlight__caption" aria-hidden="true"><p>In the quiet<br />before the story.</p></div>
 
       <div className="afterlight__footer">
         <div className="afterlight__invitation"><span aria-hidden="true">✧</span><p>{animated && !paused ? 'Move to shape the light.' : 'A moment, held still.'}<small>Stay a little. Then find your story.</small></p></div>
