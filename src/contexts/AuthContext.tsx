@@ -7,13 +7,19 @@ import {
   type ReactNode,
 } from 'react';
 import type { User } from 'firebase/auth';
-import {
-  firebaseConfigured,
+import type {
   loginWithEmail,
   logout,
-  observeAuth,
   registerWithEmail,
 } from '../services/auth';
+import { firebaseConfigured } from '../services/firebase-config';
+
+// Account actions load the SDK on demand; browsing can paint independently.
+const register: typeof registerWithEmail = async (...args) =>
+  (await import('../services/auth')).registerWithEmail(...args);
+const login: typeof loginWithEmail = async (...args) =>
+  (await import('../services/auth')).loginWithEmail(...args);
+const signOut: typeof logout = async () => (await import('../services/auth')).logout();
 
 type AuthContextValue = {
   user: User | null;
@@ -37,8 +43,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
       return;
     }
-    try {
-      return observeAuth(
+    let active = true;
+    let unsubscribe: (() => void) | undefined;
+    void import('../services/auth').then(({ observeAuth }) => {
+      if (!active) return;
+      unsubscribe = observeAuth(
         (nextUser) => {
           setUser(nextUser);
           setLoading(false);
@@ -49,11 +58,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setError(authError.message || 'Could not check your sign-in status.');
         },
       );
-    } catch (cause) {
+    }).catch((cause: unknown) => {
+      if (!active) return;
       setLoading(false);
       setError(cause instanceof Error ? cause.message : 'Could not check your sign-in status.');
-      return undefined;
-    }
+    });
+    return () => { active = false; unsubscribe?.(); };
   }, []);
 
   const value = useMemo(() => ({
@@ -61,9 +71,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     loading,
     error,
     configured: firebaseConfigured,
-    register: registerWithEmail,
-    login: loginWithEmail,
-    logout,
+    register,
+    login,
+    logout: signOut,
   }), [user, loading, error]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -5,9 +5,10 @@ import type { Movie } from '../types/movie';
 
 type MovieCardProps = {
   movie: Movie;
+  priority?: boolean;
 };
 
-function MovieCard({ movie }: MovieCardProps) {
+function MovieCard({ movie, priority = false }: MovieCardProps) {
   const [params] = useSearchParams();
   const query = params.get('q');
   const suffix = query ? `?${new URLSearchParams({ q: query, page: params.get('page') ?? '1' })}` : '';
@@ -18,7 +19,7 @@ function MovieCard({ movie }: MovieCardProps) {
   return (
     <article className="movie-card">
       <Link className="movie-link" to={`/movies/${movie.id}${suffix}`} aria-label={`View ${movie.title}`}>
-      <MoviePoster key={movie.posterUrl} movie={movie} />
+      <MoviePoster key={movie.posterUrl} movie={movie} priority={priority} />
       <div className="movie-details">
         <h3>{movie.title}</h3>
         <p><span>{movie.year}</span><span className="detail-dot" aria-hidden="true">·</span><span>{movie.genre || 'Genre unavailable'}</span></p>

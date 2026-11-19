@@ -48,7 +48,7 @@ test('primary flow: prompt, pending state, movie lookup card, and contextual fol
   await expect(page.getByRole('button', { name: 'Stop generation' })).toBeDisabled();
   await input.fill('Anything lighter?');
   await page.getByRole('button', { name: 'Send', exact: true }).click();
-  await expect(page.getByText('For something lighter, try Galaxy Quest.', { exact: true })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Movie conversation' }).getByText('For something lighter, try Galaxy Quest.', { exact: true })).toBeVisible();
   await expect(page.getByRole('listitem', { name: 'You message' })).toHaveCount(2);
   await expect(page.getByRole('listitem', { name: 'Movie picker message' })).toHaveCount(2);
   if (test.info().project.name === 'desktop-chromium') await page.screenshot({ path: 'test-results/release/movie-picker.png', fullPage: true });
@@ -75,7 +75,7 @@ test('an interrupted reply exposes a working retry and preserves one user turn',
   await expect(page.getByText('Interrupted · partial response', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Retry failed message' }).click();
   await expect(page.getByRole('heading', { name: 'Inception (2010)' })).toBeVisible();
-  await expect(page.getByText('Recovered movie recommendation.', { exact: true })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Movie conversation' }).getByText('Recovered movie recommendation.', { exact: true })).toBeVisible();
   await expect(page.getByRole('alert')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Retry failed message' })).toHaveCount(0);
   await expect(page.getByRole('listitem', { name: 'You message' })).toHaveCount(1);

@@ -27,12 +27,36 @@ export default function MovieChat() {
   const [retryConversation, setRetryConversation] = useState<Message[] | null>(null);
   const [slow, setSlow] = useState(false);
   const [announcement, setAnnouncement] = useState('');
+  const [spokenChunk, setSpokenChunk] = useState('');
   const [showJump, setShowJump] = useState(false);
   const running = useRef<AbortController | null>(null);
   const viewport = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLTextAreaElement>(null);
   const pinned = useRef(true);
   const lastTop = useRef(0);
+  const speech = useRef('');
+
+  // Announce completed sentences in bounded batches, rather than every token.
+  // The visible transcript stays outside the live region so old turns are not
+  // read out again. Every remaining character is flushed when generation ends.
+  useEffect(() => {
+    if (!activeId) return;
+    const timer = setInterval(() => {
+      const match = speech.current.match(/^([\s\S]*?[.!?](?:\s|$))/);
+      if (match) {
+        setSpokenChunk(match[1].trim());
+        setAnnouncement('');
+        speech.current = speech.current.slice(match[1].length);
+      } else if (speech.current.length > 240) {
+        const boundary = speech.current.lastIndexOf(' ', 240);
+        const end = boundary > 0 ? boundary : 240;
+        setSpokenChunk(speech.current.slice(0, end).trim());
+        setAnnouncement('');
+        speech.current = speech.current.slice(end);
+      }
+    }, 1200);
+    return () => clearInterval(timer);
+  }, [activeId]);
 
   useEffect(() => () => running.current?.abort(), []);
   function jumpToLatest() {
@@ -75,6 +99,8 @@ export default function MovieChat() {
     setError('');
     setRetryConversation(null);
     setSlow(false);
+    speech.current = '';
+    setSpokenChunk('');
     const slowTimer = setTimeout(() => setSlow(true), 8000);
     setAnnouncement('Preparing movie recommendations.');
     let output = '';
@@ -107,6 +133,7 @@ export default function MovieChat() {
         if (part.type === 'text') {
           if (!output && part.delta) setAnnouncement('Movie recommendations are streaming.');
           output += part.delta;
+          speech.current += part.delta;
           const snapshot = output;
           setMessages(current => current.map(m => m.id === assistant.id
             ? { ...m, parts: [{ type: 'text', text: snapshot }, ...m.parts.slice(1) as MovieToolPart[]] } : m));
@@ -114,10 +141,18 @@ export default function MovieChat() {
       }
       if (!output.trim() && !finishedTool) throw new Error('The movie assistant returned an empty reply.');
       if (tool?.state === 'output-error') setRetryConversation(conversation);
-      setAnnouncement(tool?.state === 'output-error' ? '' : finishedTool ? 'Movie lookup complete.' : 'Movie recommendations ready.');
+      const completion = tool?.state === 'output-error' ? '' : finishedTool
+        ? 'Movie lookup complete.'
+        : 'Movie recommendations ready.';
+      setSpokenChunk([speech.current.trim(), tool?.state === 'output-available' ? `Found ${tool.output.title} (${tool.output.year}).` : ''].filter(Boolean).join(' '));
+      setAnnouncement(completion);
+      speech.current = '';
     } catch (cause) {
       outcome = controller.signal.aborted ? 'stopped' : 'interrupted';
-      if (outcome === 'stopped') setAnnouncement('Generation stopped.');
+      if (outcome === 'stopped') {
+        setSpokenChunk(speech.current.trim());
+        setAnnouncement('Generation stopped.');
+      }
       else {
         setAnnouncement('');
         setRetryConversation(conversation);
@@ -157,7 +192,9 @@ export default function MovieChat() {
           ))}
         </ol>
       </div>
-      <span className="movie-chat-sr-only" role="status" aria-live="polite">{announcement}</span>
+      <span className="movie-chat-sr-only" role="status" aria-live="polite" aria-atomic="true">
+        <span>{spokenChunk}</span>{' '}<span>{announcement}</span>
+      </span>
       {showJump && <button className="movie-chat-secondary" type="button" onClick={() => { jumpToLatest(); viewport.current?.focus(); }}>Jump to latest</button>}
       {slow && activeId && <p role="status">This is taking longer than usual. You can wait or stop generation.</p>}
       {error && <div role="alert" className="movie-chat-error"><strong>Reply couldn’t finish</strong><p>{error}</p><p>Your earlier messages are safe.</p></div>}

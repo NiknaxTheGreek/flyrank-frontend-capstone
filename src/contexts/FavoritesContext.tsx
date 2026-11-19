@@ -8,7 +8,6 @@ import {
   type ReactNode,
 } from 'react';
 import type { Movie } from '../types/movie';
-import { deleteFavorite, observeFavorites, saveFavorite } from '../services/favorites';
 import { useAuth } from './AuthContext';
 
 type FavoritesState = {
@@ -48,9 +47,11 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     }
 
     let active = true;
+    let unsubscribe: (() => void) | undefined;
     setState({ userId, movies: [], loading: true, error: '' });
-    try {
-      const unsubscribe = observeFavorites(
+    void import('../services/favorites').then(({ observeFavorites }) => {
+      if (!active) return;
+      unsubscribe = observeFavorites(
         userId,
         (movies) => {
           if (active) setState({ userId, movies, loading: false, error: '' });
@@ -59,19 +60,16 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
           if (active) setState({ userId, movies: [], loading: false, error: cause.message });
         },
       );
-      return () => {
-        active = false;
-        unsubscribe();
-      };
-    } catch (cause) {
+    }).catch((cause: unknown) => {
+      if (!active) return;
       setState({
         userId,
         movies: [],
         loading: false,
         error: cause instanceof Error ? cause.message : 'Could not load your favorites.',
       });
-      return undefined;
-    }
+    });
+    return () => { active = false; unsubscribe?.(); };
   }, [authLoading, userId, retryCount]);
 
   const movies = userId && state.userId === userId ? state.movies : [];
@@ -80,6 +78,7 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
 
   const toggleFavorite = useCallback(async (movie: Movie) => {
     if (!userId) throw new Error('Sign in to save favorites.');
+    const { deleteFavorite, saveFavorite } = await import('../services/favorites');
     const movieId = movie.imdbId ?? movie.id;
     if (movies.some((favorite) => favorite.id === movieId)) {
       await deleteFavorite(userId, movieId);
