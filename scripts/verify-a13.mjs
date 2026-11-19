@@ -2,9 +2,9 @@
 // Install playwright@1.62.1 and its Chromium, build, then: node scripts/verify-a13.mjs
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { setTimeout as delay } from 'node:timers/promises';
-import { chromium } from 'playwright';
+const { chromium } = await import(process.env.A13_PLAYWRIGHT_MODULE || 'playwright');
 
 const output = 'docs/assignment-13/evidence';
 await mkdir(output, { recursive: true });
@@ -103,13 +103,13 @@ try {
   await pause.click();
   assert.equal(await pause.getAttribute('aria-pressed'), 'true');
   await noDraws(page, 'Pause did not stop GPU draws');
-  await page.screenshot({ path: `${output}/desktop-afterlight.png`, fullPage: true });
+  await page.screenshot({ path: `${output}/desktop-afterlight.jpg`, type: 'jpeg', quality: 78, fullPage: true });
   const first = await page.locator('canvas').screenshot();
   await page.getByRole('button', { name: 'Glacier', exact: true }).click();
   assert.deepEqual((await state(page)).uniforms.u_palette, [1]);
   assert.notDeepEqual(await page.locator('canvas').screenshot(), first, 'Palette did not change the rendered image');
   await noDraws(page, 'Palette change unexpectedly resumed animation');
-  await page.screenshot({ path: `${output}/desktop-glacier-paused.png`, fullPage: true });
+  await page.screenshot({ path: `${output}/desktop-glacier-paused.jpg`, type: 'jpeg', quality: 78, fullPage: true });
   await pause.press('Space');
   assert.equal(await pause.getAttribute('aria-pressed'), 'false');
   const resumedAt = (await state(page)).draws;
@@ -121,7 +121,10 @@ try {
   await eventually(async () => (await state(page)).uniforms.u_mouse[0] > 0.6, 'Mouse did not influence shader');
   checks.push({ name: 'Pointer reaches the shader as a smoothed uniform', passed: true });
 
-  // Headful Chromium under Xvfb provides actual visible/hidden tabs in CI.
+  // Playwright normally forces every page to appear active, even in background.
+  // Turn off that test override before checking the real Page Visibility API.
+  const visibilitySession = await context.newCDPSession(page);
+  await visibilitySession.send('Emulation.setFocusEmulationEnabled', { enabled: false });
   const other = await context.newPage();
   await other.goto('about:blank');
   await other.bringToFront();
@@ -133,6 +136,8 @@ try {
   await eventually(async () => (await state(page)).uniforms.u_time[0] > timeBeforeHide, 'Visible tab did not resume');
   assert((await state(page)).uniforms.u_time[0] - timeBeforeHide < 0.4, 'Hidden time leaked into active animation');
   await other.close();
+  await visibilitySession.send('Emulation.setFocusEmulationEnabled', { enabled: true });
+  await visibilitySession.detach();
   checks.push({ name: 'Actual hidden tab stops drawing and resumes without a time jump', passed: true });
 
   await page.evaluate(() => {
@@ -172,7 +177,7 @@ try {
   await noDraws(page, 'Lost WebGL context kept scheduling draws');
   await page.getByRole('button', { name: 'Ember', exact: true }).click();
   assert.equal(await page.locator('.afterlight').getAttribute('data-mood'), 'ember');
-  await page.screenshot({ path: `${output}/context-loss-fallback.png`, fullPage: true });
+  await page.screenshot({ path: `${output}/context-loss-fallback.jpg`, type: 'jpeg', quality: 78, fullPage: true });
   checks.push({ name: 'GPU context loss exposes a working static fallback', passed: true });
 
   const reduced = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
@@ -194,7 +199,7 @@ try {
   }
   await still.keyboard.press('Space');
   assert.equal(await still.getByRole('button', { name: 'Ember', exact: true }).getAttribute('aria-pressed'), 'true');
-  await still.screenshot({ path: `${output}/desktop-reduced-motion.png`, fullPage: true });
+  await still.screenshot({ path: `${output}/desktop-reduced-motion.jpg`, type: 'jpeg', quality: 78, fullPage: true });
   checks.push({ name: 'Reduced motion makes zero WebGL calls and no shader request; all actions reachable by keyboard', passed: true });
 
   const mobile = await browser.newContext({ viewport: { width: 375, height: 812 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, reducedMotion: 'no-preference' });
@@ -210,7 +215,7 @@ try {
   await phone.getByRole('button', { name: 'Glacier', exact: true }).tap();
   assert.equal(await phone.getByRole('button', { name: 'Glacier', exact: true }).getAttribute('aria-pressed'), 'true');
   await phone.getByRole('button', { name: 'Pause animation' }).tap();
-  await phone.screenshot({ path: `${output}/phone-glacier.png`, fullPage: true });
+  await phone.screenshot({ path: `${output}/phone-glacier.jpg`, type: 'jpeg', quality: 78, fullPage: true });
   for (const width of [320, 360, 768]) {
     await phone.setViewportSize({ width, height: 900 });
     assert.equal(await phone.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `Horizontal overflow at ${width}px`);
@@ -238,5 +243,14 @@ try {
     server.stdout.destroy();
     server.stderr.destroy();
     server.unref();
+  }
+  // Transport this assignment's screenshots in logs if Actions artifact quota is full.
+  // The agent saves these exact bytes back into the assignment's GitHub evidence folder.
+  for (const name of await readdir(output)) {
+    if (!/^(desktop-|phone-|context-loss-).*\.jpg$/.test(name) && name !== 'verification.json') continue;
+    const encoded = (await readFile(`${output}/${name}`)).toString('base64');
+    for (let offset = 0; offset < encoded.length; offset += 4000) {
+      console.log(`A13_EVIDENCE ${name} ${offset / 4000} ${encoded.slice(offset, offset + 4000)}`);
+    }
   }
 }

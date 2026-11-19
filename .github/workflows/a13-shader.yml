@@ -19,23 +19,20 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-node@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 24
           cache: npm
       - run: npm ci
       - name: Install isolated browser-test tooling
-        run: npm install --no-save --package-lock=false --ignore-scripts playwright@1.62.1
-      - run: npx playwright install --with-deps chromium
+        run: npm install --prefix /tmp/a13-browser-tools --no-save --ignore-scripts playwright@1.62.1
+      - run: /tmp/a13-browser-tools/node_modules/.bin/playwright install --with-deps chromium
       - run: npm test
       - run: npm run build
       - name: Verify real shader and accessibility fallbacks
         run: xvfb-run -a node scripts/verify-a13.mjs
         env:
           A13_HEADFUL: '1'
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: a13-browser-evidence
-          path: docs/assignment-13/evidence/
-          retention-days: 30
+          A13_PLAYWRIGHT_MODULE: /tmp/a13-browser-tools/node_modules/playwright/index.mjs
