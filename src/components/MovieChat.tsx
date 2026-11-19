@@ -96,6 +96,10 @@ export default function MovieChat() {
           finishedTool = part.state === 'output-available' || part.state === 'output-error';
           setMessages(current => current.map(m => m.id === assistant.id
             ? { ...m, parts: [m.parts[0], part] } : m));
+          if (part.state === 'input-streaming' || part.state === 'input-available') {
+            await new Promise(resolve => setTimeout(resolve, 350));
+            controller.signal.throwIfAborted();
+          }
         }
         if (part.type === 'text') {
           if (!output && part.delta) setAnnouncement('Movie recommendations are streaming.');
