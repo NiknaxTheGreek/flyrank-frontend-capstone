@@ -2,6 +2,8 @@
 
 Assignment 9: open **[Motion lab](./docs/assignment-9/README.md)** at `/motion-lab` for the reusable Send/Save button lifecycle demo, forced success/failure controls, motion rationale, and verification details. It needs no credentials or API key.
 
+Assignment 13: open **[Afterlight](./docs/assignment-13/README.md)** at `/shader-lab` for the custom GLSL hero, colour moods, pause control, and static reduced-motion fallback.
+
 Reel Good is a responsive movie discovery app built with React, TypeScript and Vite. Browse a small hand-picked collection by genre, search live OMDb movie data, inspect movie details, follow verified IMDb links, and (after Firebase setup) save personal favorites.
 
 ## Implemented features
@@ -149,7 +151,7 @@ Open **Movie picker** (`/pick-a-movie`) and ask:
 Verified in Codespaces: Inception returned a movie card, an unknown title
 showed an inline error, and The Matrix returned a card in the same chat.
 
-# Assignment 13 — Afterlight shader hero
+## Assignment 13 — Afterlight shader hero
 
 Open `/shader-lab` for a fullscreen, custom GLSL hero with pointer-responsive light ribbons, three colour moods and a keyboard-accessible pause control. [Shader source](src/shaders/afterlight.frag), [walkthrough and fallback](docs/assignment-13/README.md), and [verification](docs/assignment-13/verification.md).
 

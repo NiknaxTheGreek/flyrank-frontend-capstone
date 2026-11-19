@@ -18,7 +18,7 @@ This shader was authored with ChatGPT assistance for this assignment. No session
 
 ## Fallback one-liner
 
-**Reduced motion and unavailable WebGL show a static gradient in the selected palette; active rendering is capped at DPR 1.5, 1.6 million pixels and 30 draws/second, and stops while hidden, offscreen or paused.**
+**Reduced motion and unavailable WebGL show a static gradient in the selected palette; the animation loop runs at up to 30 fps with DPR capped at 1.5 and at most 1.6 million pixels, and stops while hidden, offscreen or paused.**
 
 There are no image/model downloads or shader dependencies. The renderer and GLSL are a lazy-loaded chunk; reduced-motion users never import that chunk or allocate a GPU context. The static gradient is present before JavaScript and remains behind the canvas. GPU context loss hides the canvas and retains that fallback. Changing colour mood also works in the fallback.
 
@@ -71,4 +71,6 @@ Use the existing repository commands: `npm ci`, `npm run dev`, then open `/shade
 
 ## Verification
 
-See [verification.md](verification.md) and [evidence](evidence/) for measured checks and captures. Physical-device testing and Nicholas's own mentor rehearsal must be recorded separately from automated browser checks.
+See [verification.md](verification.md) and [evidence](evidence/) for measured checks and captures. The GPU checks use Chromium with software WebGL in CI; they validate behaviour, not physical-device frame rates. Physical-device testing and Nicholas's own mentor rehearsal must be recorded separately from automated browser checks.
+
+The dedicated [A13 workflow](../../.github/workflows/a13-shader.yml) runs the regression suite, production build and [browser verification script](../../scripts/verify-a13.mjs). Browser tooling is installed outside the project so it does not change the locked application dependencies. CI emits screenshot bytes in its logs because the account's Actions artifact quota is full; the reviewed captures are also committed under `docs/assignment-13/evidence/`. That committed copy is the submission evidence, rather than an expiring workflow artifact.
