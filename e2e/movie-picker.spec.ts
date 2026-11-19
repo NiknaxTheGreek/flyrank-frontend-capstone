@@ -51,6 +51,7 @@ test('primary flow: prompt, pending state, movie lookup card, and contextual fol
   await expect(page.getByText('For something lighter, try Galaxy Quest.', { exact: true })).toBeVisible();
   await expect(page.getByRole('listitem', { name: 'You message' })).toHaveCount(2);
   await expect(page.getByRole('listitem', { name: 'Movie picker message' })).toHaveCount(2);
+  if (test.info().project.name === 'desktop-chromium') await page.screenshot({ path: 'test-results/release/movie-picker.png', fullPage: true });
   expect(requests).toHaveLength(2);
   expect(requests[1].messages[1]).toMatchObject({ role: 'assistant' });
   expect(requests[1].messages[1].content).toContain('IMDb ID tt1375666');
@@ -80,3 +81,4 @@ test('an interrupted reply exposes a working retry and preserves one user turn',
   await expect(page.getByRole('listitem', { name: 'You message' })).toHaveCount(1);
   expect(attempts).toBe(2);
 });
+

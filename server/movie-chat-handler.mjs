@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import { movieChatConfig } from './movie-chat-config.mjs';
+import { createChatRateLimit } from './chat-rate-limit.mjs';
 import { lookupMovie } from './lookup-movie-tool.mjs';
 
 const movieToolDeclaration = {
@@ -14,7 +15,7 @@ const encoder = new TextEncoder();
 
 function providerMessage(code) {
   if (code === 'RESOURCE_EXHAUSTED' || code === 429) return 'Gemini free-tier quota is unavailable or exhausted. Check your AI Studio limits and try again later.';
-  if (['UNAUTHENTICATED', 'PERMISSION_DENIED', 'INVALID_ARGUMENT', 400, 401, 403].includes(code)) return 'Gemini rejected this request. Check the GEMINI_API_KEY Preview secret and model access.';
+  if (['UNAUTHENTICATED', 'PERMISSION_DENIED', 'INVALID_ARGUMENT', 400, 401, 403].includes(code)) return 'Gemini rejected this request. Check the GEMINI_API_KEY server secret and model access.';
   if (code === 'NOT_FOUND' || code === 404) return 'The configured Gemini model is unavailable.';
 }
 
@@ -34,6 +35,7 @@ async function readMessages(request) {
     const { messages } = JSON.parse(body + decoder.decode());
     if (!Array.isArray(messages) || messages.length < 1 || messages.length > 20 ||
         messages[0]?.role !== 'user' || messages.at(-1)?.role !== 'user' ||
+        messages.reduce((sum, m) => sum + (typeof m?.content === 'string' ? m.content.length : 0), 0) > 32_000 ||
         !messages.every(m => m && ['user', 'assistant'].includes(m.role) &&
           typeof m.content === 'string' && m.content.trim() && m.content.length <= 8000)) throw new Error();
     return messages.map(({ role, content }) => ({ role, content }));
@@ -65,9 +67,15 @@ async function* geminiEvents(body) {
 
 export function createMovieChatHandler({ getKey = () => process.env.GEMINI_API_KEY, fetcher = fetch,
   executeMovieLookup = lookupMovie.execute,
+  rateLimit = createChatRateLimit(),
 } = {}) {
   return async function movieChat(request) {
     if (request.method !== 'POST') return new Response(null, { status: 405, headers: { Allow: 'POST' } });
+    const origin = request.headers.get('origin');
+    if (origin && origin !== new URL(request.url).origin) return error('Use the movie picker on this site.', 403);
+    const quota = rateLimit(request);
+    if (!quota.allowed) return Response.json({ error: 'Too many movie requests. Wait a minute and try again.' },
+      { status: 429, headers: { 'Retry-After': String(quota.retryAfter) } });
     let input;
     try { input = await readMessages(request); }
     catch { return error('Send a valid conversation within the size limit.', 400); }
@@ -174,4 +182,5 @@ export function createMovieChatHandler({ getKey = () => process.env.GEMINI_API_K
     } });
   };
 }
+
 

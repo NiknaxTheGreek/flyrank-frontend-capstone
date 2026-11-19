@@ -1,155 +1,120 @@
-# Reel Good — Assignment 3
+# Reel Good
 
-Assignment 10: [automated tests, CI and failure/fix evidence](./docs/assignment-10/README.md).
-Run `npm run typecheck`, `npm run test:ci`, `npm run build`, and then
-`npm run test:e2e` after `npm run test:e2e:install`. No API keys are required for tests.
+A responsive movie discovery app: browse and search films, inspect OMDb details, save favorites with Firebase, and ask a streaming movie assistant for recommendations. When asked for facts about a named film, the assistant runs a validated server-side lookup and shows a movie card with an IMDb link.
 
-Assignment 9: open **[Motion lab](./docs/assignment-9/README.md)** at `/motion-lab` for the reusable Send/Save button lifecycle demo, forced success/failure controls, motion rationale, and verification details. It needs no credentials or API key.
+**Production:** https://flyrank-frontend-capstone-snowy.vercel.app  
+**Release source:** `fe14-production-release`  
+**Checkpoint 2:** [release verification and remaining checks](docs/assignment-14/README.md)
 
-Reel Good is a responsive movie discovery app built with React, TypeScript and Vite. Browse a small hand-picked collection by genre, search live OMDb movie data, inspect movie details, follow verified IMDb links, and (after Firebase setup) save personal favorites.
+![Movie picker](docs/assignment-14/evidence/movie-picker.png)
 
-## Implemented features
+## Clone and run
 
-- Six sample movies with plot summaries, verified IMDb IDs, TMDB poster URLs, ratings, and clearly labelled genre sections.
-- Accessible genre filtering, responsive poster cards, and a film-icon/title fallback for missing or failed posters.
-- Live title search with URL-backed query and page state, pagination, loading, empty and error states, retry, request cancellation and stale-response protection.
-- OMDb details enrichment supplies search results with genres and plots rather than inventing data omitted by OMDb search. The server caches requests, deduplicates detail lookups, limits concurrent detail requests to three, and bounds upstream calls.
-- Separate accessible movie-navigation, IMDb-profile and favorite controls.
-- Email/password Firebase sign-up, sign-in and sign-out; protected favorites; UID-scoped Realtime Database records keyed by IMDb ID.
-- Realtime Database rules restrict access to the authenticated owner and validate stored record fields.
-
-Assignment 3 is **not complete**: Firebase is not configured or live-verified in this workspace, and final learner review, manual browser checks and submission evidence still need to be completed.
-
-## Requirements
-
-- Node.js 24 LTS and npm.
-- An OMDb API key for live search and details.
-- A Firebase project with Email/Password Authentication and a Realtime Database for accounts and persistent favorites.
-
-## Setup
+Requires Node.js 24 LTS, npm, Git, and provider accounts for live features. Repository access is required while this repository is private.
 
 ```sh
+git clone --branch fe14-production-release https://github.com/NiknaxTheGreek/flyrank-frontend-capstone.git
+cd flyrank-frontend-capstone
 npm ci
 cp .env.example .env.local
-# Set the environment values described below in .env.local.
+# Populate .env.local using the table below.
 npm run dev
 ```
 
-Restart Vite after editing environment values.
-
-### Environment variable names
-
-| Variable | Purpose |
-| --- | --- |
-| `OMDB_API_KEY` | Server-only OMDb API key. Never prefix this with `VITE_`. |
-| `VITE_FIREBASE_API_KEY` | Firebase web app configuration. |
-| `VITE_FIREBASE_AUTH_DOMAIN` | Firebase Authentication domain. |
-| `VITE_FIREBASE_PROJECT_ID` | Firebase project ID. |
-| `VITE_FIREBASE_APP_ID` | Firebase web app ID. |
-| `VITE_FIREBASE_DATABASE_URL` | URL of the project's Realtime Database. |
-
-Firebase `VITE_` values are public client configuration, not private credentials. Never put service-account credentials or private keys in the browser app. The repository's `.env.local` is ignored and must not be committed.
-
-### Firebase setup and rules
-
-1. In Firebase Console, create/select a project and register a web app.
-2. Under **Authentication → Sign-in method**, enable **Email/Password**.
-3. Create a **Realtime Database** and note its database URL.
-4. Set the five `VITE_FIREBASE_*` values above in `.env.local` using the web app configuration and exact database URL.
-5. Install/use Firebase CLI, select the same project, and deploy the rules:
-
-   ```sh
-   firebase login
-   firebase use --add
-   firebase deploy --only database
-   ```
-
-6. Restart Vite. For a public host, add its hostname under **Authentication → Settings → Authorized domains**.
-
-Rules are in [database.rules.json](./database.rules.json); [firebase.json](./firebase.json) points to them and configures the Realtime Database emulator port. Emulator isolation has not been tested because Firebase CLI/emulator tools are unavailable here.
-
-## Commands
+Open http://localhost:5173. Restart after changing environment variables. With no credentials, the UI and motion lab run, but live movie search, chat, and accounts show configuration errors. Automated tests need no credentials.
 
 ```sh
-npm run dev       # Vite development server (port 5173)
-npm test          # Vitest and React Testing Library
-npm run build     # TypeScript project build and optimized Vite production bundle
-npm run preview   # Serve dist using Vite preview (port 4173)
+npm run typecheck
+npm test
+npm run build
+npm run test:e2e:install
+npm run test:e2e
+npm run preview  # built app at http://localhost:4173
 ```
 
-## Routes
+Vite development and preview mount the same API handlers used in Vercel. `vite preview` is for local verification; Vercel hosts the production API functions and static bundle.
 
-- `/` and `/movies` — initial genre collection and movie search.
-- `/?q=Inception&page=2` — shareable search and page state.
-- `/movies/:movieId` — sample or live movie detail.
-- `/account` — register, sign in or sign out.
-- `/favorites` — protected, signed-in user's saved collection.
+## Environment variables
 
-Unknown pages and movie IDs show a recovery path. Vite's SPA fallback serves app routes in development/preview; any deployment host must provide an equivalent SPA rewrite and a Node-compatible handler for `/api/movies`.
+| Name | Required for | Visibility / source |
+| --- | --- | --- |
+| `OMDB_API_KEY` | Live browse, search, details and chat lookup | Server secret from OMDb; activate the key before use |
+| `GEMINI_API_KEY` | Streaming movie assistant | Server secret from Google AI Studio |
+| `GEMINI_MODEL` | Optional model override | Server configuration; default `gemini-3.5-flash-lite` |
+| `VITE_FIREBASE_API_KEY` | Sign-in and saved favorites | Public Firebase web-app configuration |
+| `VITE_FIREBASE_AUTH_DOMAIN` | Sign-in and saved favorites | Firebase Authentication domain |
+| `VITE_FIREBASE_PROJECT_ID` | Sign-in and saved favorites | Firebase project ID |
+| `VITE_FIREBASE_APP_ID` | Sign-in and saved favorites | Firebase web app ID |
+| `VITE_FIREBASE_DATABASE_URL` | Sign-in and saved favorites | Firebase Realtime Database URL |
+
+Never prefix provider secrets with `VITE_`: those values are bundled into browser code. `.env.local` is ignored. Firebase web configuration is public; database rules enforce access.
+
+For Firebase, register a web app, enable Email/Password Authentication, create a Realtime Database, and copy its web configuration into the five variables. Add your deployed hostname to Authentication → Settings → Authorized domains. Deploy [database.rules.json](database.rules.json) to the same project:
+
+```sh
+npx firebase-tools login
+npx firebase-tools use --add
+npx firebase-tools deploy --only database
+```
+
+Rules restrict records to their authenticated UID and validate movie fields. Firebase emulator isolation and real cross-account persistence are separate checks from the mocked UI suite.
+
+## Main flow
+
+1. Open `/movies`, search a title, and open its details.
+2. Open `/pick-a-movie`, enter a mood, and choose Send. Stop generation cancels upstream work; retry recovers interrupted replies.
+3. Ask “Show me Inception's IMDb rating and runtime.” The read-only lookup returns a structured card.
+4. Sign in at `/account` and save a movie to `/favorites`.
+
+Search query and pagination are URL-backed. Loading, no results, missing posters, provider failures and interrupted streams have visible recovery paths. `/motion-lab` demonstrates the reusable button lifecycle without API credentials. The separately preserved 3D/shader assignment branches are standalone demos and are not advertised as part of this release.
 
 ## Architecture
 
-- `src/data/movies.ts` and `src/types/movie.ts` contain typed sample data and the movie model.
-- `src/hooks/useMovieSearch.ts` manages URL-backed search state; `src/hooks/useMovieDetails.ts` loads details.
-- `src/pages/` composes browse, detail, account and favorites screens; reusable cards, poster fallback and favorite controls live in `src/components/`.
-- `src/services/movies.ts` calls the same-origin API. `api/movies.mjs` validates requests, calls the fixed HTTPS OMDb endpoint, normalizes results, enriches search results from detail lookups, and applies caching, request limits, concurrency control and sanitized errors. `vite.config.ts` mounts that handler for dev/preview; the secret stays server-side.
-- `src/services/auth.ts`, `src/services/firebase.ts`, and `src/services/favorites.ts` wrap Firebase Auth and Realtime Database. Contexts observe auth/favorites and clear per-user state at UID changes.
-- `database.rules.json` checks ownership, IMDb-key consistency and the accepted movie-record shape.
+```mermaid
+flowchart TD
+  UI[React routes and components] --> Movies[Node movie API]
+  UI --> Chat[Node streaming chat handler]
+  UI --> Firebase[Firebase Auth and per-user favorites]
+  Movies --> OMDb[OMDb]
+  Chat --> Gemini[Gemini streaming API]
+  Chat --> Tool[Zod movie lookup tool]
+  Tool --> OMDb
+```
 
-## Limitations and current verification status
+- `src/pages` and `src/components`: accessible UI, route recovery, chat renderer and tool cards.
+- `src/services/movie-chat-stream.ts`: SSE parser; `MovieChat.tsx` manages cancellation, history, partial replies and retry.
+- `api/movie-chat.mjs`: Node adapter for `server/movie-chat-handler.mjs`.
+- `server/movie-chat-config.mjs`: model, recommendation instructions and output budget.
+- `server/lookup-movie-tool.mjs`: validates `{ title: string }` (trimmed, 2–100 characters) and fetches OMDb. Output is `{ title, year, genre, runtime, rating, plot, imdbId }`; rating is numeric or null. UI states: input streaming, input available, output available, output error.
+- `api/movies.mjs`: validates query/ID/page, caches results for five minutes, deduplicates detail requests and bounds concurrent lookups.
+- Firebase contexts clear per-user state when authentication changes. Vercel rewrites preserve deep links while `/api/*` remains server-side.
 
-- No Firebase web-app/database config is present, so live sign-up, sign-in, cross-user rules and persistence still require project setup and verification.
-- The AI's mocked tests do not replace learner review or real Firebase emulator tests.
-- Poster endpoints have been HTTP-checked; browser rendering, keyboard-only/mobile visual review, and screenshot evidence still need to be captured by the learner if required for submission.
-- OMDb availability, quota, and an activated key are external dependencies.
+## Production safeguards and tradeoffs
 
-See [Assignment 3 verification](./docs/assignment-3/verification.md), [review log](./docs/assignment-3/review-log.md), and [submission draft](./docs/assignment-3/submission.md).
+Chat accepts POST only, rejects foreign browser origins, reads at most 192,000 request bytes, accepts 1–20 user/assistant messages, caps each at 8,000 characters and total text at 32,000 characters. System-role messages are rejected. Each request permits one movie lookup, at most 700 model output tokens, and a 40-second upstream deadline. Vercel's streaming function has a 60-second `maxDuration` to allow cleanup. Stop/disconnect aborts upstream work.
 
-## Assignment 6 — Streaming movie picker
+The chat limiter permits 10 requests per minute per Vercel-supplied client IP and 1,000 per hour per warm instance, with HTTP 429 and `Retry-After`. Its map is bounded. **These counters reset on cold starts and are not shared between server instances.** They reduce simple repeated abuse but do not enforce an account-wide spending budget. Keep provider billing/quota caps configured; use a shared Redis limiter or Vercel Firewall rule for stronger multi-instance enforcement. Origin checks are a browser defense, not authentication.
 
-Open **Movie picker** in the navigation, choose **Try an example**, then send.
-The reply appears as it arrives. Choose **Stop generation** halfway through,
-then ask “Anything lighter?” to check that the follow-up uses the partial reply.
-Scroll up during a longer reply to check that the transcript keeps your place;
-**Jump to latest** resumes following new text.
+OMDb has a separate per-instance 60-upstream-call/minute guard, three concurrent detail fetches, 15-second call timeouts and bounded caching. Unknown facts are omitted rather than invented. The model has no arbitrary URL, SQL, filesystem or write tool. No paid-provider fallback exists. Chat is not persisted across reloads. Provider availability and free-tier quotas can still stop live requests.
 
-- [Chat component](src/components/MovieChat.tsx): what the user sees and clicks.
-- [API route](api/movie-chat.mjs) and [stream handler](server/movie-chat-handler.mjs):
-  validate the conversation, call Gemini, and stream the reply back.
-- [Model and instructions](server/movie-chat-config.mjs): server-only settings.
+## Tests and release verification
 
-Set `GEMINI_API_KEY` in your local `.env.local` for Vite and as a server-side
-**Preview** environment variable in Vercel. Redeploy the branch after setting it.
-`GEMINI_MODEL` is an optional server environment override. Never put the key
-in a `VITE_` variable. The movie picker does not require OMDb or Firebase
-credentials; those are for the existing search and favourites features.
+Vitest and React Testing Library query controls by role and label. Tests cover chat pending/streaming/error states, all tool states, validated forms, routing, favorites behavior, button lifecycle, server validation, rate limiting and cancellation. Provider calls are mocked; tests never consume AI credits. Playwright walks the primary flow and interruption/retry on desktop and phone-sized Chromium. CI runs type checks, tests, build and Playwright on pushes and pull requests.
 
-ChatGPT assisted with development. The app calls the Gemini streaming API at
-runtime. This replaces the Claude provider named in the original brief.
-Run `npm test` for the mocked streaming checks and `npm run build` to verify
-the production bundle. The preview needs its own API credentials for live testing.
+See [Assignment 10](docs/assignment-10/README.md) for the original failure/fix demonstration. A green workflow is distinct from a repository branch protection rule. See [Assignment 14](docs/assignment-14/README.md) for actual release results and browser limitations; Playwright WebKit is not proof of testing real Safari on an iPhone.
 
-On Vercel, verify **Source** is `fe06-reel-good-movie-chat` as well as **Environment** being **Preview**. A Preview built from `main` shows the assignment index and does not include the movie picker.
+## Decisions
 
-The default model is gemini-3.5-flash-lite. Keep Google Cloud billing disabled to use only your available free-tier quota; quota exhaustion returns an error, with no paid-provider fallback. Deploy branch fe06-reel-good-movie-chat, not main.
+React/Vite preserves the working movie application rather than migrating it to a different framework for deployment. Small Node functions keep provider credentials off the client and reuse handler code locally. Direct Gemini SSE makes cancellation and partial failures explicit. Zod validates the one read-only movie tool; React renders text without injecting model-generated HTML. Firebase provides identity and UID-scoped persistence. CSS transform/opacity transitions and reduced-motion rules preserve feedback without requiring animation.
 
-## Assignment 7 — Movie lookup in chat
+## How AI tools built this
 
-Open **Movie picker** (`/pick-a-movie`) and ask:
-“Show me Inception’s IMDb rating and runtime.”
+ChatGPT assisted with the implementation and debugging throughout these assignments: the OMDb proxy and normalization, stale-response/cancellation handling, Gemini SSE parsing, structured tool events and card rendering, retry semantics, accessible state feedback, reusable animated button, Vitest/Playwright coverage, and release documentation. Assignment 3's [prompts](docs/assignment-3/prompts.md), [AI assistance record](docs/assignment-3/ai-assistance.md), and [review log](docs/assignment-3/review-log.md) retain concrete examples. Assignment 10 records a renderer failure and the subsequent verified fix.
 
-- **Tool:** [`lookupMovie`](server/lookup-movie-tool.mjs), a read-only
-  server-side tool that fetches movie details from OMDb.
-- **Input:** `{ title: string }`, trimmed and validated with Zod. Titles
-  must be 2–100 characters long.
-- **Output:** `{ title, year, genre, runtime, rating, plot, imdbId }`.
-  All fields are strings except `rating`, which is a number from 0 to 10
-  or `null`. Missing descriptive fields are empty strings.
-- **Lifecycle:** Preparing lookup → Looking up a title → Movie card or
-  an inline error. A failed lookup leaves the chat ready for another request.
-- **Configuration:** Set `GEMINI_API_KEY` and `OMDB_API_KEY` server-side.
-  For local development, use `.env.local`.
+For Assignment 14, ChatGPT inspected the deployed project and branch history, reused the tested A10 application, added the rate-limit/origin/input guards and regression tests, corrected the Node request URL used for origin checking, prepared this README, configured production environment targets without copying secret values into source, and ran the checks listed in the release report. The learner supplied requirements and prior browser evidence and must be able to explain and modify the implementation. AI-generated tests and prose do not substitute for real provider, Firebase authorization, or device checks. Runtime recommendations come from Gemini; ChatGPT is the development assistant. This project does not claim Claude Code was used.
 
-Verified in Codespaces: Inception returned a movie card, an unknown title
-showed an inline error, and The Matrix returned a card in the same chat.
+## Deployment and history
 
+Import this repository into Vercel as Vite; build `npm run build`, output `dist`, Node 24. Set the environment variables for **Production** and redeploy `fe14-production-release`. Confirm the commit and target before promoting. Existing assignment branches are preserved; focused Conventional Commits record the release without rewriting shared history. Roll back to a known-good production deployment if a smoke check fails.
+
+Code and documentation in Git have no scheduled expiry, but access still depends on repository visibility and hosting/account availability. This README's production address is a normal hostname, not a temporary share token.
