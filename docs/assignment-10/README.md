@@ -62,6 +62,11 @@ retains the default exact accessible-name matching and allows test compilation.
 - The browser flow deliberately holds the initial response until the thinking
   indicator and enabled Stop button have been observed. It verifies the real
   request history on a follow-up, not just the final text.
+- The primary browser test installs Playwright's controlled clock, pauses it
+  before releasing the response, and advances each 350ms tool phase explicitly.
+  This retains the lifecycle assertions without relying on the runner sampling
+  short-lived UI states quickly enough. Later verification caught and corrected
+  this timing issue in the initial browser test.
 
 ## AI caught and fixed a failing test
 

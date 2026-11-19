@@ -16,6 +16,7 @@ test.beforeEach(async ({ context, page }) => {
 });
 
 test('primary flow: prompt, pending state, movie lookup card, and contextual follow-up', async ({ page }) => {
+  await page.clock.install();
   const requests: { messages: { role: string; content: string }[] }[] = [];
   let release!: () => void;
   const pending = new Promise<void>(resolve => { release = resolve; });
@@ -38,14 +39,20 @@ test('primary flow: prompt, pending state, movie lookup card, and contextual fol
   await page.getByRole('button', { name: 'Send', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: 'Thinking…' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Stop generation' })).toBeEnabled();
+  // Hold the app clock while inspecting each brief lifecycle state. The network
+  // fixture stays deterministic even when the CI runner is busy painting frames.
+  await page.clock.pauseAt(await page.evaluate(() => Date.now() + 1000));
   release();
   const card = page.getByRole('region', { name: 'Movie lookup' });
   await expect(card.getByRole('status')).toContainText('Preparing movie lookup…');
+  await page.clock.runFor(350);
   await expect(card.getByRole('status')).toContainText('Looking up Inception');
+  await page.clock.runFor(350);
   await expect(card.getByRole('heading', { name: 'Inception (2010)' })).toBeVisible();
   await expect(card.getByRole('definition').filter({ hasText: '148 min' })).toBeVisible();
   await expect(card.getByRole('link', { name: 'View Inception on IMDb' })).toHaveAttribute('href', 'https://www.imdb.com/title/tt1375666/');
   await expect(page.getByRole('button', { name: 'Stop generation' })).toBeDisabled();
+  await page.clock.resume();
   await input.fill('Anything lighter?');
   await page.getByRole('button', { name: 'Send', exact: true }).click();
   await expect(page.getByText('For something lighter, try Galaxy Quest.', { exact: true })).toBeVisible();
