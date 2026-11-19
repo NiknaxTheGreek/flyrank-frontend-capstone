@@ -149,3 +149,7 @@ Open **Movie picker** (`/pick-a-movie`) and ask:
 Verified in Codespaces: Inception returned a movie card, an unknown title
 showed an inline error, and The Matrix returned a card in the same chat.
 
+# Assignment 13 — Afterlight shader hero
+
+Open `/shader-lab` for a fullscreen, custom GLSL hero with pointer-responsive light ribbons, three colour moods and a keyboard-accessible pause control. [Shader source](src/shaders/afterlight.frag), [walkthrough and fallback](docs/assignment-13/README.md), and [verification](docs/assignment-13/verification.md).
+

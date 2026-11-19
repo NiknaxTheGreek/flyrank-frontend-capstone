@@ -11,6 +11,7 @@ import HomePage from './pages/HomePage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import MotionLabPage from './pages/MotionLabPage';
+import ShaderHeroPage from './pages/ShaderHeroPage';
 
 function RequireAuth({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
@@ -42,6 +43,7 @@ function AppLayout() {
           <Link to="/movies">Movies</Link>
           <Link to="/pick-a-movie">Movie picker</Link>
           <Link to="/motion-lab">Motion lab</Link>
+          <Link to="/shader-lab">Afterlight</Link>
           <Link to="/favorites">Favorites</Link>
           <Link to="/account">{user ? 'Account' : 'Sign in'}</Link>
         </nav>
@@ -53,6 +55,7 @@ function AppLayout() {
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
           <Route path="/pick-a-movie" element={<MovieChat />} />
           <Route path="/motion-lab" element={<MotionLabPage />} />
+          <Route path="/shader-lab" element={<ShaderHeroPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/favorites" element={<RequireAuth><FavoritesPage /></RequireAuth>} />
           <Route path="*" element={<NotFoundPage />} />
