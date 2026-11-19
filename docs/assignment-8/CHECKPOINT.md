@@ -1,6 +1,11 @@
 # A8 — Resilience / Checkpoint 1
 
-Status: implementation in progress; live review, screenshots and real-device mobile Safari pass pending.
+Status: code implemented; all 50 automated tests and production build passed. Live review, screenshots and real-device mobile Safari pass pending.
+
+Preview deployment: https://flyrank-frontend-capstone-ggwkcwu3d-niknaxthegreek.vercel.app/pick-a-movie
+Vercel Authentication currently blocks anonymous access. Creating a shareable review link was blocked by automatic approval review pending explicit user authorization.
+
+Local Chromium browser verification was attempted but blocked by workspace socket restrictions; no browser, console-clean, layout-shift or Safari pass is claimed.
 
 ## Failure inventory
 
