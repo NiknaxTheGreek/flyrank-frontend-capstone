@@ -1,24 +1,25 @@
-# FlyRank Frontend Capstone
+# A2 — Structured-specification implementation
 
-A lightweight SEO growth dashboard designed to showcase FlyRank's analytics and optimization workflow.
+This branch is the **structured prompt** version of Assignment 2. It preserves the SEO dashboard and adds a focused notification-settings component. The contrasting vague-prompt version is on [`fe02-vague`](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe02-vague).
 
-## Overview
+## Deliverables
 
-This frontend capstone is built with React + Vite and presents a mock dashboard for keyword tracking, organic growth, and regional visibility. It is intended as a polished foundation for further feature work, such as interactive filters, lead generation flows, or a product landing page.
+- [Notification settings component](src/components/NotificationSettings.tsx): labelled email preference, opt-in, validation and save feedback.
+- [Role-based tests](src/components/NotificationSettings.test.tsx): coverage for defaults, valid/invalid email, persistence, malformed stored data, storage failures and feedback.
+- [Prompting workflow comparison](WORKFLOW.md): scope, accessibility, error handling, test coverage and limitations for both variants.
+- [Assignment 2 submission index](docs/assignment-2/SUBMISSION.md).
 
-## Getting started
+## Run and verify
 
-```bash
-npm install
+Requires Node.js 24 and npm.
+
+```sh
+npm ci
 npm run dev
+npm test
+npm run build
 ```
 
-## Scripts
+The archived result recorded 11 passing tests and a passing build; these commands were not rerun while preparing this submission index. The vague-prompt branch has no test script.
 
-- `npm run dev` — start the Vite dev server
-- `npm run build` — create a production build
-- `npm run preview` — preview the production build locally
-
-## Notes
-
-The project keeps the UI focused on a single-screen dashboard while remaining easy to extend with new pages or data-driven components.
+The variants can be compared locally from their separate branches. No public A2 deployment or screenshot is included in this branch yet.
