@@ -1,10 +1,10 @@
 # FlyRank Frontend Capstone
 
-A lightweight SEO growth dashboard designed to showcase FlyRank's analytics and optimization workflow.
+Reel Good is a movie discovery frontend with browsing, search and favorites.
 
 ## Overview
 
-This frontend capstone is built with React + Vite and presents a mock dashboard for keyword tracking, organic growth, and regional visibility. It is intended as a polished foundation for further feature work, such as interactive filters, lead generation flows, or a product landing page.
+This React + Vite frontend supports the Reel Good movie discovery project. See this branch's implementation and assignment documentation for available features.
 
 ## Getting started
 
