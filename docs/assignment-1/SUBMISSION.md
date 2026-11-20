@@ -23,3 +23,6 @@ assignment list and A1 marked complete awaiting submission. It documents status,
 not an assistant completing a coding task in the development environment.
 Evaluator acceptance of ChatGPT evidence in place of the requested Claude Code
 or Cursor evidence is unconfirmed. The repository is public.
+
+## Completeness audit
+See [AUDIT.md](AUDIT.md) for requirement-by-requirement results and the remaining evidence gap.

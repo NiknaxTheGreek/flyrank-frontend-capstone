@@ -6,7 +6,7 @@ movies, read plot summaries and details, follow IMDb links, and save favorites
 with an account.
 
 This branch, `fe01-project-setup`, contains the setup documentation for the
-FlyRank **Frontend** track. The AI Marketing track is a separate project.
+FlyRank **Frontend** track. 
 
 ## Product scope
 
@@ -87,3 +87,6 @@ a coding task. Evaluator acceptance of substitute evidence is unconfirmed.
 ## License
 
 [MIT](LICENSE).
+
+## Submission package
+See [submission notes](docs/assignment-1/SUBMISSION.md) and the [completeness audit](docs/assignment-1/AUDIT.md). Submit this branch URL so the reviewer can inspect both files and Git history.

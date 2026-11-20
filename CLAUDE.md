@@ -7,7 +7,6 @@ assignment compatibility and does not claim Claude Code was used.
 ## Product and scope
 Reel Good is the Frontend track movie discovery app: browse genres, search
 movies, view details and IMDb links, sign in and save favorites.
-The AI Marketing track is a separate project and must not be incorporated here.
 This branch contains Assignment 1 setup documentation; application implementation
 lives on later assignment branches.
 

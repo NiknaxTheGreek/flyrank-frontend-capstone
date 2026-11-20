@@ -15,7 +15,7 @@ claim specifically about the Assignment 1 branch.
 - Aligned the foundation stack with fe03-movie-app's README and package.json:
   React, TypeScript, Vite, React Router, OMDb and Firebase.
 - Distinguished this documentation branch from runnable application branches.
-- Kept the AI Marketing track separate.
+- Scoped the documentation to the Reel Good frontend project.
 - Retained accurate setup commands and explicit screenshot-evidence limitations.
 
 ## Review evidence
