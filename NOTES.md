@@ -76,4 +76,4 @@ comparison shown in the latest screenshot.
 
 ## Remaining verification
 
-Production build passed, including TypeScript checks and static generation of /playground. Final Git push is pending.
+Production build passed, including TypeScript checks and static generation of /playground. The changes are present on the remote `fe05-accessibility-playground` branch at `8c0783fa9c02da195f0ff1846ca9692741e1de73`; the former pending-push note was stale. Screenshot captures were supplied previously, but are not committed in this branch. Add branch-matched screenshots under `docs/assignment-5/evidence/` before submission.
