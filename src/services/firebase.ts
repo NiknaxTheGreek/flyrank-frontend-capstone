@@ -1,25 +1,16 @@
-import { getApp, getApps, initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getDatabase } from 'firebase/database';
-import { firebaseConfig as config, firebaseConfigured } from './firebase-config';
+import {
+  browserLocalPersistence,
+  browserSessionPersistence,
+  indexedDBLocalPersistence,
+  initializeAuth,
+} from 'firebase/auth';
+import { requireFirebaseApp } from './firebase-app';
 export { firebaseConfigured } from './firebase-config';
 
-const app = firebaseConfigured
-  ? getApps().length > 0 ? getApp() : initializeApp(config)
-  : null;
-
-export function requireFirebaseApp() {
-  if (!app) {
-    throw new Error('Firebase is not configured. Add the VITE_FIREBASE_* values to .env.local.');
-  }
-
-  return app;
-}
-
 export function getFirebaseAuth() {
-  return getAuth(requireFirebaseApp());
-}
-
-export function getFirebaseDatabase() {
-  return getDatabase(requireFirebaseApp());
+  // Email/password is the only sign-in flow. Keep the default persistence
+  // fallbacks without downloading an unused popup/redirect iframe and SDK.
+  return initializeAuth(requireFirebaseApp(), {
+    persistence: [indexedDBLocalPersistence, browserLocalPersistence, browserSessionPersistence],
+  });
 }
