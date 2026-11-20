@@ -1,25 +1,26 @@
-# README critique and applied improvement
+# Reel Good — README critique and applied improvement
 
 Reviewer: ChatGPT
-Date: 2026-10-03
-Baseline: README from commit 0842d9db6a71e04208b1124cce3dfcd7243df895.
+Correction date: 2026-11-20
 
 ## Critique
-The original README identified the course and workflow, but said the product and
-stack were undecided. A new teammate could not tell who the app served, how the
-three directions fit together, or whether any application commands existed.
+The setup README described a superseded business/marketing proposal and a
+different framework, so a teammate could mistake it for a different project.
+It also described the entire repository as setup-only rather than making that
+claim specifically about the Assignment 1 branch.
 
 ## Applied improvement
-Replace the generic introduction with a teammate onboarding guide:
-- Name the product and map FE1, FE2 and FE3 to connected features.
-- Describe the primary user flow and distinguish website quality from lead fit.
-- State the planned stack, architecture and next milestones.
-- Add clone, version-check and Codespace synchronization commands.
-- Explicitly state that application scaffolding and npm scripts do not exist yet.
-- Document specific AI contributions and the screenshot substitution honestly.
+- Replaced the obsolete product description with Reel Good movie discovery.
+- Documented browse/search, movie details, IMDb links, accounts and favorites.
+- Aligned the foundation stack with fe03-movie-app's README and package.json:
+  React, TypeScript, Vite, React Router, OMDb and Firebase.
+- Distinguished this documentation branch from runnable application branches.
+- Kept the AI Marketing track separate.
+- Retained accurate setup commands and explicit screenshot-evidence limitations.
 
-## Verification
-Reviewed the original README before editing. Repository files and final README
-are checked through GitHub after saving. No application tests apply at this stage.
-The Codespace version output was user-supplied, not independently executed by
-ChatGPT. Screenshot evidence remains outstanding.
+## Review evidence
+Read README.md and package.json on fe03-movie-app, and the README, CLAUDE.md and
+submission notes on fe01-project-setup before making this correction.
+This is a documentation correction, not a new application build or runtime test.
+The original October setup and AI-review commits remain in Git history; this
+November review supersedes their product description without rewriting history.
