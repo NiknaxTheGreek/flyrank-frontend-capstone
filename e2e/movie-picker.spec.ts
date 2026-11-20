@@ -40,8 +40,9 @@ test('primary flow: prompt, pending state, movie lookup card, and contextual fol
   await expect(page.getByRole('button', { name: 'Stop generation' })).toBeEnabled();
   release();
   const card = page.getByRole('region', { name: 'Movie lookup' });
-  await expect(card.getByRole('status')).toContainText('Preparing movie lookup…');
-  await expect(card.getByRole('status')).toContainText('Looking up Inception');
+  // This fixture delivers its frames together. Transient tool states are
+  // checked with a frame-controlled stream in MovieChat.lifecycle.test.tsx;
+  // browser polling can miss their short display windows under CI load.
   await expect(card.getByRole('heading', { name: 'Inception (2010)' })).toBeVisible();
   await expect(card.getByRole('definition').filter({ hasText: '148 min' })).toBeVisible();
   await expect(card.getByRole('link', { name: 'View Inception on IMDb' })).toHaveAttribute('href', 'https://www.imdb.com/title/tt1375666/');

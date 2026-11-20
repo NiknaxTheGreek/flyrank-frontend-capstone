@@ -1,13 +1,16 @@
 # Assignment 12 submission readiness
 
-**Status: implementation and local evidence ready; final deployed verification pending.**
+**A12 COMPLETE — AWAITING SUBMISSION**
 
-- [AUDIT.md](../../AUDIT.md): measured results, findings, fixes, before/after screenshots and limitations.
-- [Source branch](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe12-performance-accessibility).
-- [Evidence capture workflow](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44721157406): completed successfully.
-- Local mobile Lighthouse: Home 100 performance / 100 accessibility; chat 100 / 100.
-- Local WAVE after: zero errors, zero contrast errors and zero alerts on all four audited page states.
-- Keyboard: skip link, input, streaming announcement, Stop, retry, result card and 320/375 px layouts passed.
-- Deployed baseline Home: 81 performance / 96 accessibility. The deployed A12 after scores remain pending and must not be replaced with local scores in the submission.
+- [AUDIT.md](../../AUDIT.md) contains measured deltas, fixes, actual before/after Lighthouse screenshots, WAVE evidence and keyboard results.
+- [Public site](https://flyrank-frontend-capstone-snowy.vercel.app/) · [movie picker](https://flyrank-frontend-capstone-snowy.vercel.app/pick-a-movie).
+- Lighthouse mobile Home: **81 → 98 performance; 96 → 100 accessibility**.
+- Lighthouse mobile movie picker: **97 → 100 performance; 100 → 100 accessibility**.
+- Deployed WAVE: **zero errors, contrast errors and alerts** on populated Home, chat, Motion lab and the configured sign-in page.
+- Keyboard: catalogue search/detail/back/navigation and chat example/input/stream/Stop/retry/recovery passed. Manual live Stop and next-turn tool lookup were also verified.
+- Final live audit: [successful run 44773847462](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44773847462).
+- Final deployed application source: `bfdd95eb274f6342a9f86c9023d1dcb24d425131`.
+- [Source and evidence branch](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe12-performance-accessibility).
+- TypeScript checks, 91 component/server tests and the production build passed. Additional scope and assistive-technology limits are documented in AUDIT.md.
 
-After authorized deployment access/publication and the final live audit, update AUDIT.md, save live-after evidence here and mark this assignment complete awaiting learner submission. Nothing has been submitted to the Portal by this work.
+The learner can submit the public URL and the branch's AUDIT.md link. Nothing has been submitted to the learner portal by this work.

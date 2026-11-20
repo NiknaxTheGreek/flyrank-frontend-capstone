@@ -1,0 +1,333 @@
+{
+  "name": "chat",
+  "url": "https://flyrank-frontend-capstone-snowy.vercel.app/pick-a-movie",
+  "at": "2026-11-20T16:30:42.142Z",
+  "version": "3.3.1.0",
+  "statistics": {
+    "allitemcount": 21,
+    "totalelements": 55,
+    "pagetitle": "Help me pick a movie | Reel Good",
+    "aim": 10,
+    "error": 0,
+    "contrast": 0,
+    "alert": 0,
+    "feature": 4,
+    "structure": 6,
+    "aria": 11
+  },
+  "categories": {
+    "error": {
+      "description": "Errors",
+      "count": 0,
+      "items": {}
+    },
+    "contrast": {
+      "description": "Contrast Errors",
+      "count": 0,
+      "items": {}
+    },
+    "alert": {
+      "description": "Alerts",
+      "count": 0,
+      "items": {}
+    },
+    "feature": {
+      "description": "Features",
+      "count": 4,
+      "items": {
+        "label": {
+          "id": "label",
+          "description": "Form label",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/FORM[1]/LABEL[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "link_skip": {
+          "id": "link_skip",
+          "description": "Skip link",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/A[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "link_skip_target": {
+          "id": "link_skip_target",
+          "description": "Skip link target",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "lang": {
+          "id": "lang",
+          "description": "Language",
+          "count": 1,
+          "xpaths": [
+            "#"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            "en"
+          ],
+          "hidden": [
+            false
+          ]
+        }
+      }
+    },
+    "structure": {
+      "description": "Structural Elements",
+      "count": 6,
+      "items": {
+        "h1": {
+          "id": "h1",
+          "description": "Heading level 1",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/HEADER[1]/H1[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "ol": {
+          "id": "ol",
+          "description": "Ordered list",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/DIV[1]/OL[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            true
+          ]
+        },
+        "header": {
+          "id": "header",
+          "description": "Header",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/HEADER[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "nav": {
+          "id": "nav",
+          "description": "Navigation",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/HEADER[1]/NAV[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "main": {
+          "id": "main",
+          "description": "Main content",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "region": {
+          "id": "region",
+          "description": "Generic region",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/DIV[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        }
+      }
+    },
+    "aria": {
+      "description": "ARIA",
+      "count": 11,
+      "items": {
+        "aria": {
+          "id": "aria",
+          "description": "ARIA",
+          "count": 2,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/HEADER[1]/NAV[1]/A[2]",
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/SPAN[1]"
+          ],
+          "selectors": [
+            false,
+            false
+          ],
+          "text": [
+            "aria-current=\"page\"",
+            "role=\"status\", aria-atomic=\"true\""
+          ],
+          "hidden": [
+            false,
+            false
+          ]
+        },
+        "aria_label": {
+          "id": "aria_label",
+          "description": "ARIA label",
+          "count": 4,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/HEADER[1]/A[1]",
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/HEADER[1]/NAV[1]",
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]",
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/DIV[1]"
+          ],
+          "selectors": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "text": [
+            "aria-label=\"Reel Good home\"",
+            "aria-label=\"Main navigation\"",
+            "aria-labelledby=\"movie-chat-heading\"",
+            "aria-label=\"Movie conversation\""
+          ],
+          "hidden": [
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        "aria_tabindex": {
+          "id": "aria_tabindex",
+          "description": "ARIA tabindex",
+          "count": 3,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]",
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/HEADER[1]/H1[1]",
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/DIV[1]"
+          ],
+          "selectors": [
+            false,
+            false,
+            false
+          ],
+          "text": [
+            "tabindex=-1",
+            "tabindex=-1",
+            "tabindex=0"
+          ],
+          "hidden": [
+            false,
+            false,
+            false
+          ]
+        },
+        "aria_live_region": {
+          "id": "aria_live_region",
+          "description": "ARIA alert or live region",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/SPAN[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "aria_hidden": {
+          "id": "aria_hidden",
+          "description": "ARIA hidden",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/HEADER[1]/A[1]/SPAN[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        }
+      }
+    }
+  },
+  "success": true
+}

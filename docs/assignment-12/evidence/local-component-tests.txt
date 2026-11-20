@@ -33,3 +33,10 @@ npm warn Unknown env config "http-proxy". This will stop working in the next maj
    Start at  12:41:53
    Duration  12.50s (transform 338ms, setup 458ms, collect 1.18s, tests 5.72s, environment 3.05s, prepare 627ms)
 
+
+Home metadata batching follow-up, 20 November 2026:
+TypeScript checks passed. All 17 test files / 91 tests passed. Production build passed.
+
+Firebase dependency follow-up, 20 November 2026:
+TypeScript checks passed. All 17 test files / 91 tests passed. Production build passed.
+Email/password auth retains indexedDB, localStorage and sessionStorage persistence fallbacks. Database code is imported through the signed-in favorites service.

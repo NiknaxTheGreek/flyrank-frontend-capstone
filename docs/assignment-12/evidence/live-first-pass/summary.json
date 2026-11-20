@@ -1,0 +1,1503 @@
+[
+  {
+    "name": "chat",
+    "url": "https://flyrank-frontend-capstone-snowy.vercel.app/pick-a-movie",
+    "lighthouse": "13.6.0",
+    "fetchedAt": "2026-11-20T16:10:31.886Z",
+    "formFactor": "mobile",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 834.84033,
+        "display": "0.8 s"
+      },
+      "largest-contentful-paint": {
+        "value": 1735.5208800000003,
+        "display": "1.7 s"
+      },
+      "total-blocking-time": {
+        "value": 4.5,
+        "display": "0 ms"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "display": "0"
+      },
+      "speed-index": {
+        "value": 1512.5159119999964,
+        "display": "1.5 s"
+      },
+      "total-byte-weight": {
+        "value": 313508,
+        "display": "Total size was 306 KiB"
+      }
+    },
+    "failedAudits": [
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "score": 0,
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,HEADER,0,A",
+              "selector": "div#root > div.home > header.site-header > a.brand",
+              "boundingRect": {
+                "top": 16,
+                "bottom": 50,
+                "left": 16,
+                "right": 145,
+                "width": 129,
+                "height": 34
+              },
+              "snippet": "<a class=\"brand\" aria-label=\"Reel Good home\" href=\"/\">",
+              "nodeLabel": "R\nReel Good",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 25 KiB",
+        "items": [
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/firebase-DL_hpimv.js",
+            "totalBytes": 75542,
+            "wastedBytes": 25110,
+            "wastedPercent": 33.23963517892909
+          }
+        ]
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0,
+        "display": "Est savings of 122 KiB",
+        "items": [
+          {
+            "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+            "totalBytes": 95214,
+            "wastedBytes": 58564,
+            "wastedPercent": 61.50764208339516
+          },
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/firebase-DL_hpimv.js",
+            "totalBytes": 75542,
+            "wastedBytes": 41043,
+            "wastedPercent": 54.33146223563223
+          },
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/MovieChat-BBSNvPP_.js",
+            "totalBytes": 30785,
+            "wastedBytes": 24970,
+            "wastedPercent": 81.10995799357549
+          }
+        ]
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "display": "Est savings of 80 KiB",
+        "items": [
+          {
+            "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+            "cacheLifetimeMs": 1800000,
+            "totalBytes": 95291,
+            "wastedBytes": 82188.4875
+          }
+        ]
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0,
+        "items": [
+          {
+            "type": "list-section",
+            "value": {
+              "type": "network-tree",
+              "chains": {
+                "B54F59D2AE4ED08DBC98CB54907C9944": {
+                  "url": "https://flyrank-frontend-capstone-snowy.vercel.app/pick-a-movie",
+                  "navStartToEndTime": 725,
+                  "transferSize": 1025,
+                  "isLongest": true,
+                  "children": {
+                    "2780.13": {
+                      "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+                      "navStartToEndTime": 1389,
+                      "transferSize": 95291,
+                      "isLongest": true,
+                      "children": {
+                        "2780.15": {
+                          "url": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/getProjectConfig?key=AIzaSyBRC7hQDXSbs0yLmK1pJTLWHGFcjYOXe4o&cb=1795191034045",
+                          "navStartToEndTime": 1530,
+                          "transferSize": 391,
+                          "isLongest": true,
+                          "children": {}
+                        }
+                      }
+                    },
+                    "2780.2": {
+                      "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-DetAAhGT.js",
+                      "navStartToEndTime": 798,
+                      "transferSize": 62229,
+                      "children": {
+                        "2780.9": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/firebase-DL_hpimv.js",
+                          "navStartToEndTime": 872,
+                          "transferSize": 75678,
+                          "children": {}
+                        },
+                        "2780.8": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/auth-DnP3_qns.js",
+                          "navStartToEndTime": 872,
+                          "transferSize": 793,
+                          "children": {}
+                        },
+                        "2780.6": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/MovieChat-BBSNvPP_.js",
+                          "navStartToEndTime": 856,
+                          "transferSize": 30901,
+                          "children": {}
+                        },
+                        "2780.7": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/MovieChat-DkxKDZea.css",
+                          "navStartToEndTime": 847,
+                          "transferSize": 673,
+                          "children": {}
+                        }
+                      }
+                    },
+                    "2780.3": {
+                      "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-C52WbE5F.css",
+                      "navStartToEndTime": 764,
+                      "transferSize": 3755,
+                      "children": {}
+                    }
+                  }
+                }
+              },
+              "longestChain": {
+                "duration": 1530
+              }
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnected origins",
+            "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+            "value": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "origin",
+                  "valueType": "text",
+                  "subItemsHeading": {
+                    "key": "warning"
+                  },
+                  "label": "Origin"
+                },
+                {
+                  "key": "source",
+                  "valueType": "node",
+                  "label": "Source"
+                }
+              ],
+              "items": [
+                {
+                  "origin": "https://m.media-amazon.com/",
+                  "source": {
+                    "type": "node",
+                    "lhId": "page-1-LINK",
+                    "path": "1,HTML,0,HEAD,4,LINK",
+                    "selector": "head > link",
+                    "boundingRect": {
+                      "top": 0,
+                      "bottom": 0,
+                      "left": 0,
+                      "right": 0,
+                      "width": 0,
+                      "height": 0
+                    },
+                    "snippet": "<link rel=\"preconnect\" href=\"https://m.media-amazon.com\">",
+                    "nodeLabel": "head > link"
+                  },
+                  "subItems": {
+                    "type": "subitems",
+                    "items": [
+                      {
+                        "warning": "Unused preconnect. Only use preconnect for origins that the page is likely to request."
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnect candidates",
+            "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4",
+            "value": {
+              "type": "text",
+              "value": "No additional origins are good candidates for preconnecting"
+            }
+          }
+        ]
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0.5,
+        "items": [
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-C52WbE5F.css",
+            "totalBytes": 3755
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "home",
+    "url": "https://flyrank-frontend-capstone-snowy.vercel.app/",
+    "lighthouse": "13.6.0",
+    "fetchedAt": "2026-11-20T16:10:39.693Z",
+    "formFactor": "mobile",
+    "scores": {
+      "performance": 83,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 858.1454000000001,
+        "display": "0.9 s"
+      },
+      "largest-contentful-paint": {
+        "value": 4715.2671,
+        "display": "4.7 s"
+      },
+      "total-blocking-time": {
+        "value": 0,
+        "display": "0 ms"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "display": "0"
+      },
+      "speed-index": {
+        "value": 1775.2970618311476,
+        "display": "1.8 s"
+      },
+      "total-byte-weight": {
+        "value": 707550,
+        "display": "Total size was 691 KiB"
+      }
+    },
+    "failedAudits": [
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.32,
+        "display": "4.7 s"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.8,
+        "display": "4.7 s"
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "score": 0,
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,HEADER,0,A",
+              "selector": "div#root > div.home > header.site-header > a.brand",
+              "boundingRect": {
+                "top": 16,
+                "bottom": 50,
+                "left": 16,
+                "right": 145,
+                "width": 129,
+                "height": 34
+              },
+              "snippet": "<a class=\"brand\" aria-label=\"Reel Good home\" href=\"/\">",
+              "nodeLabel": "R\nReel Good",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 671,
+                "bottom": 1022,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 351
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Shawshank Redemption\" href=\"/movies/tt0111161\">",
+              "nodeLabel": "★ 9.3\nThe Shawshank Redemption\n\n1994\n·\nDrama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,1,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 671,
+                "bottom": 1001,
+                "left": 213,
+                "right": 396,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Joker\" href=\"/movies/tt7286456\">",
+              "nodeLabel": "★ 8.3\nJoker\n\n2019\n·\nDrama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 1289,
+                "bottom": 1619,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Godfather\" href=\"/movies/tt0068646\">",
+              "nodeLabel": "★ 9.2\nThe Godfather\n\n1972\n·\nCrime, Drama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,1,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 1289,
+                "bottom": 1619,
+                "left": 213,
+                "right": 396,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Pulp Fiction\" href=\"/movies/tt0110912\">",
+              "nodeLabel": "★ 8.8\nPulp Fiction\n\n1994\n·\nCrime, Drama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-5-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,2,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 1885,
+                "bottom": 2215,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Dark Knight\" href=\"/movies/tt0468569\">",
+              "nodeLabel": "★ 9.1\nThe Dark Knight\n\n2008\n·\nCrime, Thriller",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-6-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,3,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 2482,
+                "bottom": 2832,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Schindler's List\" href=\"/movies/tt0108052\">",
+              "nodeLabel": "★ 9.0\nSchindler's List\n\n1994\n·\nBiography, Drama, History",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-7-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 3099,
+                "bottom": 3469,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 371
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Lord of the Rings: The Return of the King\" href=\"/movies/tt0167260\">",
+              "nodeLabel": "★ 9.0\nThe Lord of the Rings: The Return of the King\n\n2003\n·\nAdventure, Drama, F…",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-8-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,1,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 3099,
+                "bottom": 3490,
+                "left": 213,
+                "right": 396,
+                "width": 183,
+                "height": 392
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Lord of the Rings: The Fellowship of the Ring\" href=\"/movies/tt0120737\">",
+              "nodeLabel": "★ 8.9\nThe Lord of the Rings: The Fellowship of the Ring\n\n2001\n·\nAdventure, Dram…",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-9-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,5,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 3757,
+                "bottom": 4087,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Fight Club\" href=\"/movies/tt0137523\">",
+              "nodeLabel": "★ 8.8\nFight Club\n\n1999\n·\nCrime, Drama, Thriller",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-10-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,6,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 4354,
+                "bottom": 4704,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Inception\" href=\"/movies/tt1375666\">",
+              "nodeLabel": "★ 8.8\nInception\n\n2010\n·\nAdventure, Sci-Fi, Thriller",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-11-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,7,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 4971,
+                "bottom": 5301,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Forrest Gump\" href=\"/movies/tt0109830\">",
+              "nodeLabel": "★ 8.8\nForrest Gump\n\n1994\n·\nDrama, Romance",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-12-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,8,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 5567,
+                "bottom": 5897,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Matrix\" href=\"/movies/tt0133093\">",
+              "nodeLabel": "★ 8.7\nThe Matrix\n\n1999\n·\nAction, Sci-Fi",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-13-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,9,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 6164,
+                "bottom": 6514,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View GoodFellas\" href=\"/movies/tt0099685\">",
+              "nodeLabel": "★ 8.7\nGoodFellas\n\n1990\n·\nBiography, Crime, Drama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-14-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,10,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 6781,
+                "bottom": 7111,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Interstellar\" href=\"/movies/tt0816692\">",
+              "nodeLabel": "★ 8.7\nInterstellar\n\n2014\n·\nAdventure, Sci-Fi",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-15-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,11,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 7378,
+                "bottom": 7769,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 392
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Star Wars: Episode V - The Empire Strikes Back\" href=\"/movies/tt0080684\">",
+              "nodeLabel": "★ 8.7\nStar Wars: Episode V - The Empire Strikes Back\n\n1980\n·\nAdventure, Fantasy…",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-16-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,12,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 8036,
+                "bottom": 8407,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 371
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Star Wars: Episode IV - A New Hope\" href=\"/movies/tt0076759\">",
+              "nodeLabel": "★ 8.6\nStar Wars: Episode IV - A New Hope\n\n1977\n·\nAction, Adventure, Fantasy",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-17-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,13,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 8673,
+                "bottom": 9023,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Spirited Away\" href=\"/movies/tt0245429\">",
+              "nodeLabel": "★ 8.6\nSpirited Away\n\n2003\n·\nAnimation, Adventure, Family",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-18-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,13,SECTION,1,DIV,1,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 8673,
+                "bottom": 9023,
+                "left": 213,
+                "right": 396,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View WALL·E\" href=\"/movies/tt0910970\">",
+              "nodeLabel": "★ 8.4\nWALL·E\n\n2008\n·\nAnimation, Adventure, Family",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-19-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,14,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 9290,
+                "bottom": 9640,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Lion King\" href=\"/movies/tt0110357\">",
+              "nodeLabel": "★ 8.5\nThe Lion King\n\n1994\n·\nAnimation, Adventure, Drama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-20-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,15,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 9907,
+                "bottom": 10256,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Avengers: Endgame\" href=\"/movies/tt4154796\">",
+              "nodeLabel": "★ 8.4\nAvengers: Endgame\n\n2019\n·\nAction, Adventure, Sci-Fi",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-21-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,16,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 10523,
+                "bottom": 10853,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Parasite\" href=\"/movies/tt6751668\">",
+              "nodeLabel": "★ 8.5\nParasite\n\n2019\n·\nDrama, Thriller",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-22-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,17,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 11120,
+                "bottom": 11450,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Django Unchained\" href=\"/movies/tt1853728\">",
+              "nodeLabel": "★ 8.5\nDjango Unchained\n\n2012\n·\nDrama, Western",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-23-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,18,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 11717,
+                "bottom": 12047,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Whiplash\" href=\"/movies/tt2582802\">",
+              "nodeLabel": "★ 8.5\nWhiplash\n\n2014\n·\nDrama, Music",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-24-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,19,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 12314,
+                "bottom": 12663,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Gladiator\" href=\"/movies/tt0172495\">",
+              "nodeLabel": "★ 8.5\nGladiator\n\n2000\n·\nAction, Adventure, Drama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0,
+        "display": "Est savings of 25 KiB",
+        "items": [
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/firebase-DL_hpimv.js",
+            "totalBytes": 75542,
+            "wastedBytes": 25110,
+            "wastedPercent": 33.23963517892909
+          }
+        ]
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0,
+        "display": "Est savings of 97 KiB",
+        "items": [
+          {
+            "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+            "totalBytes": 95160,
+            "wastedBytes": 58531,
+            "wastedPercent": 61.50764208339516
+          },
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/firebase-DL_hpimv.js",
+            "totalBytes": 75542,
+            "wastedBytes": 41197,
+            "wastedPercent": 54.53547778895279
+          }
+        ]
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "display": "Est savings of 80 KiB",
+        "items": [
+          {
+            "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+            "cacheLifetimeMs": 1800000,
+            "totalBytes": 95438,
+            "wastedBytes": 82315.27500000001
+          }
+        ]
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 171 KiB",
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-2-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,1,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 1290,
+                "bottom": 1562,
+                "left": 214,
+                "right": 395,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZG…\" alt=\"Poster for Pulp Fiction\" loading=\"lazy\" fetchpriority=\"auto\" width=\"300\" height=\"450\" decoding=\"async\">",
+              "nodeLabel": "Poster for Pulp Fiction"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_QL75_UY562_CR3,0,380,562_.jpg",
+            "totalBytes": 58416,
+            "wastedBytes": 32789,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 23592
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 15427
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-3-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,3,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 2483,
+                "bottom": 2756,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BNjM1ZDQxYWUtMzQyZS00MTE1LWJmZGYtNG…\" alt=\"Poster for Schindler's List\" loading=\"lazy\" fetchpriority=\"auto\" width=\"300\" height=\"450\" decoding=\"async\">",
+              "nodeLabel": "Poster for Schindler's List"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BNjM1ZDQxYWUtMzQyZS00MTE1LWJmZGYtNGUyNTdlYjM3ZmVmXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+            "totalBytes": 56420,
+            "wastedBytes": 30793,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 21596
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 14900
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-4-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,1,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 3100,
+                "bottom": 3372,
+                "left": 214,
+                "right": 395,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMT…\" alt=\"Poster for The Lord of the Rings: The Fellowship of the Ring\" loading=\"lazy\" fetchpriority=\"auto\" width=\"300\" height=\"450\" decoding=\"async\">",
+              "nodeLabel": "Poster for The Lord of the Rings: The Fellowship of the Ring"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_QL75_UX380_CR0,1,380,562_.jpg",
+            "totalBytes": 52695,
+            "wastedBytes": 27068,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 17871
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 13916
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-5-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 3100,
+                "bottom": 3372,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BMTZkMjBjNWMtZGI5OC00MGU0LTk4ZTItOD…\" alt=\"Poster for The Lord of the Rings: The Return of the King\" loading=\"lazy\" fetchpriority=\"auto\" width=\"300\" height=\"450\" decoding=\"async\">",
+              "nodeLabel": "Poster for The Lord of the Rings: The Return of the King"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BMTZkMjBjNWMtZGI5OC00MGU0LTk4ZTItODg2NWM3NTVmNWQ4XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+            "totalBytes": 46445,
+            "wastedBytes": 20818,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 11621
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 12266
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-6-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 672,
+                "bottom": 944,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2…\" alt=\"Poster for The Shawshank Redemption\" loading=\"eager\" fetchpriority=\"high\" width=\"300\" height=\"450\" decoding=\"async\">",
+              "nodeLabel": "Poster for The Shawshank Redemption"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+            "totalBytes": 43460,
+            "wastedBytes": 17833,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 8636
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 11477
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-7-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,2,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 1886,
+                "bottom": 2159,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwOD…\" alt=\"Poster for The Dark Knight\" loading=\"lazy\" fetchpriority=\"auto\" width=\"300\" height=\"450\" decoding=\"async\">",
+              "nodeLabel": "Poster for The Dark Knight"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+            "totalBytes": 40337,
+            "wastedBytes": 14710,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 5513
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 10653
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-0-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,1,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 672,
+                "bottom": 944,
+                "left": 214,
+                "right": 395,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BNzY3OWQ5NDktNWQ2OC00ZjdlLThkMmItMD…\" alt=\"Poster for Joker\" loading=\"eager\" fetchpriority=\"high\" width=\"300\" height=\"450\" decoding=\"async\">",
+              "nodeLabel": "Poster for Joker"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BNzY3OWQ5NDktNWQ2OC00ZjdlLThkMmItMDhhNDk3NTFiZGU4XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+            "totalBytes": 38030,
+            "wastedBytes": 12403,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 10043
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-8-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,5,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 3758,
+                "bottom": 4031,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3Ny00MjU3LTg2YWEtNm…\" alt=\"Poster for Fight Club\" loading=\"lazy\" fetchpriority=\"auto\" width=\"300\" height=\"450\" decoding=\"async\">",
+              "nodeLabel": "Poster for Fight Club"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3Ny00MjU3LTg2YWEtNmEyYjBiMjI1Y2M5XkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+            "totalBytes": 37776,
+            "wastedBytes": 12149,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 9976
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-9-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 1290,
+                "bottom": 1562,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2…\" alt=\"Poster for The Godfather\" loading=\"lazy\" fetchpriority=\"auto\" width=\"300\" height=\"450\" decoding=\"async\">",
+              "nodeLabel": "Poster for The Godfather"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2QwZWQ2NjdhZTE5XkEyXkFqcGc@._V1_QL75_UY562_CR8,0,380,562_.jpg",
+            "totalBytes": 24030,
+            "wastedBytes": 6346,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 6346
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery",
+        "score": 0,
+        "items": [
+          {
+            "type": "checklist",
+            "items": {
+              "priorityHinted": {
+                "label": "fetchpriority=high applied",
+                "value": true
+              },
+              "requestDiscoverable": {
+                "label": "Request is discoverable in initial document",
+                "value": false
+              },
+              "eagerlyLoaded": {
+                "label": "LCP resources shouldn’t use loading=lazy",
+                "value": true
+              }
+            }
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-IMG",
+            "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,1,ARTICLE,0,A,0,DIV,0,IMG",
+            "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+            "boundingRect": {
+              "top": 672,
+              "bottom": 944,
+              "left": 214,
+              "right": 395,
+              "width": 181,
+              "height": 273
+            },
+            "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BNzY3OWQ5NDktNWQ2OC00ZjdlLThkMmItMD…\" alt=\"Poster for Joker\" loading=\"eager\" fetchpriority=\"high\" width=\"300\" height=\"450\" decoding=\"async\">",
+            "nodeLabel": "Poster for Joker"
+          }
+        ]
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0,
+        "items": [
+          {
+            "type": "list-section",
+            "value": {
+              "type": "network-tree",
+              "chains": {
+                "8DF5A752D3464E173B975D67DBB6EBF8": {
+                  "url": "https://flyrank-frontend-capstone-snowy.vercel.app/",
+                  "navStartToEndTime": 64,
+                  "transferSize": 835,
+                  "isLongest": true,
+                  "children": {
+                    "2835.2": {
+                      "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-DetAAhGT.js",
+                      "navStartToEndTime": 125,
+                      "transferSize": 62144,
+                      "isLongest": true,
+                      "children": {
+                        "2835.35": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt1853728",
+                          "navStartToEndTime": 1132,
+                          "transferSize": 970,
+                          "isLongest": true,
+                          "children": {}
+                        },
+                        "2835.37": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0172495",
+                          "navStartToEndTime": 1126,
+                          "transferSize": 878,
+                          "children": {}
+                        },
+                        "2835.36": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt2582802",
+                          "navStartToEndTime": 1086,
+                          "transferSize": 1100,
+                          "children": {}
+                        },
+                        "2835.34": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt6751668",
+                          "navStartToEndTime": 1017,
+                          "transferSize": 1337,
+                          "children": {}
+                        },
+                        "2835.32": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt4154796",
+                          "navStartToEndTime": 1001,
+                          "transferSize": 745,
+                          "children": {}
+                        },
+                        "2835.33": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt7286456",
+                          "navStartToEndTime": 983,
+                          "transferSize": 795,
+                          "children": {}
+                        },
+                        "2835.31": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0910970",
+                          "navStartToEndTime": 883,
+                          "transferSize": 1303,
+                          "children": {}
+                        },
+                        "2835.29": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0245429",
+                          "navStartToEndTime": 853,
+                          "transferSize": 783,
+                          "children": {}
+                        },
+                        "2835.30": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0110357",
+                          "navStartToEndTime": 815,
+                          "transferSize": 801,
+                          "children": {}
+                        },
+                        "2835.26": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0816692",
+                          "navStartToEndTime": 754,
+                          "transferSize": 802,
+                          "children": {}
+                        },
+                        "2835.28": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0076759",
+                          "navStartToEndTime": 712,
+                          "transferSize": 895,
+                          "children": {}
+                        },
+                        "2835.27": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0080684",
+                          "navStartToEndTime": 709,
+                          "transferSize": 879,
+                          "children": {}
+                        },
+                        "2835.24": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0133093",
+                          "navStartToEndTime": 647,
+                          "transferSize": 902,
+                          "children": {}
+                        },
+                        "2835.23": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0109830",
+                          "navStartToEndTime": 639,
+                          "transferSize": 775,
+                          "children": {}
+                        },
+                        "2835.25": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0099685",
+                          "navStartToEndTime": 585,
+                          "transferSize": 807,
+                          "children": {}
+                        },
+                        "2835.22": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt1375666",
+                          "navStartToEndTime": 522,
+                          "transferSize": 876,
+                          "children": {}
+                        },
+                        "2835.21": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0137523",
+                          "navStartToEndTime": 473,
+                          "transferSize": 845,
+                          "children": {}
+                        },
+                        "2835.20": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0120737",
+                          "navStartToEndTime": 467,
+                          "transferSize": 889,
+                          "children": {}
+                        },
+                        "2835.14": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0167260",
+                          "navStartToEndTime": 404,
+                          "transferSize": 807,
+                          "children": {}
+                        },
+                        "2835.15": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0110912",
+                          "navStartToEndTime": 401,
+                          "transferSize": 923,
+                          "children": {}
+                        },
+                        "2835.13": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0108052",
+                          "navStartToEndTime": 357,
+                          "transferSize": 797,
+                          "children": {}
+                        },
+                        "2835.7": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0068646",
+                          "navStartToEndTime": 288,
+                          "transferSize": 782,
+                          "children": {}
+                        },
+                        "2835.8": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0468569",
+                          "navStartToEndTime": 271,
+                          "transferSize": 927,
+                          "children": {}
+                        },
+                        "2835.10": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/firebase-DL_hpimv.js",
+                          "navStartToEndTime": 221,
+                          "transferSize": 75597,
+                          "children": {}
+                        },
+                        "2835.6": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0111161",
+                          "navStartToEndTime": 219,
+                          "transferSize": 807,
+                          "children": {}
+                        },
+                        "2835.9": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/auth-DnP3_qns.js",
+                          "navStartToEndTime": 182,
+                          "transferSize": 736,
+                          "children": {}
+                        }
+                      }
+                    },
+                    "2835.17": {
+                      "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+                      "navStartToEndTime": 388,
+                      "transferSize": 95438,
+                      "children": {
+                        "2835.19": {
+                          "url": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/getProjectConfig?key=AIzaSyBRC7hQDXSbs0yLmK1pJTLWHGFcjYOXe4o&cb=1795191040137",
+                          "navStartToEndTime": 480,
+                          "transferSize": 160,
+                          "children": {}
+                        }
+                      }
+                    },
+                    "2835.3": {
+                      "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-C52WbE5F.css",
+                      "navStartToEndTime": 96,
+                      "transferSize": 3705,
+                      "children": {}
+                    }
+                  }
+                }
+              },
+              "longestChain": {
+                "duration": 1132
+              }
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnected origins",
+            "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+            "value": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "origin",
+                  "valueType": "text",
+                  "subItemsHeading": {
+                    "key": "warning"
+                  },
+                  "label": "Origin"
+                },
+                {
+                  "key": "source",
+                  "valueType": "node",
+                  "label": "Source"
+                }
+              ],
+              "items": [
+                {
+                  "origin": "https://m.media-amazon.com/",
+                  "source": {
+                    "type": "node",
+                    "lhId": "page-1-LINK",
+                    "path": "1,HTML,0,HEAD,4,LINK",
+                    "selector": "head > link",
+                    "boundingRect": {
+                      "top": 0,
+                      "bottom": 0,
+                      "left": 0,
+                      "right": 0,
+                      "width": 0,
+                      "height": 0
+                    },
+                    "snippet": "<link rel=\"preconnect\" href=\"https://m.media-amazon.com\">",
+                    "nodeLabel": "head > link"
+                  },
+                  "subItems": {
+                    "type": "subitems",
+                    "items": [
+                      {
+                        "warning": "Unused preconnect. Check that the crossorigin attribute is used properly."
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnect candidates",
+            "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4",
+            "value": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "origin",
+                  "valueType": "text",
+                  "label": "Origin"
+                },
+                {
+                  "key": "wastedMs",
+                  "valueType": "ms",
+                  "label": "Est LCP savings"
+                }
+              ],
+              "items": [
+                {
+                  "origin": "https://m.media-amazon.com",
+                  "wastedMs": 301.1495426579923
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0.5,
+        "items": [
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-C52WbE5F.css",
+            "totalBytes": 3705
+          }
+        ]
+      }
+    ]
+  }
+]

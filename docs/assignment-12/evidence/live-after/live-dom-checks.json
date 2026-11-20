@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-20T16:30:21.242Z",
+  "base": "https://flyrank-frontend-capstone-snowy.vercel.app",
+  "movieCards": 24,
+  "skipLink": true,
+  "skipTarget": true,
+  "phoneWidth": 375,
+  "horizontalOverflow": false,
+  "configuredSignInForm": true,
+  "firebasePopupRequests": 0,
+  "aiProviderRequests": 0,
+  "releaseSource": "bfdd95eb274f6342a9f86c9023d1dcb24d425131"
+}
