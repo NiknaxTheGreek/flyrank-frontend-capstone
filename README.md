@@ -10,7 +10,7 @@ A responsive movie discovery app: browse and search films, inspect OMDb details,
 
 ## Clone and run
 
-Requires Node.js 24 LTS, npm, Git, and provider accounts for live features. Repository access is required while this repository is private.
+Requires Node.js 24 LTS, npm, Git, and provider accounts for live features. The source repository is public; provider accounts are needed to exercise live features.
 
 ```sh
 git clone --branch fe14-production-release https://github.com/NiknaxTheGreek/flyrank-frontend-capstone.git
