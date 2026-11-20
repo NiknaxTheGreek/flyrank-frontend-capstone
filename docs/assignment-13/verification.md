@@ -1,6 +1,6 @@
 # A13 verification
 
-Verified 19 November 2026. Technical implementation passed; reviewer access remains pending.
+Shader implementation verified 19 November 2026. Non-expiring reviewer access verified 20 November 2026. **Completed — pending submission.**
 
 - Regression suite: **64 tests passed across 13 files**.
 - TypeScript and production build: **passed**.
@@ -55,7 +55,7 @@ The cloud browser exposes no WebGL, which independently exercised the static fal
 
 ## Deployment and remaining steps
 
-- [Application preview](https://flyrank-frontend-capstone-k78rt6dem-niknaxthegreek.vercel.app/shader-lab): Vercel reports READY; this preview requires sign-in. This is the exact commit used by the passing CI run above.
-- A reviewer share link with no expiry is pending explicit user authorization after automatic approval review rejected that access change. Protection settings were preserved.
+- [Application preview](https://flyrank-frontend-capstone-k78rt6dem-niknaxthegreek.vercel.app/shader-lab): Vercel reports READY. Use the full [reviewer URL](submission.md) for access without Vercel sign-in. This is the exact commit used by the passing CI run above.
+- Nicholas approved the reviewer link. Vercel returned “Shareable URL reused. This link does not expire.” The hero opened without a Vercel account sign-in; [access metadata](evidence/reviewer-access.json) and a [live screenshot](evidence/reviewer-access-verified.jpg) are saved with this pack.
 - Physical-device/browser checks and Nicholas's own mentor rehearsal are not claimed by the automated suite.
 - Submit the source, walkthrough, fallback one-liner and approved reviewer URL through the course portal.
