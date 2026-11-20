@@ -1,118 +1,92 @@
-# AI Growth Workspace
-### FlyRank Frontend Capstone — Nicholas Perikli
+# Reel Good — Frontend Capstone
+### Assignment 1: Project setup · Nicholas Perikli
 
-A planned workspace for sales and marketing users to review a company's website,
-assess customer fit, and ask questions about their saved lead pipeline.
+Reel Good is a movie discovery application. Users browse by genre, search for
+movies, read plot summaries and details, follow IMDb links, and save favorites
+with an account.
+
+This branch, `fe01-project-setup`, contains the setup documentation for the
+FlyRank **Frontend** track. 
 
 ## Product scope
 
-| Direction | Planned feature | Output |
-| --- | --- | --- |
-| FE2 | Review website metadata | Findings with supporting evidence |
-| FE1 | Score a lead against explicit fit criteria | Score card, reasons and missing facts |
-| FE3 | Query saved leads and reviews | Tables, summaries and comparisons |
+- Movie browsing and search.
+- Movie detail pages and IMDb links.
+- Account sign-up/sign-in and personal favorites.
+- Later frontend assignments develop chat interactions, resilience, motion,
+  arcade/3D experiences, shader visuals, testing and accessibility.
 
-Primary flow: enter a company URL and known business details → review the website
-→ calculate customer fit → save the record → ask questions about the pipeline.
+Primary flow: discover or search for a movie → inspect its details → save a
+favorite → return to the saved collection.
 
-Website quality and customer fit are separate measures. A weak website does not
-establish budget or buying intent. Unknown facts remain unknown.
+## Branch scope and status
 
-## Current status
+This is the Assignment 1 documentation branch, not the runnable application.
+It contains README.md, CLAUDE.md, LICENSE, .gitignore, .nvmrc, and
+[the README review](docs/README_REVIEW.md).
 
-This repository contains Assignment 1 setup and documentation only.
-There is no runnable application, AI integration, database or deployed URL yet.
-All product features above are planned.
+Application code is maintained on later assignment branches; for example,
+[fe03-movie-app](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe03-movie-app)
+contains the movie application's React/Vite foundation. Follow each application
+branch's own README for its run instructions and verification status.
 
-Completed repository work:
-- README, MIT license, .gitignore and assistant conventions in CLAUDE.md.
-- Node major-version selection in .nvmrc.
-- Three Conventional Commits.
-- An AI README critique and applied improvement recorded in docs/README_REVIEW.md.
+Assignment 1 is recorded as **complete — awaiting submission**.
+Screenshot evidence and its limitations are described in
+[the submission notes](docs/assignment-1/SUBMISSION.md).
 
-Remaining submission evidence: a genuine screenshot showing the chosen assistant
-completing a task in the development environment. Repository visibility was private
-when checked; the evaluator needs access.
+## Stack and tools
 
-## Planned stack
+The movie-app foundation uses React, TypeScript, Vite, React Router, OMDb for
+movie data, and Firebase Authentication and Realtime Database for accounts and
+favorites. Component tests use Vitest and React Testing Library. Later
+assignments add end-to-end tests and accessibility audits.
 
-Next.js App Router, React, TypeScript and Tailwind CSS.
-Vitest with React Testing Library for component tests; Playwright for end-to-end
-tests. WAVE for accessibility audits. Vercel is the planned deployment platform.
-The runtime AI provider and persistence backend remain to be selected.
+Development tools: Node.js 24, npm, Git and VS Code in GitHub Codespaces.
+ChatGPT is the selected development assistant. Vercel hosts the later capstone.
 
-ChatGPT assists development. The app's future LLM API is a separate integration.
-
-## Getting started
-
-Open this repository in GitHub Codespaces (VS Code in the browser), or clone it:
+## Inspect this setup branch
 
 ```bash
-git clone https://github.com/NiknaxTheGreek/flyrank-frontend-capstone.git
+git clone --branch fe01-project-setup https://github.com/NiknaxTheGreek/flyrank-frontend-capstone.git
 cd flyrank-frontend-capstone
-```
-
-Private-repository cloning requires authorized GitHub access.
-
-In Codespaces, check the tools:
-
-```bash
 node --version
 npm --version
 git --version
+git log --oneline
 ```
 
-The project targets Node.js 24 LTS. If another major version is active, use
-`nvm install` and `nvm use` where nvm is available; these read .nvmrc.
-
-If your Codespace was opened before the setup commits, synchronize it with:
-
-```bash
-git pull --ff-only
-git log --oneline -3
-```
-
-There is no package.json yet, so npm install, npm run dev and test commands
-are not available. Exact application run instructions will be added with scaffolding.
-No API credentials are required for Assignment 1.
-
-## Planned architecture
-
-The Next.js interface will display website findings, lead score cards and chat
-results. Server-side tools will handle website retrieval, deterministic scoring,
-and bounded queries against saved records. The AI will invoke those tools and
-explain their outputs. Provider credentials stay on the server.
-
-Planned tools: reviewWebsite, scoreLead and queryPipeline. Their schemas and return
-shapes will be documented when implemented.
+Where nvm is installed, run `nvm install` and `nvm use` to use .nvmrc.
+This branch has no package.json or npm application scripts and needs no API keys.
+Do not run application install/start commands here.
 
 ## Development conventions
 
-Read [CLAUDE.md](CLAUDE.md) before making changes. Use focused Conventional Commits:
-`chore:` for setup, `docs:` for documentation, `feat:` for features and `fix:` for fixes.
-Keep credentials out of Git. Use synthetic demo records. Verify changes and
-report only tests actually run.
+Read [CLAUDE.md](CLAUDE.md). Use focused Conventional Commits such as `chore:`,
+`docs:`, `feat:`, `fix:` and `test:`. Preserve meaningful history, keep secrets
+out of Git, and report only checks actually run.
 
-## How AI is used
+The original three setup commits remain in history:
+- `chore: initialize frontend capstone repository`
+- `chore: add license and development conventions`
+- `docs: improve README following AI review`
 
-ChatGPT helped select the combined scope, authored setup documentation, reviewed
-the original README, and applied the documented improvement through GitHub.
-Nicholas selected the combined product direction and uses an Android-accessible
-Codespace. Tool versions pasted by Nicholas were Node v24.21.0, npm 11.19.0 and
-Git 2.55.0; ChatGPT has not independently verified that Codespace.
+## AI assistance and review
 
-The assignment explicitly requests Claude Code or Cursor screenshot evidence.
-This project intentionally uses ChatGPT instead; evaluator acceptance of that
-substitution has not been confirmed. No Claude Code or Cursor use is claimed.
+ChatGPT authored setup files, reviewed the README and applied improvements.
+On 20 November 2026 the setup documentation was corrected to match Reel Good,
+using the movie-app branch README and package manifest as references.
+[README_REVIEW.md](docs/README_REVIEW.md) records the review.
 
-## Roadmap
+Tool versions originally pasted by Nicholas were Node v24.21.0, npm 11.19.0 and
+Git 2.55.0; these were user-supplied, not independently verified in his Codespace.
 
-1. Scaffold the app and shared interface with synthetic records.
-2. Build website review and transparent lead scoring.
-3. Save records and enable bounded pipeline questions.
-4. Add resilience, motion, optional 3D and shader experiences.
-5. Verify tests, accessibility and production readiness.
+The assignment names Claude Code or Cursor. This project uses ChatGPT instead.
+The stored chat-status screenshot demonstrates status, not an assistant executing
+a coding task. Evaluator acceptance of substitute evidence is unconfirmed.
 
 ## License
 
 [MIT](LICENSE).
+
+## Submission package
+See [submission notes](docs/assignment-1/SUBMISSION.md) and the [completeness audit](docs/assignment-1/AUDIT.md). Submit this branch URL so the reviewer can inspect both files and Git history.

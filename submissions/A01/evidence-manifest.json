@@ -1,5 +1,14 @@
 {
   "assignment": "A01",
-  "source_commit": "44275d6d2bcb79bc978fb687c07c31911a4939cf",
-  "evidence": []
+  "project": "Reel Good",
+  "authoritative_branch": "fe01-project-setup",
+  "original_setup_commit": "44275d6d2bcb79bc978fb687c07c31911a4939cf",
+  "source_correction_date": "2026-11-20",
+  "evidence": [
+    {
+      "path": "source/docs/assignment-1/evidence/a1-chat-status.svg",
+      "scope": "status only; task execution not shown"
+    }
+  ],
+  "substitution_accepted": false
 }

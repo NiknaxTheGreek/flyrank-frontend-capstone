@@ -1,10 +1,10 @@
 # FlyRank Frontend Capstone
 
-A lightweight SEO growth dashboard designed to showcase FlyRank's analytics and optimization workflow.
+A Reel Good frontend exercise comparing notification-settings implementations.
 
 ## Overview
 
-This frontend capstone is built with React + Vite and presents a mock dashboard for keyword tracking, organic growth, and regional visibility. It is intended as a polished foundation for further feature work, such as interactive filters, lead generation flows, or a product landing page.
+This React + Vite exercise presents Reel Good notification settings with local demo data.
 
 ## Getting started
 
