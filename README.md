@@ -1,18 +1,18 @@
-# Reel Good — Assignment 4
+# Reel Good — Assignment 5
 
-This branch scaffolds Reel Good using **Next.js App Router, TypeScript and Tailwind**.
+This branch contains an accessibility playground comparing custom React components with shadcn/Radix. Open `/playground` to review the disclosure, keyboard tabs, modal dialog, and library comparison.
 
-```bash
+## Run and review
+
+```sh
 npm ci
 npm run verify
 npm start
 ```
 
-Use Node 24 and open http://localhost:3000. No secrets are needed to explore the scaffold.
+Use Node 24 and open http://localhost:3000/playground. See the [A5 submission index](docs/assignment-5/SUBMISSION.md) and [keyboard/source-review notes](NOTES.md).
 
-See [Assignment 4 setup, routes and deployment](docs/assignment-04/README.md), [verification](docs/assignment-04/verification.md), and [submission status](docs/assignment-04/submission.md).
-
-**Hosting verification is pending.** Account/favorites and movie data are explicitly scaffolded; this branch does not claim feature parity with Assignment 3. Assignment 3 remains available at immutable tag `assignment-03-final`.
+This work is AI-assisted, with manual keyboard review recorded in NOTES.md. The branch commit exists; the old note that the final push is pending has been corrected. Screenshot files still need to be committed to the A5 evidence folder. The preview requires the project's Vercel reviewer access.
 
 ---
 
