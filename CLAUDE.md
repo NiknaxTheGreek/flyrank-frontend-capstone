@@ -1,37 +1,39 @@
-# Project context and conventions
+# Reel Good — Project context and conventions
 
 ## Assistant
-ChatGPT is the chosen development assistant. This filename is retained for
-assignment compatibility; it does not claim Claude Code was used.
+ChatGPT is the chosen development assistant. The filename is retained for
+assignment compatibility and does not claim Claude Code was used.
 
-## Product
-AI Growth Workspace combines FE2 website review, FE1 lead scoring, and FE3
-questions over saved pipeline data. Primary flow: enter a company URL and known
-facts, review website metadata, score customer fit, save, and query the record.
-All application features are planned at this setup stage.
+## Product and scope
+Reel Good is the Frontend track movie discovery app: browse genres, search
+movies, view details and IMDb links, sign in and save favorites.
+The AI Marketing track is a separate project and must not be incorporated here.
+This branch contains Assignment 1 setup documentation; application implementation
+lives on later assignment branches.
 
-## Planned stack
-- Next.js App Router, React, TypeScript with strict mode.
-- Tailwind CSS for responsive styling.
-- Node.js 24 LTS, npm, Git; VS Code in GitHub Codespaces on Android.
-- Vitest and React Testing Library; Playwright for end-to-end testing.
-- WAVE for accessibility audits; Vercel as planned hosting.
-- AI provider and persistence backend are not yet selected.
+## Stack
+The movie-app foundation uses React, TypeScript, Vite, React Router, OMDb,
+Firebase Authentication and Firebase Realtime Database.
+Node.js 24, npm and Git support development in VS Code / GitHub Codespaces.
+Vitest and React Testing Library cover components. Later assignments cover
+Playwright, accessibility, motion, 3D, shaders and production deployment.
+Inspect the target application's package.json before choosing commands or
+changing dependencies; this setup branch has no runnable app.
 
-## Development conventions
-- Explain each change and its purpose to the learner.
-- Use Conventional Commits: chore:, docs:, feat:, fix:, test:, refactor:.
-- Keep commits focused; preserve meaningful history.
-- Use npm and commit its lockfile once the app is scaffolded.
-- Use semantic HTML, labelled controls, visible focus and reduced-motion support.
-- Validate external input on the server; keep credentials server-side.
-- Never commit secrets or real customer information; demo records are synthetic.
-- Website fetching must block private/local addresses, bound redirects and
-  response sizes, and apply timeouts before it is exposed publicly.
-- Keep website findings separate from lead fit. Unknown facts stay unknown.
-- Lead scores follow explicit rules; AI explanations must cite supplied evidence.
-- Query tools use validated, bounded operations, never arbitrary model-written SQL.
-- Render loading, streaming, success, empty and error states deliberately.
-- Mock AI calls in tests. Do not use paid APIs during automated tests.
-- Report only checks actually run. Mark planned work and unverified evidence.
-- Before editing, inspect current files; do not overwrite unrelated user work.
+## Conventions
+- Explain changes and their purpose clearly to the learner.
+- Use Conventional Commits and preserve meaningful history.
+- Inspect existing files before edits; preserve unrelated work.
+- Keep assignment deliverables on their appropriate branches.
+- Keep documentation consistent with Reel Good's actual implementation.
+- Use typed movie records and preserve valid IMDb identifiers.
+- Do not invent movie metadata or claim unverified features work.
+- Keep OMDb and LLM secrets server-side; never commit .env secrets.
+- Firebase web configuration is public; private service-account keys are not.
+- Enforce per-user access for favorites through database rules.
+- Validate input and limit external requests.
+- Use semantic HTML, accessible labels, keyboard focus and reduced-motion support.
+- Handle loading, empty, error, retry and interrupted-request states.
+- Mock external APIs in automated tests.
+- Report only checks actually run; distinguish evidence from status declarations.
+- Keep npm lockfiles alongside the app when dependencies are changed.
