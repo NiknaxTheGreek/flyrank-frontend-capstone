@@ -16,4 +16,6 @@ npm run build
 
 This variant's `package.json` has no test script or automated feature tests. Review its accessible labels, storage fallback and save-error behavior in `src/App.tsx`.
 
-This branch is the vague-prompt comparison artifact, not a public deployment. A screenshot/evidence capture remains to be added.
+## Evidence
+
+[View the notification-settings screenshot](docs/assignment-2/evidence/a2-fe02-vague.jpg), captured from the live `fe02-vague` Vercel preview. The preview requires authentication; reviewer access is unverified.
