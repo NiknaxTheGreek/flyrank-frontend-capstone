@@ -41,7 +41,7 @@ Other screenshots: [Firefox](evidence/firefox.png), [desktop WebKit](evidence/we
 
 ## Honest remaining checks
 
-Real Safari and mobile Safari remain manual device checks: Linux Playwright WebKit is not the Safari app on Apple hardware. Live Firebase backend persistence/isolation passed; browser sign-in/favorite interactions are covered with mocks, not a new production UI account walkthrough. The source repository is public; no reviewer GitHub access grant is needed. The public website itself needs no login for movie search/chat. No Portal submission has been performed.
+Real Safari and mobile Safari remain manual device checks: Linux Playwright WebKit is not the Safari app on Apple hardware. Live Firebase backend persistence/isolation passed. Learner mobile screenshots now confirm the live signed-in save → Favorites-list flow; a separate sign-out/sign-in cycle was not captured. The source repository is public; no reviewer GitHub access grant is needed. The public website itself needs no login for movie search/chat. No Portal submission has been performed.
 
 ## Reviewer walkthrough
 
@@ -81,4 +81,10 @@ Learner-provided mobile screenshot of the deployed integrated app. It shows brow
 
 ![Joker saved to favorites on production mobile](evidence/production-joker-favorite-saved-mobile-2026-11-20.jpeg)
 
-The learner supplied this mobile production screenshot showing Joker (2019), the confirmation “Joker saved to favorites.” and the action “Remove from favorites”. It confirms a successful save in the signed-in UI. It does not by itself demonstrate the Favorites list, persistence after reload, sign-out/sign-in, or cross-user isolation. Favorites-list capture remains the next manual check.
+The learner supplied this mobile production screenshot showing Joker (2019), the confirmation “Joker saved to favorites.” and the action “Remove from favorites”. It confirms a successful save in the signed-in UI. It does not by itself demonstrate the Favorites list, persistence after reload, sign-out/sign-in, or cross-user isolation. The subsequent Favorites-list screenshot below closes that manual UI capture gap.
+
+## Live Favorites-list evidence — 20 November 2026
+
+![Joker listed in production Favorites on mobile](evidence/production-favorites-joker-mobile-2026-11-20.jpeg)
+
+The learner supplied this after being asked to open Favorites and refresh. The screenshot shows the Favorites navigation selected, Account instead of Sign in, Saved movies with one movie, and Joker. Together with the preceding successful-save screenshot, it closes the live signed-in save → Favorites UI walkthrough. The refresh action itself is not visible in a still image; a separate sign-out/sign-in cycle was not recorded. Real Safari remains unverified, and no Portal submission is claimed.

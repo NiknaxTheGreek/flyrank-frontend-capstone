@@ -57,7 +57,7 @@ npx firebase-tools use --add
 npx firebase-tools deploy --only database
 ```
 
-Rules restrict records to their authenticated UID and validate movie fields. A separate live REST smoke verified signup, owner-only favorite persistence and rejection of anonymous/other-user reads, then removed its temporary records and accounts. This does not replace an emulator suite or a real-device sign-in check.
+Rules restrict records to their authenticated UID and validate movie fields. A separate live REST smoke verified signup, owner-only favorite persistence and rejection of anonymous/other-user reads, then removed its temporary records and accounts. Learner mobile screenshots now also confirm a successful live save and Joker in the signed-in Favorites list. This does not replace an emulator suite or real Safari testing.
 
 ## Main flow
 
@@ -140,3 +140,5 @@ The release now combines the completed work rather than shipping the A10 snapsho
 The historical audit and screenshots record their original commits; they do not automatically certify the new combined build. [Integration verification](docs/assignment-14/INTEGRATION.md) records the new release checks. The current [production screenshot](docs/assignment-14/evidence/production-inception-live-chrome-2026-11-20.jpg) shows the browser address bar, public production hostname and completed Inception lookup (8.8/10, 148 minutes). The earlier address-bar screenshot remains labeled as pre-integration evidence.
 
 The combined release passed 100 component/server tests and 24 browser journeys; six GPU-specific cases are skipped outside Chromium while static fallbacks are tested there. Integration also fixed React 18 ref forwarding so the library dialog restores focus after Escape. The deployed combined build is `86c8b2e686f4e5aa503a8a01d6ac20b4e9b6a065`.
+
+Live signed-in save and Favorites-list evidence: [Joker on the production Favorites page](docs/assignment-14/evidence/production-favorites-joker-mobile-2026-11-20.jpeg). The screenshot was supplied following the request to open Favorites and refresh; the refresh action itself is not visible in a still image.
