@@ -10,6 +10,8 @@ await fs.mkdir(folder,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 try{
   const page=await browser.newPage({viewport:{width:375,height:812}});
+  const popupRequests=[];
+  page.on('request',request=>{if(/firebaseapp\.com\/__\/auth\/iframe|apis\.google\.com\/.*gapi/.test(request.url()))popupRequests.push(request.url());});
   await page.goto(base,{waitUntil:'networkidle'});
   await page.locator('article.movie-card').first().waitFor();
   const cards=await page.locator('article.movie-card').count();
@@ -24,7 +26,11 @@ try{
   if(!await page.locator('main').evaluate(el=>el===document.activeElement))throw Error('Live skip link did not focus main.');
   if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Live chat overflows at 375px.');
   await page.screenshot({path:path.join(folder,'live-chat-phone.jpg'),type:'jpeg',quality:80});
-  await fs.writeFile(path.join(folder,'live-dom-checks.json'),JSON.stringify({at:new Date().toISOString(),base,movieCards:cards,skipLink:true,skipTarget:true,phoneWidth:375,horizontalOverflow:false,providerRequests:0,releaseSource:'3eb0350d4d61d4199bbb257bb802dc80028ef4b5'},null,2));
+  await page.goto(base+'/account',{waitUntil:'networkidle'});
+  await page.getByRole('textbox',{name:'Email',exact:true}).waitFor();
+  if(!await page.locator('input#account-password').isVisible())throw Error('The configured sign-in form must remain available.');
+  if(popupRequests.length)throw Error('Unused Firebase popup dependencies are still loading.');
+  await fs.writeFile(path.join(folder,'live-dom-checks.json'),JSON.stringify({at:new Date().toISOString(),base,movieCards:cards,skipLink:true,skipTarget:true,phoneWidth:375,horizontalOverflow:false,configuredSignInForm:true,firebasePopupRequests:0,aiProviderRequests:0,releaseSource:'bfdd95eb274f6342a9f86c9023d1dcb24d425131'},null,2));
 }finally{await browser.close();}
 
 async function run(script,output){
@@ -32,7 +38,9 @@ async function run(script,output){
 }
 await run('scripts/run-lighthouse.mjs',folder);
 await run('scripts/run-wave.mjs',path.join(folder,'wave'));
-await fs.writeFile(path.join(folder,'provenance.json'),JSON.stringify({workflow:`https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`,sourceCommit:process.env.GITHUB_SHA,releaseSource:'3eb0350d4d61d4199bbb257bb802dc80028ef4b5',deployedUrl:base},null,2));
+await new Promise((resolve,reject)=>{const p=spawn('npm',['run','build'],{stdio:'inherit'});p.on('exit',code=>code===0?resolve():reject(Error('Production build failed.')));p.on('error',reject);});
+await run('scripts/audit-catalog-keyboard.mjs',path.join(folder,'catalog-fixture'));
+await fs.writeFile(path.join(folder,'provenance.json'),JSON.stringify({workflow:`https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`,sourceCommit:process.env.GITHUB_SHA,releaseSource:'bfdd95eb274f6342a9f86c9023d1dcb24d425131',deployedUrl:base,catalogueKeyboard:'Local production bundle with deterministic movie HTTP fixtures; not a live provider measurement.'},null,2));
 const exporting=path.resolve('test-results/live-a12-export');
 for(const file of await fs.readdir(folder,{recursive:true})){
   const original=path.join(folder,file);if(!(await fs.stat(original)).isFile()||!/\.(json|jpg)$/.test(file))continue;
