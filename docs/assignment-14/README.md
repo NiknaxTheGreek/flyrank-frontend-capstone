@@ -76,3 +76,9 @@ All six product routes and the health API returned HTTP 200 publicly. A fresh re
 ![Integrated production app on mobile](evidence/production-integrated-mobile-2026-11-20.jpeg)
 
 Learner-provided mobile screenshot of the deployed integrated app. It shows browser chrome, the production hostname suffix, the shared navigation including Shader Lab and Planet Studio, and Inception (2010) with IMDb rating 8.8/10. The complete URL and runtime are not visible in this viewport; the fresh production API smoke independently records the runtime. This replaces the earlier screenshot as the current mobile integration evidence. It does not establish Safari or sign-in/favorites checks.
+
+## Live learner favorite-save evidence — 20 November 2026
+
+![Joker saved to favorites on production mobile](evidence/production-joker-favorite-saved-mobile-2026-11-20.jpeg)
+
+The learner supplied this mobile production screenshot showing Joker (2019), the confirmation “Joker saved to favorites.” and the action “Remove from favorites”. It confirms a successful save in the signed-in UI. It does not by itself demonstrate the Favorites list, persistence after reload, sign-out/sign-in, or cross-user isolation. Favorites-list capture remains the next manual check.
