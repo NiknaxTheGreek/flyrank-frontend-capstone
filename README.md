@@ -6,7 +6,7 @@ A responsive movie discovery app: browse and search films, inspect OMDb details,
 **Release source:** `fe14-production-release`  
 **Checkpoint 2:** [release verification and remaining checks](docs/assignment-14/README.md)
 
-![Movie picker](docs/assignment-14/evidence/chromium.png)
+![Production Inception lookup on Reel Good](docs/assignment-14/evidence/production-inception-live-chrome-2026-11-20.jpg)
 
 ## Clone and run
 
@@ -137,4 +137,4 @@ The release now combines the completed work rather than shipping the A10 snapsho
 | A13 | `/shader-lab`: Afterlight GLSL hero, palette changes, pause, pointer interaction and static fallback |
 | A14 | Production hosting, bounded APIs and this README |
 
-The historical audit and screenshots record their original commits; they do not automatically certify the new combined build. [Integration verification](docs/assignment-14/INTEGRATION.md) records the new release checks. The earlier address-bar screenshot is retained as pre-integration evidence and will be replaced as the current submission screenshot.
+The historical audit and screenshots record their original commits; they do not automatically certify the new combined build. [Integration verification](docs/assignment-14/INTEGRATION.md) records the new release checks. The current [production screenshot](docs/assignment-14/evidence/production-inception-live-chrome-2026-11-20.jpg) shows the browser address bar, public production hostname and completed Inception lookup (8.8/10, 148 minutes). The earlier address-bar screenshot remains labeled as pre-integration evidence.
