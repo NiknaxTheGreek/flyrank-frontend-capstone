@@ -30,9 +30,7 @@ Completed repository work:
 - Three Conventional Commits.
 - An AI README critique and applied improvement recorded in docs/README_REVIEW.md.
 
-Remaining submission evidence: a genuine screenshot showing the chosen assistant
-completing a task in the development environment. Repository visibility was private
-when checked; the evaluator needs access.
+Evidence on this branch: `docs/assignment-1/evidence/a1-chat-status.svg` shows the learner’s ChatGPT assignment list and A1 marked complete awaiting submission. It documents assignment status, but does not show an assistant completing a coding task in the development environment. If the rubric requires Claude Code or Cursor specifically, that screenshot is still missing; acceptance of ChatGPT evidence as a substitute is unconfirmed. This repository is now public.
 
 ## Planned stack
 
@@ -48,11 +46,11 @@ ChatGPT assists development. The app's future LLM API is a separate integration.
 Open this repository in GitHub Codespaces (VS Code in the browser), or clone it:
 
 ```bash
-git clone https://github.com/NiknaxTheGreek/flyrank-frontend-capstone.git
+git clone --branch fe01-project-setup https://github.com/NiknaxTheGreek/flyrank-frontend-capstone.git
 cd flyrank-frontend-capstone
 ```
 
-Private-repository cloning requires authorized GitHub access.
+The repository is public; no GitHub authorization is required to clone this branch.
 
 In Codespaces, check the tools:
 
