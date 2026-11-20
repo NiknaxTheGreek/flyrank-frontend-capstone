@@ -125,7 +125,7 @@ The release now combines the completed work rather than shipping the A10 snapsho
 
 | Assignment | Product or repository location |
 | --- | --- |
-| A1–A2 | Setup/conventions, validated preferences form and retained comparison branches |
+| A1–A2 | Setup/conventions, `/preferences` validated form and retained comparison branches |
 | A3 | Live movie browsing, details, Firebase sign-in and favorites |
 | A4 | Deep-linkable routes and `/health` server-fetch screen; original Next.js scaffold retained on its assignment branch |
 | A5 | `/playground`: custom disclosure/tabs/dialog and shadcn/Radix comparison, adapted to the final Vite host |

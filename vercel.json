@@ -11,6 +11,10 @@
   },
   "rewrites": [
     {
+      "source": "/preferences",
+      "destination": "/index.html"
+    },
+    {
       "source": "/planet-studio",
       "destination": "/index.html"
     },

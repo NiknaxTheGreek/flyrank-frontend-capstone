@@ -16,6 +16,7 @@ const PlanetStudioPage = lazy(() => import('./pages/PlanetStudioPage'));
 const ShaderHeroPage = lazy(() => import('./pages/ShaderHeroPage'));
 const PlaygroundPage = lazy(() => import('./pages/PlaygroundPage'));
 const HealthPage = lazy(() => import('./pages/HealthPage'));
+const PreferencesPage = lazy(() => import('./pages/PreferencesPage'));
 
 function RouteFocus() {
   const { pathname } = useLocation();
@@ -60,6 +61,7 @@ function AppLayout() {
           <NavLink to="/shader-lab">Shader lab</NavLink>
           <NavLink to="/playground">Accessibility</NavLink>
           <NavLink to="/health">Health</NavLink>
+          <NavLink to="/preferences">Preferences</NavLink>
           <NavLink to="/favorites">Favorites</NavLink>
           <NavLink to="/account">{user ? 'Account' : 'Sign in'}</NavLink>
         </nav>
@@ -78,6 +80,7 @@ function AppLayout() {
           <Route path="/shader-lab" element={<ShaderHeroPage />} />
           <Route path="/playground" element={<PlaygroundPage />} />
           <Route path="/health" element={<HealthPage />} />
+          <Route path="/preferences" element={<PreferencesPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/favorites" element={<RequireAuth><FavoritesPage /></RequireAuth>} />
           <Route path="*" element={<NotFoundPage />} />

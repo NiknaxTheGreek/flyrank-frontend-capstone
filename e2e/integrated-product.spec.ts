@@ -36,6 +36,13 @@ test('completed labs are reachable from the product navigation and deep links', 
   await nav.getByRole('link', { name: 'Health', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('Data fetched successfully.');
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+  await nav.getByRole('link', { name: 'Preferences', exact: true }).click();
+  await page.getByRole('checkbox', { name: 'Enable email notifications' }).check();
+  await page.getByRole('button', { name: 'Save preferences' }).click();
+  await expect(page.getByText('Enter a valid email address to enable email notifications.')).toBeVisible();
+  await page.getByRole('textbox', { name: 'Email address' }).fill('viewer@example.com');
+  await page.getByRole('button', { name: 'Save preferences' }).click();
+  await expect(page.getByText('Notification preferences saved in this browser.')).toBeVisible();
   await nav.getByRole('link', { name: 'Movie picker', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Help me pick a movie' })).toBeVisible();
   expect(errors).toEqual([]);

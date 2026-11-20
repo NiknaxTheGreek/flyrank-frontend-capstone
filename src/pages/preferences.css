@@ -1,0 +1,12 @@
+.preferences-page { max-width: 650px; margin: 50px auto; }
+.preferences-page h1 { font-size: clamp(2.3rem,6vw,4rem); }
+.preferences-page .panel { padding: 24px; background: #1b1e20; border: 1px solid #606468; border-radius: 12px; }
+.preferences-page h3 { font-size: 1.5rem; margin: 8px 0 16px; }
+.notification-form { display: grid; gap: 20px; }
+.notification-field { display: grid; gap: 8px; }
+.notification-field input { min-height: 46px; padding: 10px 12px; background: #111315; color: #f3f1ed; border: 1px solid #8c8d92; border-radius: 6px; width: 100%; }
+.notification-checkbox { display: flex; align-items: center; gap: 12px; }
+.notification-checkbox input { width: 22px; height: 22px; }
+.notification-save { min-height: 46px; padding: 10px 16px; background: #f1b84b; color: #211909; border: 0; border-radius: 8px; font-weight: 700; cursor: pointer; }
+.notification-error, .notification-feedback[data-kind='error'] { color: #ffbdbd; }
+.notification-feedback[data-kind='success'] { color: #a1e9bc; }

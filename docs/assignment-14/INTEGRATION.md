@@ -12,7 +12,7 @@ The initial A14 release omitted completed feature branches. This release combine
 
 ## Product changes
 
-Shared navigation reaches `/shader-lab`, `/planet-studio`, `/playground`, `/health`, `/motion-lab` and the movie routes. Vercel rewrites support reloads/deep links. A5 components retain their behaviors and get scoped final-product styling; the health fetch is hosted in a bounded server function. A12 lazy loading, Firebase splitting, keyboard/focus, contrast and announcement fixes are preserved. GPU code is lazy; motion and static fallbacks remain available. Historical Next.js scaffold and workflow-comparison branches remain original exercises, not a forced framework migration.
+Shared navigation reaches `/shader-lab`, `/planet-studio`, `/playground`, `/health`, `/motion-lab` and the movie routes. The original validated A2/A10 preferences form is mounted at `/preferences`. Vercel rewrites support reloads/deep links. A5 components retain their behaviors and get scoped final-product styling; the health fetch is hosted in a bounded server function. A12 lazy loading, Firebase splitting, keyboard/focus, contrast and announcement fixes are preserved. GPU code is lazy; motion and static fallbacks remain available. Historical Next.js scaffold and workflow-comparison branches remain original exercises, not a forced framework migration.
 
 ## Verification
 
