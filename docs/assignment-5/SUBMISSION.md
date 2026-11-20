@@ -16,6 +16,7 @@ The notes report manual keyboard checks for disclosure, tabs, modal focus, dismi
 
 ## Evidence
 
-The notes say screenshots were supplied, but no A5 screenshot files are committed in this branch. Fresh screenshots should be captured from this exact branch and added under `docs/assignment-5/evidence/`; do not infer keyboard or screen-reader behavior from screenshots alone.
+- [Accessibility playground screenshot](evidence/accessibility-playground.jpg) shows the disclosure and keyboard-accessible UI at `/playground`.
+- This historical preview screenshot supports visual inspection only; keyboard and screen-reader behavior must be supported by the recorded manual checks, not inferred from the image.
 
 The old final line in `NOTES.md` claiming the Git push is pending is stale: the branch already contains commit `8c0783fa9c02da195f0ff1846ca9692741e1de73`. This branch's Preview exists; evaluator access to the private repo and deployment must be confirmed.
