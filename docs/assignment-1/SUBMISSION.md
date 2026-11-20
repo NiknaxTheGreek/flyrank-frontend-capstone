@@ -16,4 +16,4 @@ This setup snapshot contains no runnable app; the assignment's deliverable is th
 
 ## Evidence status
 
-A new A1 branch now points to the preserved setup snapshot. No screenshot has been added yet. Capture a genuine screenshot of this branch's setup deliverables for the evidence pack; do not treat this index as screenshot evidence.
+A new A1 branch now points to the preserved setup snapshot. [A1 screenshot evidence](evidence/a1-chat-status.svg) was supplied by the learner and committed here. It shows the A1 project chat marked complete awaiting submission; the underlying setup files are linked above.
