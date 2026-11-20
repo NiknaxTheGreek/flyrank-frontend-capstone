@@ -16,4 +16,4 @@ This setup snapshot contains no runnable app; the assignment's deliverable is th
 
 ## Evidence status
 
-A new A1 branch now points to the preserved setup snapshot. [A1 screenshot evidence](evidence/a1-chat-status.svg) was supplied by the learner and committed here. It shows the A1 project chat marked complete awaiting submission; the underlying setup files are linked above.
+The A1 branch preserves the setup snapshot. [A1 screenshot evidence](evidence/a1-chat-status.svg) shows the learner’s ChatGPT assignment list with A1 marked complete awaiting submission. It documents assignment status, but does not show an assistant completing a coding task in the development environment. If the rubric requires Claude Code or Cursor specifically, that evidence is still missing; evaluator acceptance of ChatGPT evidence as a substitute is unconfirmed. The repository is now public.
