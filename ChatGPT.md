@@ -12,7 +12,7 @@ The notes below are retained historical context and do not override the current 
 
 # ChatGPT project notes
 
-FlyRank is a React 18 and TypeScript frontend built with Vite.
+Reel Good is a React 18 and TypeScript frontend built with Vite.
 
 ## Useful commands
 
