@@ -38,8 +38,11 @@ async function run(script,output){
 }
 await run('scripts/run-lighthouse.mjs',folder);
 await run('scripts/run-wave.mjs',path.join(folder,'wave'));
-await new Promise((resolve,reject)=>{const p=spawn('npm',['run','build'],{stdio:'inherit'});p.on('exit',code=>code===0?resolve():reject(Error('Production build failed.')));p.on('error',reject);});
-await run('scripts/audit-catalog-keyboard.mjs',path.join(folder,'catalog-fixture'));
+let catalogueError=null;
+try{
+  await new Promise((resolve,reject)=>{const p=spawn('npm',['run','build'],{stdio:'inherit'});p.on('exit',code=>code===0?resolve():reject(Error('Production build failed.')));p.on('error',reject);});
+  await run('scripts/audit-catalog-keyboard.mjs',path.join(folder,'catalog-fixture'));
+}catch(error){catalogueError=error.message;await fs.writeFile(path.join(folder,'catalogue-error.json'),JSON.stringify({error:catalogueError}));}
 await fs.writeFile(path.join(folder,'provenance.json'),JSON.stringify({workflow:`https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`,sourceCommit:process.env.GITHUB_SHA,releaseSource:'bfdd95eb274f6342a9f86c9023d1dcb24d425131',deployedUrl:base,catalogueKeyboard:'Local production bundle with deterministic movie HTTP fixtures; not a live provider measurement.'},null,2));
 const exporting=path.resolve('test-results/live-a12-export');
 for(const file of await fs.readdir(folder,{recursive:true})){
@@ -55,4 +58,4 @@ const lighthouse=JSON.parse(await fs.readFile(path.join(folder,'summary.json'),'
 const wave=JSON.parse(await fs.readFile(path.join(folder,'wave/summary.json'),'utf8'));
 const fails=lighthouse.filter(x=>x.scores.performance<90||x.scores.accessibility<90);
 const waveFails=wave.filter(x=>x.categories.error.count||x.categories.contrast.count||x.categories.alert.count);
-if(fails.length||waveFails.length){console.error('Live targets need attention: '+JSON.stringify({lighthouse:fails.map(x=>({name:x.name,scores:x.scores})),wave:waveFails.map(x=>({name:x.name,categories:x.categories}))}));process.exitCode=1;}
+if(fails.length||waveFails.length||catalogueError){console.error('Live targets need attention: '+JSON.stringify({lighthouse:fails.map(x=>({name:x.name,scores:x.scores})),wave:waveFails.map(x=>({name:x.name,categories:x.categories})),catalogueError}));process.exitCode=1;}

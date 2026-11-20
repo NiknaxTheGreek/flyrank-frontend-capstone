@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import http from 'node:http';
 import { chromium } from 'playwright';
+import { expect } from '@playwright/test';
 
 const dist = path.resolve('dist');
 const output = path.resolve(process.env.AUDIT_OUTPUT || 'docs/assignment-12/evidence/keyboard/catalog');
@@ -29,8 +30,9 @@ const server = http.createServer(async (req, res) => {
 });
 await new Promise(resolve => server.listen(4190, '127.0.0.1', resolve));
 const browser = await chromium.launch({ headless: true, executablePath: process.env.AUDIT_CHROME_PATH || chromium.executablePath(), args: ['--no-sandbox'] });
+let page;
 try {
-  const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
@@ -62,7 +64,7 @@ try {
   await page.keyboard.press('Enter');
   const heading = page.getByRole('heading', { name: 'Inception', exact: true });
   await heading.waitFor();
-  assert(await focused(heading));
+  await expect(heading).toBeFocused();
   checks.push('Enter opens a movie result and client-side navigation focuses its loaded heading.');
   await tabTo(page.getByRole('link', { name: 'Back to search results' }));
   await page.keyboard.press('Enter');
@@ -78,7 +80,7 @@ try {
   await page.keyboard.press('Enter');
   const chatHeading = page.getByRole('heading', { name: 'Help me pick a movie', exact: true });
   await chatHeading.waitFor();
-  assert(await focused(chatHeading));
+  await expect(chatHeading).toBeFocused();
   await tabTo(page.getByRole('button', { name: 'Try an example' }));
   await page.keyboard.press('Enter');
   assert(await focused(page.getByRole('textbox', { name: 'Your movie preferences' })));
@@ -87,6 +89,12 @@ try {
   const result = { at: new Date().toISOString(), browser: await browser.version(), build: 'A12 with six-request featured batches', fixtures: 'Movie HTTP boundary; no external provider requests', checks, errors };
   await fs.writeFile(path.join(output, 'checks.json'), JSON.stringify(result, null, 2) + '\n');
   console.log(JSON.stringify(result));
+} catch (error) {
+  if (page) {
+    await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, url: page.url(), active: await page.evaluate(() => document.activeElement?.outerHTML), headings: await page.locator('h1').allTextContents() }, null, 2));
+    await page.screenshot({ path: path.join(output, 'failure.jpg'), type: 'jpeg', quality: 80 });
+  }
+  throw error;
 } finally {
   await browser.close();
   await new Promise(resolve => server.close(resolve));
