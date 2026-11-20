@@ -47,6 +47,12 @@ Real Safari and mobile Safari remain manual device checks: Linux Playwright WebK
 
 Open Movie picker, request recommendations, stop a reply, send a follow-up, request Inception's facts and inspect the movie card. Search a movie and open details. Sign in with a test account to save/remove a favorite. Repeated chat requests should eventually return a designed retryable 429. Tests use mocks and do not spend provider credits.
 
+## Current production screenshot
+
+[Open the live Chrome capture](evidence/production-inception-live-chrome-2026-11-20.jpg). It shows the production address bar, Inception (2010), 8.8/10, 148 minutes and IMDb link after a live lookup on 20 November 2026.
+
+![Current production Inception lookup with the address bar visible](evidence/production-inception-live-chrome-2026-11-20.jpg)
+
 ## History and AI assistance
 
 Focused Conventional Commits preserve earlier assignment work; no shared history was rewritten. The root README records actual ChatGPT contributions, runtime provider, architecture, environment variables, local run commands and known limitations. This status file does not claim portal submission.
