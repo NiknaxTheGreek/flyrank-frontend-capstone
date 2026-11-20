@@ -69,4 +69,10 @@ Shader Lab, Planet Studio, the accessibility playground, Preferences and Health 
 
 [Full integration verification](INTEGRATION.md) · [Actual CI report](evidence/integrated-ci-suite.png) · [Production smoke results](evidence/integrated-production-smoke.json).
 
-All six product routes and the health API returned HTTP 200 publicly. A fresh real Inception tool call returned 8.8/10, 148 minutes and completion. The earlier address-bar captures show the pre-integration navigation; a replacement learner screenshot is still needed for the current submission pack.
+All six product routes and the health API returned HTTP 200 publicly. A fresh real Inception tool call returned 8.8/10, 148 minutes and completion. The earlier address-bar captures show the pre-integration navigation; the replacement mobile screenshot is now saved below.
+
+## Replacement mobile production screenshot — 20 November 2026
+
+![Integrated production app on mobile](evidence/production-integrated-mobile-2026-11-20.jpeg)
+
+Learner-provided mobile screenshot of the deployed integrated app. It shows browser chrome, the production hostname suffix, the shared navigation including Shader Lab and Planet Studio, and Inception (2010) with IMDb rating 8.8/10. The complete URL and runtime are not visible in this viewport; the fresh production API smoke independently records the runtime. This replaces the earlier screenshot as the current mobile integration evidence. It does not establish Safari or sign-in/favorites checks.

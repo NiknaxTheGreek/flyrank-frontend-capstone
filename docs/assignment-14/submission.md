@@ -10,4 +10,10 @@ Reel Good includes Shader Lab, Planet Studio, the accessibility playground, Moti
 
 Prepared for submission; not submitted to the Portal.
 
-Current combined deployment: `86c8b2e686f4e5aa503a8a01d6ac20b4e9b6a065`. The previous address-bar screenshots predate integration; replace the submission screenshot with the updated navigation and Inception card visible.
+Current combined deployment: `86c8b2e686f4e5aa503a8a01d6ac20b4e9b6a065`. The earlier address-bar screenshots predate integration. The replacement mobile screenshot now shows the updated navigation and completed Inception card (see evidence link below).
+
+## Replacement mobile production screenshot — 20 November 2026
+
+[Open the replacement screenshot](evidence/production-integrated-mobile-2026-11-20.jpeg).
+
+Learner-provided mobile screenshot of the deployed integrated app. It shows browser chrome, the production hostname suffix, the shared navigation including Shader Lab and Planet Studio, and Inception (2010) with IMDb rating 8.8/10. The complete URL and runtime are not visible in this viewport; the fresh production API smoke independently records the runtime. This replaces the earlier screenshot as the current mobile integration evidence. It does not establish Safari or sign-in/favorites checks.

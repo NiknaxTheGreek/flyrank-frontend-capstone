@@ -22,10 +22,16 @@ CI passed at commit `86c8b2e686f4e5aa503a8a01d6ac20b4e9b6a065`: 100/100 componen
 
 ## Screenshot replacement
 
-`evidence/production-chrome-address-bar-2026-11-20.png` is the earlier, pre-integration product. Preserve it as history, but replace the current submission screenshot after production deployment: show `/pick-a-movie`, the updated shared navigation including Shader Lab and Planet Studio, the completed Inception card and browser address bar.
+`evidence/production-chrome-address-bar-2026-11-20.png` is the earlier, pre-integration product. Preserve it as history, and use the replacement mobile screenshot below for the current submission pack. The requested capture was to show `/pick-a-movie`, the updated shared navigation including Shader Lab and Planet Studio, the completed Inception card and browser address bar.
 
 ![Actual combined-release CI report](evidence/integrated-ci-suite.png)
 
 ![Updated navigation and movie card — mocked CI fixture](evidence/integrated-movie-picker-fixture.png)
 
-[Fresh production API/route smoke results](evidence/integrated-production-smoke.json). These are distinct from browser-chrome screenshots. Existing address-bar captures remain pre-integration evidence until the learner supplies a new capture.
+[Fresh production API/route smoke results](evidence/integrated-production-smoke.json). These are distinct from browser-chrome screenshots. Earlier address-bar captures remain pre-integration history; a replacement learner mobile screenshot is now saved below.
+
+## Replacement mobile production screenshot — 20 November 2026
+
+![Integrated production app on mobile](evidence/production-integrated-mobile-2026-11-20.jpeg)
+
+Learner-provided mobile screenshot of the deployed integrated app. It shows browser chrome, the production hostname suffix, the shared navigation including Shader Lab and Planet Studio, and Inception (2010) with IMDb rating 8.8/10. The complete URL and runtime are not visible in this viewport; the fresh production API smoke independently records the runtime. This replaces the earlier screenshot as the current mobile integration evidence. It does not establish Safari or sign-in/favorites checks.
