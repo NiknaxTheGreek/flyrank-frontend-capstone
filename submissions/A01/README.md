@@ -6,6 +6,10 @@ The setup deliverables are the reviewed project README, development conventions,
 
 No original A1 screenshot was found in the recovered project files. The screenshot evidence slot remains missing. The planning choices in the original README are historical.
 
+## Dedicated branch
+
+A dedicated branch was created from the preserved setup snapshot: [\`fe01-project-setup\`](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe01-project-setup). The setup deliverables are at the repository root on that branch; this submission-pack copy is retained as the archival source.
+
 ## Source
 
 - Snapshot commit: [`44275d6d2bcb79bc978fb687c07c31911a4939cf`](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/commit/44275d6d2bcb79bc978fb687c07c31911a4939cf).
