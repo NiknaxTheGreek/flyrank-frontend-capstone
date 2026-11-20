@@ -27,6 +27,9 @@ try {
     });
     if(!result || result.lhr.runtimeError) throw Error(JSON.stringify(result?.lhr.runtimeError));
     const {lhr}=result;
+    if (new URL(lhr.finalDisplayedUrl).origin !== new URL(base).origin) {
+      throw Error('Audit reached another origin instead of the application; authenticate the preview first.');
+    }
     await fs.writeFile(path.join(directory,`${name}-mobile.html`),result.report);
     await fs.writeFile(path.join(directory,`${name}-mobile.json`),JSON.stringify(lhr,null,2));
     const item={name,url:lhr.finalDisplayedUrl,lighthouse:lhr.lighthouseVersion,
@@ -40,7 +43,7 @@ try {
     const report=await context.newPage();
     await report.setViewportSize({width:1280,height:1050});
     await report.goto(`file://${path.join(directory,`${name}-mobile.html`)}`);
-    await report.screenshot({path:path.join(directory,`${name}-mobile.png`)});
+    await report.screenshot({path:path.join(directory,`${name}-mobile.jpg`),type:'jpeg',quality:78});
     await report.close();
     console.log(JSON.stringify({name,scores:item.scores,metrics:item.metrics}));
   }

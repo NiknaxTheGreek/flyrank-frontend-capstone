@@ -31,7 +31,7 @@ try {
     const result=await page.evaluate(() => ({version:window.wave.version,...window.wave.results}));
     const report={name,url:page.url(),at:new Date().toISOString(),...result};
     await fs.writeFile(path.join(directory,`${name}.json`),JSON.stringify(report,null,2));
-    await page.screenshot({path:path.join(directory,`${name}.png`)});
+    await page.screenshot({path:path.join(directory,`${name}.jpg`),type:'jpeg',quality:78});
     results.push({name,version:result.version,statistics:result.statistics,categories:Object.fromEntries(Object.entries(result.categories).map(([k,v])=>[k,{count:v.count,items:v.items}]))});
     console.log(JSON.stringify({name,categories:Object.fromEntries(Object.entries(result.categories).map(([k,v])=>[k,v.count]))}));
     await page.close();
