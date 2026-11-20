@@ -12,4 +12,6 @@
 
 ## Evidence and status
 
-The submission draft records the implementation as complete and says screenshots were deferred. The branch's root README still says Firebase is unconfigured and A3 is incomplete. Reconcile those conflicting live-configuration/status claims before submission. Capture the screenshots from this branch's actual UI and add them here; no A3 screenshots were included by this commit.
+- [Movie detail screenshot](evidence/movie-detail.jpg) shows the app's movie detail view, including poster, rating, plot and IMDb link.
+- The screenshot is from the A3 branch UI captured in an earlier Codespaces preview; it is visual evidence, not a current deployment check.
+- The submission draft records the implementation as complete. The branch's root README still says Firebase is unconfigured and A3 is incomplete. Reconcile those conflicting live-configuration/status claims before submission.
