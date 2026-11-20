@@ -20,4 +20,11 @@
 
 [`WORKFLOW.md`](../../WORKFLOW.md) records the differences in scope, accessibility, persistence/error handling and verification. It also states that exact task durations were not recorded, so it does not claim one prompt was faster.
 
-The structured version's archived result is 11 passing tests and a passing build. Results were not rerun for this index. The evidence manifest in the archived A2 pack was empty; a screenshot and public/authorized demo access still need to be added for submission.
+The structured version's archived result is 11 passing tests and a passing build. Results were not rerun for this index.
+
+## Evidence and preview access
+
+- [Structured-version screenshot](evidence/a2-fe02-spec.jpg), captured from the [`fe02-spec` Vercel preview](https://flyrank-frontend-capstone-bhsn72y0q-niknaxthegreek.vercel.app/).
+- [Vague-version screenshot](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/blob/fe02-vague/docs/assignment-2/evidence/a2-fe02-vague.jpg), captured from the [`fe02-vague` Vercel preview](https://flyrank-frontend-capstone-3d9ae1afv-niknaxthegreek.vercel.app/).
+
+Both screenshots were captured from the live branch previews in an authenticated browser on 2026-11-20. The previews require Vercel authentication; reviewer access has not been verified. The GitHub repository is private, so evaluator access must also be arranged.
