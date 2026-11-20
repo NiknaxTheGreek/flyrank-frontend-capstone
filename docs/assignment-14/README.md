@@ -41,7 +41,7 @@ Other screenshots: [Firefox](evidence/firefox.png), [desktop WebKit](evidence/we
 
 ## Honest remaining checks
 
-Real Safari and mobile Safari remain manual device checks: Linux Playwright WebKit is not the Safari app on Apple hardware. Live Firebase backend persistence/isolation passed; browser sign-in/favorite interactions are covered with mocks, not a new production UI account walkthrough. Reviewer repository access must be granted while the source repository is private. The public website itself needs no login for movie search/chat. No Portal submission has been performed.
+Real Safari and mobile Safari remain manual device checks: Linux Playwright WebKit is not the Safari app on Apple hardware. Live Firebase backend persistence/isolation passed; browser sign-in/favorite interactions are covered with mocks, not a new production UI account walkthrough. The source repository is public; no reviewer GitHub access grant is needed. The public website itself needs no login for movie search/chat. No Portal submission has been performed.
 
 ## Reviewer walkthrough
 
