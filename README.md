@@ -1,24 +1,19 @@
-# FlyRank Frontend Capstone
+# A2 — Vague-prompt implementation
 
-A lightweight SEO growth dashboard designed to showcase FlyRank's analytics and optimization workflow.
+This branch preserves the first, broadly prompted version of the Assignment 2 notification-settings task. It replaces the starter dashboard view with notification preferences for email and in-app alerts, delivery frequency and quiet hours.
 
-## Overview
+The structured-specification comparison is documented on [`fe02-spec`](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe02-spec) in `WORKFLOW.md` and `docs/assignment-2/SUBMISSION.md`.
 
-This frontend capstone is built with React + Vite and presents a mock dashboard for keyword tracking, organic growth, and regional visibility. It is intended as a polished foundation for further feature work, such as interactive filters, lead generation flows, or a product landing page.
+## Run
 
-## Getting started
+Requires Node.js 24 and npm.
 
-```bash
-npm install
+```sh
+npm ci
 npm run dev
+npm run build
 ```
 
-## Scripts
+This variant's `package.json` has no test script or automated feature tests. Review its accessible labels, storage fallback and save-error behavior in `src/App.tsx`.
 
-- `npm run dev` — start the Vite dev server
-- `npm run build` — create a production build
-- `npm run preview` — preview the production build locally
-
-## Notes
-
-The project keeps the UI focused on a single-screen dashboard while remaining easy to extend with new pages or data-driven components.
+This branch is the vague-prompt comparison artifact, not a public deployment. A screenshot/evidence capture remains to be added.
