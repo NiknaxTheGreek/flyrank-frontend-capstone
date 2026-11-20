@@ -2,7 +2,7 @@
 
 ## Initial implementation review
 
-- The existing `App` rendered the FlyRank SEO dashboard, and the App-level test asserted dashboard headings; that assertion no longer described the requested Home screen.
+- The existing `App` rendered the previous dashboard prototype, and the App-level test asserted dashboard headings; that assertion no longer described the requested Home screen.
 - The same test file also covered the independent `NotificationSettings` component. Those tests were retained while the obsolete dashboard assertion was replaced with movie Home screen coverage.
 - The new UI has a labelled search input and buttons, but no browser routing or external movie-data service was introduced.
 
