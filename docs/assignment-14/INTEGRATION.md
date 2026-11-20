@@ -16,10 +16,16 @@ Shared navigation reaches `/shader-lab`, `/planet-studio`, `/playground`, `/heal
 
 ## Verification
 
-Local TypeScript checks and production build passed. The initial JS bundle is about 184 KB uncompressed; the ~532 KB Three.js chunk is loaded only after Launch 3D. The merged component suite passed 97 tests; two new health-handler tests also passed. CI verifies the full suite and browser journeys, including new cross-lab navigation, keyboard dialogs, deep-link reload, shader rendering/pause and real 3D context-loss recovery. GPU-specific checks run in Chromium; other engines check static/reduced-motion behavior.
+Local TypeScript checks and production build passed. The initial JS bundle is about 184 KB uncompressed; the ~532 KB Three.js chunk is loaded only after Launch 3D. The combined suite passed 100 tests across 20 files, including health-handler checks and a React 18 dialog-focus regression test. CI verifies the full suite and browser journeys, including new cross-lab navigation, keyboard dialogs, deep-link reload, shader rendering/pause and real 3D context-loss recovery. GPU-specific checks run in Chromium; other engines check static/reduced-motion behavior.
 
-CI/deployment results will be appended after verification. Original A12 audit results apply to the audited commit and routes, not automatically to this combined release.
+CI passed at commit `86c8b2e686f4e5aa503a8a01d6ac20b4e9b6a065`: 100/100 component/server tests, 24 passing browser journeys, six intentional non-Chromium GPU skips, zero unexpected failures and zero flaky tests. [Workflow](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44790607562). Production deployment `dpl_3hpwnrctEscMCNfBWN8HE2fjeNdD` is READY on the same source commit; remote build took about 32 seconds. All six integrated routes and the health API returned HTTP 200. A real Inception tool call completed successfully. A production error/fatal log scan returned no matching entries at the time checked. Original A12 audit results apply to the audited commit and routes, not automatically to this combined release.
 
 ## Screenshot replacement
 
 `evidence/production-chrome-address-bar-2026-11-20.png` is the earlier, pre-integration product. Preserve it as history, but replace the current submission screenshot after production deployment: show `/pick-a-movie`, the updated shared navigation including Shader Lab and Planet Studio, the completed Inception card and browser address bar.
+
+![Actual combined-release CI report](evidence/integrated-ci-suite.png)
+
+![Updated navigation and movie card — mocked CI fixture](evidence/integrated-movie-picker-fixture.png)
+
+[Fresh production API/route smoke results](evidence/integrated-production-smoke.json). These are distinct from browser-chrome screenshots. Existing address-bar captures remain pre-integration evidence until the learner supplies a new capture.

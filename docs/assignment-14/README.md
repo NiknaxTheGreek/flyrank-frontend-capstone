@@ -11,7 +11,7 @@ Release branch: `fe14-production-release`. The combined product now integrates A
 - Cancellation on disconnect/Stop; sanitized errors; provider secrets remain server-side.
 - Rate counters are per-instance and reset on cold starts. Provider quotas or shared storage/firewall rules are required for an account-wide budget.
 
-## Checks performed
+## Initial release checks — 19 November 2026
 
 - Clean `npm ci` succeeded on Node 24.22.3.
 - Application and test TypeScript checks passed.
@@ -47,11 +47,11 @@ Real Safari and mobile Safari remain manual device checks: Linux Playwright WebK
 
 Open Movie picker, request recommendations, stop a reply, send a follow-up, request Inception's facts and inspect the movie card. Search a movie and open details. Sign in with a test account to save/remove a favorite. Repeated chat requests should eventually return a designed retryable 429. Tests use mocks and do not spend provider credits.
 
-## Current production screenshot
+## Earlier production screenshot — before lab integration
 
 [Open the live Chrome capture](evidence/production-inception-live-chrome-2026-11-20.jpg). It shows the production address bar, Inception (2010), 8.8/10, 148 minutes and IMDb link after a live lookup on 20 November 2026.
 
-![Current production Inception lookup with the address bar visible](evidence/production-inception-live-chrome-2026-11-20.jpg)
+![Earlier production Inception lookup with the address bar visible](evidence/production-inception-live-chrome-2026-11-20.jpg)
 
 ## History and AI assistance
 
@@ -62,3 +62,11 @@ Focused Conventional Commits preserve earlier assignment work; no shared history
 Pre-integration evidence (superseded for the current product): the learner supplied this Chrome screenshot showing the public production hostname in the address bar and a completed Inception lookup (8.8/10, 148 minutes). This verifies the displayed production result; it does not establish Stop behavior, Safari testing, or sign-in/favorites interactions.
 
 ![Production URL and completed Inception lookup](evidence/production-chrome-address-bar-2026-11-20.png)
+
+## Combined product release — 20 November 2026
+
+Shader Lab, Planet Studio, the accessibility playground, Preferences and Health are integrated into the same navigation, with A12 improvements preserved. Production deployment `dpl_3hpwnrctEscMCNfBWN8HE2fjeNdD` is READY at source `86c8b2e686f4e5aa503a8a01d6ac20b4e9b6a065`.
+
+[Full integration verification](INTEGRATION.md) · [Actual CI report](evidence/integrated-ci-suite.png) · [Production smoke results](evidence/integrated-production-smoke.json).
+
+All six product routes and the health API returned HTTP 200 publicly. A fresh real Inception tool call returned 8.8/10, 148 minutes and completion. The earlier address-bar captures show the pre-integration navigation; a replacement learner screenshot is still needed for the current submission pack.

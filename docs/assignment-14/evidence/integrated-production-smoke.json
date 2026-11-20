@@ -1,0 +1,79 @@
+[
+  {
+    "path": "/pick-a-movie",
+    "status": 200,
+    "bundle": "/assets/index-jSSdxfeU.js"
+  },
+  {
+    "path": "/shader-lab",
+    "status": 200
+  },
+  {
+    "path": "/planet-studio",
+    "status": 200
+  },
+  {
+    "path": "/playground",
+    "status": 200
+  },
+  {
+    "path": "/preferences",
+    "status": 200
+  },
+  {
+    "path": "/health",
+    "status": 200
+  },
+  {
+    "path": "/api/health",
+    "status": 200,
+    "result": {
+      "ok": true,
+      "message": "Data fetched successfully.",
+      "title": "delectus aut autem",
+      "id": 1
+    }
+  },
+  {
+    "path": "/api/movie-chat",
+    "status": 200,
+    "events": [
+      {
+        "type": "tool",
+        "toolName": "lookupMovie",
+        "toolCallId": "e2cadc12-c39a-49b8-8826-bc5d495639c0",
+        "state": "input-streaming"
+      },
+      {
+        "type": "tool",
+        "toolName": "lookupMovie",
+        "toolCallId": "e2cadc12-c39a-49b8-8826-bc5d495639c0",
+        "state": "input-available",
+        "input": {
+          "title": "Inception"
+        }
+      },
+      {
+        "type": "tool",
+        "toolName": "lookupMovie",
+        "toolCallId": "e2cadc12-c39a-49b8-8826-bc5d495639c0",
+        "state": "output-available",
+        "input": {
+          "title": "Inception"
+        },
+        "output": {
+          "title": "Inception",
+          "year": "2010",
+          "genre": "Adventure, Sci-Fi, Thriller",
+          "runtime": "148 min",
+          "rating": 8.8,
+          "plot": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO, but his tragic past may doom the project and his team to disaster.",
+          "imdbId": "tt1375666"
+        }
+      },
+      {
+        "type": "done"
+      }
+    ]
+  }
+]
