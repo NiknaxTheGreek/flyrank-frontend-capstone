@@ -1,19 +1,25 @@
-# Assignment 1 — Setup and project conventions
+# Reel Good — Assignment 1 submission
 
-**Source branch:** `fe01-project-setup`  
-**Source snapshot:** `44275d6d2bcb79bc978fb687c07c31911a4939cf`
+**Track:** FlyRank Frontend
+**Source branch:** fe01-project-setup
+**Status:** Complete — awaiting submission
 
 ## Deliverables
-
-- [Project README](../../README.md): product context, scope and setup conventions.
-- [Assistant and development conventions](../../CLAUDE.md): chosen assistant, product context and working rules.
-- [MIT licence](../../LICENSE).
+- [README](../../README.md): Reel Good scope, stack and branch setup.
+- [CLAUDE.md](../../CLAUDE.md): assistant and development conventions.
+- [MIT license](../../LICENSE).
 - [Ignore rules](../../.gitignore).
 - [Node version](../../.nvmrc).
-- [README review](../../docs/README_REVIEW.md): critique and changes.
+- [README critique and improvement](../README_REVIEW.md).
 
-This setup snapshot contains no runnable app; the assignment's deliverable is the project setup and documentation.
+The original three Conventional Commits remain in this branch's history.
+The setup documentation was corrected on 20 November 2026 to reflect Reel Good.
+This branch contains no runnable application; later assignment branches contain
+the movie app.
 
 ## Evidence status
-
-The A1 branch preserves the setup snapshot. [A1 screenshot evidence](evidence/a1-chat-status.svg) shows the learner’s ChatGPT assignment list with A1 marked complete awaiting submission. It documents assignment status, but does not show an assistant completing a coding task in the development environment. If the rubric requires Claude Code or Cursor specifically, that evidence is still missing; evaluator acceptance of ChatGPT evidence as a substitute is unconfirmed. The repository is now public.
+[A1 screenshot evidence](evidence/a1-chat-status.svg) shows the learner's ChatGPT
+assignment list and A1 marked complete awaiting submission. It documents status,
+not an assistant completing a coding task in the development environment.
+Evaluator acceptance of ChatGPT evidence in place of the requested Claude Code
+or Cursor evidence is unconfirmed. The repository is public.
