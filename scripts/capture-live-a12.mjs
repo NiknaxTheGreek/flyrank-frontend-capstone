@@ -24,7 +24,7 @@ try{
   if(!await page.locator('main').evaluate(el=>el===document.activeElement))throw Error('Live skip link did not focus main.');
   if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Live chat overflows at 375px.');
   await page.screenshot({path:path.join(folder,'live-chat-phone.jpg'),type:'jpeg',quality:80});
-  await fs.writeFile(path.join(folder,'live-dom-checks.json'),JSON.stringify({at:new Date().toISOString(),base,movieCards:cards,skipLink:true,skipTarget:true,phoneWidth:375,horizontalOverflow:false,providerRequests:0,releaseSource:'a1990c3cb0c62c39b06caf5347b83118a951c24a'},null,2));
+  await fs.writeFile(path.join(folder,'live-dom-checks.json'),JSON.stringify({at:new Date().toISOString(),base,movieCards:cards,skipLink:true,skipTarget:true,phoneWidth:375,horizontalOverflow:false,providerRequests:0,releaseSource:'3eb0350d4d61d4199bbb257bb802dc80028ef4b5'},null,2));
 }finally{await browser.close();}
 
 async function run(script,output){
@@ -32,7 +32,7 @@ async function run(script,output){
 }
 await run('scripts/run-lighthouse.mjs',folder);
 await run('scripts/run-wave.mjs',path.join(folder,'wave'));
-await fs.writeFile(path.join(folder,'provenance.json'),JSON.stringify({workflow:`https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`,sourceCommit:process.env.GITHUB_SHA,releaseSource:'a1990c3cb0c62c39b06caf5347b83118a951c24a',deployedUrl:base},null,2));
+await fs.writeFile(path.join(folder,'provenance.json'),JSON.stringify({workflow:`https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`,sourceCommit:process.env.GITHUB_SHA,releaseSource:'3eb0350d4d61d4199bbb257bb802dc80028ef4b5',deployedUrl:base},null,2));
 const exporting=path.resolve('test-results/live-a12-export');
 for(const file of await fs.readdir(folder,{recursive:true})){
   const original=path.join(folder,file);if(!(await fs.stat(original)).isFile()||!/\.(json|jpg)$/.test(file))continue;
