@@ -11,6 +11,6 @@
 - Final live audit: [successful run 44773847462](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44773847462).
 - Final deployed application source: `bfdd95eb274f6342a9f86c9023d1dcb24d425131`.
 - [Source and evidence branch](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe12-performance-accessibility).
-- TypeScript checks, 91 component/server tests and the production build passed. Additional scope and assistive-technology limits are documented in AUDIT.md.
+- [Release verification](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44775059755) passed: TypeScript checks, 91/91 component/server tests, production build and 10/10 browser journeys; zero failures, skips or flaky tests. Additional scope and assistive-technology limits are documented in AUDIT.md.
 
 The learner can submit the public URL and the branch's AUDIT.md link. Nothing has been submitted to the learner portal by this work.

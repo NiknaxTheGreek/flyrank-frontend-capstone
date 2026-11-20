@@ -111,7 +111,7 @@ These earlier route-splitting benchmarks used the same runner/browser, without O
 
 ## Regression checks and reproduction
 
-TypeScript checks, all **91 component/server tests across 17 files**, and the production build passed after the final Firebase change. [Recorded local verification](docs/assignment-12/evidence/local-component-tests.txt). The final deployed audit workflow also passed the configured-app smoke checks and five catalogue keyboard checks. The cross-browser test no longer polls brief tool states delivered together by its buffered fixture: a frame-controlled component test verifies those states, while the browser journey verifies pending, completed result and contextual follow-up behavior. A fresh release verification is running for that test-only correction.
+TypeScript checks, all **91 component/server tests across 17 files**, and the production build passed after the final Firebase change. [Recorded local verification](docs/assignment-12/evidence/local-component-tests.txt). The final deployed audit workflow also passed the configured-app smoke checks and five catalogue keyboard checks. The cross-browser test no longer polls brief tool states delivered together by its buffered fixture: a frame-controlled component test verifies those states, while the browser journey verifies pending, completed result and contextual follow-up behavior. [Release verification 44775059755](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44775059755) passed on commit `e399840f852c0d5ce68b5ccab2d7dcaad14395fc`: **91/91 component/server tests and 10/10 browser journeys, zero failures, skips or flaky results**. [Machine-readable verification](docs/assignment-12/evidence/final-release-checks.json).
 
 ```bash
 npm ci
