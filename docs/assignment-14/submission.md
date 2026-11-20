@@ -23,3 +23,7 @@ Learner-provided mobile screenshot of the deployed integrated app. It shows brow
 ![Joker listed in production Favorites on mobile](evidence/production-favorites-joker-mobile-2026-11-20.jpeg)
 
 The learner supplied this after being asked to open Favorites and refresh. The screenshot shows the Favorites navigation selected, Account instead of Sign in, Saved movies with one movie, and Joker. Together with the preceding successful-save screenshot, it closes the live signed-in save → Favorites UI walkthrough. The refresh action itself is not visible in a still image; a separate sign-out/sign-in cycle was not recorded. Real Safari remains unverified, and no Portal submission is claimed.
+
+## Declared device-access limitation
+
+The learner states that they do not have access to Safari or an iPhone. Real Safari and iPhone Safari testing was therefore not performed. Automated desktop and mobile WebKit checks passed, but are not presented as real Apple-device testing. Implementation, production deployment, README and the available evidence pack are complete; Checkpoint 2 submission is pending, with this limitation disclosed. Evaluator acceptance of the limitation has not been confirmed.
