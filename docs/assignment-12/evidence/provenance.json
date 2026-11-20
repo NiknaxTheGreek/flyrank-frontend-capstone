@@ -1,0 +1,7 @@
+{
+  "workflow": "https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44721157406",
+  "sourceCommit": "cda985704a496fccab3bbec3a724768cdec09078",
+  "baselineCommit": "d03e1ec9d7f755e474ef5e084a3da10765666728",
+  "liveAfter": "PENDING: deployment access or production promotion requires user approval.",
+  "note": "Local builds have no OMDb/Firebase credentials. Their home page is the handled unconfigured state. These scores do not prove deployed performance."
+}

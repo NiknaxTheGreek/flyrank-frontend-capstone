@@ -1,0 +1,35 @@
+Local verification of the final routing-focus fix. This is not a GitHub Actions log.
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> flyrank-frontend-capstone@1.0.0 test
+> vitest run --pool=threads --maxWorkers=1 --minWorkers=1
+
+
+ RUN  v2.1.9 /workspace/scratch/8974a928242c/reel-good-a12
+
+ ✓ src/auth-favorites.test.tsx (6 tests) 887ms
+ ✓ src/components/MovieChat.test.tsx (8 tests) 1502ms
+   ✓ politely announces reply sentences while streaming and flushes the final text 1315ms
+ ✓ src/components/NotificationSettings.test.tsx (10 tests) 373ms
+ ✓ src/components/AsyncActionButton.test.tsx (6 tests) 125ms
+ ✓ src/routing.test.tsx (7 tests) 465ms
+ ✓ src/App.test.tsx (4 tests) 559ms
+ ✓ src/components/MovieMessage.test.tsx (10 tests) 100ms
+ ✓ src/live-movies.test.tsx (5 tests) 289ms
+ ✓ src/components/MovieChat.lifecycle.test.tsx (3 tests) 937ms
+   ✓ a mocked stream transitions through every successful tool state and then completes 751ms
+ ✓ src/components/MovieToolCard.test.tsx (9 tests) 103ms
+ ✓ src/pages/MotionLabPage.test.tsx (5 tests) 187ms
+ ✓ src/components/MovieCard.test.tsx (2 tests) 63ms
+ ✓ src/services/favorites.test.ts (3 tests) 5ms
+ ✓ src/components/RouteErrorBoundary.test.tsx (1 test) 73ms
+ ✓ server/movies.test.mjs (5 tests) 23ms
+ ✓ server/movie-chat-handler.test.mjs (4 tests) 17ms
+ ✓ server/chat-rate-limit.test.mjs (3 tests) 10ms
+
+ Test Files  17 passed (17)
+      Tests  91 passed (91)
+   Start at  12:41:53
+   Duration  12.50s (transform 338ms, setup 458ms, collect 1.18s, tests 5.72s, environment 3.05s, prepare 627ms)
+

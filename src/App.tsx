@@ -57,9 +57,9 @@ function AppLayout() {
         </nav>
       </header>
       <main id="main-content" tabIndex={-1}>
-        <RouteErrorBoundary key={pathname}>
         <Suspense fallback={<section className="intro" aria-busy="true"><h1>Loading page</h1><p role="status">Opening your page…</p></section>}>
         <RouteFocus />
+        <RouteErrorBoundary key={pathname}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<HomePage />} />
@@ -70,8 +70,8 @@ function AppLayout() {
           <Route path="/favorites" element={<RequireAuth><FavoritesPage /></RequireAuth>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        </Suspense>
         </RouteErrorBoundary>
+        </Suspense>
       </main>
     </div>
   );
