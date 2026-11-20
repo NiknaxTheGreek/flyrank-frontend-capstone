@@ -50,3 +50,9 @@ Open Movie picker, request recommendations, stop a reply, send a follow-up, requ
 ## History and AI assistance
 
 Focused Conventional Commits preserve earlier assignment work; no shared history was rewritten. The root README records actual ChatGPT contributions, runtime provider, architecture, environment variables, local run commands and known limitations. This status file does not claim portal submission.
+
+## Learner-captured production evidence — 20 November 2026
+
+The learner supplied this Chrome screenshot showing the public production hostname in the address bar and a completed Inception lookup (8.8/10, 148 minutes). This verifies the displayed production result; it does not establish Stop behavior, Safari testing, or sign-in/favorites interactions.
+
+![Production URL and completed Inception lookup](evidence/production-chrome-address-bar-2026-11-20.png)
