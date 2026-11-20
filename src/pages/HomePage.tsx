@@ -126,13 +126,13 @@ function HomePage() {
           </div>
         ) : filteredMovies.length > 0 ? hasSearched ? (
           <div className="movie-grid">
-            {filteredMovies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
+            {filteredMovies.map((movie, index) => (
+              <MovieCard key={movie.id} movie={movie} priority={index < 2} />
             ))}
           </div>
         ) : (
           <div className="genre-sections">
-            {genreGroups.map(({ genre, movies }) => {
+            {genreGroups.map(({ genre, movies }, groupIndex) => {
               if (
                 selectedGenre !== 'All genres' &&
                 selectedGenre !== genre
@@ -155,8 +155,8 @@ function HomePage() {
                   </div>
 
                   <div className="movie-grid">
-                    {movies.map((movie) => (
-                      <MovieCard key={movie.id} movie={movie} />
+                    {movies.map((movie, index) => (
+                      <MovieCard key={movie.id} movie={movie} priority={groupIndex === 0 && index < 2} />
                     ))}
                   </div>
                 </section>

@@ -8,3 +8,4 @@ try {
 } catch {
   process.stderr.write('The test report was not produced. Inspect the preceding failing step.\n');
 }
+

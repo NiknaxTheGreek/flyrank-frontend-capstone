@@ -1,0 +1,54 @@
+import { expect, test } from '@playwright/test';
+
+test('completed labs are reachable from the product navigation and deep links', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  const errors: string[] = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/pick-a-movie');
+  const nav = page.getByRole('navigation', { name: 'Main navigation' });
+  await nav.getByRole('link', { name: 'Shader lab', exact: true }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('A little light.');
+  await expect(page.getByRole('status')).toContainText('Reduced motion: static colour gradient.');
+  await page.getByRole('button', { name: 'Glacier', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Glacier', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await page.reload();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('A little light.');
+  await nav.getByRole('link', { name: 'Planet studio', exact: true }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Small world.');
+  await page.getByRole('radio', { name: 'Ocean' }).check();
+  await expect(page.getByRole('img', { name: 'Ocean world, static illustration with rings' })).toBeVisible();
+  await nav.getByRole('link', { name: 'Accessibility', exact: true }).click();
+  await page.getByRole('button', { name: 'How do I test this with a keyboard?' }).click();
+  await expect(page.getByRole('link', { name: 'Read the W3C disclosure pattern' })).toBeVisible();
+  const custom = page.getByRole('tablist', { name: 'Playground information', exact: true });
+  await custom.getByRole('tab', { name: 'Overview' }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(custom.getByRole('tab', { name: 'Keyboard' })).toBeFocused();
+  await page.getByRole('button', { name: 'Open demo modal', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'Keyboard-friendly modal' })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('button', { name: 'Open demo modal', exact: true })).toBeFocused();
+  await page.getByRole('button', { name: 'Open shadcn modal' }).click();
+  await expect(page.getByRole('dialog', { name: 'shadcn modal comparison' })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('button', { name: 'Open shadcn modal' })).toBeFocused();
+  await page.route('**/api/health', route => route.fulfill({ status: 200, json: { ok: true, message: 'Data fetched successfully.', title: 'A mocked health record' } }));
+  await nav.getByRole('link', { name: 'Health', exact: true }).click();
+  await expect(page.getByRole('status')).toContainText('Data fetched successfully.');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+  await nav.getByRole('link', { name: 'Movie picker', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Help me pick a movie' })).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test('the integrated shader renders real frames and supports pause and palette changes', async ({ page, browserName }) => {
+  test.skip(browserName !== 'chromium', 'GPU rendering is checked in Chromium; reduced-motion fallback is checked in every engine.');
+  await page.goto('/shader-lab');
+  await expect(page.locator('canvas.afterlight__canvas')).toHaveClass(/is-ready/);
+  await page.getByRole('button', { name: 'Pause animation' }).click();
+  await expect(page.getByRole('status')).toContainText('Animation paused.');
+  await page.getByRole('button', { name: 'Ember', exact: true }).click();
+  await expect(page.locator('.afterlight')).toHaveAttribute('data-mood', 'ember');
+  await expect(page.getByRole('button', { name: 'Pause animation' })).toHaveAttribute('aria-pressed', 'true');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+});

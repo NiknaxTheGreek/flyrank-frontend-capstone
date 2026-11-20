@@ -28,3 +28,4 @@ export function MovieMessage({ message, pending = false }: {
     </li>
   );
 }
+

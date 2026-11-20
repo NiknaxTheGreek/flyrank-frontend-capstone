@@ -61,3 +61,4 @@ describe('MovieToolCard', () => {
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
   });
 });
+

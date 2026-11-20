@@ -19,3 +19,4 @@ test('a route rendering exception shows recovery and retries the page', () => {
   expect(screen.getByRole('heading', { name: 'Recovered page' })).toBeTruthy();
   expect(screen.queryByRole('alert')).toBeNull();
 });
+

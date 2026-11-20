@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-19T19:58:12.402Z",
+  "source": "https://reel-good-planet-studio.vercel.app",
+  "browser": "145.0.7632.6",
+  "environment": "Headless Linux Chromium, software WebGL. Mobile is viewport/touch emulation, not a physical phone.",
+  "assets": [
+    {
+      "name": "PlanetCanvas-DhiLScEy.js",
+      "bytes": 531980,
+      "gzipBytes": 133585
+    },
+    {
+      "name": "PlanetStudioPage-BibKbWAb.css",
+      "bytes": 8568,
+      "gzipBytes": 2544
+    },
+    {
+      "name": "PlanetStudioPage-CUQj7o-s.js",
+      "bytes": 9598,
+      "gzipBytes": 3742
+    },
+    {
+      "name": "index-CwQkZjKY.css",
+      "bytes": 23546,
+      "gzipBytes": 5942
+    },
+    {
+      "name": "index-Dg5O1gxG.js",
+      "bytes": 651037,
+      "gzipBytes": 167531
+    }
+  ],
+  "publicAssets": [
+    {
+      "name": "PlanetCanvas-D-NMxvK7.js",
+      "bytes": 531937,
+      "gzipBytes": 133558
+    },
+    {
+      "name": "planet-Bu0I5-oa.js",
+      "bytes": 153276,
+      "gzipBytes": 49851
+    },
+    {
+      "name": "planet-DeQQV08J.css",
+      "bytes": 9995,
+      "gzipBytes": 3001
+    }
+  ],
+  "runs": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "initialEngineRequests": 0,
+      "firstSceneMs": 523,
+      "dimensions": {
+        "width": 898,
+        "height": 709,
+        "cssWidth": 898,
+        "cssHeight": 709,
+        "triangles": 8560,
+        "drawCalls": 17
+      },
+      "idleFramesInOneSecond": 0,
+      "animationFps": 22.7,
+      "hiddenFramesIn700ms": 0,
+      "horizontalOverflow": false,
+      "touch": null,
+      "errors": []
+    },
+    {
+      "name": "mobile",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "initialEngineRequests": 0,
+      "firstSceneMs": 444,
+      "dimensions": {
+        "width": 341,
+        "height": 375,
+        "cssWidth": 341,
+        "cssHeight": 375,
+        "triangles": 8560,
+        "drawCalls": 17
+      },
+      "idleFramesInOneSecond": 0,
+      "animationFps": 22.8,
+      "hiddenFramesIn700ms": 0,
+      "horizontalOverflow": false,
+      "touch": {
+        "dragRedrew": true,
+        "pinchChangedDistance": true
+      },
+      "errors": []
+    }
+  ],
+  "reducedMotion": {
+    "canvasCount": 0,
+    "engineRequests": 0
+  }
+}

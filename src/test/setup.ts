@@ -15,3 +15,4 @@ afterEach(() => {
   vi.unstubAllGlobals();
   expect(unexpectedFetch).not.toHaveBeenCalled();
 });
+

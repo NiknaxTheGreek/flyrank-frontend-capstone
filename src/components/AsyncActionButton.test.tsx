@@ -98,3 +98,4 @@ test('cleans up the success reset timer on unmount', async () => {
   view.unmount();
   expect(vi.getTimerCount()).toBe(0);
 });
+

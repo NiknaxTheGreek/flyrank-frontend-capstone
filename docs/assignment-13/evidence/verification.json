@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "browser": "151.0.7922.34",
+  "desktopBuffer": [
+    1589,
+    1006
+  ],
+  "checks": [
+    {
+      "name": "Real WebGL rendering and resolution caps at desktop DPR 2",
+      "buffer": [
+        1589,
+        1006
+      ],
+      "passed": true
+    },
+    {
+      "name": "GPU draw rate stays within the 30 fps budget",
+      "draws": 2,
+      "seconds": 1.1004576850000003,
+      "passed": true
+    },
+    {
+      "name": "Pause stops draws; colour redraws a still frame; Space resumes",
+      "passed": true
+    },
+    {
+      "name": "Pointer reaches the shader as a smoothed uniform",
+      "passed": true
+    },
+    {
+      "name": "Offscreen observer stops drawing and resumes when in view",
+      "passed": true
+    },
+    {
+      "name": "Live OS motion preference changes stop and restart the renderer cleanly",
+      "passed": true
+    },
+    {
+      "name": "Route cleanup deletes GPU program and stops callbacks; return works",
+      "passed": true
+    },
+    {
+      "name": "GPU context loss exposes a working static fallback",
+      "passed": true
+    },
+    {
+      "name": "Reduced motion makes zero WebGL calls and no shader request; all actions reachable by keyboard",
+      "passed": true
+    },
+    {
+      "name": "Touch controls, DPR 3 cap and no horizontal overflow at 320/360/375/768px",
+      "buffer": [
+        562,
+        1219
+      ],
+      "passed": true
+    },
+    {
+      "name": "Actual hidden document cancels scheduled frames and resumes without a time jump",
+      "passed": true
+    },
+    {
+      "name": "Zero application console errors during all checks",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

@@ -42,3 +42,4 @@ export function MovieToolCard({ part, interrupted }: {
     </section>
   );
 }
+

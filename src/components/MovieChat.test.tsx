@@ -1,8 +1,28 @@
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within, waitFor } from '@testing-library/react';
 import { afterEach, expect, test, vi } from 'vitest';
 import MovieChat from './MovieChat';
 
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); vi.useRealTimers(); });
+
+test('politely announces reply sentences while streaming and flushes the final text', async () => {
+  let push!: (event: object) => void;
+  vi.stubGlobal('fetch', vi.fn(async () => new Response(new ReadableStream({
+    start(controller) {
+      push = event => controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify(event)}\n\n`));
+    },
+  }), { headers: { 'Content-Type': 'text/event-stream' } })));
+  render(<MovieChat />);
+  fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Suggest sci-fi' } });
+  fireEvent.click(screen.getByRole('button', { name: /^Send$/ }));
+  await waitFor(() => expect(push).toBeTypeOf('function'));
+  push({ type: 'text', delta: 'Try Arrival. A thoughtful science-fiction film' });
+  await waitFor(() => expect(screen.getByRole('status').textContent).toContain('Try Arrival.'), { timeout: 2500 });
+  expect(screen.getByRole('status').getAttribute('aria-live')).toBe('polite');
+  expect(screen.getByRole('status').getAttribute('aria-atomic')).toBe('true');
+  push({ type: 'done' });
+  await screen.findByText('Movie recommendations ready.');
+  expect(screen.getByRole('status').textContent).toContain('A thoughtful science-fiction film');
+});
 
 test('shows thinking, preserves stopped text and includes it in the next request', async () => {
   let stream: ReadableStreamDefaultController<Uint8Array>;
@@ -92,7 +112,7 @@ test.each(['network', 'rate limit', 'malformed tool'])('%s failure offers recove
   if (kind === 'malformed tool') expect(screen.getByRole('alert').textContent).toContain('incomplete movie details');
   fireEvent.click(screen.getByRole('button', { name: 'Retry failed message' }));
   await screen.findByText('Movie recommendations ready.');
-  expect(screen.getByText('Recovered reply')).toBeTruthy();
+  expect(within(screen.getByRole('region', { name: 'Movie conversation' })).getByText('Recovered reply')).toBeTruthy();
   expect(screen.queryByRole('alert')).toBeNull();
   expect(fetcher).toHaveBeenCalledTimes(2);
   expect(screen.getAllByText('Find Arrival', { selector: 'p' })).toHaveLength(1);

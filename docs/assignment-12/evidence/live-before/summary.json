@@ -1,0 +1,2465 @@
+[
+  {
+    "name": "chat",
+    "url": "https://flyrank-frontend-capstone-snowy.vercel.app/pick-a-movie",
+    "lighthouse": "13.6.0",
+    "fetchedAt": "2026-11-20T10:42:15.667Z",
+    "formFactor": "mobile",
+    "scores": {
+      "performance": 97,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 1005.67624,
+        "display": "1.0 s"
+      },
+      "largest-contentful-paint": {
+        "value": 1005.67624,
+        "display": "1.0 s"
+      },
+      "total-blocking-time": {
+        "value": 198,
+        "display": "200 ms"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "display": "0"
+      },
+      "speed-index": {
+        "value": 2174.599171999972,
+        "display": "2.2 s"
+      },
+      "total-byte-weight": {
+        "value": 317750,
+        "display": "Total size was 310 KiB"
+      }
+    },
+    "failedAudits": [
+      {
+        "id": "speed-index",
+        "title": "Speed Index",
+        "score": 0.99,
+        "display": "2.2 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.9,
+        "display": "200 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.76,
+        "display": "170 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.85,
+        "display": "4.2 s"
+      },
+      {
+        "id": "valid-source-maps",
+        "title": "Missing source maps for large first-party JavaScript",
+        "score": 0,
+        "items": [
+          {
+            "scriptUrl": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-BtaCVtzm.js",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Large JavaScript file is missing a source map"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "score": 0,
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,0,HEADER,0,A",
+              "selector": "div#root > div.home > header.site-header > a.brand",
+              "boundingRect": {
+                "top": 16,
+                "bottom": 50,
+                "left": 16,
+                "right": 145,
+                "width": 129,
+                "height": 34
+              },
+              "snippet": "<a class=\"brand\" aria-label=\"Reel Good home\" href=\"/\">",
+              "nodeLabel": "R\nReel Good",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 32 KiB",
+        "items": [
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-BtaCVtzm.js",
+            "totalBytes": 171662,
+            "wastedBytes": 32471,
+            "wastedPercent": 18.915815639405576
+          }
+        ]
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 149 KiB",
+        "items": [
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-BtaCVtzm.js",
+            "totalBytes": 171641,
+            "wastedBytes": 93964,
+            "wastedPercent": 54.74453790566488
+          },
+          {
+            "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+            "totalBytes": 95214,
+            "wastedBytes": 58564,
+            "wastedPercent": 61.50764208339516
+          }
+        ]
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "display": "Est savings of 80 KiB",
+        "items": [
+          {
+            "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+            "cacheLifetimeMs": 1800000,
+            "totalBytes": 95290,
+            "wastedBytes": 82187.625
+          }
+        ]
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0,
+        "items": [
+          {
+            "type": "list-section",
+            "value": {
+              "type": "network-tree",
+              "chains": {
+                "DA54F827DA9CBD4809E67321818B21F4": {
+                  "url": "https://flyrank-frontend-capstone-snowy.vercel.app/pick-a-movie",
+                  "navStartToEndTime": 467,
+                  "transferSize": 891,
+                  "isLongest": true,
+                  "children": {
+                    "4021.9": {
+                      "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+                      "navStartToEndTime": 1133,
+                      "transferSize": 95290,
+                      "isLongest": true,
+                      "children": {
+                        "4021.11": {
+                          "url": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/getProjectConfig?key=AIzaSyBRC7hQDXSbs0yLmK1pJTLWHGFcjYOXe4o&cb=1795171336926",
+                          "navStartToEndTime": 1317,
+                          "transferSize": 391,
+                          "isLongest": true,
+                          "children": {}
+                        }
+                      }
+                    },
+                    "4021.2": {
+                      "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-BtaCVtzm.js",
+                      "navStartToEndTime": 757,
+                      "transferSize": 171799,
+                      "children": {}
+                    },
+                    "4021.3": {
+                      "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-CwQkZjKY.css",
+                      "navStartToEndTime": 720,
+                      "transferSize": 6609,
+                      "children": {}
+                    }
+                  }
+                }
+              },
+              "longestChain": {
+                "duration": 1317
+              }
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnected origins",
+            "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+            "value": {
+              "type": "text",
+              "value": "No origins were preconnected"
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnect candidates",
+            "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4",
+            "value": {
+              "type": "text",
+              "value": "No additional origins are good candidates for preconnecting"
+            }
+          }
+        ]
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0.5,
+        "items": [
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-CwQkZjKY.css",
+            "totalBytes": 6609
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "home",
+    "url": "https://flyrank-frontend-capstone-snowy.vercel.app/",
+    "lighthouse": "13.6.0",
+    "fetchedAt": "2026-11-20T10:42:23.215Z",
+    "formFactor": "mobile",
+    "scores": {
+      "performance": 81,
+      "accessibility": 96,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 896.8702000000002,
+        "display": "0.9 s"
+      },
+      "largest-contentful-paint": {
+        "value": 5006.813000000001,
+        "display": "5.0 s"
+      },
+      "total-blocking-time": {
+        "value": 69,
+        "display": "70 ms"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "display": "0"
+      },
+      "speed-index": {
+        "value": 2830.2837765329446,
+        "display": "2.8 s"
+      },
+      "total-byte-weight": {
+        "value": 757972,
+        "display": "Total size was 740 KiB"
+      }
+    },
+    "failedAudits": [
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.27,
+        "display": "5.0 s"
+      },
+      {
+        "id": "speed-index",
+        "title": "Speed Index",
+        "score": 0.95,
+        "display": "2.8 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.99,
+        "display": "70 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.94,
+        "display": "110 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.76,
+        "display": "5.0 s"
+      },
+      {
+        "id": "valid-source-maps",
+        "title": "Missing source maps for large first-party JavaScript",
+        "score": 0,
+        "items": [
+          {
+            "scriptUrl": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-BtaCVtzm.js",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Large JavaScript file is missing a source map"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "score": 0,
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,0,HEADER,0,A",
+              "selector": "div#root > div.home > header.site-header > a.brand",
+              "boundingRect": {
+                "top": 16,
+                "bottom": 50,
+                "left": 16,
+                "right": 145,
+                "width": 129,
+                "height": 34
+              },
+              "snippet": "<a class=\"brand\" aria-label=\"Reel Good home\" href=\"/\">",
+              "nodeLabel": "R\nReel Good",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 645,
+                "bottom": 997,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 351
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Shawshank Redemption\" href=\"/movies/tt0111161\">",
+              "nodeLabel": "★ 9.3\nThe Shawshank Redemption\n\n1994\n·\nDrama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,1,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 645,
+                "bottom": 976,
+                "left": 213,
+                "right": 396,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Joker\" href=\"/movies/tt7286456\">",
+              "nodeLabel": "★ 8.3\nJoker\n\n2019\n·\nDrama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 1240,
+                "bottom": 1570,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Godfather\" href=\"/movies/tt0068646\">",
+              "nodeLabel": "★ 9.2\nThe Godfather\n\n1972\n·\nCrime, Drama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,1,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 1240,
+                "bottom": 1570,
+                "left": 213,
+                "right": 396,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Pulp Fiction\" href=\"/movies/tt0110912\">",
+              "nodeLabel": "★ 8.8\nPulp Fiction\n\n1994\n·\nCrime, Drama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-5-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,2,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 1813,
+                "bottom": 2143,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Dark Knight\" href=\"/movies/tt0468569\">",
+              "nodeLabel": "★ 9.1\nThe Dark Knight\n\n2008\n·\nCrime, Thriller",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-6-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,3,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 2386,
+                "bottom": 2736,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Schindler's List\" href=\"/movies/tt0108052\">",
+              "nodeLabel": "★ 9.0\nSchindler's List\n\n1994\n·\nBiography, Drama, History",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-7-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 2979,
+                "bottom": 3350,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 371
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Lord of the Rings: The Return of the King\" href=\"/movies/tt0167260\">",
+              "nodeLabel": "★ 9.0\nThe Lord of the Rings: The Return of the King\n\n2003\n·\nAdventure, Drama, F…",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-8-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,1,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 2979,
+                "bottom": 3371,
+                "left": 213,
+                "right": 396,
+                "width": 183,
+                "height": 392
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Lord of the Rings: The Fellowship of the Ring\" href=\"/movies/tt0120737\">",
+              "nodeLabel": "★ 8.9\nThe Lord of the Rings: The Fellowship of the Ring\n\n2001\n·\nAdventure, Dram…",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-9-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,5,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 3614,
+                "bottom": 3944,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Fight Club\" href=\"/movies/tt0137523\">",
+              "nodeLabel": "★ 8.8\nFight Club\n\n1999\n·\nCrime, Drama, Thriller",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-10-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,6,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 4187,
+                "bottom": 4537,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Inception\" href=\"/movies/tt1375666\">",
+              "nodeLabel": "★ 8.8\nInception\n\n2010\n·\nAdventure, Sci-Fi, Thriller",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-11-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,7,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 4780,
+                "bottom": 5110,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Forrest Gump\" href=\"/movies/tt0109830\">",
+              "nodeLabel": "★ 8.8\nForrest Gump\n\n1994\n·\nDrama, Romance",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-12-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,8,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 5353,
+                "bottom": 5683,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Matrix\" href=\"/movies/tt0133093\">",
+              "nodeLabel": "★ 8.7\nThe Matrix\n\n1999\n·\nAction, Sci-Fi",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-13-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,9,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 5926,
+                "bottom": 6276,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View GoodFellas\" href=\"/movies/tt0099685\">",
+              "nodeLabel": "★ 8.7\nGoodFellas\n\n1990\n·\nBiography, Crime, Drama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-14-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,10,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 6519,
+                "bottom": 6849,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Interstellar\" href=\"/movies/tt0816692\">",
+              "nodeLabel": "★ 8.7\nInterstellar\n\n2014\n·\nAdventure, Sci-Fi",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-15-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,11,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 7093,
+                "bottom": 7484,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 392
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Star Wars: Episode V - The Empire Strikes Back\" href=\"/movies/tt0080684\">",
+              "nodeLabel": "★ 8.7\nStar Wars: Episode V - The Empire Strikes Back\n\n1980\n·\nAdventure, Fantasy…",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-16-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,12,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 7727,
+                "bottom": 8098,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 371
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Star Wars: Episode IV - A New Hope\" href=\"/movies/tt0076759\">",
+              "nodeLabel": "★ 8.6\nStar Wars: Episode IV - A New Hope\n\n1977\n·\nAction, Adventure, Fantasy",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-17-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,13,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 8341,
+                "bottom": 8691,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Spirited Away\" href=\"/movies/tt0245429\">",
+              "nodeLabel": "★ 8.6\nSpirited Away\n\n2003\n·\nAnimation, Adventure, Family",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-18-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,13,SECTION,1,DIV,1,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 8341,
+                "bottom": 8691,
+                "left": 213,
+                "right": 396,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View WALL·E\" href=\"/movies/tt0910970\">",
+              "nodeLabel": "★ 8.4\nWALL·E\n\n2008\n·\nAnimation, Adventure, Family",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-19-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,14,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 8934,
+                "bottom": 9284,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View The Lion King\" href=\"/movies/tt0110357\">",
+              "nodeLabel": "★ 8.5\nThe Lion King\n\n1994\n·\nAnimation, Adventure, Drama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-20-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,15,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 9527,
+                "bottom": 9877,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Avengers: Endgame\" href=\"/movies/tt4154796\">",
+              "nodeLabel": "★ 8.4\nAvengers: Endgame\n\n2019\n·\nAction, Adventure, Sci-Fi",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-21-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,16,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 10120,
+                "bottom": 10450,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Parasite\" href=\"/movies/tt6751668\">",
+              "nodeLabel": "★ 8.5\nParasite\n\n2019\n·\nDrama, Thriller",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-22-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,17,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 10693,
+                "bottom": 11023,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Django Unchained\" href=\"/movies/tt1853728\">",
+              "nodeLabel": "★ 8.5\nDjango Unchained\n\n2012\n·\nDrama, Western",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-23-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,18,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 11266,
+                "bottom": 11597,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 330
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Whiplash\" href=\"/movies/tt2582802\">",
+              "nodeLabel": "★ 8.5\nWhiplash\n\n2014\n·\nDrama, Music",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-24-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,19,SECTION,1,DIV,0,ARTICLE,0,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-link",
+              "boundingRect": {
+                "top": 11840,
+                "bottom": 12190,
+                "left": 16,
+                "right": 199,
+                "width": 183,
+                "height": 350
+              },
+              "snippet": "<a class=\"movie-link\" aria-label=\"View Gladiator\" href=\"/movies/tt0172495\">",
+              "nodeLabel": "★ 8.5\nGladiator\n\n2000\n·\nAction, Adventure, Drama",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "target-size",
+        "title": "Touch targets do not have sufficient size or spacing.",
+        "score": 0,
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-25-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 1099,
+                "bottom": 1119,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0111161/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for The Shawshank Redemption\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-26-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 1119,
+                      "bottom": 1163,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save The Shawshank Redemption\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-27-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,1,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 1099,
+                "bottom": 1119,
+                "left": 213,
+                "right": 307,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt7286456/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Joker\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-28-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,1,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 1119,
+                      "bottom": 1163,
+                      "left": 213,
+                      "right": 396,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Joker\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-29-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 1672,
+                "bottom": 1692,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0068646/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for The Godfather\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-30-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 1692,
+                      "bottom": 1736,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save The Godfather\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-31-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,1,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 1672,
+                "bottom": 1692,
+                "left": 213,
+                "right": 307,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0110912/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Pulp Fiction\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-32-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,1,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 1692,
+                      "bottom": 1736,
+                      "left": 213,
+                      "right": 396,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Pulp Fiction\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-33-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,2,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 2245,
+                "bottom": 2266,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0468569/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for The Dark Knight\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-34-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,2,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 2266,
+                      "bottom": 2310,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save The Dark Knight\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-35-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,3,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 2838,
+                "bottom": 2859,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0108052/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Schindler's List\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-36-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,3,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 2859,
+                      "bottom": 2903,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Schindler's List\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-37-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 3473,
+                "bottom": 3493,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0167260/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for The Lord of the Rings: The Return of the King\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-38-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 3493,
+                      "bottom": 3537,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save The Lord of the Rings: The Return of the King\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-39-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,1,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 3473,
+                "bottom": 3493,
+                "left": 213,
+                "right": 307,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0120737/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for The Lord of the Rings: The Fellowship of the Ring\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-40-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,1,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 3493,
+                      "bottom": 3537,
+                      "left": 213,
+                      "right": 396,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save The Lord of the Rings: The Fellowship of the Ring\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-41-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,5,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 4046,
+                "bottom": 4067,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0137523/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Fight Club\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-42-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,5,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 4067,
+                      "bottom": 4111,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Fight Club\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-43-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,6,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 4639,
+                "bottom": 4660,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt1375666/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Inception\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-44-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,6,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 4660,
+                      "bottom": 4704,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Inception\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-45-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,7,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 5212,
+                "bottom": 5233,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0109830/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Forrest Gump\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-46-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,7,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 5233,
+                      "bottom": 5277,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Forrest Gump\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-47-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,8,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 5786,
+                "bottom": 5806,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0133093/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for The Matrix\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-48-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,8,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 5806,
+                      "bottom": 5850,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save The Matrix\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-49-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,9,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 6379,
+                "bottom": 6399,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0099685/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for GoodFellas\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-50-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,9,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 6399,
+                      "bottom": 6443,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save GoodFellas\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-51-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,10,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 6952,
+                "bottom": 6972,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0816692/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Interstellar\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-52-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,10,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 6972,
+                      "bottom": 7016,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Interstellar\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-53-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,11,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 7587,
+                "bottom": 7607,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0080684/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Star Wars: Episode V - The Empire Strikes Back\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-54-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,11,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 7607,
+                      "bottom": 7651,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Star Wars: Episode V - The Empire Strikes Back\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-55-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,12,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 8200,
+                "bottom": 8221,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0076759/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Star Wars: Episode IV - A New Hope\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-56-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,12,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 8221,
+                      "bottom": 8265,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Star Wars: Episode IV - A New Hope\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-57-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,13,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 8793,
+                "bottom": 8814,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0245429/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Spirited Away\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-58-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,13,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 8814,
+                      "bottom": 8858,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Spirited Away\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-59-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,13,SECTION,1,DIV,1,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 8793,
+                "bottom": 8814,
+                "left": 213,
+                "right": 307,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0910970/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for WALL·E\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-60-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,13,SECTION,1,DIV,1,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 8814,
+                      "bottom": 8858,
+                      "left": 213,
+                      "right": 396,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save WALL·E\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-61-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,14,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 9386,
+                "bottom": 9407,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0110357/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for The Lion King\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-62-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,14,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 9407,
+                      "bottom": 9451,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save The Lion King\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-63-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,15,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 9979,
+                "bottom": 10000,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt4154796/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Avengers: Endgame\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-64-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,15,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 10000,
+                      "bottom": 10044,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Avengers: Endgame\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-65-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,16,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 10552,
+                "bottom": 10573,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt6751668/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Parasite\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-66-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,16,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 10573,
+                      "bottom": 10617,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Parasite\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-67-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,17,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 11126,
+                "bottom": 11146,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt1853728/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Django Unchained\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-68-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,17,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 11146,
+                      "bottom": 11190,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Django Unchained\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-69-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,18,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 11699,
+                "bottom": 11719,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt2582802/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Whiplash\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-70-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,18,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 11719,
+                      "bottom": 11763,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Whiplash\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-71-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,19,SECTION,1,DIV,0,ARTICLE,2,A",
+              "selector": "section.genre-section > div.movie-grid > article.movie-card > a.movie-imdb-link",
+              "boundingRect": {
+                "top": 12292,
+                "bottom": 12312,
+                "left": 16,
+                "right": 110,
+                "width": 94,
+                "height": 20
+              },
+              "snippet": "<a class=\"movie-imdb-link\" href=\"https://www.imdb.com/title/tt0172495/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"IMDb profile for Gladiator\">",
+              "nodeLabel": "IMDb profile ↗",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (94.3px by 20.4px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-72-A",
+                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,19,SECTION,1,DIV,0,ARTICLE,3,A",
+                    "selector": "section.genre-section > div.movie-grid > article.movie-card > a.button",
+                    "boundingRect": {
+                      "top": 12312,
+                      "bottom": 12356,
+                      "left": 16,
+                      "right": 199,
+                      "width": 183,
+                      "height": 44
+                    },
+                    "snippet": "<a class=\"button button-secondary favorite-button\" aria-label=\"Sign in to save Gladiator\" href=\"/account?returnTo=%2F\">",
+                    "nodeLabel": "Sign in to save"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0,
+        "display": "Est savings of 32 KiB",
+        "items": [
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-BtaCVtzm.js",
+            "totalBytes": 171662,
+            "wastedBytes": 32471,
+            "wastedPercent": 18.915815639405576
+          }
+        ]
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0,
+        "display": "Est savings of 147 KiB",
+        "items": [
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-BtaCVtzm.js",
+            "totalBytes": 171641,
+            "wastedBytes": 91904,
+            "wastedPercent": 53.544146959004465
+          },
+          {
+            "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+            "totalBytes": 95165,
+            "wastedBytes": 58534,
+            "wastedPercent": 61.50764208339516
+          }
+        ]
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0,
+        "display": "Est savings of 80 KiB",
+        "items": [
+          {
+            "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+            "cacheLifetimeMs": 1800000,
+            "totalBytes": 95438,
+            "wastedBytes": 82315.27500000001
+          }
+        ]
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 187 KiB",
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-0-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,1,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 2980,
+                "bottom": 3253,
+                "left": 214,
+                "right": 395,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMT…\" alt=\"Poster for The Lord of the Rings: The Fellowship of the Ring\" loading=\"lazy\">",
+              "nodeLabel": "Poster for The Lord of the Rings: The Fellowship of the Ring"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_QL75_UX380_CR0,1,380,562_.jpg",
+            "totalBytes": 58527,
+            "wastedBytes": 32900,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 23703
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 15457
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-1-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,1,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 1241,
+                "bottom": 1513,
+                "left": 214,
+                "right": 395,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZG…\" alt=\"Poster for Pulp Fiction\" loading=\"lazy\">",
+              "nodeLabel": "Poster for Pulp Fiction"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_QL75_UY562_CR3,0,380,562_.jpg",
+            "totalBytes": 58164,
+            "wastedBytes": 32537,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 23340
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 15361
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-2-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,3,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 2387,
+                "bottom": 2660,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BNjM1ZDQxYWUtMzQyZS00MTE1LWJmZGYtNG…\" alt=\"Poster for Schindler's List\" loading=\"lazy\">",
+              "nodeLabel": "Poster for Schindler's List"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BNjM1ZDQxYWUtMzQyZS00MTE1LWJmZGYtNGUyNTdlYjM3ZmVmXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+            "totalBytes": 56420,
+            "wastedBytes": 30793,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 21596
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 14900
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-3-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,4,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 2980,
+                "bottom": 3253,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BMTZkMjBjNWMtZGI5OC00MGU0LTk4ZTItOD…\" alt=\"Poster for The Lord of the Rings: The Return of the King\" loading=\"lazy\">",
+              "nodeLabel": "Poster for The Lord of the Rings: The Return of the King"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BMTZkMjBjNWMtZGI5OC00MGU0LTk4ZTItODg2NWM3NTVmNWQ4XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+            "totalBytes": 48043,
+            "wastedBytes": 22416,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 13219
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 12688
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-4-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 646,
+                "bottom": 919,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2…\" alt=\"Poster for The Shawshank Redemption\" loading=\"lazy\">",
+              "nodeLabel": "Poster for The Shawshank Redemption"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+            "totalBytes": 45916,
+            "wastedBytes": 20289,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 11092
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 12126
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-5-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,1,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 646,
+                "bottom": 919,
+                "left": 214,
+                "right": 395,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BNzY3OWQ5NDktNWQ2OC00ZjdlLThkMmItMD…\" alt=\"Poster for Joker\" loading=\"lazy\">",
+              "nodeLabel": "Poster for Joker"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BNzY3OWQ5NDktNWQ2OC00ZjdlLThkMmItMDhhNDk3NTFiZGU4XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+            "totalBytes": 43722,
+            "wastedBytes": 18095,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 8898
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 11547
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-6-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,2,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 1814,
+                "bottom": 2086,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwOD…\" alt=\"Poster for The Dark Knight\" loading=\"lazy\">",
+              "nodeLabel": "Poster for The Dark Knight"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+            "totalBytes": 40337,
+            "wastedBytes": 14710,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image’s download size",
+                  "wastedBytes": 5513
+                },
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 10653
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-7-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,5,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 3615,
+                "bottom": 3887,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3Ny00MjU3LTg2YWEtNm…\" alt=\"Poster for Fight Club\" loading=\"lazy\">",
+              "nodeLabel": "Poster for Fight Club"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3Ny00MjU3LTg2YWEtNmEyYjBiMjI1Y2M5XkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+            "totalBytes": 38374,
+            "wastedBytes": 12747,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 10134
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-8-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,1,SECTION,1,DIV,0,ARTICLE,0,A,0,DIV,0,IMG",
+              "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+              "boundingRect": {
+                "top": 1241,
+                "bottom": 1513,
+                "left": 17,
+                "right": 198,
+                "width": 181,
+                "height": 273
+              },
+              "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2…\" alt=\"Poster for The Godfather\" loading=\"lazy\">",
+              "nodeLabel": "Poster for The Godfather"
+            },
+            "url": "https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2QwZWQ2NjdhZTE5XkEyXkFqcGc@._V1_QL75_UY562_CR8,0,380,562_.jpg",
+            "totalBytes": 24970,
+            "wastedBytes": 6594,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "This image file is larger than it needs to be (372x562) for its displayed dimensions (322x477). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 6594
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery",
+        "score": 0,
+        "items": [
+          {
+            "type": "checklist",
+            "items": {
+              "priorityHinted": {
+                "label": "fetchpriority=high should be applied",
+                "value": false
+              },
+              "requestDiscoverable": {
+                "label": "Request is discoverable in initial document",
+                "value": false
+              },
+              "eagerlyLoaded": {
+                "label": "LCP resources shouldn’t use loading=lazy",
+                "value": false
+              }
+            }
+          },
+          {
+            "type": "node",
+            "lhId": "page-5-IMG",
+            "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,MAIN,1,SECTION,3,DIV,0,SECTION,1,DIV,1,ARTICLE,0,A,0,DIV,0,IMG",
+            "selector": "article.movie-card > a.movie-link > div.poster-frame > img.movie-poster",
+            "boundingRect": {
+              "top": 646,
+              "bottom": 919,
+              "left": 214,
+              "right": 395,
+              "width": 181,
+              "height": 273
+            },
+            "snippet": "<img class=\"movie-poster\" src=\"https://m.media-amazon.com/images/M/MV5BNzY3OWQ5NDktNWQ2OC00ZjdlLThkMmItMD…\" alt=\"Poster for Joker\" loading=\"lazy\">",
+            "nodeLabel": "Poster for Joker"
+          }
+        ]
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0,
+        "items": [
+          {
+            "type": "list-section",
+            "value": {
+              "type": "network-tree",
+              "chains": {
+                "1D6BFF0AFF42A8FB13B94553B2B68629": {
+                  "url": "https://flyrank-frontend-capstone-snowy.vercel.app/",
+                  "navStartToEndTime": 276,
+                  "transferSize": 692,
+                  "isLongest": true,
+                  "children": {
+                    "4083.2": {
+                      "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-BtaCVtzm.js",
+                      "navStartToEndTime": 354,
+                      "transferSize": 171717,
+                      "isLongest": true,
+                      "children": {
+                        "4083.34": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt2582802",
+                          "navStartToEndTime": 2292,
+                          "transferSize": 1102,
+                          "isLongest": true,
+                          "children": {}
+                        },
+                        "4083.35": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0172495",
+                          "navStartToEndTime": 2205,
+                          "transferSize": 879,
+                          "children": {}
+                        },
+                        "4083.33": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt1853728",
+                          "navStartToEndTime": 2205,
+                          "transferSize": 969,
+                          "children": {}
+                        },
+                        "4083.32": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt6751668",
+                          "navStartToEndTime": 2048,
+                          "transferSize": 1341,
+                          "children": {}
+                        },
+                        "4083.30": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt4154796",
+                          "navStartToEndTime": 2044,
+                          "transferSize": 745,
+                          "children": {}
+                        },
+                        "4083.31": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt7286456",
+                          "navStartToEndTime": 2039,
+                          "transferSize": 795,
+                          "children": {}
+                        },
+                        "4083.29": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0910970",
+                          "navStartToEndTime": 1901,
+                          "transferSize": 1303,
+                          "children": {}
+                        },
+                        "4083.28": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0110357",
+                          "navStartToEndTime": 1899,
+                          "transferSize": 842,
+                          "children": {}
+                        },
+                        "4083.27": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0245429",
+                          "navStartToEndTime": 1897,
+                          "transferSize": 807,
+                          "children": {}
+                        },
+                        "4083.25": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0080684",
+                          "navStartToEndTime": 1756,
+                          "transferSize": 880,
+                          "children": {}
+                        },
+                        "4083.26": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0076759",
+                          "navStartToEndTime": 1748,
+                          "transferSize": 898,
+                          "children": {}
+                        },
+                        "4083.24": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0816692",
+                          "navStartToEndTime": 1748,
+                          "transferSize": 809,
+                          "children": {}
+                        },
+                        "4083.23": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0099685",
+                          "navStartToEndTime": 1604,
+                          "transferSize": 809,
+                          "children": {}
+                        },
+                        "4083.22": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0133093",
+                          "navStartToEndTime": 1598,
+                          "transferSize": 903,
+                          "children": {}
+                        },
+                        "4083.21": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0109830",
+                          "navStartToEndTime": 1592,
+                          "transferSize": 784,
+                          "children": {}
+                        },
+                        "4083.19": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0137523",
+                          "navStartToEndTime": 1454,
+                          "transferSize": 846,
+                          "children": {}
+                        },
+                        "4083.18": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0120737",
+                          "navStartToEndTime": 1444,
+                          "transferSize": 889,
+                          "children": {}
+                        },
+                        "4083.20": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt1375666",
+                          "navStartToEndTime": 1432,
+                          "transferSize": 877,
+                          "children": {}
+                        },
+                        "4083.15": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0108052",
+                          "navStartToEndTime": 1293,
+                          "transferSize": 774,
+                          "children": {}
+                        },
+                        "4083.16": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0167260",
+                          "navStartToEndTime": 1285,
+                          "transferSize": 808,
+                          "children": {}
+                        },
+                        "4083.17": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0110912",
+                          "navStartToEndTime": 1278,
+                          "transferSize": 923,
+                          "children": {}
+                        },
+                        "4083.7": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0068646",
+                          "navStartToEndTime": 1136,
+                          "transferSize": 789,
+                          "children": {}
+                        },
+                        "4083.6": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0111161",
+                          "navStartToEndTime": 1127,
+                          "transferSize": 738,
+                          "children": {}
+                        },
+                        "4083.8": {
+                          "url": "https://flyrank-frontend-capstone-snowy.vercel.app/api/movies?id=tt0468569",
+                          "navStartToEndTime": 1093,
+                          "transferSize": 970,
+                          "children": {}
+                        }
+                      }
+                    },
+                    "4083.12": {
+                      "url": "https://reel-good-60497.firebaseapp.com/__/auth/iframe.js",
+                      "navStartToEndTime": 513,
+                      "transferSize": 95438,
+                      "children": {
+                        "4083.14": {
+                          "url": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/getProjectConfig?key=AIzaSyBRC7hQDXSbs0yLmK1pJTLWHGFcjYOXe4o&cb=1795171343776",
+                          "navStartToEndTime": 646,
+                          "transferSize": 160,
+                          "children": {}
+                        }
+                      }
+                    },
+                    "4083.3": {
+                      "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-CwQkZjKY.css",
+                      "navStartToEndTime": 307,
+                      "transferSize": 6529,
+                      "children": {}
+                    }
+                  }
+                }
+              },
+              "longestChain": {
+                "duration": 2292
+              }
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnected origins",
+            "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+            "value": {
+              "type": "text",
+              "value": "No origins were preconnected"
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnect candidates",
+            "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4",
+            "value": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "origin",
+                  "valueType": "text",
+                  "label": "Origin"
+                },
+                {
+                  "key": "wastedMs",
+                  "valueType": "ms",
+                  "label": "Est LCP savings"
+                }
+              ],
+              "items": [
+                {
+                  "origin": "https://m.media-amazon.com",
+                  "wastedMs": 300.34322021603606
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0.5,
+        "items": [
+          {
+            "url": "https://flyrank-frontend-capstone-snowy.vercel.app/assets/index-CwQkZjKY.css",
+            "totalBytes": 6529
+          }
+        ]
+      }
+    ]
+  }
+]

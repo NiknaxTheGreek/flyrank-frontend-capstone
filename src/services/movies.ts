@@ -31,3 +31,4 @@ export async function getMovies(
 
   return results.filter((movie): movie is Movie => movie !== null);
 }
+

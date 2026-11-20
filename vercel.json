@@ -1,12 +1,50 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "functions": { "api/movie-chat.mjs": { "maxDuration": 60 } },
+  "functions": {
+    "api/movie-chat.mjs": {
+      "maxDuration": 60
+    },
+    "api/health.mjs": {
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
-    { "source": "/motion-lab", "destination": "/index.html" },
-    { "source": "/pick-a-movie", "destination": "/index.html" },
-    { "source": "/movies/:path*", "destination": "/index.html" },
-    { "source": "/favorites", "destination": "/index.html" },
-    { "source": "/account", "destination": "/index.html" }
+    {
+      "source": "/planet-studio",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/shader-lab",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/playground",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/health",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/motion-lab",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/pick-a-movie",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/movies/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/favorites",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/account",
+      "destination": "/index.html"
+    }
   ]
 }

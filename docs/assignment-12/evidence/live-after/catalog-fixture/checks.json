@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-20T16:31:03.168Z",
+  "browser": "158.0.8127.18",
+  "build": "A12 with six-request featured batches",
+  "fixtures": "Movie HTTP boundary; no external provider requests",
+  "checks": [
+    "Skip navigation, labelled search input and search submission work with Tab/Enter.",
+    "Enter opens a movie result and client-side navigation focuses its loaded heading.",
+    "The keyboard-reachable back link preserves the search query.",
+    "Search results reflow at 375 and 320 CSS px without horizontal overflow.",
+    "Keyboard navigation reaches the lazy chat route, focuses its heading and activates its example."
+  ],
+  "errors": []
+}

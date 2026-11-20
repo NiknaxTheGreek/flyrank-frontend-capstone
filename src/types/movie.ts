@@ -10,3 +10,4 @@ export type Movie = {
   runtime?: string;
   posterUrl: string;
 };
+

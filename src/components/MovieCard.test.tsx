@@ -42,3 +42,4 @@ describe('MovieCard', () => {
     expect(movieLink.contains(imdbLink)).toBe(false);
   });
 });
+

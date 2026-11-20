@@ -12,14 +12,21 @@
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install chromium",
     "typecheck": "tsc -p tsconfig.app.json && tsc -p tsconfig.tests.json",
-    "verify": "npm run typecheck && npm run test:ci && npm run build && npm run test:e2e"
+    "verify": "npm run typecheck && npm run test:ci && npm run build && npm run test:e2e",
+    "audit:lighthouse": "node scripts/run-lighthouse.mjs",
+    "audit:wave": "node scripts/run-wave.mjs"
   },
   "dependencies": {
     "firebase": "^12.19.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "6.30.6",
-    "zod": "^4.6.7"
+    "zod": "^4.6.7",
+    "three": "^0.187.0",
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.5.2",
+    "lucide-react": "^1.72.0",
+    "radix-ui": "^1.8.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.0",
@@ -32,8 +39,11 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "jsdom": "^25.0.1",
+    "lighthouse": "13.6.0",
+    "playwright": "1.65.0",
     "typescript": "^5.5.4",
     "vite": "^5.4.10",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "@types/three": "^0.183.1"
   }
 }

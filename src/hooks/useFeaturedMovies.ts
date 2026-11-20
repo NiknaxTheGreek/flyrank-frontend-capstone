@@ -25,8 +25,9 @@ export function useFeaturedMovies(enabled = true) {
 
         const loaded: Movie[] = [];
 
-        for (let index = 0; index < featuredMovieIds.length; index += 3) {
-          const batch = featuredMovieIds.slice(index, index + 3);
+        // Six bounded requests halve the metadata round trips before posters can render.
+        for (let index = 0; index < featuredMovieIds.length; index += 6) {
+          const batch = featuredMovieIds.slice(index, index + 6);
 
           const results = await Promise.all(
             batch.map(async (id) => {

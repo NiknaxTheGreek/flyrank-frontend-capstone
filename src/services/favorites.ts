@@ -1,6 +1,6 @@
 import { onValue, ref, remove, set } from 'firebase/database';
 import type { Movie } from '../types/movie';
-import { getFirebaseDatabase } from './firebase';
+import { getFirebaseDatabase } from './firebase-database';
 
 const imdbIdPattern = /^tt\d{7,10}$/;
 

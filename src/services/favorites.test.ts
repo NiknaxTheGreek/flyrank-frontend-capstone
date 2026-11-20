@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock('firebase/database', () => mocks);
-vi.mock('./firebase', () => ({ getFirebaseDatabase: () => ({}) }));
+vi.mock('./firebase-database', () => ({ getFirebaseDatabase: () => ({}) }));
 
 afterEach(() => vi.clearAllMocks());
 

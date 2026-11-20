@@ -156,3 +156,4 @@ it('does not let a delayed search overwrite cleared results', async () => {
   expect(await screen.findAllByRole('article')).toHaveLength(24);
   expect(vi.mocked(searchMovies).mock.calls[0][2].aborted).toBe(true);
 });
+

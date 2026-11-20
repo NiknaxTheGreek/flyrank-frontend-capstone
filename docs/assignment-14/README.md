@@ -1,7 +1,7 @@
 # Assignment 14 — Production release / Checkpoint 2
 
 Production address: https://flyrank-frontend-capstone-snowy.vercel.app  
-Release branch: `fe14-production-release`, based on the tested A10 Reel Good app. Standalone A11/A13 demos remain on their own branches.
+Release branch: `fe14-production-release`. The combined product now integrates A11 Planet Studio, A12 improvements, A13 Shader Lab, A5 accessibility playground and the health screen. See [integration verification](INTEGRATION.md).
 
 ## Safeguards
 
@@ -53,6 +53,6 @@ Focused Conventional Commits preserve earlier assignment work; no shared history
 
 ## Learner-captured production evidence — 20 November 2026
 
-The learner supplied this Chrome screenshot showing the public production hostname in the address bar and a completed Inception lookup (8.8/10, 148 minutes). This verifies the displayed production result; it does not establish Stop behavior, Safari testing, or sign-in/favorites interactions.
+Pre-integration evidence (superseded for the current product): the learner supplied this Chrome screenshot showing the public production hostname in the address bar and a completed Inception lookup (8.8/10, 148 minutes). This verifies the displayed production result; it does not establish Stop behavior, Safari testing, or sign-in/favorites interactions.
 
 ![Production URL and completed Inception lookup](evidence/production-chrome-address-bar-2026-11-20.png)

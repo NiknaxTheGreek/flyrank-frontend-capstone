@@ -5,7 +5,7 @@
 .motion-intro h1:focus { outline: none; }
 .motion-intro > p:not(.eyebrow) { color: #b7bbbc; font-size: 1.04rem; max-inline-size: 510px; }
 .motion-intro__tag { display: inline-flex; align-items: center; gap: 8px; color: #aeb4b4; font-size: 0.75rem; margin-block-start: 5px; }
-.motion-intro__tag > span { color: #b1dfc3; font-size: 0.6rem; }
+.motion-intro__tag > span { inline-size: 7px; block-size: 7px; border-radius: 50%; background: #b1dfc3; }
 .motion-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 20px; }
 .motion-stage, .motion-controls, .motion-save { border: 1px solid #343a3d; border-radius: 22px; background: #191d1f; overflow: hidden; }
 .motion-card-heading { display: flex; align-items: center; gap: 12px; min-block-size: 63px; padding: 16px 26px; border-bottom: 1px solid #303638; color: #bbc0bf; font-size: 0.77rem; }
@@ -23,7 +23,7 @@
 .motion-stage textarea:focus-visible { outline: 2px solid #f5ca72; outline-offset: 3px; }
 .motion-message-meta { display: flex; justify-content: space-between; gap: 8px; margin-block: 10px 30px; color: #aab1b1; font-size: 0.7rem; text-align: start; }
 .motion-state-strip { display: flex; justify-content: center; flex-wrap: wrap; align-items: center; gap: 9px; padding: 17px 14px; border-top: 1px solid #303638; color: #a5adae; background: #14191b; font-size: 0.69rem; }
-.motion-state-strip i { font-style: normal; color: #697476; }
+.motion-state-strip i { font-style: normal; color: #a5adae; }
 .motion-state-strip > span { position: relative; }
 .motion-state-strip > span[data-current='true'] { color: #f1c36c; }
 .motion-stage:has(.async-action-button[data-state='idle']:is(:hover, :focus-visible)) [data-step='hover'] { color: #f1c36c; }

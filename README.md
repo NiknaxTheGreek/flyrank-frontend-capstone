@@ -66,7 +66,7 @@ Rules restrict records to their authenticated UID and validate movie fields. A s
 3. Ask “Show me Inception's IMDb rating and runtime.” The read-only lookup returns a structured card.
 4. Sign in at `/account` and save a movie to `/favorites`.
 
-Search query and pagination are URL-backed. Loading, no results, missing posters, provider failures and interrupted streams have visible recovery paths. `/motion-lab` demonstrates the reusable button lifecycle without API credentials. The separately preserved 3D/shader assignment branches are standalone demos and are not advertised as part of this release.
+Search query and pagination are URL-backed. Loading, no results, missing posters, provider failures and interrupted streams have visible recovery paths. `/motion-lab` demonstrates the reusable button lifecycle without API credentials. The completed Planet Studio (`/planet-studio`), Shader Lab (`/shader-lab`), accessibility playground (`/playground`) and health screen (`/health`) are now integrated into the same product and navigation. Original assignment branches remain preserved as provenance.
 
 ## Architecture
 
@@ -115,6 +115,26 @@ For Assignment 14, ChatGPT inspected the deployed project and branch history, re
 
 ## Deployment and history
 
-Import this repository into Vercel as Vite; build `npm run build`, output `dist`, Node 24. Set the environment variables for **Production** and redeploy `fe14-production-release`. Confirm the commit and target before promoting. Existing assignment branches are preserved; focused Conventional Commits record the release without rewriting shared history. Roll back to a known-good production deployment if a smoke check fails.
+Import this repository into Vercel as Vite; build `npm run build`, output `dist`, Node 24. Set the environment variables for **Production** and redeploy `fe14-production-release`. Confirm the commit and target before promoting. Completed A11/A12/A13 code and the A5 playground are integrated into the release; existing assignment branches are preserved; focused Conventional Commits record the release without rewriting shared history. Roll back to a known-good production deployment if a smoke check fails.
 
 Code and documentation in Git have no scheduled expiry, but access still depends on repository visibility and hosting/account availability. This README's production address is a normal hostname, not a temporary share token.
+
+## Integrated assignment release — 20 November 2026
+
+The release now combines the completed work rather than shipping the A10 snapshot alone:
+
+| Assignment | Product or repository location |
+| --- | --- |
+| A1–A2 | Setup/conventions, validated preferences form and retained comparison branches |
+| A3 | Live movie browsing, details, Firebase sign-in and favorites |
+| A4 | Deep-linkable routes and `/health` server-fetch screen; original Next.js scaffold retained on its assignment branch |
+| A5 | `/playground`: custom disclosure/tabs/dialog and shadcn/Radix comparison, adapted to the final Vite host |
+| A6–A8 | `/pick-a-movie`: streaming chat, movie lookup, cancellation, retry and resilience |
+| A9 | `/motion-lab` |
+| A10 | Component/server tests and multi-engine Playwright CI |
+| A11 | `/planet-studio`: opt-in lazy-loaded Three.js world configurator |
+| A12 | Lazy routes/Firebase modules, skip link, route focus, live announcements, contrast and image sizing fixes; historical [AUDIT.md](AUDIT.md) |
+| A13 | `/shader-lab`: Afterlight GLSL hero, palette changes, pause, pointer interaction and static fallback |
+| A14 | Production hosting, bounded APIs and this README |
+
+The historical audit and screenshots record their original commits; they do not automatically certify the new combined build. [Integration verification](docs/assignment-14/INTEGRATION.md) records the new release checks. The earlier address-bar screenshot is retained as pre-integration evidence and will be replaced as the current submission screenshot.

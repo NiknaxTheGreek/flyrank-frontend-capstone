@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Movie } from '../types/movie';
-export default function MoviePoster({ movie }: { movie: Movie }) {
+export default function MoviePoster({ movie, priority = false }: { movie: Movie; priority?: boolean }) {
   const [posterFailed, setPosterFailed] = useState(false);
   return (
       <div className="poster-frame">
@@ -15,7 +15,11 @@ export default function MoviePoster({ movie }: { movie: Movie }) {
             className="movie-poster"
             src={movie.posterUrl}
             alt={`Poster for ${movie.title}`}
-            loading="lazy"
+            loading={priority ? 'eager' : 'lazy'}
+            {...{ fetchpriority: priority ? 'high' : 'auto' }}
+            width={300}
+            height={450}
+            decoding="async"
             onError={() => setPosterFailed(true)}
           />
         )}

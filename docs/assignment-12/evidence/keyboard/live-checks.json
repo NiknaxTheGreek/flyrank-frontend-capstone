@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-20",
+  "url": "https://flyrank-frontend-capstone-snowy.vercel.app/pick-a-movie#main-content",
+  "releaseSource": "a1990c3cb0c62c39b06caf5347b83118a951c24a",
+  "method": "Manual Chrome keyboard-only interactions against the real deployed endpoint; three submitted turns.",
+  "checks": [
+    {
+      "check": "Skip navigation",
+      "result": "First Tab reached Skip to main content; Enter focused main."
+    },
+    {
+      "check": "Example prompt",
+      "result": "Tab reached the example; Enter populated and focused the labelled textarea."
+    },
+    {
+      "check": "Streaming announcements",
+      "result": "Submitted with Tab/Enter. Observed an unfinished visible reply and updated polite live-region text during streaming; final announcement included remaining reply text and Movie recommendations ready."
+    },
+    {
+      "check": "Keyboard Stop",
+      "result": "Second turn submitted by Tab/Enter; Tab reached Stop generation. Space stopped while Thinking was displayed. Generation stopped was announced and focus returned to the textarea."
+    },
+    {
+      "check": "Recovery and typed result",
+      "result": "Typed an Arrival lookup and submitted with Tab/Enter after stopping. Real tool result displayed Arrival (2016), 7.9/10, 116 min and an IMDb link. Live region announced Found Arrival (2016). Movie lookup complete."
+    }
+  ],
+  "limits": [
+    "Live cancellation was observed during preparation; mid-response cancellation is separately verified by the deterministic streaming fixture.",
+    "Accessibility-tree observations verify live-region updates, not actual screen-reader speech.",
+    "No sign-in, account creation or physical mobile assistive-technology session was performed."
+  ],
+  "note": "The subsequent Home-only metadata batching change does not modify the chat implementation."
+}

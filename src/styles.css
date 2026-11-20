@@ -30,7 +30,8 @@ body {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -41,6 +42,20 @@ a:focus-visible {
   outline: 3px solid #f5ca72;
   outline-offset: 3px;
 }
+
+.skip-link {
+  position: fixed;
+  inset: .75rem auto auto .75rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border-radius: .4rem;
+  padding: .75rem 1rem;
+  background: #f1b84b;
+  color: #211909;
+  font-weight: 700;
+}
+.skip-link:focus { transform: translateY(0); }
+main:focus:not(:focus-visible), h1[tabindex="-1"]:focus:not(:focus-visible) { outline: none; }
 
 .home {
   width: min(1200px, 100% - 48px);
@@ -64,6 +79,9 @@ a:focus-visible {
 }
 
 .site-navigation a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: #d4d2cd;
   font-size: 0.9rem;
   font-weight: 650;
@@ -73,6 +91,7 @@ a:focus-visible {
 .site-navigation a:hover {
   color: var(--accent);
 }
+.site-navigation a[aria-current="page"] { text-decoration: underline; text-underline-offset: .3em; }
 
 .brand {
   display: inline-flex;
@@ -322,6 +341,9 @@ h1 {
 }
 
 .movie-imdb-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   align-self: flex-start;
   margin-top: auto;
   color: var(--accent);
@@ -627,3 +649,9 @@ a.button { display: inline-flex; align-items: center; text-decoration: none; }
   .movie-chat-actions { flex-wrap: wrap; }
 }
 @media (prefers-reduced-motion: reduce) { .movie-chat-error { animation: none; } }
+
+/* The complete product keeps every lab reachable without horizontal scrolling. */
+.site-header { gap: 20px; flex-wrap: wrap; padding-block: 16px; }
+.brand { flex: 0 0 auto; }
+.site-navigation { flex: 1 1 760px; justify-content: flex-end; }
+@media (max-width: 760px) { .site-navigation { flex-basis: 100%; justify-content: flex-start; } }

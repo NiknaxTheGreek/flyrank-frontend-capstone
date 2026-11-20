@@ -1,0 +1,7 @@
+{
+  "workflow": "https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44773847462",
+  "sourceCommit": "53d6c70d46d42b6233ddb31c79f5a4522fa80799",
+  "releaseSource": "bfdd95eb274f6342a9f86c9023d1dcb24d425131",
+  "deployedUrl": "https://flyrank-frontend-capstone-snowy.vercel.app",
+  "catalogueKeyboard": "Local production bundle with deterministic movie HTTP fixtures; not a live provider measurement."
+}

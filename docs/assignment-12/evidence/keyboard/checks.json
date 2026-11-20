@@ -1,0 +1,16 @@
+{
+  "base": "http://127.0.0.1:4188",
+  "at": "2026-11-20T10:42:13.390Z",
+  "browser": "158.0.8127.18",
+  "fixtures": "AI route only; no provider requests",
+  "checks": [
+    "First Tab exposes the skip link; Enter focuses main content.",
+    "Example is keyboard reachable and moves focus to the labelled textarea.",
+    "A sentence from a genuinely streamed fixture reaches the polite live region before completion.",
+    "Tab reaches Stop with a visible ring; Space stops mid-stream and returns focus to the textarea.",
+    "A subsequent keyboard-only turn renders a typed movie result card.",
+    "An interrupted reply is announced, and Retry recovers with Enter.",
+    "Conversation, result card and controls fit 375 px and 320 px with no horizontal overflow."
+  ],
+  "errors": []
+}

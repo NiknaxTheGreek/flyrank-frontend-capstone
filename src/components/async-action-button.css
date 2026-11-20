@@ -94,13 +94,15 @@
   gap: 10px;
   border-radius: inherit;
   opacity: 0;
+  visibility: hidden;
   transform: translateY(8px);
   transition: opacity var(--action-state-duration) var(--action-ease),
-    transform var(--action-state-duration) var(--action-ease);
+    transform var(--action-state-duration) var(--action-ease),
+    visibility 0s linear var(--action-state-duration);
   pointer-events: none;
 }
 
-.async-action-button__face[data-visible='true'] { opacity: 1; transform: translateY(0); }
+.async-action-button__face[data-visible='true'] { opacity: 1; visibility: visible; transform: translateY(0); transition-delay: 0s; }
 .async-action-button__face[data-face='success'] { background: #b1dfc3; color: #102a1a; }
 .async-action-button__face[data-face='error'] { background: #f4b4aa; color: #3d1510; }
 .async-action-button__face[data-face='disabled'] { color: #d2d4d5; }
@@ -136,10 +138,12 @@
   grid-area: 1 / 1;
   align-self: start;
   opacity: 0;
-  transition: opacity var(--action-state-duration) var(--action-ease);
+  visibility: hidden;
+  transition: opacity var(--action-state-duration) var(--action-ease),
+    visibility 0s linear var(--action-state-duration);
 }
 
-.async-action__feedback > [data-visible='true'] { opacity: 1; }
+.async-action__feedback > [data-visible='true'] { opacity: 1; visibility: visible; transition-delay: 0s; }
 .async-action__feedback > [data-face='error'] { color: #ffb9af; }
 .async-action__feedback > [data-face='success'] { color: #b1dfc3; }
 
@@ -168,6 +172,11 @@
   transition-duration: 100ms !important;
 }
 
+[data-reduced-motion='true'] :is(.async-action-button__face, .async-action__feedback > span) {
+  transition: opacity 100ms var(--action-ease), visibility 0s linear 100ms !important;
+}
+[data-reduced-motion='true'] [data-visible='true'] { transition-delay: 0s !important; }
+
 @media (prefers-reduced-motion: reduce) {
   .async-action-button, .async-action-button__face {
     transform: none !important;
@@ -179,4 +188,8 @@
     animation: none !important;
     transition-duration: 100ms !important;
   }
+  .async-action-button__face, .async-action__feedback > span {
+    transition: opacity 100ms var(--action-ease), visibility 0s linear 100ms !important;
+  }
+  [data-visible='true'] { transition-delay: 0s !important; }
 }

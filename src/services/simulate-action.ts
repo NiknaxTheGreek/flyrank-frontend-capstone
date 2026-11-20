@@ -21,3 +21,4 @@ export function simulateAction(outcome: DemoOutcome, signal: AbortSignal): Promi
     signal.addEventListener('abort', cancel, { once: true });
   });
 }
+

@@ -80,3 +80,4 @@ it('limits uncached upstream requests', async () => {
   expect((await run(h, 'q=Batman')).status).toBe(429);
   expect(fetcher).toHaveBeenCalledTimes(60);
 });
+

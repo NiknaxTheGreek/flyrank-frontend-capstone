@@ -60,3 +60,4 @@ test('reports quota errors without exposing the provider payload', async () => {
   expect(body).toContain('Check your AI Studio limits');
   expect(body).not.toContain('private provider details');
 });
+
