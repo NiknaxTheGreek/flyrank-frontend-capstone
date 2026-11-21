@@ -17,7 +17,7 @@ test('blocks repeated activations during work and success, then resets after the
   let finish!: () => void;
   const action = vi.fn(() => new Promise<void>(resolve => { finish = resolve; }));
   render(<AsyncActionButton action={action} labels={labels} feedback={feedback} />);
-  const button = screen.getByRole('button', { name: 'Send', exact: true });
+  const button = screen.getByRole('button', { name: 'Send' });
   act(() => { button.click(); button.click(); button.click(); });
   expect(action).toHaveBeenCalledTimes(1);
   expect(button.getAttribute('aria-disabled')).toBe('true');
@@ -25,13 +25,13 @@ test('blocks repeated activations during work and success, then resets after the
   expect(button.hasAttribute('disabled')).toBe(false);
   expect(screen.getByRole('status').textContent).toBe('Sending your message.');
   await act(async () => { finish(); });
-  expect(screen.getByRole('button', { name: 'Sent', exact: true })).toBeTruthy();
+  expect(screen.getByRole('button', { name: 'Sent' })).toBeTruthy();
   fireEvent.click(button);
   expect(action).toHaveBeenCalledTimes(1);
   await act(async () => { await vi.advanceTimersByTimeAsync(SUCCESS_HOLD_MS - 1); });
   expect(button.getAttribute('data-state')).toBe('success');
   await act(async () => { await vi.advanceTimersByTimeAsync(1); });
-  expect(screen.getByRole('button', { name: 'Send', exact: true }).getAttribute('aria-disabled')).toBe('false');
+  expect(screen.getByRole('button', { name: 'Send' }).getAttribute('aria-disabled')).toBe('false');
   fireEvent.click(button);
   expect(action).toHaveBeenCalledTimes(2);
 });
@@ -41,7 +41,7 @@ test('keeps the error until retry and uses the latest action to recover', async 
   const fail = vi.fn(async () => { throw new Error('offline'); });
   const succeed = vi.fn(async () => {});
   const view = render(<AsyncActionButton action={fail} labels={labels} feedback={feedback} />);
-  await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true })); });
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Send' })); });
   expect(screen.getByRole('status').textContent).toBe('Could not send. Retry.');
   await act(async () => { await vi.advanceTimersByTimeAsync(6000); });
   expect(screen.getByRole('button', { name: 'Retry' })).toBeTruthy();
@@ -56,7 +56,7 @@ test('uses native keyboard activation and retains focus while pending', async ()
   const user = userEvent.setup();
   const action = vi.fn(() => new Promise<void>(() => {}));
   render(<AsyncActionButton action={action} labels={labels} feedback={feedback} />);
-  const button = screen.getByRole('button', { name: 'Send', exact: true });
+  const button = screen.getByRole('button', { name: 'Send' });
   await user.tab();
   expect(document.activeElement).toBe(button);
   await user.keyboard(' ');
@@ -82,7 +82,7 @@ test('aborts pending work when navigating away, even if an action ignores cancel
   const onStateChange = vi.fn();
   const view = render(<AsyncActionButton labels={labels} feedback={feedback} onStateChange={onStateChange}
     action={requestSignal => { signal = requestSignal; return new Promise<void>(resolve => { finish = resolve; }); }} />);
-  fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true }));
+  fireEvent.click(screen.getByRole('button', { name: 'Send' }));
   view.unmount();
   expect(signal.aborted).toBe(true);
   const stateChanges = onStateChange.mock.calls.length;
@@ -93,7 +93,7 @@ test('aborts pending work when navigating away, even if an action ignores cancel
 test('cleans up the success reset timer on unmount', async () => {
   vi.useFakeTimers();
   const view = render(<AsyncActionButton labels={labels} feedback={feedback} action={async () => {}} />);
-  await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true })); });
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Send' })); });
   expect(vi.getTimerCount()).toBe(1);
   view.unmount();
   expect(vi.getTimerCount()).toBe(0);

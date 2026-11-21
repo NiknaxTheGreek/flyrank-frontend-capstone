@@ -33,7 +33,8 @@ export default defineConfig(({ mode }) => {
     ],
     test: {
       environment: 'jsdom',
-      exclude: ['**/node_modules/**', '**/dist/**'],
+      include: ['src/**/*.test.{ts,tsx}', 'server/**/*.test.mjs'],
+      setupFiles: ['./src/test/setup.ts'],
     },
     server: {
       host: '0.0.0.0',
