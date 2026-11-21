@@ -13,9 +13,20 @@ A Vercel Preview for this branch was found during the deliverable audit:
 - [Preview](https://flyrank-frontend-capstone-cyee6w5dr-niknaxthegreek.vercel.app)
 - Branch alias: https://flyrank-frontend-capstone-git-fe04-scaffo-77e33b-niknaxthegreek.vercel.app
 
-The [health success screenshot](evidence/health-success.jpg) records the deployed `/health` page returning “Data fetched successfully” from JSONPlaceholder.
+The [health success screenshot](evidence/health-success.png) records the deployed `/health` page returning “Data fetched successfully” from JSONPlaceholder.
 
-Nicholas confirmed the responsive checks at 375px and 1280px and recorded screenshot evidence in the A4 assignment chat.
+## Screenshot evidence — checks completed 11 November 2026
+
+The original screenshots supplied by Nicholas in the A4 chat are now packaged in this branch.
+
+| Check | Result | Evidence |
+|---|---|---|
+| 375px responsive layout | Complete — mobile layout reviewed | [375px screenshot](evidence/responsive-375px.png) |
+| 1280px responsive layout | Complete — desktop layout reviewed | [1280px screenshot](evidence/responsive-1280px.png) |
+| Deployed health fetch | Success — fetched record #1 displayed | [Health success](evidence/health-success.png) |
+
+These are learner-provided browser captures, not a newly executed automated browser suite. The responsive captures show the configured widths and visible layout; they do not independently prove every route or a clean console. Console messages are retained in the unedited captures. The typed Transformers query is not submitted in these captures and is not evidence of a live catalogue search.
+
 
 ## Still required
 
