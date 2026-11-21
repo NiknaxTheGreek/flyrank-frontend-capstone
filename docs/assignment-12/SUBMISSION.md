@@ -3,7 +3,7 @@
 **A12 COMPLETE — AWAITING SUBMISSION**
 
 - [AUDIT.md](../../AUDIT.md) contains measured deltas, fixes, actual before/after Lighthouse screenshots, WAVE evidence and keyboard results.
-- [Public site](https://flyrank-frontend-capstone-snowy.vercel.app/) · [movie picker](https://flyrank-frontend-capstone-snowy.vercel.app/pick-a-movie).
+- [Public assignment preview](https://flyrank-frontend-capstone-l8lnu36zi-niknaxthegreek.vercel.app/) · [movie picker](https://flyrank-frontend-capstone-l8lnu36zi-niknaxthegreek.vercel.app/pick-a-movie). The audit results below are from the recorded audit of the deployed source snapshot.
 - Lighthouse mobile Home: **81 → 98 performance; 96 → 100 accessibility**.
 - Lighthouse mobile movie picker: **97 → 100 performance; 100 → 100 accessibility**.
 - Deployed WAVE: **zero errors, contrast errors and alerts** on populated Home, chat, Motion lab and the configured sign-in page.
