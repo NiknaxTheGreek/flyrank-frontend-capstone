@@ -21,5 +21,5 @@ This variant's `package.json` has no test script or automated feature tests. Rev
 ## Evidence
 
 - Live Reel Good preview: https://flyrank-frontend-capstone-git-fe02-vague-niknaxthegreek.vercel.app/
-- The current notification-settings screen was opened and visually verified on 2026-11-21 without a sign-in prompt. A screenshot was captured during the audit and is shown in the audit conversation; the image file is not stored in this branch.
+- Public preview verified while signed out. [Notification preferences screenshot](docs/assignment-2/evidence/fe02-vague.jpg)
 - The earlier screenshot showed a superseded interface and has been removed. The GitHub repository is public.
