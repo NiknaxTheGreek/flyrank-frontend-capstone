@@ -10,8 +10,11 @@ Review and verification were not equivalent. Round one's diff adds no test file 
 
 Exact durations were not recorded, so this is not a speed comparison. Round two required installation retries and review of test setup, behaviors, and results; that effort does not establish that it was faster or slower. ChatGPT guided the prompts, and GitHub Copilot implemented each round in a separate fresh chat.
 
-## Reel Good scope correction — 20 November 2026
+## Reel Good scope correction — 21 November 2026
 The current examples use movie-discovery wording and demo movie data. Earlier
 comparison results remain historical; screenshots from before this correction
-showed the superseded presentation and have been removed. Fresh screenshots of
-the current Reel Good branches remain to be captured before submission.
+showed the superseded presentation and were removed from both A2 branches.
+Current screenshots of the structured dashboard and vague-prompt notification
+settings were captured during the audit. Both public preview URLs were opened
+without a sign-in prompt. The captures are shown in the audit conversation;
+image files are not stored in the repository.
