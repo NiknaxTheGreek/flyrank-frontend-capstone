@@ -1,6 +1,6 @@
 # Checkpoint 1 — Reel Good
 
-Preview: use the seven-day share link supplied in the A8 conversation. Bare deployment URL: https://flyrank-frontend-capstone-1o85s91sn-niknaxthegreek.vercel.app/pick-a-movie (Vercel authentication required without the share link).
+[Public checkpoint preview](https://flyrank-frontend-capstone-28gj4vsrm-niknaxthegreek.vercel.app/pick-a-movie). Signed-out access and a live Inception lookup were verified on 21 November 2026.
 
 Repository branch: https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe08-resilience-checkpoint
 
@@ -10,6 +10,6 @@ I manually tested the happy path, offline-before-send failure and recovery, inte
 
 Testing exposed an OMDb environment mismatch between A7 and A8; I corrected the Preview configuration and verified both Arrival and a nonexistent title afterward.
 
-Limitations: Safari/mobile Safari was not tested because no Apple device was available. 429 and malformed-output sabotage were tested automatically rather than injected into the live deployment. The reviewer share link expires after seven days and must be renewed if needed.
+Limitations: Safari/mobile Safari was not tested because no Apple device was available. 429 and malformed-output sabotage were tested automatically rather than injected into the live deployment.
 
 Suggested attachments: image(20261119-181933).png, image(20261119-155900).png, image(20261119-160035).png, image(20261119-160734).png, image(20261119-161330).png, image(20261119-183216).png, image(20261119-183241).png, 1000160253.jpg.
