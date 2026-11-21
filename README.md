@@ -20,11 +20,10 @@ npm test
 npm run build
 ```
 
-The archived result recorded 11 passing tests and a passing build; these commands were not rerun while preparing this submission index. The vague-prompt branch has no test script.
+Verified on 2026-11-21 with Node.js 24.22.3 and npm 11.19.1: `npm ci`, `npm test` (11 tests passed), and `npm run build` passed. The vague-prompt branch has no test script; its production build also passed on this runtime.
 
 ## Evidence
 
-- [Structured-version screenshot](docs/assignment-2/evidence/a2-fe02-spec.jpg), captured from the live `fe02-spec` preview.
-- The [vague-version screenshot](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/blob/fe02-vague/docs/assignment-2/evidence/a2-fe02-vague.jpg) is on its matching branch.
+- Fresh screenshots of both current Reel Good branch previews still need to be captured. The earlier images showed a superseded interface and have been removed.
 
-Both Vercel previews require authentication. Reviewer access is unverified; the repository is private.
+Both Vercel previews require authentication. Reviewer access is unverified; the GitHub repository is public.
