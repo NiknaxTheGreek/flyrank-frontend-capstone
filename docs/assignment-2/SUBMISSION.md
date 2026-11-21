@@ -14,6 +14,8 @@ npm run build
 
 No automated test script is defined for this variant.
 
+`npm ci` and `npm run build` passed on 2026-11-21 with Node.js 24.22.3 and npm 11.19.1.
+
 ## Screenshot and preview access
 
-[View the notification-settings screenshot](evidence/a2-fe02-vague.jpg), captured from the [ready `fe02-vague` Vercel preview](https://flyrank-frontend-capstone-3d9ae1afv-niknaxthegreek.vercel.app/) on 2026-11-20. The preview requires Vercel authentication, and reviewer access has not been verified. The GitHub repository is now public, so the evaluator can access the branch and committed screenshot. The Vercel preview still requires authentication; reviewer access to that preview remains unverified.
+The earlier screenshot showed a superseded interface and has been removed. A fresh screenshot of the current Reel Good implementation remains to be captured. The Vercel preview requires authentication, so reviewer access is unverified. The GitHub repository is public and this source branch is accessible.

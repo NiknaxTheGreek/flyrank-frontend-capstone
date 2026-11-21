@@ -16,6 +16,8 @@ npm run build
 
 This variant's `package.json` has no test script or automated feature tests. Review its accessible labels, storage fallback and save-error behavior in `src/App.tsx`.
 
+`npm ci` and `npm run build` passed on 2026-11-21 with Node.js 24.22.3 and npm 11.19.1.
+
 ## Evidence
 
-[View the notification-settings screenshot](docs/assignment-2/evidence/a2-fe02-vague.jpg), captured from the live `fe02-vague` Vercel preview. The preview requires authentication; reviewer access is unverified.
+The earlier screenshot showed a superseded interface and has been removed. A fresh screenshot of this current Reel Good branch remains to be captured. The Vercel preview requires authentication; reviewer access is unverified.
