@@ -12,4 +12,4 @@ Testing exposed an OMDb environment mismatch between A7 and A8; I corrected the 
 
 Limitations: Safari/mobile Safari was not tested because no Apple device was available. 429 and malformed-output sabotage were tested automatically rather than injected into the live deployment.
 
-Suggested attachments: image(20261119-181933).png, image(20261119-155900).png, image(20261119-160035).png, image(20261119-160734).png, image(20261119-161330).png, image(20261119-183216).png, image(20261119-183241).png, 1000160253.jpg.
+[Review the nine checkpoint screenshots](EVIDENCE.md).
