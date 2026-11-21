@@ -2,6 +2,15 @@
 
 [Open the streaming movie picker preview](https://flyrank-frontend-capstone-lusu7g260-niknaxthegreek.vercel.app). Choose **Movie picker** in the navigation.
 
+## Screenshot evidence
+
+- [Movie recommendation and Jump to latest control](docs/assignment-6/evidence/movie-recommendation.png)
+- [Follow-up asking which film is least scary](docs/assignment-6/evidence/follow-up-question.png)
+- [Stopped generation with the partial response visible](docs/assignment-6/evidence/stopped-response.png)
+
+## Reviewing the chat
+
+
 Choose **Try an example**, then send.
 The reply appears as it arrives. Choose **Stop generation** halfway through,
 then ask “Anything lighter?” to check that the follow-up uses the partial reply.
