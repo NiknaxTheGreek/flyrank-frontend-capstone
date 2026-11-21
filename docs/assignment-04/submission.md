@@ -1,6 +1,6 @@
 # Assignment 4 submission
 
-**Status: implementation and Preview deployment are present; responsive checks and final evaluator access remain pending.**
+**The scaffold is deployed and the responsive checks are complete. Public preview access still needs confirmation.**
 
 Repository: https://github.com/NiknaxTheGreek/flyrank-frontend-capstone  
 Branch: https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe04-scaffold-deploy  
@@ -13,12 +13,13 @@ A Vercel Preview for this branch was found during the deliverable audit:
 - [Preview](https://flyrank-frontend-capstone-cyee6w5dr-niknaxthegreek.vercel.app)
 - Branch alias: https://flyrank-frontend-capstone-git-fe04-scaffo-77e33b-niknaxthegreek.vercel.app
 
-The [health success screenshot](evidence/health-success.jpg) records the deployed `/health` page returning “Data fetched successfully” from JSONPlaceholder. It does not establish that the rest of the required deployed checks passed.
+The [health success screenshot](evidence/health-success.jpg) records the deployed `/health` page returning “Data fetched successfully” from JSONPlaceholder.
+
+Nicholas confirmed the responsive checks at 375px and 1280px and recorded screenshot evidence in the A4 assignment chat.
 
 ## Still required
 
-- Run the branch smoke checks against the Preview at 375px and 1280px.
-- Confirm the evaluator can access the private repository and Vercel Preview.
+- Confirm the Vercel Preview opens while signed out. The GitHub repository is public.
 - Create the immutable `assignment-04-final` tag only after verification.
 
 The branch's existing [verification notes](verification.md) contain local test/build records and earlier pending items; use this submission file for the current Preview URL and remaining gates.

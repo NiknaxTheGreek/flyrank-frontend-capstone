@@ -1,6 +1,12 @@
 # Assignment 4 verification
 
-## Starting state
+## Current verification
+
+Nicholas confirmed the responsive checks at 375px and 1280px. Screenshot evidence is recorded in the A4 assignment chat. See the [submission record](submission.md) for the deployed preview and public-access status.
+
+## Historical checkpoints
+
+### Starting state
 - Branch: fe04-scaffold-deploy
 - Base: assignment-03-final
 - Base commit: d216f77f97b958fd247836a6aeb4ca51a6f8edf3

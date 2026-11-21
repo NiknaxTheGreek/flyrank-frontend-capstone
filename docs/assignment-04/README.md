@@ -50,7 +50,7 @@ PREVIEW_URL=https://YOUR-PREVIEW.vercel.app npm run smoke
 
 The smoke script checks routes, headings, horizontal overflow at 375px and 1280px, browser exceptions, search and details-return behaviour. A login-gated host preview must be made accessible to reviewers before submission. Unit tests separately simulate health success, HTTP failure, invalid data and network failure. Do not claim a live successful fetch solely from mocked tests.
 
-## Git-connected hosting — required remaining gate
+## Git-connected hosting setup and repeatable verification
 
 1. Import this existing repository into Vercel on its free personal plan. Use Next.js preset, repository root, Node 24, `npm ci`, and `npm run build`. Keep Production Branch set to `main` so `fe04-scaffold-deploy` is a Preview branch. Do not merge or change Assignment 3.
 2. Configure Preview environment variables only if enabling a real provider. This scaffold needs none. No payment service is needed.
