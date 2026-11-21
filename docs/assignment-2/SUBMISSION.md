@@ -24,7 +24,7 @@ On 2026-11-21, with Node.js 24.22.3 and npm 11.19.1, the structured branch passe
 
 ## Evidence and preview access
 
-- Structured Reel Good preview: https://flyrank-frontend-capstone-hx42m40hc-niknaxthegreek.vercel.app/
+- Structured Reel Good preview: https://flyrank-frontend-capstone-git-fe02-spec-niknaxthegreek.vercel.app/
 - Vague-prompt Reel Good preview: https://flyrank-frontend-capstone-kgesba0fa-niknaxthegreek.vercel.app/
 - Both previews were opened and visually verified on 2026-11-21 without a sign-in prompt. Current screenshots were captured during the audit and are shown in the audit conversation; image files are not stored in these branches.
 - The earlier screenshot files showed a superseded interface and have been removed from both A2 branches. The repository is public.
