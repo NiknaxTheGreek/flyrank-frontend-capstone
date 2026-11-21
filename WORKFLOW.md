@@ -14,7 +14,4 @@ Exact durations were not recorded, so this is not a speed comparison. Round two 
 The current examples use movie-discovery wording and demo movie data. Earlier
 comparison results remain historical; screenshots from before this correction
 showed the superseded presentation and were removed from both A2 branches.
-Current screenshots of the structured dashboard and vague-prompt notification
-settings were captured during the audit. Both public preview URLs were opened
-without a sign-in prompt. The captures are shown in the audit conversation;
-image files are not stored in the repository.
+Both public preview URLs were verified while signed out. [Structured dashboard screenshot](docs/assignment-2/evidence/fe02-spec.jpg) · [Vague-prompt screenshot](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/blob/fe02-vague/docs/assignment-2/evidence/fe02-vague.jpg)
