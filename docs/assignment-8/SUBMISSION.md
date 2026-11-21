@@ -13,3 +13,7 @@ Testing exposed an OMDb environment mismatch between A7 and A8; I corrected the 
 Limitations: Safari/mobile Safari was not tested because no Apple device was available. 429 and malformed-output sabotage were tested automatically rather than injected into the live deployment.
 
 [Review the nine checkpoint screenshots](EVIDENCE.md).
+
+All nine screenshots are committed to this branch, with cropped review copies and the original files linked in the inventory. Download the relevant images if the Portal requires separate attachments.
+
+**Status: complete and packaged — awaiting Portal submission.**
