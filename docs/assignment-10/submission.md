@@ -1,6 +1,6 @@
 # A10 submission
 
-Status: TESTS AND CI VERIFIED — MERGE ENFORCEMENT BLOCKED BY CURRENT GITHUB PLAN.
+**CI passed. Required merge checks on `main` are disabled.**
 
 - Branch: `fe10-tests-and-ci`
 - Test files: `src/components/MovieMessage.test.tsx`,
@@ -19,11 +19,7 @@ Status: TESTS AND CI VERIFIED — MERGE ENFORCEMENT BLOCKED BY CURRENT GITHUB PL
 - CI passed: 86/86 Vitest tests and 4/4 Playwright executions, covering both
   primary flow and interrupted-response retry at desktop and 375px phone widths.
 - Application and test TypeScript and the production build passed in CI too.
-- Required merge-check enforcement: unavailable on this private repository under
-  the current GitHub plan. On 19 November 2026, the learner opened the branch
-  protection form in their own browser and provided its notice: the rules will
-  not be enforced until the repository moves to a GitHub Team or Enterprise
-  organization account. No paid upgrade or repository visibility change was made.
+- On 21 November 2026 the repository was public. GitHub reported branch protection disabled on `main`, with no required status checks. The successful CI job is named `A10 merge gate`.
 
 The CI screenshot is a labelled report rendered in the GitHub runner from
 the real test outputs, with its source run and commit printed on the image.
