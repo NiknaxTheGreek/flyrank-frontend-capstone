@@ -18,4 +18,6 @@ No automated test script is defined for this variant.
 
 ## Screenshot and preview access
 
-The earlier screenshot showed a superseded interface and has been removed. A fresh screenshot of the current Reel Good implementation remains to be captured. The Vercel preview requires authentication, so reviewer access is unverified. The GitHub repository is public and this source branch is accessible.
+- Live Reel Good preview: https://flyrank-frontend-capstone-kgesba0fa-niknaxthegreek.vercel.app/
+- The current notification-settings screen was opened and visually verified on 2026-11-21 without a sign-in prompt. A screenshot was captured during the audit and is shown in the audit conversation; the image file is not stored in this branch.
+- The earlier screenshot showed a superseded interface and has been removed. The repository is public and this source branch is accessible.
