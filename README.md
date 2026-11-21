@@ -24,7 +24,7 @@ Verified on 2026-11-21 with Node.js 24.22.3 and npm 11.19.1: `npm ci`, `npm test
 
 ## Evidence
 
-- Structured branch preview: https://flyrank-frontend-capstone-hx42m40hc-niknaxthegreek.vercel.app/
+- Structured branch preview: https://flyrank-frontend-capstone-git-fe02-spec-niknaxthegreek.vercel.app/
 - Vague-prompt branch preview: https://flyrank-frontend-capstone-kgesba0fa-niknaxthegreek.vercel.app/
 - Both live previews were opened and verified on 2026-11-21. Current Reel Good screenshots were captured during the audit and are shown in the audit conversation; screenshot files are not stored in this branch.
 - The GitHub repository is public. Both preview URLs loaded without a sign-in prompt during the audit.
