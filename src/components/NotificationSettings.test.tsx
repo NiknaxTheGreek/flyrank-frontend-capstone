@@ -124,7 +124,7 @@ describe('NotificationSettings', () => {
 it('continues to render the existing dashboard', () => {
   render(<App />);
 
-  expect(screen.getByRole('heading', { name: 'FlyRank SEO Performance' })).toBeTruthy();
-  expect(screen.getByRole('heading', { name: 'Keyword growth' })).toBeTruthy();
+  expect(screen.getByRole('heading', { name: 'Reel Good Movie Dashboard' })).toBeTruthy();
+  expect(screen.getByRole('heading', { name: 'Watchlist activity' })).toBeTruthy();
   expect(screen.getByRole('heading', { name: 'Notification settings' })).toBeTruthy();
 });

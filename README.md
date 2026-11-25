@@ -1,24 +1,32 @@
-# FlyRank Frontend Capstone
+# A2 — Structured-specification implementation
 
-A lightweight SEO growth dashboard designed to showcase FlyRank's analytics and optimization workflow.
+This branch is the **structured prompt** version of Assignment 2. It presents a Reel Good movie dashboard with illustrative demo values and adds a focused notification-settings component. The contrasting vague-prompt version is on [`fe02-vague`](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe02-vague).
 
-## Overview
+## Deliverables
 
-This frontend capstone is built with React + Vite and presents a mock dashboard for keyword tracking, organic growth, and regional visibility. It is intended as a polished foundation for further feature work, such as interactive filters, lead generation flows, or a product landing page.
+- [Notification settings component](src/components/NotificationSettings.tsx): labelled email preference, opt-in, validation and save feedback.
+- [Role-based tests](src/components/NotificationSettings.test.tsx): coverage for defaults, valid/invalid email, persistence, malformed stored data, storage failures and feedback.
+- [Prompting workflow comparison](WORKFLOW.md): scope, accessibility, error handling, test coverage and limitations for both variants.
+- [Assignment 2 submission index](docs/assignment-2/SUBMISSION.md).
 
-## Getting started
+## Run and verify
 
-```bash
-npm install
+Requires Node.js 24 and npm.
+
+```sh
+npm ci
 npm run dev
+npm test
+npm run build
 ```
 
-## Scripts
+Verified on 2026-11-21 with Node.js 24.22.3 and npm 11.19.1: `npm ci`, `npm test` (11 tests passed), and `npm run build` passed. The vague-prompt branch has no test script; its production build also passed on this runtime.
 
-- `npm run dev` — start the Vite dev server
-- `npm run build` — create a production build
-- `npm run preview` — preview the production build locally
+[Three rules learned in Assignment 2](CLAUDE.md#rules-learned-in-assignment-2)
 
-## Notes
+## Preview and evidence
 
-The project keeps the UI focused on a single-screen dashboard while remaining easy to extend with new pages or data-driven components.
+| Version | Live preview | Screenshot |
+| --- | --- | --- |
+| Structured prompt | [Open dashboard](https://flyrank-frontend-capstone-git-fe02-spec-niknaxthegreek.vercel.app/) | [Dashboard and notification form](docs/assignment-2/evidence/fe02-spec.jpg) |
+| Vague prompt | [Open settings](https://flyrank-frontend-capstone-git-fe02-vague-niknaxthegreek.vercel.app/) | [Notification settings](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/blob/fe02-vague/docs/assignment-2/evidence/fe02-vague.jpg) |

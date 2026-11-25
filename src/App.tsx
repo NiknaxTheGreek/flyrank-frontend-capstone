@@ -7,8 +7,8 @@ type Stat = {
   tone: 'positive' | 'neutral' | 'warning';
 };
 
-type Keyword = {
-  keyword: string;
+type Movie = {
+  movie: string;
   position: number;
   trend: number;
   volume: string;
@@ -21,17 +21,17 @@ type Region = {
 };
 
 const stats: Stat[] = [
-  { label: 'Organic clicks', value: '184.2K', delta: '+12.4%', tone: 'positive' },
-  { label: 'Avg. SERP position', value: '4.8', delta: '+0.6', tone: 'positive' },
-  { label: 'Conversion rate', value: '7.1%', delta: '+1.2%', tone: 'positive' },
-  { label: 'New ranking opportunities', value: '42', delta: '-3 this week', tone: 'warning' },
+  { label: 'Movie views (demo)', value: '184.2K', delta: '+12.4%', tone: 'positive' },
+  { label: 'Average rating (demo)', value: '4.8', delta: '+0.6', tone: 'positive' },
+  { label: 'Favorite rate (demo)', value: '7.1%', delta: '+1.2%', tone: 'positive' },
+  { label: 'New releases (demo)', value: '42', delta: '-3 this week', tone: 'warning' },
 ];
 
-const keywords: Keyword[] = [
-  { keyword: 'AI marketing platform', position: 2, trend: 18, volume: '32K' },
-  { keyword: 'SEO automation tools', position: 5, trend: 9, volume: '18K' },
-  { keyword: 'content strategy dashboard', position: 8, trend: 14, volume: '12K' },
-  { keyword: 'keyword monitoring software', position: 12, trend: 6, volume: '9K' },
+const movies: Movie[] = [
+  { movie: 'Inception', position: 2, trend: 18, volume: '32K' },
+  { movie: 'Interstellar', position: 5, trend: 9, volume: '18K' },
+  { movie: 'The Matrix', position: 8, trend: 14, volume: '12K' },
+  { movie: 'Arrival', position: 12, trend: 6, volume: '9K' },
 ];
 
 const regions: Region[] = [
@@ -41,17 +41,17 @@ const regions: Region[] = [
   { region: 'Canada', visibility: '47%', change: '+3.5%' },
 ];
 
-const navItems = ['Overview', 'Keywords', 'Content', 'Competitors', 'Reports'];
+const navItems = ['Overview', 'Movies', 'Genres', 'Favorites', 'Activity'];
 
 function App() {
   return (
     <div className="app-shell">
       <aside className="sidebar">
         <div className="brand-wrap">
-          <div className="brand-mark" aria-hidden="true">F</div>
+          <div className="brand-mark" aria-hidden="true">R</div>
           <div>
-            <p className="eyebrow">Growth suite</p>
-            <h1>FlyRank</h1>
+            <p className="eyebrow">Movie discovery</p>
+            <h1>Reel Good</h1>
           </div>
         </div>
 
@@ -69,8 +69,8 @@ function App() {
         </nav>
 
         <div className="side-card">
-          <p className="label">Performance goal</p>
-          <strong>Top 3 rankings</strong>
+          <p className="label">Movie night goal</p>
+          <strong>Watch three movies</strong>
           <div className="progress" aria-label="72 percent of monthly target reached">
             <span style={{ width: '72%' }} />
           </div>
@@ -81,8 +81,8 @@ function App() {
       <main className="main-panel">
         <header className="topbar">
           <div>
-            <p className="eyebrow">Campaign dashboard</p>
-            <h2>FlyRank SEO Performance</h2>
+            <p className="eyebrow">Demo movie dashboard</p>
+            <h2>Reel Good Movie Dashboard</h2>
           </div>
           <button type="button" className="primary-btn">Export report</button>
         </header>
@@ -103,13 +103,13 @@ function App() {
           <div className="panel large-panel">
             <div className="panel-header">
               <div>
-                <p className="eyebrow">Ranking momentum</p>
-                <h3>Keyword growth</h3>
+                <p className="eyebrow">Viewing activity</p>
+                <h3>Watchlist activity</h3>
               </div>
               <span className="pill positive">+14.8% MoM</span>
             </div>
 
-            <div className="chart" aria-label="Keyword growth chart">
+            <div className="chart" aria-label="Watchlist activity chart">
               {[40, 58, 52, 72, 66, 88, 96].map((height, index) => (
                 <div key={index} className="bar" style={{ height: `${height}%` }} />
               ))}
@@ -119,19 +119,19 @@ function App() {
           <div className="panel">
             <div className="panel-header">
               <div>
-                <p className="eyebrow">Priority targets</p>
-                <h3>Top keywords</h3>
+                <p className="eyebrow">Movie picks</p>
+                <h3>Popular movies</h3>
               </div>
             </div>
 
-            <div className="keyword-list">
-              {keywords.map(({ keyword, position, trend, volume }) => (
-                <div key={keyword} className="keyword-item">
+            <div className="movie-list">
+              {movies.map(({ movie, position, trend, volume }) => (
+                <div key={movie} className="movie-item">
                   <div>
-                    <strong>{keyword}</strong>
-                    <p>{volume} monthly searches</p>
+                    <strong>{movie}</strong>
+                    <p>{volume} demo views</p>
                   </div>
-                  <div className="keyword-meta">
+                  <div className="movie-meta">
                     <span className="position">#{position}</span>
                     <span className="trend positive">+{trend}%</span>
                   </div>
@@ -145,8 +145,8 @@ function App() {
           <div className="panel">
             <div className="panel-header">
               <div>
-                <p className="eyebrow">Regional impact</p>
-                <h3>Visibility by market</h3>
+                <p className="eyebrow">Audience overview</p>
+                <h3>Audience by region (demo)</h3>
               </div>
             </div>
 
@@ -155,7 +155,7 @@ function App() {
                 <div key={region} className="region-row">
                   <div>
                     <strong>{region}</strong>
-                    <p>{visibility} average visibility</p>
+                    <p>{visibility} demo audience share</p>
                   </div>
                   <span className="trend positive">{change}</span>
                 </div>
@@ -166,15 +166,15 @@ function App() {
           <div className="panel insights-panel">
             <div className="panel-header">
               <div>
-                <p className="eyebrow">Optimization notes</p>
-                <h3>Actionable insights</h3>
+                <p className="eyebrow">Movie night ideas</p>
+                <h3>Viewing suggestions</h3>
               </div>
             </div>
 
             <ul className="insights-list">
-              <li>Update product landing pages to target high-intent comparison keywords.</li>
-              <li>Expand FAQ blocks on service pages for better featured snippet capture.</li>
-              <li>Prioritize on-page internal linking for pages ranking in positions 7-12.</li>
+              <li>Explore a genre you have not watched recently.</li>
+              <li>Save a movie to your favorites for your next movie night.</li>
+              <li>Read the plot summary before choosing a movie.</li>
             </ul>
           </div>
         </section>

@@ -150,7 +150,7 @@ h1 {
 .topbar,
 .panel-header,
 .stat-row,
-.keyword-item,
+.movie-item,
 .region-row {
   display: flex;
   justify-content: space-between;
@@ -264,7 +264,7 @@ h1 {
   box-shadow: 0 8px 18px rgba(76, 141, 255, 0.3);
 }
 
-.keyword-list,
+.movie-list,
 .region-list,
 .insights-list {
   display: flex;
@@ -272,26 +272,26 @@ h1 {
   gap: 14px;
 }
 
-.keyword-item,
+.movie-item,
 .region-row {
   gap: 12px;
   padding: 12px 0;
   border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
 
-.keyword-item:last-child,
+.movie-item:last-child,
 .region-row:last-child {
   border-bottom: none;
 }
 
-.keyword-item p,
+.movie-item p,
 .region-row p {
   color: #90a9c8;
   margin-top: 4px;
   font-size: 0.78rem;
 }
 
-.keyword-meta {
+.movie-meta {
   display: flex;
   align-items: center;
   gap: 10px;
