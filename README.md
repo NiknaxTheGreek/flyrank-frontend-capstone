@@ -26,7 +26,7 @@ With nvm installed, run `nvm install` and `nvm use` from the repository root to 
 
 ## Assignment files
 
-- [Development conventions](CLAUDE.md)
+- [Development conventions](ChatGPT.md)
 - [README critique and applied improvement](docs/README_REVIEW.md)
 - [Screenshot of the ChatGPT setup summary](docs/assignment-1/evidence/a1-setup-summary.webp)
 - [Submission file index](docs/assignment-1/SUBMISSION.md)

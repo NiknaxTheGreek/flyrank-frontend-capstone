@@ -7,7 +7,7 @@ Submission branch: `fe01-project-setup`
 | --- | --- | --- |
 | Project README | PASS | README.md describes Reel Good and branch setup |
 | License | PASS | LICENSE (MIT) |
-| Assistant conventions | PASS | CLAUDE.md |
+| Assistant conventions | PASS | ChatGPT.md |
 | Ignore rules / Node version | PASS | .gitignore and .nvmrc |
 | At least three Conventional Commits | PASS | 0842d9d, 7718760, 44275d6 retained in branch history |
 | AI README critique and applied improvement | PASS | docs/README_REVIEW.md and documentation commits |

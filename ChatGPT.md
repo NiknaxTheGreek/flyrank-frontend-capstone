@@ -1,8 +1,8 @@
 # Reel Good — Project context and conventions
 
 ## Assistant
-ChatGPT is the chosen development assistant. The filename is retained for
-assignment compatibility and does not claim Claude Code was used.
+ChatGPT is the chosen development assistant. This file was originally named CLAUDE.md for assignment compatibility;
+ChatGPT is the chosen assistant and no Claude Code use is claimed.
 
 ## Product and scope
 Reel Good is the Frontend track movie discovery app: browse genres, search
