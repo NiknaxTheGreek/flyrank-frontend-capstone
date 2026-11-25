@@ -6,5 +6,6 @@ Reel Good lets users browse 24 featured movies by genre, search OMDb by title an
 - [Setup instructions and app routes](../../README.md)
 - [Development prompts](prompts.md), [AI assistance](ai-assistance.md), and [review log](review-log.md)
 - [Verification record](verification.md)
+- [Original A3 movie-detail and saved-favorite screenshot](evidence/movie-detail.webp).
 
 The test suite and production build passed. Manual verification covered adding a favorite, refreshing the page, signing out and back in, and removing the saved movie.

@@ -77,4 +77,4 @@ Branch:
 
 ## Screenshot
 
-The archived movie-detail JPEG is truncated and cannot be used as visual evidence. The submission index links to the movie-detail implementation and routing tests.
+[Original A3 movie-detail and saved-favorite screenshot](evidence/movie-detail.webp), supplied by the learner on 25 November 2026, replaces the damaged archived JPEG. The original image displays The Shawshank Redemption movie-detail page, poster, year, genre, rating, plot, IMDb link, and the “Remove from favorites” button with the confirmation that the movie was saved. The address bar uses the older slug-based Codespaces route; this is historical A3 visual evidence, not a screenshot of the current canonical IMDb-ID route. The screenshot alone does not verify database persistence or account isolation; see the separate verification record above.

@@ -12,5 +12,7 @@
 
 ## Evidence
 
+- [Original A3 movie-detail and saved-favorite screenshot](evidence/movie-detail.webp) — learner-supplied desktop evidence from the earlier A3 implementation.
+
 - [Movie-detail page implementation](../../src/pages/MovieDetailsPage.tsx) and [routing tests](../../src/routing.test.tsx).
 - [Firebase verification](verification.md#firebase-verification) records saving a favorite, refreshing, signing back in and removing it.
