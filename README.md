@@ -12,4 +12,4 @@ npm start
 
 Use Node 24 and open http://localhost:3000/playground. See the [A5 submission index](docs/assignment-5/SUBMISSION.md) and [keyboard/source-review notes](NOTES.md).
 
-The manual keyboard checks are recorded in [NOTES.md](NOTES.md). Review the [playground screenshot](docs/assignment-5/evidence/accessibility-playground.jpg) or open the [deployed playground](https://flyrank-frontend-capstone-ju33og447-niknaxthegreek.vercel.app/playground). The public preview returned HTTP 200 on 24 November 2026; no sign-in wall was observed. This is an availability check, not a fresh keyboard or screen-reader audit.
+The manual keyboard checks are recorded in [NOTES.md](NOTES.md). Open the [deployed playground](https://flyrank-frontend-capstone-git-fe05-access-b552f6-niknaxthegreek.vercel.app/playground). The Git-triggered build of commit `33fe0c4` was READY and the public playground returned expected content on 25 November 2026. The archived JPEG could not be validated as a readable screenshot; replacement with the original learner capture remains outstanding. See NOTES.md for the historical keyboard checks and current audit limitations.

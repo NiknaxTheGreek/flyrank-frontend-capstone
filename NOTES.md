@@ -48,8 +48,7 @@ behaviour or complete screen-reader accessibility.
 ## Source review and corrections
 
 The generated tabs wrapper extracted orientation but did not forward it
-to TabsPrimitive.Root. We added orientation={orientation}. This was found
-through source review; the demonstrated keyboard checks were horizontal.
+to TabsPrimitive.Root. The 25 November source audit found that the forwarded prop was missing in the current branch, despite the earlier correction note. The audit restores `orientation={orientation}` on `TabsPrimitive.Root`. This is a source correction; the demonstrated keyboard checks were horizontal and vertical keyboard behavior has not been newly tested.
 
 Generated utility imports used "cn". We changed these to "@/lib/utils"
 to reference this project's local helper.
@@ -63,8 +62,7 @@ An overly broad TypeScript include pulled older A3 Vite components into
 the Next.js check. We narrowed it to the relevant UI directory while
 explicitly including playground files. The subsequent type check passed.
 
-Installing shadcn changed global styles, producing the light-theme
-comparison shown in the latest screenshot.
+Installing shadcn changed global styles to the light theme. The 25 November audit also removed a nested `main` landmark from the playground page, retaining the root layout's main landmark.
 
 ## References
 
@@ -74,6 +72,12 @@ comparison shown in the latest screenshot.
 - https://ui.shadcn.com/docs/components/dialog
 - https://ui.shadcn.com/docs/components/tabs
 
-## Remaining verification
+## 25 November 2026 audit
 
-Production build passed, including TypeScript checks and static generation of /playground. The changes are present on the remote `fe05-accessibility-playground` branch at `8c0783fa9c02da195f0ff1846ca9692741e1de73`; the former pending-push note was stale. Screenshot captures were supplied previously, but are not committed in this branch. Add branch-matched screenshots under `docs/assignment-5/evidence/` before submission.
+- The Vercel Git deployment of `33fe0c4` reached READY; its build compiled Next.js and completed TypeScript checking, including `/playground`. This was before the two narrow source corrections above.
+- The public playground returned expected page content. This is not a fresh keyboard interaction test.
+- No explicit `any` prop escapes were found in the three custom components or the reviewed shadcn wrappers. The strict TypeScript configuration includes the playground.
+- The latest inspected install log reports five moderate dependency vulnerabilities and a non-fatal React 18 deprecation warning. No dependency upgrade was performed during this audit.
+- The original manual keyboard results above are learner-reported historical evidence. No A5-specific automated keyboard test suite was found.
+- The archived screenshot JPEG is not reliable visual evidence. The original learner captures could not be recovered in this audit; replacement is pending. No new screenshot or test pass is claimed.
+- Independently handwritten implementation was not demonstrated; the assistance disclosure above remains accurate.

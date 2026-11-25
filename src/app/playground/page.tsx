@@ -5,7 +5,7 @@ import Disclosure from "../../../playground/Disclosure";
 
 export default function PlaygroundPage() {
   return (
-    <main className="mx-auto max-w-3xl space-y-8 px-6 py-12">
+    <div className="mx-auto max-w-3xl space-y-8 px-6 py-12">
       <header className="space-y-3">
         <h1 className="text-3xl font-bold">Accessibility playground</h1>
         <p>
@@ -39,6 +39,6 @@ export default function PlaygroundPage() {
         <Modal />
       </section>
       <ShadcnComparison />
-    </main>
+    </div>
   );
 }

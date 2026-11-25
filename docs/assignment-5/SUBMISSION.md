@@ -1,22 +1,22 @@
 # Assignment 5 — Accessibility playground
 
-**Source branch:** [`fe05-accessibility-playground`](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe05-accessibility-playground)  
-**Route:** `/playground`
+**Source branch:** [fe05-accessibility-playground](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe05-accessibility-playground)  
+**Public preview:** [Playground](https://flyrank-frontend-capstone-git-fe05-access-b552f6-niknaxthegreek.vercel.app/playground)
 
 ## Deliverables
 
-- Custom disclosure, tabs and modal components in `playground/`.
-- shadcn/Radix dialog and tabs comparison on the playground route.
-- [Implementation, keyboard checks and source-review notes](../../NOTES.md).
-- [Branch README](../../README.md).
+- [Custom disclosure](../../playground/Disclosure.tsx), [tabs](../../playground/Tabs.tsx), and [modal](../../playground/Modal.tsx).
+- [shadcn comparison](../../playground/ShadcnComparison.tsx), with [dialog](../../src/components/ui/dialog.tsx) and [tabs](../../src/components/ui/tabs.tsx) source.
+- [Keyboard verification and comparison notes](../../NOTES.md).
 
-## Verification recorded
+## Audit — 25 November 2026
 
-The notes report manual keyboard checks for disclosure, tabs, modal focus, dismissal and restoration, plus production build/type checks. This was AI-assisted work with learner keyboard review. The notes also record limitations in reusable modal composition and vertical tabs.
+The custom components use React and TypeScript without component libraries. The notes record learner keyboard checks of disclosure, tabs, modal focus containment and focus restoration, and three concrete gaps relative to shadcn. The work was AI-assisted, not independently handwritten.
 
-## Evidence
+Vercel recorded a READY Git-triggered deployment for `33fe0c4`; Next.js compilation and TypeScript checks completed and the public playground loaded. The subsequent audit restores the missing orientation prop in the shadcn tabs wrapper and removes a nested main landmark. Fresh build and keyboard verification of those changes are outstanding.
 
-- [Accessibility playground screenshot](evidence/accessibility-playground.jpg) shows the disclosure and keyboard-accessible UI at `/playground`.
-- This historical preview screenshot supports visual inspection only; keyboard and screen-reader behavior must be supported by the recorded manual checks, not inferred from the image.
+## Evidence and limitations
 
-The old final line in `NOTES.md` claiming the Git push is pending is stale: the branch already contains commit `8c0783fa9c02da195f0ff1846ca9692741e1de73`. The public Preview returned HTTP 200 on 24 November 2026; no sign-in wall was observed. This recheck confirms route availability only, not keyboard or screen-reader behavior.
+The archived JPEG could not be validated as a usable screenshot. Replacement with the learner's original screenshot is outstanding. The historical manual keyboard checks are documented in NOTES.md; no fresh automated keyboard or screen-reader pass is claimed. The last inspected build reports five moderate dependency vulnerabilities.
+
+Repository-wide historical credential cleanup remains deferred.
