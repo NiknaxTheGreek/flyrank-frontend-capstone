@@ -22,7 +22,7 @@ npm run build
 
 Verified on 2026-11-21 with Node.js 24.22.3 and npm 11.19.1: `npm ci`, `npm test` (11 tests passed), and `npm run build` passed. The vague-prompt branch has no test script; its production build also passed on this runtime.
 
-[Three rules learned in Assignment 2](CLAUDE.md#rules-learned-in-assignment-2)
+[Three rules learned in Assignment 2](ChatGPT.md#rules-learned-in-assignment-2)
 
 ## Preview and evidence
 

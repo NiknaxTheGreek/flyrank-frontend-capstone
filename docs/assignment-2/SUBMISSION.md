@@ -22,7 +22,7 @@
 
 On 2026-11-21, with Node.js 24.22.3 and npm 11.19.1, the structured branch passed `npm ci`, all 11 tests, and `npm run build`. The vague branch passed `npm ci` and `npm run build`; it has no test script.
 
-[Three rules learned in Assignment 2](../../CLAUDE.md#rules-learned-in-assignment-2)
+[Three rules learned in Assignment 2](../../ChatGPT.md#rules-learned-in-assignment-2)
 
 ## Preview and evidence
 

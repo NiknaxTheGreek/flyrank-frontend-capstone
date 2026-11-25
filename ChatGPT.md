@@ -1,8 +1,8 @@
 # Project context and conventions
 
 ## Assistant
-ChatGPT is the chosen development assistant. This filename is retained for
-assignment compatibility; it does not claim Claude Code was used.
+ChatGPT is the chosen development assistant. This file was originally named CLAUDE.md for assignment compatibility;
+no Claude Code use is claimed.
 
 ## Product
 Reel Good is the frontend movie discovery capstone: browse genres, search movies,
