@@ -10,6 +10,7 @@ import FavoritesPage from './pages/FavoritesPage';
 import HomePage from './pages/HomePage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import NotFoundPage from './pages/NotFoundPage';
+import MotionLabPage from './pages/MotionLabPage';
 
 function RequireAuth({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
@@ -40,6 +41,7 @@ function AppLayout() {
         <nav className="site-navigation" aria-label="Main navigation">
           <Link to="/movies">Movies</Link>
           <Link to="/pick-a-movie">Movie picker</Link>
+          <Link to="/motion-lab">Motion lab</Link>
           <Link to="/favorites">Favorites</Link>
           <Link to="/account">{user ? 'Account' : 'Sign in'}</Link>
         </nav>
@@ -50,6 +52,7 @@ function AppLayout() {
           <Route path="/movies" element={<HomePage />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
           <Route path="/pick-a-movie" element={<MovieChat />} />
+          <Route path="/motion-lab" element={<MotionLabPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/favorites" element={<RequireAuth><FavoritesPage /></RequireAuth>} />
           <Route path="*" element={<NotFoundPage />} />

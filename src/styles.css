@@ -509,6 +509,9 @@ h1 {
 
   .site-header {
     min-height: 66px;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-block: 16px;
   }
 
   .site-navigation {

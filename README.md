@@ -1,10 +1,8 @@
-# Reel Good — Assignment 8: Resilience checkpoint
+# Reel Good — Assignment 9: Button lifecycle
 
-**A8 complete — awaiting submission.** This branch records the movie chat resilience work: offline and failed-request handling, retry/recovery, interrupted generation, no-match behavior, and mobile layout.
+Assignment 9: open **[Motion lab](./docs/assignment-9/README.md)** at `/motion-lab` for the reusable Send/Save button lifecycle demo, forced success/failure controls, motion rationale, and verification details. It needs no credentials or API key.
 
-- [Checkpoint and implementation details](docs/assignment-8/CHECKPOINT.md)
-- [Evidence inventory and screenshot context](docs/assignment-8/EVIDENCE.md)
-- [Submission summary](docs/assignment-8/SUBMISSION.md)
-- [Original evidence screenshots](docs/assignment-8/evidence/)
+- [Submission summary](docs/assignment-9/submission.md)
+- [Idle, error and reduced-motion screenshots](docs/assignment-9/evidence/)
 
-The branch also retains earlier Reel Good features. This README is the entry point for A8; the assignment-specific notes above describe its scope.
+This branch continues the Reel Good capstone. Its README describes the A9 deliverable; earlier product features are documented in their assignment branches.

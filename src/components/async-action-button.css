@@ -1,0 +1,182 @@
+.async-action {
+  --action-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --action-state-duration: 200ms;
+  --action-feedback-duration: 150ms;
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  inline-size: 100%;
+}
+
+.async-action .sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.async-action-button {
+  position: relative;
+  isolation: isolate;
+  inline-size: 224px;
+  max-inline-size: 100%;
+  block-size: 56px;
+  padding: 0;
+  border: 1px solid #f4ca75;
+  border-radius: 14px;
+  color: #211908;
+  background: #f1b84b;
+  font-weight: 750;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--action-feedback-duration) var(--action-ease);
+}
+
+.async-action-button::before,
+.async-action-button::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity var(--action-feedback-duration) var(--action-ease);
+}
+
+.async-action-button::before {
+  inset: 0;
+  background: #fff;
+}
+
+.async-action-button::after {
+  inset: -6px;
+  border: 2px solid #f5ca72;
+}
+
+.async-action-button:focus-visible { outline: none; }
+.async-action-button:focus-visible::after { opacity: 1; }
+.async-action-button[aria-disabled='false']:focus-visible { transform: translateY(-2px); }
+
+@media (hover: hover) {
+  .async-action-button[aria-disabled='false']:hover { transform: translateY(-2px); }
+  .async-action-button[aria-disabled='false']:hover::before { opacity: 0.1; }
+}
+
+.async-action-button[aria-disabled='false']:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 90ms;
+}
+
+.async-action-button__surface {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #24282a;
+  opacity: 0;
+  transition: opacity var(--action-state-duration) var(--action-ease);
+}
+
+.async-action-button[data-state='loading'] .async-action-button__surface { opacity: 0.15; }
+.async-action-button[data-state='disabled'] .async-action-button__surface { opacity: 0.94; }
+.async-action-button[aria-disabled='true'] { cursor: default; }
+.async-action-button:disabled { cursor: not-allowed; }
+
+.async-action-button__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: inherit;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--action-state-duration) var(--action-ease),
+    transform var(--action-state-duration) var(--action-ease);
+  pointer-events: none;
+}
+
+.async-action-button__face[data-visible='true'] { opacity: 1; transform: translateY(0); }
+.async-action-button__face[data-face='success'] { background: #b1dfc3; color: #102a1a; }
+.async-action-button__face[data-face='error'] { background: #f4b4aa; color: #3d1510; }
+.async-action-button__face[data-face='disabled'] { color: #d2d4d5; }
+.async-action-button__icon { display: inline-flex; inline-size: 22px; block-size: 22px; }
+.async-action-button__icon svg { inline-size: 100%; block-size: 100%; }
+
+.async-action-button__spinner {
+  inline-size: 20px;
+  block-size: 20px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+}
+
+.async-action-button[data-state='loading'] .async-action-button__spinner {
+  animation: action-spin 800ms linear infinite;
+}
+
+.async-action-button[data-state='error'] [data-face='error'] .async-action-button__icon {
+  animation: action-error 320ms ease-out 1;
+}
+
+.async-action__feedback {
+  display: grid;
+  inline-size: 100%;
+  min-block-size: 3em;
+  color: #aeb1b2;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+.async-action__feedback > span {
+  grid-area: 1 / 1;
+  align-self: start;
+  opacity: 0;
+  transition: opacity var(--action-state-duration) var(--action-ease);
+}
+
+.async-action__feedback > [data-visible='true'] { opacity: 1; }
+.async-action__feedback > [data-face='error'] { color: #ffb9af; }
+.async-action__feedback > [data-face='success'] { color: #b1dfc3; }
+
+.async-action[data-variant='secondary'] .async-action-button { background: #252a2d; border-color: #697172; color: #f3f1ed; }
+
+@keyframes action-spin { to { transform: rotate(360deg); } }
+@keyframes action-error {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  60% { transform: translateX(3px); }
+}
+
+/* Keep feedback and a short opacity dissolve; remove spatial/repeating motion. */
+[data-reduced-motion='true'] .async-action-button,
+[data-reduced-motion='true'] .async-action-button__face {
+  transform: none !important;
+  transition-property: opacity;
+  transition-duration: 100ms !important;
+}
+
+[data-reduced-motion='true'] .async-action-button *,
+[data-reduced-motion='true'] .async-action-button::before,
+[data-reduced-motion='true'] .async-action-button::after,
+[data-reduced-motion='true'] .async-action__feedback > span {
+  animation: none !important;
+  transition-duration: 100ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .async-action-button, .async-action-button__face {
+    transform: none !important;
+    transition-property: opacity;
+    transition-duration: 100ms !important;
+  }
+  .async-action-button *, .async-action-button::before, .async-action-button::after,
+  .async-action__feedback > span {
+    animation: none !important;
+    transition-duration: 100ms !important;
+  }
+}
