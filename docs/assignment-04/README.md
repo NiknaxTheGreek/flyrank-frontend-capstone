@@ -1,6 +1,6 @@
 # Assignment 4 — Next.js scaffold
 
-Status: implementation verified locally; hosting and deployed checks pending.
+Status: scaffold implemented; Git-connected preview build and live route checks verified on 25 November 2026. Responsive screenshot evidence is linked in [submission.md](submission.md). Repository-wide historical credential cleanup remains deferred.
 
 ## Run from Git
 
@@ -23,7 +23,7 @@ No environment variables are required for this scaffold.
 | Movie 404 | invalid/unknown movie IDs | Separate Movie not found screen |
 | Health | `/health` | Actual uncached external data fetch; success/failure and retry |
 
-The scaffold uses three sample titles. It does not claim live OMDb search or working Firebase authentication. Full Assignment 3 functionality remains reproducible at `assignment-03-final`.
+The scaffold uses three sample titles. It does not claim live OMDb search or working Firebase authentication. Full Assignment 3 functionality remains available on the [A3 source branch](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe03-movie-app).
 
 ## Architecture and decisions
 
@@ -57,6 +57,6 @@ The smoke script checks routes, headings, horizontal overflow at 375px and 1280p
 3. After the Git connection is established, push a new conventional commit on this branch. Confirm Vercel automatically creates a Preview deployment and its displayed commit SHA matches that pushed commit. A manual deployment alone does not pass this gate.
 4. Run the smoke command against that deployment; manually inspect both sizes and run `/health`. Record URL, SHA and actual output in verification.md.
 5. Update submission.md, commit/push final evidence, and verify its automatic preview as well.
-6. Only after all checks pass, create and push `assignment-04-final` at the exact verified commit. Never move or overwrite that tag. Screenshots can be captured later from it.
+6. Use the verified branch and preview for submission. The existing historical final tag requires separate repository-wide cleanup; do not use it as the current submission source.
 
 Fallback: Netlify Git import with its Next.js support and branch deploys enabled for `fe04-scaffold-deploy`. Verify a fresh push-triggered deployment and the same browser checks. Paid services are not authorized or required. If hosting access is unavailable, retain pending status rather than substitute a manually hosted site.

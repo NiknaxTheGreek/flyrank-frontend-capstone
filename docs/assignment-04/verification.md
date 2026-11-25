@@ -2,6 +2,15 @@
 
 ## Current verification
 
+### 25 November 2026 — post-consolidation audit
+
+- Vercel Git-triggered Preview: READY for commit `d4f0ac7aef3dfda81ffca562b30833c465075506`; build logs show `next build`, successful compilation and TypeScript, and App Router output for `/`, `/movies`, `/movies/[movieId]`, `/account`, `/favorites`, `/health` and not-found.
+- Public branch alias returned expected content for `/`, `/movies`, `/movies/tt1375666`, `/account`, `/favorites`, `/health` and `/?q=Inception&page=1` without sign-in. Health returned record #1: delectus aut autem.
+- Original PNG captures were visually inspected: 375px, 1280px and successful health fetch. The redundant damaged JPEG was removed from the current tree. Console messages are visible in the responsive captures; no fresh viewport or console test is claimed.
+- `.env.example` has blank values and `.gitignore` excludes local env files. Known historical credential exposure remains subject to separate repository-wide remediation.
+- Latest deployment install reported one moderate vulnerability and non-fatal warnings, superseding the earlier zero-vulnerability audit as a current dependency status. No new unit test run was performed in this audit.
+
+
 ## Screenshot evidence — checks completed 11 November 2026
 
 The original screenshots supplied by Nicholas in the A4 chat are now packaged in this branch.
@@ -23,8 +32,8 @@ The dated pending items below describe earlier states and are superseded by the 
 ### Starting state
 - Branch: fe04-scaffold-deploy
 - Base: assignment-03-final
-- Base commit: d216f77f97b958fd247836a6aeb4ca51a6f8edf3
-- Assignment 3 branch, tag and history must remain unchanged.
+- Base: original A3 evidence checkpoint (historical; superseded by history consolidation)
+- Assignment 3 was originally frozen; the repository-wide history consolidation subsequently changed branch references.
 
 ## Verified baseline — 2026-10-18
 - npm test: PASS — 41 tests across 8 files.
@@ -35,7 +44,7 @@ The dated pending items below describe earlier states and are superseded by the 
 ## Delivery rules
 - Free, simple and quick first; preserve rubric and security safeguards.
 - Document fallbacks.
-- Finish code, verify tests/build, commit, push, then freeze the verified assignment with a tag that must not be moved.
+- Original workflow: finish code, verify tests/build, commit, push and tag. Historical tag replacement is now a separate deferred security task.
 - Screenshots may follow from the frozen version.
 
 ## Tooling upgrade verification — 2026-11-11
