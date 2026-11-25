@@ -42,7 +42,7 @@ export default function MotionLabPage() {
       <p className="eyebrow">Assignment 09 / Interaction study</p>
       <h1 id="motion-title" tabIndex={-1}>A small action.{' '}<br /><span>A clear response.</span></h1>
       <p>Every click has a story. The button should tell you where you are in it.</p>
-      <span className="motion-intro__tag"><span aria-hidden="true">●</span> A motion study for Reel Good</span>
+      <span className="motion-intro__tag"><span aria-hidden="true" /> A motion study for Reel Good</span>
     </section>
 
     <div className="motion-grid">

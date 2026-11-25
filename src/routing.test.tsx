@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { MemoryRouter, useNavigate } from 'react-router-dom';
@@ -56,6 +56,14 @@ function open(path = '/') {
     </MemoryRouter>,
   );
 }
+
+it('moves focus to the destination heading after navigating into a lazy route', async () => {
+  const user = userEvent.setup();
+  open('/');
+  await user.click(screen.getByRole('link', { name: 'Movie picker' }));
+  const heading = await screen.findByRole('heading', { level: 1, name: 'Help me pick a movie' });
+  await waitFor(() => expect(document.activeElement).toBe(heading));
+});
 
 it('opens details and returns to the submitted search, including browser history', async () => {
   const user = userEvent.setup();

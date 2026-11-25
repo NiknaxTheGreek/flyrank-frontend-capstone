@@ -16,7 +16,6 @@ test.beforeEach(async ({ context, page }) => {
 });
 
 test('primary flow: prompt, pending state, movie lookup card, and contextual follow-up', async ({ page }) => {
-  await page.clock.install();
   const requests: { messages: { role: string; content: string }[] }[] = [];
   let release!: () => void;
   const pending = new Promise<void>(resolve => { release = resolve; });
@@ -39,25 +38,21 @@ test('primary flow: prompt, pending state, movie lookup card, and contextual fol
   await page.getByRole('button', { name: 'Send', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: 'Thinking…' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Stop generation' })).toBeEnabled();
-  // Hold the app clock while inspecting each brief lifecycle state. The network
-  // fixture stays deterministic even when the CI runner is busy painting frames.
-  await page.clock.pauseAt(await page.evaluate(() => Date.now() + 1000));
   release();
   const card = page.getByRole('region', { name: 'Movie lookup' });
-  await expect(card.getByRole('status')).toContainText('Preparing movie lookup…');
-  await page.clock.runFor(350);
-  await expect(card.getByRole('status')).toContainText('Looking up Inception');
-  await page.clock.runFor(350);
+  // This fixture delivers its frames together. Transient tool states are
+  // checked with a frame-controlled stream in MovieChat.lifecycle.test.tsx;
+  // browser polling can miss their short display windows under CI load.
   await expect(card.getByRole('heading', { name: 'Inception (2010)' })).toBeVisible();
   await expect(card.getByRole('definition').filter({ hasText: '148 min' })).toBeVisible();
   await expect(card.getByRole('link', { name: 'View Inception on IMDb' })).toHaveAttribute('href', 'https://www.imdb.com/title/tt1375666/');
   await expect(page.getByRole('button', { name: 'Stop generation' })).toBeDisabled();
-  await page.clock.resume();
   await input.fill('Anything lighter?');
   await page.getByRole('button', { name: 'Send', exact: true }).click();
-  await expect(page.getByText('For something lighter, try Galaxy Quest.', { exact: true })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Movie conversation' }).getByText('For something lighter, try Galaxy Quest.', { exact: true })).toBeVisible();
   await expect(page.getByRole('listitem', { name: 'You message' })).toHaveCount(2);
   await expect(page.getByRole('listitem', { name: 'Movie picker message' })).toHaveCount(2);
+  if (test.info().project.name === 'desktop-chromium') await page.screenshot({ path: 'test-results/release/movie-picker.png', fullPage: true });
   expect(requests).toHaveLength(2);
   expect(requests[1].messages[1]).toMatchObject({ role: 'assistant' });
   expect(requests[1].messages[1].content).toContain('IMDb ID tt1375666');
@@ -81,9 +76,10 @@ test('an interrupted reply exposes a working retry and preserves one user turn',
   await expect(page.getByText('Interrupted · partial response', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Retry failed message' }).click();
   await expect(page.getByRole('heading', { name: 'Inception (2010)' })).toBeVisible();
-  await expect(page.getByText('Recovered movie recommendation.', { exact: true })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Movie conversation' }).getByText('Recovered movie recommendation.', { exact: true })).toBeVisible();
   await expect(page.getByRole('alert')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Retry failed message' })).toHaveCount(0);
   await expect(page.getByRole('listitem', { name: 'You message' })).toHaveCount(1);
   expect(attempts).toBe(2);
 });
+

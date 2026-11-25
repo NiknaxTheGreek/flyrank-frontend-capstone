@@ -1,0 +1,121 @@
+{
+  "workflow": "https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44773194320",
+  "releaseSource": "bfdd95eb274f6342a9f86c9023d1dcb24d425131",
+  "observed": [
+    {
+      "name": "chat",
+      "scores": {
+        "performance": 97,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 764.362,
+          "display": "0.8 s"
+        },
+        "largest-contentful-paint": {
+          "value": 1631.362,
+          "display": "1.6 s"
+        },
+        "total-blocking-time": {
+          "value": 174,
+          "display": "170 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0.02777901725835233,
+          "display": "0.028"
+        },
+        "speed-index": {
+          "value": 764.362,
+          "display": "0.8 s"
+        },
+        "total-byte-weight": {
+          "value": 130726,
+          "display": "Total size was 128 KiB"
+        }
+      }
+    },
+    {
+      "name": "home",
+      "scores": {
+        "performance": 95,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 848.2445,
+          "display": "0.8 s"
+        },
+        "largest-contentful-paint": {
+          "value": 2477.5877499999997,
+          "display": "2.5 s"
+        },
+        "total-blocking-time": {
+          "value": 176,
+          "display": "180 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0,
+          "display": "0"
+        },
+        "speed-index": {
+          "value": 987.8792398133332,
+          "display": "1.0 s"
+        },
+        "total-byte-weight": {
+          "value": 524849,
+          "display": "Total size was 513 KiB"
+        }
+      }
+    },
+    {
+      "name": "chat",
+      "categories": {
+        "error": 0,
+        "contrast": 0,
+        "alert": 0,
+        "feature": 4,
+        "structure": 6,
+        "aria": 11
+      }
+    },
+    {
+      "name": "home",
+      "categories": {
+        "error": 0,
+        "contrast": 0,
+        "alert": 0,
+        "feature": 29,
+        "structure": 50,
+        "aria": 197
+      }
+    },
+    {
+      "name": "motion",
+      "categories": {
+        "error": 0,
+        "contrast": 0,
+        "alert": 0,
+        "feature": 10,
+        "structure": 12,
+        "aria": 48
+      }
+    },
+    {
+      "name": "account",
+      "categories": {
+        "error": 0,
+        "contrast": 0,
+        "alert": 0,
+        "feature": 5,
+        "structure": 4,
+        "aria": 7
+      }
+    }
+  ],
+  "exportNote": "Lighthouse and WAVE measurements completed. The catalogue fixture then failed an immediate heading-focus assertion, so the original report screenshots were not exported by this run. The final complete run is retained separately."
+}

@@ -1,0 +1,295 @@
+{
+  "name": "home",
+  "url": "http://127.0.0.1:4173/",
+  "at": "2026-11-20T10:41:35.426Z",
+  "version": "3.3.1.0",
+  "statistics": {
+    "allitemcount": 18,
+    "totalelements": 50,
+    "pagetitle": "Discover movies | Reel Good",
+    "aim": 10,
+    "error": 0,
+    "contrast": 0,
+    "alert": 0,
+    "feature": 3,
+    "structure": 6,
+    "aria": 9
+  },
+  "categories": {
+    "error": {
+      "description": "Errors",
+      "count": 0,
+      "items": {}
+    },
+    "contrast": {
+      "description": "Contrast Errors",
+      "count": 0,
+      "items": {}
+    },
+    "alert": {
+      "description": "Alerts",
+      "count": 0,
+      "items": {}
+    },
+    "feature": {
+      "description": "Features",
+      "count": 3,
+      "items": {
+        "label": {
+          "id": "label",
+          "description": "Form label",
+          "count": 2,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/FORM[1]/LABEL[1]",
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[2]/DIV[2]/LABEL[1]"
+          ],
+          "selectors": [
+            false,
+            false
+          ],
+          "text": [
+            false,
+            false
+          ],
+          "hidden": [
+            false,
+            false
+          ]
+        },
+        "lang": {
+          "id": "lang",
+          "description": "Language",
+          "count": 1,
+          "xpaths": [
+            "#"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            "en"
+          ],
+          "hidden": [
+            false
+          ]
+        }
+      }
+    },
+    "structure": {
+      "description": "Structural Elements",
+      "count": 6,
+      "items": {
+        "h1": {
+          "id": "h1",
+          "description": "Heading level 1",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/H1[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "h2": {
+          "id": "h2",
+          "description": "Heading level 2",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[2]/DIV[1]/H2[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "header": {
+          "id": "header",
+          "description": "Header",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/HEADER[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "nav": {
+          "id": "nav",
+          "description": "Navigation",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/HEADER[1]/NAV[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "search": {
+          "id": "search",
+          "description": "Search",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/FORM[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "main": {
+          "id": "main",
+          "description": "Main content",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        }
+      }
+    },
+    "aria": {
+      "description": "ARIA",
+      "count": 9,
+      "items": {
+        "aria": {
+          "id": "aria",
+          "description": "ARIA",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[2]/P[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            "role=\"status\""
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "aria_label": {
+          "id": "aria_label",
+          "description": "ARIA label",
+          "count": 4,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/HEADER[1]/A[1]",
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/HEADER[1]/NAV[1]",
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]",
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[2]"
+          ],
+          "selectors": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "text": [
+            "aria-label=\"Reel Good home\"",
+            "aria-label=\"Main navigation\"",
+            "aria-labelledby=\"page-title\"",
+            "aria-labelledby=\"movies-heading\""
+          ],
+          "hidden": [
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        "aria_tabindex": {
+          "id": "aria_tabindex",
+          "description": "ARIA tabindex",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[1]/H1[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            "tabindex=-1"
+          ],
+          "hidden": [
+            false
+          ]
+        },
+        "aria_live_region": {
+          "id": "aria_live_region",
+          "description": "ARIA alert or live region",
+          "count": 2,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[2]/P[1]",
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/MAIN[1]/SECTION[2]/DIV[3]/P[1]"
+          ],
+          "selectors": [
+            false,
+            false
+          ],
+          "text": [
+            false,
+            false
+          ],
+          "hidden": [
+            false,
+            false
+          ]
+        },
+        "aria_hidden": {
+          "id": "aria_hidden",
+          "description": "ARIA hidden",
+          "count": 1,
+          "xpaths": [
+            "/HTML/BODY[1]/DIV[2]/DIV[1]/HEADER[1]/A[1]/SPAN[1]"
+          ],
+          "selectors": [
+            false
+          ],
+          "text": [
+            false
+          ],
+          "hidden": [
+            false
+          ]
+        }
+      }
+    }
+  },
+  "success": true
+}

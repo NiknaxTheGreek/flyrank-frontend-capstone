@@ -68,3 +68,11 @@ try {
   await browser.close();
 }
 console.log(`Captured ${inCI ? 'GitHub Actions' : 'local'} report: test-results/ci-suite.png`);
+
+if (inCI) {
+  const image = await readFile('test-results/release/movie-picker.png');
+  const encoded = image.toString('base64');
+  console.log('A14_PICKER_SCREENSHOT_BEGIN');
+  for (let offset = 0; offset < encoded.length; offset += 12000) console.log(`A14_PICKER_SCREENSHOT_CHUNK ${offset / 12000} ${encoded.slice(offset, offset + 12000)}`);
+  console.log('A14_PICKER_SCREENSHOT_END');
+}

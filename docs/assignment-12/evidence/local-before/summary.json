@@ -1,0 +1,614 @@
+[
+  {
+    "name": "chat",
+    "url": "http://127.0.0.1:4173/pick-a-movie",
+    "lighthouse": "13.6.0",
+    "fetchedAt": "2026-11-20T10:41:18.615Z",
+    "formFactor": "mobile",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 91
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 759.53,
+        "display": "0.8 s"
+      },
+      "largest-contentful-paint": {
+        "value": 759.53,
+        "display": "0.8 s"
+      },
+      "total-blocking-time": {
+        "value": 0,
+        "display": "0 ms"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "display": "0"
+      },
+      "speed-index": {
+        "value": 867.6637199999923,
+        "display": "0.9 s"
+      },
+      "total-byte-weight": {
+        "value": 174505,
+        "display": "Total size was 170 KiB"
+      }
+    },
+    "failedAudits": [
+      {
+        "id": "valid-source-maps",
+        "title": "Missing source maps for large first-party JavaScript",
+        "score": 0,
+        "items": [
+          {
+            "scriptUrl": "http://127.0.0.1:4173/assets/index-BqxuT3f5.js",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Large JavaScript file is missing a source map"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "score": 0,
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,0,HEADER,0,A",
+              "selector": "div#root > div.home > header.site-header > a.brand",
+              "boundingRect": {
+                "top": 16,
+                "bottom": 50,
+                "left": 16,
+                "right": 145,
+                "width": 129,
+                "height": 34
+              },
+              "snippet": "<a class=\"brand\" aria-label=\"Reel Good home\" href=\"/\">",
+              "nodeLabel": "R\nReel Good",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 31 KiB",
+        "items": [
+          {
+            "url": "http://127.0.0.1:4173/assets/index-BqxuT3f5.js",
+            "totalBytes": 167067,
+            "wastedBytes": 31612,
+            "wastedPercent": 18.921710962866946
+          }
+        ]
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 98 KiB",
+        "items": [
+          {
+            "url": "http://127.0.0.1:4173/assets/index-BqxuT3f5.js",
+            "totalBytes": 167046,
+            "wastedBytes": 100112,
+            "wastedPercent": 59.93065744562598
+          }
+        ]
+      },
+      {
+        "id": "robots-txt",
+        "title": "robots.txt is not valid",
+        "score": 0,
+        "display": "17 errors found",
+        "items": [
+          {
+            "index": "1",
+            "line": "<!doctype html>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "2",
+            "line": "<html lang=\"en\">",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "3",
+            "line": "  <head>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "4",
+            "line": "    <meta charset=\"UTF-8\" />",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "5",
+            "line": "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "6",
+            "line": "    <meta",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "7",
+            "line": "      name=\"description\"",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "8",
+            "line": "      content=\"[redacted stale page description]\"",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "9",
+            "line": "    />",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "10",
+            "line": "    <title>FlyRank</title>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "11",
+            "line": "    <script type=\"module\" crossorigin src=\"/assets/index-BqxuT3f5.js\"></script>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "12",
+            "line": "    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-CwQkZjKY.css\">",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "13",
+            "line": "  </head>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "14",
+            "line": "  <body>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "15",
+            "line": "    <div id=\"root\"></div>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "16",
+            "line": "  </body>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "17",
+            "line": "</html>",
+            "message": "Syntax not understood"
+          }
+        ]
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0,
+        "items": [
+          {
+            "type": "list-section",
+            "value": {
+              "type": "network-tree",
+              "chains": {
+                "3A396D2AEE4868AFE9F743BFEBCA800D": {
+                  "url": "http://127.0.0.1:4173/pick-a-movie",
+                  "navStartToEndTime": 29,
+                  "transferSize": 776,
+                  "isLongest": true,
+                  "children": {
+                    "3122.2": {
+                      "url": "http://127.0.0.1:4173/assets/index-BqxuT3f5.js",
+                      "navStartToEndTime": 70,
+                      "transferSize": 167422,
+                      "isLongest": true,
+                      "children": {}
+                    },
+                    "3122.3": {
+                      "url": "http://127.0.0.1:4173/assets/index-CwQkZjKY.css",
+                      "navStartToEndTime": 36,
+                      "transferSize": 6307,
+                      "children": {}
+                    }
+                  }
+                }
+              },
+              "longestChain": {
+                "duration": 70
+              }
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnected origins",
+            "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+            "value": {
+              "type": "text",
+              "value": "No origins were preconnected"
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnect candidates",
+            "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4",
+            "value": {
+              "type": "text",
+              "value": "No additional origins are good candidates for preconnecting"
+            }
+          }
+        ]
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "display": "Est savings of 150 ms",
+        "items": [
+          {
+            "url": "http://127.0.0.1:4173/assets/index-CwQkZjKY.css",
+            "totalBytes": 6307,
+            "wastedMs": 155
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "home",
+    "url": "http://127.0.0.1:4173/",
+    "lighthouse": "13.6.0",
+    "fetchedAt": "2026-11-20T10:41:24.721Z",
+    "formFactor": "mobile",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 91
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 757.3802000000001,
+        "display": "0.8 s"
+      },
+      "largest-contentful-paint": {
+        "value": 757.3802000000001,
+        "display": "0.8 s"
+      },
+      "total-blocking-time": {
+        "value": 0,
+        "display": "0 ms"
+      },
+      "cumulative-layout-shift": {
+        "value": 0.00003777688337687697,
+        "display": "0"
+      },
+      "speed-index": {
+        "value": 757.3802000000001,
+        "display": "0.8 s"
+      },
+      "total-byte-weight": {
+        "value": 175270,
+        "display": "Total size was 171 KiB"
+      }
+    },
+    "failedAudits": [
+      {
+        "id": "errors-in-console",
+        "title": "Browser errors were logged to the console",
+        "score": 0,
+        "items": [
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4173/api/movies?id=tt0111161",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          },
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4173/api/movies?id=tt0068646",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          },
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4173/api/movies?id=tt0468569",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "valid-source-maps",
+        "title": "Missing source maps for large first-party JavaScript",
+        "score": 0,
+        "items": [
+          {
+            "scriptUrl": "http://127.0.0.1:4173/assets/index-BqxuT3f5.js",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Large JavaScript file is missing a source map"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "score": 0,
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,0,HEADER,0,A",
+              "selector": "div#root > div.home > header.site-header > a.brand",
+              "boundingRect": {
+                "top": 16,
+                "bottom": 50,
+                "left": 16,
+                "right": 145,
+                "width": 129,
+                "height": 34
+              },
+              "snippet": "<a class=\"brand\" aria-label=\"Reel Good home\" href=\"/\">",
+              "nodeLabel": "R\nReel Good",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 31 KiB",
+        "items": [
+          {
+            "url": "http://127.0.0.1:4173/assets/index-BqxuT3f5.js",
+            "totalBytes": 167067,
+            "wastedBytes": 31612,
+            "wastedPercent": 18.921710962866946
+          }
+        ]
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 96 KiB",
+        "items": [
+          {
+            "url": "http://127.0.0.1:4173/assets/index-BqxuT3f5.js",
+            "totalBytes": 167046,
+            "wastedBytes": 98109,
+            "wastedPercent": 58.731634769194294
+          }
+        ]
+      },
+      {
+        "id": "robots-txt",
+        "title": "robots.txt is not valid",
+        "score": 0,
+        "display": "17 errors found",
+        "items": [
+          {
+            "index": "1",
+            "line": "<!doctype html>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "2",
+            "line": "<html lang=\"en\">",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "3",
+            "line": "  <head>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "4",
+            "line": "    <meta charset=\"UTF-8\" />",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "5",
+            "line": "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "6",
+            "line": "    <meta",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "7",
+            "line": "      name=\"description\"",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "8",
+            "line": "      content=\"[redacted stale page description]\"",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "9",
+            "line": "    />",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "10",
+            "line": "    <title>FlyRank</title>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "11",
+            "line": "    <script type=\"module\" crossorigin src=\"/assets/index-BqxuT3f5.js\"></script>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "12",
+            "line": "    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-CwQkZjKY.css\">",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "13",
+            "line": "  </head>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "14",
+            "line": "  <body>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "15",
+            "line": "    <div id=\"root\"></div>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "16",
+            "line": "  </body>",
+            "message": "Syntax not understood"
+          },
+          {
+            "index": "17",
+            "line": "</html>",
+            "message": "Syntax not understood"
+          }
+        ]
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0,
+        "items": [
+          {
+            "type": "list-section",
+            "value": {
+              "type": "network-tree",
+              "chains": {
+                "5ACB543BA86C6A3C13F364A4E191CF72": {
+                  "url": "http://127.0.0.1:4173/",
+                  "navStartToEndTime": 31,
+                  "transferSize": 776,
+                  "isLongest": true,
+                  "children": {
+                    "3183.2": {
+                      "url": "http://127.0.0.1:4173/assets/index-BqxuT3f5.js",
+                      "navStartToEndTime": 73,
+                      "transferSize": 167422,
+                      "isLongest": true,
+                      "children": {
+                        "3183.8": {
+                          "url": "http://127.0.0.1:4173/api/movies?id=tt0468569",
+                          "navStartToEndTime": 117,
+                          "transferSize": 255,
+                          "isLongest": true,
+                          "children": {}
+                        },
+                        "3183.7": {
+                          "url": "http://127.0.0.1:4173/api/movies?id=tt0068646",
+                          "navStartToEndTime": 117,
+                          "transferSize": 255,
+                          "children": {}
+                        },
+                        "3183.6": {
+                          "url": "http://127.0.0.1:4173/api/movies?id=tt0111161",
+                          "navStartToEndTime": 117,
+                          "transferSize": 255,
+                          "children": {}
+                        }
+                      }
+                    },
+                    "3183.3": {
+                      "url": "http://127.0.0.1:4173/assets/index-CwQkZjKY.css",
+                      "navStartToEndTime": 41,
+                      "transferSize": 6307,
+                      "children": {}
+                    }
+                  }
+                }
+              },
+              "longestChain": {
+                "duration": 117
+              }
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnected origins",
+            "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+            "value": {
+              "type": "text",
+              "value": "No origins were preconnected"
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnect candidates",
+            "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4",
+            "value": {
+              "type": "text",
+              "value": "No additional origins are good candidates for preconnecting"
+            }
+          }
+        ]
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "display": "Est savings of 150 ms",
+        "items": [
+          {
+            "url": "http://127.0.0.1:4173/assets/index-CwQkZjKY.css",
+            "totalBytes": 6307,
+            "wastedMs": 154
+          }
+        ]
+      }
+    ]
+  }
+]

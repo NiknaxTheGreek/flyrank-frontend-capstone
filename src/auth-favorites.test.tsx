@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen, within } from '@testing-library/react';
+import { act, cleanup, render, screen, within, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { User } from 'firebase/auth';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
@@ -25,6 +25,7 @@ vi.mock('./services/auth', () => ({
   loginWithEmail: mocks.loginWithEmail,
   logout: mocks.logout,
 }));
+vi.mock('./services/firebase-config', () => ({ firebaseConfigured: true }));
 
 vi.mock('./services/favorites', () => ({
   observeFavorites: mocks.observeFavorites,
@@ -50,7 +51,8 @@ function renderApp(path: string) {
   );
 }
 
-function resolveAuth(user: User | null) {
+async function resolveAuth(user: User | null) {
+  await waitFor(() => expect(authListener).toBeTypeOf('function'));
   act(() => authListener?.(user));
 }
 
@@ -96,7 +98,7 @@ it('waits for auth initialization and returns to the requested favorites page af
   expect(screen.getByRole('status').textContent).toContain('Checking your sign-in status');
   expect(screen.queryByLabelText('Email')).toBeNull();
 
-  resolveAuth(null);
+  await resolveAuth(null);
   await screen.findByLabelText('Email');
   mocks.loginWithEmail.mockImplementation(async () => resolveAuth(signedInUser));
   await user.type(screen.getByLabelText('Email'), 'viewer@example.test');
@@ -111,7 +113,7 @@ it('waits for auth initialization and returns to the requested favorites page af
 it('supports account creation and displays useful authentication failures', async () => {
   const user = userEvent.setup();
   renderApp('/account');
-  resolveAuth(null);
+  await resolveAuth(null);
   await user.click(await screen.findByRole('button', { name: 'Create an account' }));
   mocks.registerWithEmail.mockRejectedValueOnce(new Error('An account already exists for this email address.'));
   await user.type(screen.getByLabelText('Email'), 'viewer@example.test');
@@ -125,7 +127,7 @@ it('supports account creation and displays useful authentication failures', asyn
 it('saves and removes favorites with pending and success feedback and stable IMDb keys', async () => {
   const user = userEvent.setup();
   renderApp('/');
-  resolveAuth(signedInUser);
+  await resolveAuth(signedInUser);
   const inceptionCard = (await screen.findByRole('heading', { name: 'Inception' })).closest('article')!;
   const addButton = within(inceptionCard).getByRole('button', { name: 'Add to favorites' });
   let finishSave!: () => void;
@@ -156,14 +158,14 @@ it('saves and removes favorites with pending and success feedback and stable IMD
 it('reports a failed favorite write and clears another user’s saved state', async () => {
   const user = userEvent.setup();
   renderApp('/');
-  resolveAuth(signedInUser);
+  await resolveAuth(signedInUser);
   const shawshankCard = (await screen.findByRole('heading', { name: 'The Shawshank Redemption' })).closest('article')!;
   mocks.saveFavorite.mockRejectedValueOnce(new Error('Firebase denied this write.'));
   await user.click(within(shawshankCard).getByRole('button', { name: 'Add to favorites' }));
   expect((await within(shawshankCard).findByRole('alert')).textContent).toContain('Firebase denied this write.');
 
   savedByUser.set('viewer-b', []);
-  resolveAuth({ uid: 'viewer-b', email: 'second@example.test' } as User);
+  await resolveAuth({ uid: 'viewer-b', email: 'second@example.test' } as User);
   const secondInceptionCard = (await screen.findByRole('heading', { name: 'Inception' })).closest('article')!;
   expect(await within(secondInceptionCard).findByRole('button', { name: 'Add to favorites' })).toBeTruthy();
   expect(screen.queryByRole('button', { name: 'Remove from favorites' })).toBeNull();
@@ -173,23 +175,23 @@ it('renders only favorites belonging to the signed-in uid and restores them afte
   const favorite = { ...inceptionMovie, id: 'tt1375666', imdbId: 'tt1375666' };
   savedByUser.set('viewer-a', [favorite]);
   const { unmount } = renderApp('/favorites');
-  resolveAuth(signedInUser);
+  await resolveAuth(signedInUser);
 
   expect(await screen.findByRole('heading', { name: 'Saved movies' })).toBeTruthy();
   expect(screen.getByRole('heading', { name: 'Inception' })).toBeTruthy();
   unmount();
 
   renderApp('/favorites');
-  resolveAuth({ uid: 'viewer-b', email: 'second@example.test' } as User);
+  await resolveAuth({ uid: 'viewer-b', email: 'second@example.test' } as User);
   expect(await screen.findByRole('heading', { name: 'No favorites yet' })).toBeTruthy();
-  resolveAuth(signedInUser);
+  await resolveAuth(signedInUser);
   expect(await screen.findByRole('heading', { name: 'Saved movies' })).toBeTruthy();
 });
 
 it('signs out and removes the previous account state from the UI', async () => {
   const user = userEvent.setup();
   renderApp('/account');
-  resolveAuth(signedInUser);
+  await resolveAuth(signedInUser);
   expect(await screen.findByText(/Signed in as viewer@example.test/)).toBeTruthy();
   mocks.logout.mockImplementation(async () => resolveAuth(null));
   await user.click(screen.getByRole('button', { name: 'Sign out' }));

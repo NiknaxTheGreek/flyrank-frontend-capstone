@@ -1,0 +1,18 @@
+{
+  "source": "GitHub Actions",
+  "runUrl": "https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44775059755",
+  "sha": "e399840f852c0d5ce68b5ccab2d7dcaad14395fc",
+  "vitest": {
+    "passed": 91,
+    "total": 91,
+    "failed": 0
+  },
+  "playwright": {
+    "startTime": "2026-11-20T16:39:02.193Z",
+    "duration": 26831.36,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

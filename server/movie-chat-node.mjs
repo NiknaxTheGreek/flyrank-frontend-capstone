@@ -5,7 +5,7 @@ export const asNodeMiddleware = handler => async (req, res) => {
   const abort = new AbortController();
   res.on('close', () => abort.abort());
   try {
-    const request = new Request('http://localhost/api/movie-chat', {
+    const request = new Request(`${req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http'}://${req.headers.host || 'localhost'}/api/movie-chat`, {
       method: req.method, headers: req.headers, signal: abort.signal,
       ...(req.method === 'GET' || req.method === 'HEAD' ? {} : { body: Readable.toWeb(req), duplex: 'half' }),
     });
@@ -18,3 +18,4 @@ export const asNodeMiddleware = handler => async (req, res) => {
     else if (!res.destroyed) res.destroy();
   }
 };
+

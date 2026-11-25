@@ -1,7 +1,10 @@
-# Reel Good — Assignment 10: Testing and CI
+# Reel Good — Assignment 12: Performance and accessibility audit
 
-Assignment 10: [automated tests, CI and failure/fix evidence](./docs/assignment-10/README.md).
-Run `npm run typecheck`, `npm run test:ci`, `npm run build`, and then
-`npm run test:e2e` after `npm run test:e2e:install`. No API keys are required for tests.
+**A12 complete — awaiting submission.** This branch contains the mobile Lighthouse before/after results, WAVE findings, keyboard review, fixes and limitations.
 
-Assignment 9: open **[Motion lab](./docs/assignment-9/README.md)** at `/motion-lab` for the reusable Send/Save button lifecycle demo, forced success/failure controls, motion rationale, and verification details. It needs no credentials or API key.
+- [A12 audit](AUDIT.md) — measured performance and accessibility results with before/after evidence.
+- [Submission summary](docs/assignment-12/SUBMISSION.md)
+- [A11Y checklist review](docs/assignment-12/CHECKLIST.md)
+- [Audit evidence](docs/assignment-12/evidence/)
+
+Production preview: https://flyrank-frontend-capstone-snowy.vercel.app/ (HTTP 200 on 24 November 2026; this recheck establishes availability only). No learner-portal submission is claimed.

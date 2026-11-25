@@ -1,0 +1,40 @@
+name: A12 accessibility and mobile audit
+
+on:
+  push:
+    branches: [fe12-performance-accessibility]
+    paths:
+      - '.github/workflows/accessibility-audit.yml'
+      - 'scripts/*audit*'
+      - 'scripts/run-lighthouse.mjs'
+      - 'scripts/run-wave.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Install the official WAVE extension for rendered-page audits
+        run: |
+          curl -fL --max-time 60 -o /tmp/wave.crx 'https://clients2.google.com/service/update2/crx?response=redirect&prodversion=142.0.0.0&acceptformat=crx2,crx3&x=id%3Djbbplnpkjmmeebjpijfedlgcdilocofh%26uc'
+          python3 - <<'PY'
+          import zipfile
+          zipfile.ZipFile('/tmp/wave.crx').extractall('/tmp/a12-wave')
+          PY
+      - name: Capture baseline, fixed build, WAVE and keyboard evidence
+        env:
+          WAVE_EXTENSION: /tmp/a12-wave
+        run: node scripts/capture-a12-audit.mjs
