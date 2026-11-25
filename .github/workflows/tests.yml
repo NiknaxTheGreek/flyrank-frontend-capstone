@@ -1,0 +1,43 @@
+name: A10 Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: a10-tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verification:
+    name: A10 merge gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Check application and test types
+        run: npm run typecheck
+      - name: Run Vitest and React Testing Library
+        run: npm run test:ci
+      - name: Publish component test summary
+        if: always()
+        run: node scripts/ci-test-summary.mjs
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Build the production application
+        run: npm run build
+      - name: Run Playwright desktop and phone journeys
+        run: npm run test:e2e
+      - name: Capture actual CI test reports
+        run: node scripts/ci-evidence.mjs
+      # Evidence is emitted in bounded log chunks and committed to the submission
+      # folder by the assistant. This does not depend on Actions artifact storage.

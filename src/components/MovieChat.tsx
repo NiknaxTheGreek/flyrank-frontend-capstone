@@ -1,14 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from 'react';
 import { readMovieChatEvents } from '../services/movie-chat-stream';
 import type { MovieToolPart } from '../services/movie-tool-part';
-import { MovieToolCard } from './MovieToolCard';
-
-type Message = {
-  id: string;
-  role: 'user' | 'assistant';
-  parts: [{ type: 'text'; text: string }, ...MovieToolPart[]];
-  outcome?: 'stopped' | 'interrupted';
-};
+import { MovieMessage, type MovieMessageData as Message } from './MovieMessage';
 
 const makeMessage = (role: Message['role'], text: string): Message => ({
   id: crypto.randomUUID(), role, parts: [{ type: 'text', text }],
@@ -160,13 +153,7 @@ export default function MovieChat() {
         {messages.length === 0 && <p>Share a genre, a mood, or a movie you liked. Try the example below to get started.</p>}
         <ol className="movie-chat-messages">
           {messages.map(m => (
-            <li key={m.id} className={`movie-chat-message movie-chat-${m.role}`}>
-              <strong>{m.role === 'user' ? 'You' : 'Movie picker'}</strong>
-              {m.parts[0].text && <p>{m.parts[0].text}</p>}
-              {!m.parts[0].text && m.parts.length === 1 && m.id === activeId && <div className="movie-chat-skeleton" role="status"><span>Thinking…</span><i aria-hidden="true" /><i aria-hidden="true" /></div>}
-              {m.parts[1] && <MovieToolCard key={m.parts[1].toolCallId} part={m.parts[1]} interrupted={!!m.outcome} />}
-              {m.outcome && <small>{m.outcome === 'stopped' ? 'Stopped · partial response' : 'Interrupted · partial response'}</small>}
-            </li>
+            <MovieMessage key={m.id} message={m} pending={m.id === activeId} />
           ))}
         </ol>
       </div>

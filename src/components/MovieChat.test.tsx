@@ -23,7 +23,7 @@ test('shows thinking, preserves stopped text and includes it in the next request
   render(<MovieChat />);
   fireEvent.click(screen.getByRole('button', { name: 'Try an example' }));
   const question = screen.getByRole('textbox', { name: 'Your movie preferences' });
-  fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true }));
+  fireEvent.click(screen.getByRole('button', { name: 'Send' }));
   expect(screen.getByText('Thinking…')).toBeTruthy();
   push({ type: 'text', delta: 'Try ' });
   await screen.findByText('Try');
@@ -32,7 +32,7 @@ test('shows thinking, preserves stopped text and includes it in the next request
   fireEvent.click(screen.getByRole('button', { name: 'Stop generation' }));
   await screen.findByText('Stopped · partial response');
   fireEvent.change(question, { target: { value: 'Anything lighter?' } });
-  fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true }));
+  fireEvent.click(screen.getByRole('button', { name: 'Send' }));
   await screen.findByText('Try Galaxy Quest.');
   expect(screen.getByText('Try Arrival.')).toBeTruthy();
   expect(JSON.parse(String(fetcher.mock.calls[1][1].body)).messages.slice(-2)).toEqual([
@@ -56,7 +56,7 @@ test('mid-stream failure keeps partial text and retries only the failed turn onc
   vi.stubGlobal('fetch', fetcher);
   render(<MovieChat />);
   fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Suggest a comedy' } });
-  fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true }));
+  fireEvent.click(screen.getByRole('button', { name: 'Send' }));
   await screen.findByText('Connection interrupted.');
   expect(screen.getByText('Partial recommendation')).toBeTruthy();
   const retry = screen.getByRole('button', { name: 'Retry failed message' });
@@ -85,7 +85,7 @@ test.each(['network', 'rate limit', 'malformed tool'])('%s failure offers recove
   vi.stubGlobal('fetch', fetcher);
   render(<MovieChat />);
   fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Find Arrival' } });
-  fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true }));
+  fireEvent.click(screen.getByRole('button', { name: 'Send' }));
   await screen.findByRole('alert');
   expect(screen.getByRole('button', { name: 'Retry failed message' })).toBeTruthy();
   expect(screen.getByText('Find Arrival', { selector: 'p' })).toBeTruthy();
@@ -106,7 +106,7 @@ test('a transport that closes without done is interrupted and retryable', async 
   )));
   render(<MovieChat />);
   fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Suggest a movie' } });
-  fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true }));
+  fireEvent.click(screen.getByRole('button', { name: 'Send' }));
   await screen.findByRole('alert');
   expect(screen.getByText('An unfinished reply')).toBeTruthy();
   expect(screen.getByText('Interrupted · partial response')).toBeTruthy();
@@ -120,7 +120,7 @@ test('slow requests explain the wait and remain stoppable', async () => {
   })));
   render(<MovieChat />);
   fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Suggest a movie' } });
-  fireEvent.click(screen.getByRole('button', { name: 'Send', exact: true }));
+  fireEvent.click(screen.getByRole('button', { name: 'Send' }));
   expect(screen.getByText('Thinking…')).toBeTruthy();
   await act(async () => { await vi.advanceTimersByTimeAsync(8000); });
   expect(screen.getByText('This is taking longer than usual. You can wait or stop generation.')).toBeTruthy();
