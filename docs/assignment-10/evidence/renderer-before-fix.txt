@@ -1,0 +1,331 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> flyrank-frontend-capstone@1.0.0 test
+> vitest run --pool=threads --maxWorkers=1 --minWorkers=1 src/components/MovieMessage.test.tsx
+
+
+ RUN  v2.1.9 /workspace/scratch/054bdea81842/flyrank-frontend-capstone
+
+ ❯ src/components/MovieMessage.test.tsx (10 tests | 1 failed) 530ms
+   × MovieMessage > renders every tool part in a message, including a second result 143ms
+     → Unable to find an accessible element with the role "heading" and name "Arrival (2016)"
+
+Here are the accessible roles:
+
+  list:
+
+  Name "":
+  <ol />
+
+  --------------------------------------------------
+  listitem:
+
+  Name "Movie picker message":
+  <li
+    aria-label="Movie picker message"
+    class="movie-chat-message movie-chat-assistant"
+  />
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  <strong />
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  <p />
+
+  Name "":
+  <p />
+
+  --------------------------------------------------
+  region:
+
+  Name "Movie lookup":
+  <section
+    aria-label="Movie lookup"
+    class="movie-tool-card movie-tool-output-available"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Inception (2010)":
+  <h2 />
+
+  --------------------------------------------------
+  term:
+
+  Name "":
+  <dt />
+
+  Name "":
+  <dt />
+
+  Name "":
+  <dt />
+
+  --------------------------------------------------
+  definition:
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd />
+
+  --------------------------------------------------
+  link:
+
+  Name "View Inception on IMDb":
+  <a
+    href="https://www.imdb.com/title/tt1375666/"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <ol>
+      <li
+        aria-label="Movie picker message"
+        class="movie-chat-message movie-chat-assistant"
+      >
+        <strong>
+          Movie picker
+        </strong>
+        <p>
+          Compare these films.
+        </p>
+        <section
+          aria-label="Movie lookup"
+          class="movie-tool-card movie-tool-output-available"
+        >
+          <div
+            class="movie-tool-content"
+          >
+            <h2>
+              Inception
+               (2010)
+            </h2>
+            <dl>
+              <div>
+                <dt>
+                  IMDb rating
+                </dt>
+                <dd>
+                  8.8/10
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  Genre
+                </dt>
+                <dd>
+                  Action, Sci-Fi
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  Runtime
+                </dt>
+                <dd>
+                  148 min
+                </dd>
+              </div>
+            </dl>
+            <p>
+              A team enters dreams to plant an idea.
+            </p>
+            <a
+              href="https://www.imdb.com/title/tt1375666/"
+            >
+              View 
+              Inception
+               on IMDb
+            </a>
+          </div>
+        </section>
+      </li>
+    </ol>
+  </div>
+</body>
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/MovieMessage.test.tsx > MovieMessage > renders every tool part in a message, including a second result
+TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Arrival (2016)"
+
+Here are the accessible roles:
+
+  list:
+
+  Name "":
+  <ol />
+
+  --------------------------------------------------
+  listitem:
+
+  Name "Movie picker message":
+  <li
+    aria-label="Movie picker message"
+    class="movie-chat-message movie-chat-assistant"
+  />
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  <strong />
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  <p />
+
+  Name "":
+  <p />
+
+  --------------------------------------------------
+  region:
+
+  Name "Movie lookup":
+  <section
+    aria-label="Movie lookup"
+    class="movie-tool-card movie-tool-output-available"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Inception (2010)":
+  <h2 />
+
+  --------------------------------------------------
+  term:
+
+  Name "":
+  <dt />
+
+  Name "":
+  <dt />
+
+  Name "":
+  <dt />
+
+  --------------------------------------------------
+  definition:
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd />
+
+  --------------------------------------------------
+  link:
+
+  Name "View Inception on IMDb":
+  <a
+    href="https://www.imdb.com/title/tt1375666/"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <ol>
+      <li
+        aria-label="Movie picker message"
+        class="movie-chat-message movie-chat-assistant"
+      >
+        <strong>
+          Movie picker
+        </strong>
+        <p>
+          Compare these films.
+        </p>
+        <section
+          aria-label="Movie lookup"
+          class="movie-tool-card movie-tool-output-available"
+        >
+          <div
+            class="movie-tool-content"
+          >
+            <h2>
+              Inception
+               (2010)
+            </h2>
+            <dl>
+              <div>
+                <dt>
+                  IMDb rating
+                </dt>
+                <dd>
+                  8.8/10
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  Genre
+                </dt>
+                <dd>
+                  Action, Sci-Fi
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  Runtime
+                </dt>
+                <dd>
+                  148 min
+                </dd>
+              </div>
+            </dl>
+            <p>
+              A team enters dreams to plant an idea.
+            </p>
+            <a
+              href="https://www.imdb.com/title/tt1375666/"
+            >
+              View 
+              Inception
+               on IMDb
+            </a>
+          </div>
+        </section>
+      </li>
+    </ol>
+  </div>
+</body>
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/components/MovieMessage.test.tsx:59:19
+     57|     render(<ol><MovieMessage message={assistant([{ type: 'text', text:…
+     58|     expect(screen.getByRole('heading', { name: 'Inception (2010)' })).…
+     59|     expect(screen.getByRole('heading', { name: 'Arrival (2016)' })).to…
+       |                   ^
+     60|     expect(screen.getAllByRole('region', { name: 'Movie lookup' })).to…
+     61|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  21:32:30
+   Duration  2.70s (transform 176ms, setup 118ms, collect 325ms, tests 530ms, environment 1.12s, prepare 141ms)
+
