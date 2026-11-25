@@ -67,3 +67,4 @@ test('a failed tool shows an alert and retries the same turn without duplicating
   expect(fetcher).toHaveBeenCalledTimes(2);
   expect(fetcher.mock.calls[0][1].body).toBe(fetcher.mock.calls[1][1].body);
 });
+

@@ -25,3 +25,4 @@
 .movie-tool-content { animation: movie-tool-enter 200ms ease-out both; }
 @keyframes movie-tool-enter { from { opacity: .35; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .movie-tool-content { animation: none; } }
+

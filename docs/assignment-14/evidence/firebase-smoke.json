@@ -1,0 +1,13 @@
+{
+  "signup": true,
+  "ownerWriteStatus": 200,
+  "ownerReadStatus": 200,
+  "persisted": true,
+  "anonymousReadStatus": 401,
+  "otherUserReadStatus": 401,
+  "cleanupFavoriteStatus": 200,
+  "cleanupUserStatuses": [
+    200,
+    200
+  ]
+}

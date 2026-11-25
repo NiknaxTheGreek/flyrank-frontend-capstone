@@ -119,3 +119,4 @@ describe('NotificationSettings', () => {
     expect(screen.queryByText('Notification preferences saved in this browser.')).toBeNull();
   });
 });
+

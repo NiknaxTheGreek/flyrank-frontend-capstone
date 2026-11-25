@@ -58,3 +58,4 @@ export function logout() {
     await signOut(getFirebaseAuth());
   });
 }
+

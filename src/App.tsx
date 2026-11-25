@@ -12,6 +12,11 @@ const AccountPage = lazy(() => import('./pages/AccountPage'));
 const FavoritesPage = lazy(() => import('./pages/FavoritesPage'));
 const MovieDetailsPage = lazy(() => import('./pages/MovieDetailsPage'));
 const MotionLabPage = lazy(() => import('./pages/MotionLabPage'));
+const PlanetStudioPage = lazy(() => import('./pages/PlanetStudioPage'));
+const ShaderHeroPage = lazy(() => import('./pages/ShaderHeroPage'));
+const PlaygroundPage = lazy(() => import('./pages/PlaygroundPage'));
+const HealthPage = lazy(() => import('./pages/HealthPage'));
+const PreferencesPage = lazy(() => import('./pages/PreferencesPage'));
 
 function RouteFocus() {
   const { pathname } = useLocation();
@@ -52,6 +57,11 @@ function AppLayout() {
           <NavLink to="/movies">Movies</NavLink>
           <NavLink to="/pick-a-movie">Movie picker</NavLink>
           <NavLink to="/motion-lab">Motion lab</NavLink>
+          <NavLink to="/planet-studio">Planet studio</NavLink>
+          <NavLink to="/shader-lab">Shader lab</NavLink>
+          <NavLink to="/playground">Accessibility</NavLink>
+          <NavLink to="/health">Health</NavLink>
+          <NavLink to="/preferences">Preferences</NavLink>
           <NavLink to="/favorites">Favorites</NavLink>
           <NavLink to="/account">{user ? 'Account' : 'Sign in'}</NavLink>
         </nav>
@@ -66,6 +76,11 @@ function AppLayout() {
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
           <Route path="/pick-a-movie" element={<MovieChat />} />
           <Route path="/motion-lab" element={<MotionLabPage />} />
+          <Route path="/planet-studio" element={<PlanetStudioPage />} />
+          <Route path="/shader-lab" element={<ShaderHeroPage />} />
+          <Route path="/playground" element={<PlaygroundPage />} />
+          <Route path="/health" element={<HealthPage />} />
+          <Route path="/preferences" element={<PreferencesPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/favorites" element={<RequireAuth><FavoritesPage /></RequireAuth>} />
           <Route path="*" element={<NotFoundPage />} />

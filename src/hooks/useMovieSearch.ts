@@ -42,3 +42,4 @@ export function useMovieSearch(movies: Movie[]) {
     clearSearch: () => { setSearchTerm(''); setParams({}); },
   };
 }
+

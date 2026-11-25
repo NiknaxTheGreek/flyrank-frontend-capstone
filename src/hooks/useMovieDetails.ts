@@ -50,3 +50,4 @@ export function useMovieDetails(id = '') {
     retry: () => setAttempt((value) => value + 1),
   };
 }
+

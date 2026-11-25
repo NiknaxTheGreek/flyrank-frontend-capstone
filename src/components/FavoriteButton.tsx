@@ -56,3 +56,4 @@ export default function FavoriteButton({ movie }: { movie: Movie }) {
     {error && <p role="alert" className="favorite-error">{error}</p>}
   </div>;
 }
+

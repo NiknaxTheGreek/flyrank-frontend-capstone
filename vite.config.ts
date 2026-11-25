@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitest/config';
 import { loadEnv, type PreviewServer, type ViteDevServer } from 'vite';
 import react from '@vitejs/plugin-react';
+import healthHandler from './api/health.mjs';
 import { createMovieHandler } from './api/movies.mjs';
 import { lookupMovie } from './server/lookup-movie-tool.mjs';
 import { createMovieChatHandler } from './server/movie-chat-handler.mjs';
@@ -18,6 +19,7 @@ export default defineConfig(({ mode }) => {
   }));
 
   const middleware = (server: ViteDevServer | PreviewServer) => {
+    server.middlewares.use('/api/health', healthHandler);
     server.middlewares.use('/api/movies', handler);
     server.middlewares.use('/api/movie-chat', chat);
   };
@@ -46,3 +48,4 @@ export default defineConfig(({ mode }) => {
     },
   };
 });
+

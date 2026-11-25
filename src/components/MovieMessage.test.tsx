@@ -68,3 +68,4 @@ describe('MovieMessage', () => {
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
   });
 });
+

@@ -14,3 +14,4 @@ export class RouteErrorBoundary extends Component<{ children: ReactNode }, { fai
     return this.props.children;
   }
 }
+

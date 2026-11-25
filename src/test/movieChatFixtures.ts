@@ -20,3 +20,4 @@ export function sseResponse(events: object[]) {
     headers: { 'Content-Type': 'text/event-stream' },
   });
 }
+

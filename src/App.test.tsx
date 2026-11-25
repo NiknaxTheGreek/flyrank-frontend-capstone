@@ -120,3 +120,4 @@ describe('movie browsing home', () => {
     expect(screen.getByRole('button', { name: 'Clear search' })).toBeTruthy();
   });
 });
+

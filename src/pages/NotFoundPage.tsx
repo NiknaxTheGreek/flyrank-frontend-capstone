@@ -6,3 +6,4 @@ export default function NotFoundPage({ movie = false }: { movie?: boolean }) {
     <Link className="button button-primary" to="/">Browse movies</Link>
   </section>;
 }
+

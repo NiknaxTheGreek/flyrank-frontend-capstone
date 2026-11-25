@@ -649,3 +649,9 @@ a.button { display: inline-flex; align-items: center; text-decoration: none; }
   .movie-chat-actions { flex-wrap: wrap; }
 }
 @media (prefers-reduced-motion: reduce) { .movie-chat-error { animation: none; } }
+
+/* The complete product keeps every lab reachable without horizontal scrolling. */
+.site-header { gap: 20px; flex-wrap: wrap; padding-block: 16px; }
+.brand { flex: 0 0 auto; }
+.site-navigation { flex: 1 1 760px; justify-content: flex-end; }
+@media (max-width: 760px) { .site-navigation { flex-basis: 100%; justify-content: flex-start; } }

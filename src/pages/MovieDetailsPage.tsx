@@ -57,3 +57,4 @@ export default function MovieDetailsPage() {
     </div>
   </section>;
 }
+

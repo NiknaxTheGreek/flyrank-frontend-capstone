@@ -1,0 +1,34 @@
+name: Production browser smoke
+on:
+  push:
+    branches: [fe14-production-release]
+    paths:
+      - scripts/release-smoke.mjs
+      - .github/workflows/release-smoke.yml
+permissions:
+  contents: read
+jobs:
+  live-browsers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      # Explicit production smoke: four bounded real model calls, separate from mocked tests.
+      - run: node scripts/release-smoke.mjs
+      - name: Export live screenshots
+        run: |
+          node --input-type=module <<'JS'
+          import { readFile } from 'node:fs/promises';
+          for (const name of ['chromium', 'firefox', 'webkit', 'mobile-webkit']) {
+            const image = (await readFile(`test-results/release-live/${name}.png`)).toString('base64');
+            console.log(`A14_LIVE_SCREENSHOT_BEGIN ${name}`);
+            for (let i = 0; i < image.length; i += 12000) console.log(`A14_LIVE_SCREENSHOT_CHUNK ${name} ${i / 12000} ${image.slice(i, i + 12000)}`);
+            console.log(`A14_LIVE_SCREENSHOT_END ${name}`);
+          }
+          JS

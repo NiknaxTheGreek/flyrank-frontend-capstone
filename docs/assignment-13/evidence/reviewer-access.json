@@ -1,0 +1,14 @@
+{
+  "verified_on": "2026-11-20",
+  "deployment_id": "dpl_Fq934UbF6HFSMB3x3kjJgvtVjkXo",
+  "tested_source_commit": "25753e778c10067017668635c538aa5086c3509d",
+  "deployment_url": "https://flyrank-frontend-capstone-k78rt6dem-niknaxthegreek.vercel.app/shader-lab",
+  "share_link_expiry": null,
+  "vercel_access_response": "Shareable URL reused. This link does not expire.",
+  "vercel_account_signin_required": false,
+  "browser_heading": "A little light. A different world.",
+  "rendered_mode_in_cloud_browser": "static fallback (WebGL unavailable)",
+  "full_reviewer_url_location": "../submission.md",
+  "screenshot": "reviewer-access-verified.jpg",
+  "status": "verified"
+}

@@ -104,3 +104,4 @@ export default function AccountPage() {
     {(authError || actionError) && <p role="alert" className="account-error">{actionError || authError}</p>}
   </section>;
 }
+
