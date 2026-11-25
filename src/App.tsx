@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { FavoritesProvider } from './contexts/FavoritesContext';
-import AccountPage from './pages/AccountPage';
-import FavoritesPage from './pages/FavoritesPage';
-import HomePage from './pages/HomePage';
-import MovieDetailsPage from './pages/MovieDetailsPage';
-import NotFoundPage from './pages/NotFoundPage';
+import AccountPage from './legacy-pages/AccountPage';
+import FavoritesPage from './legacy-pages/FavoritesPage';
+import HomePage from './legacy-pages/HomePage';
+import MovieDetailsPage from './legacy-pages/MovieDetailsPage';
+import NotFoundPage from './legacy-pages/NotFoundPage';
 
 function RequireAuth({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
