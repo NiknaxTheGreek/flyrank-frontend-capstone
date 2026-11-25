@@ -1,26 +1,6 @@
 # Assignment 4 verification
 
-## Current verification
-
-## Screenshot evidence — checks completed 11 November 2026
-
-The original screenshots supplied by Nicholas in the A4 chat are now packaged in this branch.
-
-| Check | Result | Evidence |
-|---|---|---|
-| 375px responsive layout | Complete — mobile layout reviewed | [375px screenshot](evidence/responsive-375px.png) |
-| 1280px responsive layout | Complete — desktop layout reviewed | [1280px screenshot](evidence/responsive-1280px.png) |
-| Deployed health fetch | Success — fetched record #1 displayed | [Health success](evidence/health-success.png) |
-
-These are learner-provided browser captures, not a newly executed automated browser suite. The responsive captures show the configured widths and visible layout; they do not independently prove every route or a clean console. Console messages are retained in the unedited captures. The typed Transformers query is not submitted in these captures and is not evidence of a live catalogue search.
-
-See the [submission record](submission.md) for the preview and separate public-access/final-tag status.
-
-## Historical checkpoints
-
-The dated pending items below describe earlier states and are superseded by the current verification above for the completed responsive checks and deployed health success. The assistant-runtime browser limitation remains historical and does not negate the learner's browser evidence.
-
-### Starting state
+## Starting state
 - Branch: fe04-scaffold-deploy
 - Base: assignment-03-final
 - Base commit: d216f77f97b958fd247836a6aeb4ca51a6f8edf3

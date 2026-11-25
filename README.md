@@ -1,15 +1,15 @@
-# Reel Good — Assignment 4
+# Reel Good — Assignment 5
 
-This branch scaffolds Reel Good using **Next.js App Router, TypeScript and Tailwind**.
+This branch contains an accessibility playground comparing custom React components with shadcn/Radix. Open `/playground` to review the disclosure, keyboard tabs, modal dialog, and library comparison.
 
-```bash
+## Run and review
+
+```sh
 npm ci
 npm run verify
 npm start
 ```
 
-Use Node 24 and open http://localhost:3000. No secrets are needed to explore the scaffold.
+Use Node 24 and open http://localhost:3000/playground. See the [A5 submission index](docs/assignment-5/SUBMISSION.md) and [keyboard/source-review notes](NOTES.md).
 
-See [Assignment 4 setup, routes and deployment](docs/assignment-04/README.md), [verification](docs/assignment-04/verification.md), and [submission status](docs/assignment-04/submission.md).
-
-The scaffold has a Git-connected [Vercel preview](https://flyrank-frontend-capstone-cyee6w5dr-niknaxthegreek.vercel.app). The [health screenshot](docs/assignment-04/evidence/health-success.png) records a successful deployed data fetch. Nicholas confirmed the responsive checks at 375px and 1280px. The public preview returned HTTP 200 on 24 November 2026; no sign-in wall was observed. Account and favorites are placeholders in this assignment.
+The manual keyboard checks are recorded in [NOTES.md](NOTES.md). Review the [playground screenshot](docs/assignment-5/evidence/accessibility-playground.jpg) or open the [deployed playground](https://flyrank-frontend-capstone-ju33og447-niknaxthegreek.vercel.app/playground). The public preview returned HTTP 200 on 24 November 2026; no sign-in wall was observed. This is an availability check, not a fresh keyboard or screen-reader audit.
