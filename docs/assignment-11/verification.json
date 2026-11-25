@@ -1,0 +1,15 @@
+{
+  "assignment": 11,
+  "status": "complete-awaiting-submission",
+  "sourceCommit": "0dbe2b5980d7b2c93c8beb3c03d4d2ae55c1e530",
+  "productionUrl": "https://reel-good-planet-studio.vercel.app/planet-studio",
+  "productionDeployment": "dpl_BBmEWoR64PVtk4ZQsZMa9Q25Yv5J",
+  "ciRun": "https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44603515494",
+  "ciConclusion": "success",
+  "unitComponentServerTestsPassed": 70,
+  "localBrowserTestsPassed": 4,
+  "productionBrowserTestsPassed": 4,
+  "physicalMobileVerified": false,
+  "anonymousProductionAccessVerified": true,
+  "notes": "Screenshots and performance.json were exported from the successful CI run and committed to this assignment folder. The public site uses no authentication/share token."
+}

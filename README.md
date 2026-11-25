@@ -1,8 +1,5 @@
-# Reel Good — Assignment 9: Button lifecycle
+# Reel Good — Assignment 11: Planet Studio
+
+Assignment 11: open **[Planet studio](./docs/assignment-11/README.md)** at `/planet-studio` for a real 3D world configurator, optional loading, static fallback and performance evidence. No API key or sign-in is needed for this page.
 
 Assignment 9: open **[Motion lab](./docs/assignment-9/README.md)** at `/motion-lab` for the reusable Send/Save button lifecycle demo, forced success/failure controls, motion rationale, and verification details. It needs no credentials or API key.
-
-- [Submission summary](docs/assignment-9/submission.md)
-- [Idle, error and reduced-motion screenshots](docs/assignment-9/evidence/)
-
-This branch continues the Reel Good capstone. Its README describes the A9 deliverable; earlier product features are documented in their assignment branches.

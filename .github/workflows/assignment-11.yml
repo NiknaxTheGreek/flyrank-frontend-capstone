@@ -1,0 +1,40 @@
+name: A11 planet studio
+
+on:
+  push:
+    branches: [fe11-planet-studio]
+    paths-ignore: ['docs/**', 'README.md']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm run build:planet
+      - run: npx playwright install --with-deps chromium
+      - name: Desktop and mobile browser checks
+        run: npm run test:3d
+      - name: Public production browser checks
+        run: npm run test:3d
+        env:
+          BASE_URL: https://reel-good-planet-studio.vercel.app
+      - name: Measure and capture evidence
+        run: npm run perf:3d
+        env:
+          BASE_URL: https://reel-good-planet-studio.vercel.app
+      - name: Export evidence for the permanent submission copy
+        run: node scripts/export-planet-evidence.mjs
