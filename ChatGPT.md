@@ -1,29 +1,26 @@
-# ChatGPT project notes
+# Reel Good — project rules
 
-Reel Good is a React 18 and TypeScript frontend built with Vite.
+ChatGPT is the chosen development assistant. These conventions consolidate the former separate assistant notes; they do not claim Claude Code was used.
 
-## Useful commands
+## Shared conventions
 
-- `npm run dev` starts the local development server.
-- `npm run build` runs the TypeScript project build and creates a production bundle.
-- `npm run preview` serves the production bundle locally.
+- Explain changes and their purpose to the learner. Inspect existing files first; preserve unrelated work and assignment-specific deliverables.
+- Use focused Conventional Commits and retain meaningful evidence. Use Node.js 24 and npm; retain the lockfile. Check the current package.json before running commands.
+- Keep movie API and LLM credentials server-side; never commit environment secrets or private customer data. Firebase client identifiers are public, not admin credentials. Enforce per-user favorites access through database rules.
+- Validate server input and bound external requests. Use verified IMDb identifiers; never invent metadata.
+- Use semantic HTML, accessible labels and focus, and reduced-motion support. Handle loading, empty, streaming (where applicable), success, error and retry states.
+- Mock external AI and movie API calls in automated tests; avoid paid requests during tests. Report only checks actually executed, distinguish historical evidence from current verification.
+- For settings changes, use a separate component and preserve the existing screen sections. Validate localStorage data, handle read/write failures, and show save success only after a successful write. Use role/name-based tests for invalid input, persistence, and visible failure feedback. These rules originated in Assignment 2.
 
-## Project conventions
+## Active branch
 
-- Application code lives in `src/`.
-- Keep changes focused and consistent with the existing React and TypeScript patterns.
-- There is currently no configured lint script.
+Assignment 12 — React 18, TypeScript and Vite. Preserve app functionality while measuring performance and accessibility. Retain original Lighthouse, WAVE and keyboard audit evidence; distinguish measured results from targets.
 
-## Testable rules learned
+Development: `npm run dev`. Production preview: `npm run preview` after build. Validation: npm run verify; npm run audit:lighthouse; npm run audit:wave. This branch has no lint script.
 
-- Add settings in a separate component and preserve existing dashboard sections. Verify that dashboard headings and sections remain rendered after adding settings.
-- Validate data read from `localStorage` and handle both read and write failures. Verify malformed or unavailable stored data does not crash the page, and assert success feedback appears only after a successful write.
-- Form changes require role- and label-based behavioural tests for invalid input, persistence, and save failures. Query controls by accessible role/name; verify invalid fields and their associated errors, saved values, and visible failure feedback.
-## Assignment 10 testing rules
+## Testing rules
 
 - Query interactive components by role and accessible name; avoid CSS selectors and test IDs.
 - Keep all AI and movie requests mocked. The Vitest setup rejects unmocked fetches.
-- Run `npm run typecheck` for both application and test source before reporting success.
-- Run the component suite, production build, and mocked Playwright journeys after changing the chat or its stream contract.
-- A passing workflow is distinct from an enforced branch protection rule. Report both honestly.
-
+- Run `npm run typecheck` for application and test source. Run the component suite, production build and mocked Playwright journeys after changes to the chat or stream contract.
+- A passing workflow is distinct from enforced branch protection. Report both honestly.
