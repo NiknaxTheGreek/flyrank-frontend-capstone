@@ -72,12 +72,24 @@ Installing shadcn changed global styles to the light theme. The 25 November audi
 - https://ui.shadcn.com/docs/components/dialog
 - https://ui.shadcn.com/docs/components/tabs
 
-## 25 November 2026 audit
+## Screenshot evidence
 
-- The Vercel Git deployment of `33fe0c4` reached READY; its build compiled Next.js and completed TypeScript checking, including `/playground`. This was before the two narrow source corrections above.
-- The public playground returned expected page content. This is not a fresh keyboard interaction test.
-- No explicit `any` prop escapes were found in the three custom components or the reviewed shadcn wrappers. The strict TypeScript configuration includes the playground.
-- The latest inspected install log reports five moderate dependency vulnerabilities and a non-fatal React 18 deprecation warning. No dependency upgrade was performed during this audit.
-- The original manual keyboard results above are learner-reported historical evidence. No A5-specific automated keyboard test suite was found.
-- The archived screenshot JPEG is not reliable visual evidence. The original learner captures could not be recovered in this audit; replacement is pending. No new screenshot or test pass is claimed.
-- Independently handwritten implementation was not demonstrated; the assistance disclosure above remains accurate.
+Original learner captures taken on 12 November 2026, supplied again on 25 November 2026. The images show successive implementation stages; the earlier dark theme and later light theme are intentional historical differences.
+
+| Screenshot | What it demonstrates |
+|---|---|
+| [Codespaces startup](docs/assignment-5/evidence/01-branch-startup.webp) | Terminal shows switching to `fe05-accessibility-playground`, running `npm run dev`, Next.js 16.4.2 ready, and successful HTTP 200 responses for `/`. The visible React 18 warning is non-fatal. |
+| [Expanded disclosure](docs/assignment-5/evidence/02-disclosure-expanded.webp) | The earlier dark-theme playground shows the expanded disclosure with minus indicator, keyboard instructions and the W3C link visible. |
+| [Custom components](docs/assignment-5/evidence/03-custom-components.webp) | Shows the collapsed disclosure (plus indicator), three custom tabs with Overview selected and its panel visible, and the modal trigger. |
+| [Custom modal focus](docs/assignment-5/evidence/04-modal-focus.webp) | Shows the open dialog, dimmed background, Close and Done buttons, and the visible focus ring around Done. It supports visible focus inside the dialog, not proof of the entire focus trap or focus return sequence. |
+| [shadcn comparison](docs/assignment-5/evidence/05-shadcn-comparison.webp) | Shows the later light-theme playground after shadcn installation, with custom tabs and modal trigger alongside Radix-backed tabs and the shadcn modal trigger. |
+
+The screenshots complement the manual keyboard checks above; still images cannot independently establish the complete focus-trapping, keyboard wrapping or dismissal sequence.
+
+## 25 November 2026 verification
+
+- The corrected Git-triggered Vercel deployment of `42e58e6` reached READY. Its Next.js build compiled successfully, completed TypeScript checking and generated `/playground`.
+- No explicit `any` prop escapes were found in the three custom components or reviewed shadcn wrappers. Strict TypeScript includes the playground.
+- The five original screenshots have been preserved in their supplied WebP format. The manual keyboard checks above are historical; no fresh keyboard or screen-reader test after the two narrow source corrections is claimed.
+- The inspected build reported five moderate dependency vulnerabilities and a non-fatal React 18 deprecation warning. No dependency upgrade was performed during this audit.
+- The custom implementation was AI-assisted, as disclosed above.
