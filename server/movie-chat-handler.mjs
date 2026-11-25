@@ -160,7 +160,7 @@ export function createMovieChatHandler({ getKey = () => process.env.GEMINI_API_K
           }
           send({ type: 'error', message: 'The connection to Gemini closed before the reply finished. Try again.' });
         } catch {
-          send({ type: 'error', message: 'The movie reply was interrupted. You can send another message.' });
+          send({ type: 'error', message: 'The movie reply was interrupted. Retry the failed message.' });
         } finally {
           if (!disconnect.signal.aborted) controller.close();
         }
@@ -174,3 +174,4 @@ export function createMovieChatHandler({ getKey = () => process.env.GEMINI_API_K
     } });
   };
 }
+

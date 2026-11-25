@@ -8,9 +8,15 @@ export type MovieChatEvent =
 
 function decode(frame: string): MovieChatEvent {
   if (!frame.startsWith('data: ')) throw new Error('Unexpected movie reply.');
-  const event: unknown = JSON.parse(frame.slice(6));
+  let event: unknown;
+  try { event = JSON.parse(frame.slice(6)); }
+  catch { throw new Error('The movie service returned an unreadable reply. Retry the failed message.'); }
   if (!event || typeof event !== 'object' || !('type' in event)) throw new Error('Unexpected movie reply.');
-  if (event.type === 'tool') return movieToolPart.parse(event);
+  if (event.type === 'tool') {
+    const parsed = movieToolPart.safeParse(event);
+    if (!parsed.success) throw new Error('The movie service returned incomplete movie details. Retry the failed message.');
+    return parsed.data;
+  }
   if (event.type === 'done') return { type: 'done' };
   if (event.type === 'text' && 'delta' in event && typeof event.delta === 'string') return { type: 'text', delta: event.delta };
   if (event.type === 'error' && 'message' in event && typeof event.message === 'string') return { type: 'error', message: event.message };
@@ -26,7 +32,7 @@ export async function* readMovieChatEvents(response: Response): AsyncGenerator<M
   try {
     for (;;) {
       const { value, done } = await reader.read();
-      if (done) throw new Error('The movie reply ended early. You can send another message.');
+      if (done) throw new Error('The connection ended before the reply finished. Retry the failed message.');
       buffer += value;
       for (let boundary = buffer.indexOf('\n\n'); boundary !== -1; boundary = buffer.indexOf('\n\n')) {
         const event = decode(buffer.slice(0, boundary));
@@ -40,3 +46,4 @@ export async function* readMovieChatEvents(response: Response): AsyncGenerator<M
     reader.releaseLock();
   }
 }
+

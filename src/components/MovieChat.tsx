@@ -31,6 +31,8 @@ export default function MovieChat() {
   const [draft, setDraft] = useState('');
   const [activeId, setActiveId] = useState<string>();
   const [error, setError] = useState('');
+  const [retryConversation, setRetryConversation] = useState<Message[] | null>(null);
+  const [slow, setSlow] = useState(false);
   const [announcement, setAnnouncement] = useState('');
   const [showJump, setShowJump] = useState(false);
   const running = useRef<AbortController | null>(null);
@@ -65,14 +67,22 @@ export default function MovieChat() {
     event.preventDefault();
     const prompt = draft.trim();
     if (!prompt || running.current) return;
+    await generate([...messages, makeMessage('user', prompt)]);
+  }
+
+  async function generate(conversation: Message[]) {
+    if (running.current) return;
     const controller = new AbortController();
     running.current = controller;
-    const conversation = [...messages, makeMessage('user', prompt)];
+    const prompt = conversation[conversation.length - 1].parts[0].text;
     const assistant = makeMessage('assistant', '');
     setMessages([...conversation, assistant]);
     setActiveId(assistant.id);
     setDraft('');
     setError('');
+    setRetryConversation(null);
+    setSlow(false);
+    const slowTimer = setTimeout(() => setSlow(true), 8000);
     setAnnouncement('Preparing movie recommendations.');
     let output = '';
     let tool: MovieToolPart | undefined;
@@ -110,20 +120,23 @@ export default function MovieChat() {
         }
       }
       if (!output.trim() && !finishedTool) throw new Error('The movie assistant returned an empty reply.');
+      if (tool?.state === 'output-error') setRetryConversation(conversation);
       setAnnouncement(tool?.state === 'output-error' ? '' : finishedTool ? 'Movie lookup complete.' : 'Movie recommendations ready.');
     } catch (cause) {
       outcome = controller.signal.aborted ? 'stopped' : 'interrupted';
       if (outcome === 'stopped') setAnnouncement('Generation stopped.');
       else {
         setAnnouncement('');
+        setRetryConversation(conversation);
         setError(cause instanceof Error ? cause.message : 'The movie reply was interrupted.');
         if (!output.trim() && !tool) setDraft(current => current || prompt);
       }
     } finally {
+      clearTimeout(slowTimer);
+      setSlow(false);
       if (outcome) setMessages(current => output.trim() || tool
         ? current.map(m => m.id === assistant.id ? { ...m, outcome } : m)
-        : current.filter(m => m.id !== assistant.id &&
-          (outcome !== 'interrupted' || m.id !== conversation[conversation.length - 1].id)));
+        : current.filter(m => m.id !== assistant.id));
       running.current = null;
       setActiveId(undefined);
     }
@@ -150,7 +163,7 @@ export default function MovieChat() {
             <li key={m.id} className={`movie-chat-message movie-chat-${m.role}`}>
               <strong>{m.role === 'user' ? 'You' : 'Movie picker'}</strong>
               {m.parts[0].text && <p>{m.parts[0].text}</p>}
-              {!m.parts[0].text && m.parts.length === 1 && m.id === activeId && <p>Thinking…</p>}
+              {!m.parts[0].text && m.parts.length === 1 && m.id === activeId && <div className="movie-chat-skeleton" role="status"><span>Thinking…</span><i aria-hidden="true" /><i aria-hidden="true" /></div>}
               {m.parts[1] && <MovieToolCard key={m.parts[1].toolCallId} part={m.parts[1]} interrupted={!!m.outcome} />}
               {m.outcome && <small>{m.outcome === 'stopped' ? 'Stopped · partial response' : 'Interrupted · partial response'}</small>}
             </li>
@@ -159,7 +172,9 @@ export default function MovieChat() {
       </div>
       <span className="movie-chat-sr-only" role="status" aria-live="polite">{announcement}</span>
       {showJump && <button className="movie-chat-secondary" type="button" onClick={() => { jumpToLatest(); viewport.current?.focus(); }}>Jump to latest</button>}
-      {error && <p role="alert" className="movie-chat-error">{error}</p>}
+      {slow && activeId && <p role="status">This is taking longer than usual. You can wait or stop generation.</p>}
+      {error && <div role="alert" className="movie-chat-error"><strong>Reply couldn’t finish</strong><p>{error}</p><p>Your earlier messages are safe.</p></div>}
+      {retryConversation && <button className="movie-chat-secondary" type="button" disabled={!!activeId} onClick={() => void generate(retryConversation)}>Retry failed message</button>}
       {messages.length === 0 && <button className="movie-chat-secondary" type="button" onClick={() => { setDraft(starter); input.current?.focus(); }}>Try an example</button>}
       <form onSubmit={send} className="movie-chat-form">
         <label htmlFor="movie-chat-question">Your movie preferences</label>
@@ -173,3 +188,4 @@ export default function MovieChat() {
     </section>
   );
 }
+

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { FavoritesProvider } from './contexts/FavoritesContext';
+import { RouteErrorBoundary } from './components/RouteErrorBoundary';
 import MovieChat from './components/MovieChat';
 import AccountPage from './pages/AccountPage';
 import FavoritesPage from './pages/FavoritesPage';
@@ -44,7 +45,7 @@ function AppLayout() {
         </nav>
       </header>
       <main>
-        <Routes>
+        <RouteErrorBoundary key={pathname}><Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<HomePage />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
@@ -52,7 +53,7 @@ function AppLayout() {
           <Route path="/account" element={<AccountPage />} />
           <Route path="/favorites" element={<RequireAuth><FavoritesPage /></RequireAuth>} />
           <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+        </Routes></RouteErrorBoundary>
       </main>
     </div>
   );
@@ -65,3 +66,4 @@ export default function App() {
     </FavoritesProvider>
   </AuthProvider>;
 }
+

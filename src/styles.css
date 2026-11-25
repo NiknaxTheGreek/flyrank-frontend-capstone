@@ -608,3 +608,19 @@ a.button { display: inline-flex; align-items: center; text-decoration: none; }
 .movie-chat :focus-visible { outline: 3px solid #ffd889; outline-offset: 3px; }
 .movie-chat-error { margin: 0; color: #ffc4cc; }
 .movie-chat-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+
+/* A8: stable pending content and keyboard-aware mobile sizing. */
+.movie-chat-skeleton { min-height: 5rem; display: grid; gap: .6rem; padding-block: .8rem; }
+.movie-chat-skeleton i { display: block; height: .75rem; width: 90%; border-radius: .3rem; background: #d9dee8; opacity: .65; }
+.movie-chat-skeleton i:last-child { width: 65%; }
+.movie-chat-viewport { overscroll-behavior: contain; overflow-wrap: anywhere; }
+.movie-chat-form textarea { font-size: 1rem; }
+.movie-chat-error { animation: recovery-in 180ms ease-out; }
+@keyframes recovery-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 600px) {
+  .movie-chat { min-width: 0; padding-bottom: env(safe-area-inset-bottom); }
+  .movie-chat-viewport { max-height: 48dvh; }
+  .movie-chat-actions { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) { .movie-chat-error { animation: none; } }
