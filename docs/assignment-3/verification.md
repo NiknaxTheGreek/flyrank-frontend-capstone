@@ -1,29 +1,80 @@
-# Assignment 3 — verification record
+# Assignment 3 — Verification
 
-Verification status for the current `fe03-movie-app` worktree. Only completed checks are listed as verified.
+## Automated verification
 
-## Executed checks
+- Full `npm test` suite: **passed**
+- `npm run build`: **passed**
+- `git diff --check`: **clean**
+- Routing tests: passed
+- Live movie tests: passed
+- Authentication/favorites tests: passed
+- Favorites service tests: passed
+- OMDb API tests: passed
 
-- `npm test`: passed **41 tests across 8 files** after configuring Vitest to use a single thread for this resource-constrained Codespace. Coverage includes genre sections/filter, descriptions/IMDb IDs, poster fallback, separate links, API enrichment/concurrency/cache, search pagination/history/retry, auth initialization/return routing, favorite pending/success/failure, logout, user-state clearing, and mocked database record validation.
-- `npm run build`: passed; TypeScript and production Vite bundle completed (64 modules). Vite reported a chunk larger than 500 kB after minification (538.08 kB JS; 135.08 kB gzip).
-- Fresh `npm run preview`: `/` and `/movies` returned HTTP 200. The live `/api/movies?q=Inception` request returned HTTP 200 with 10 movies, 38 total matches, and genre/plot on Inception. Response did not contain the OMDb key name/value.
-- Poster URL HTTP checks: all six configured TMDB URLs returned **200 `image/jpeg`**.
-- `git diff --check`: passed before the last documentation and routing edits; rerun before commit.
-- `firebase.json` and `database.rules.json`: parsed as valid JSON.
-- Secret/config inspection: `.env.local` is ignored; Firebase config is not present. No secret value was printed or added to tracked docs.
-- Current Vite development server: `/` and `/movies` returned HTTP 200; `/api/movies?q=Inception` returned HTTP 200 with 10 movies, 38 total matches, and genre/plot on Inception. Response did not contain the OMDb key name/value. This is a development-server check, not the requested fresh production-build preview.
+## Movie functionality verified
 
-## Unverified or blocked
+- 24 featured movies are loaded from OMDb using verified IMDb IDs.
+- Featured movies use live OMDb titles, posters, plots and genres.
+- Genre filtering works against the live featured catalogue.
+- Live title search works.
+- Search pagination and URL state are supported.
+- Search requests can be cancelled without stale results overwriting newer state.
+- Movie details use canonical IMDb-ID routes such as `/movies/tt1375666`.
+- Legacy routes such as `/movies/inception` correctly show the recovery state.
+- IMDb links remain separate from internal movie navigation.
+- Direct search URLs do not unnecessarily load all 24 featured movies.
 
-- Firebase CLI and emulators are unavailable; database rule isolation was not run against the emulator.
-- Firebase project configuration is absent, so real sign-up/sign-in/out, actual Realtime Database reads/writes, persistence across refresh, and cross-user isolation are unverified.
-- Full human browser verification of the requested end-to-end sequence, retry/network conditions, keyboard-only navigation, mobile layout and missing-poster rendering is not evidenced.
-- No browser automation/screenshot tool was available in this session. The learner should capture genuine screenshots of home/genre browsing, search/detail/IMDb, account/favorites and mobile layout after configuring Firebase.
-- GitHub CLI cannot retrieve the active Codespaces forwarded URL because it lacks the `codespace` OAuth scope. The implementation and evidence commits are pushed to `fe03-movie-app`; the remote ref matched local HEAD. The requested forwarded URL is still not verified.
+## Firebase verification
 
-## Screenshots the learner still needs to capture
+Firebase Email/Password authentication and Realtime Database favorites were manually verified end to end.
 
-1. Home at desktop width with genre sections, genre filter, plots and IMDb links.
-2. Search results, a live movie detail page, and the separate IMDb link.
-3. Signed-in Favorites after adding a movie, followed by the empty/removal state.
-4. A narrow/mobile viewport showing cards and keyboard-visible focus on navigation and actions.
+Verified flow:
+
+Home → movie → sign in → add favorite → Favorites → refresh → sign out → sign back in → return to Favorites → remove favorite.
+
+Also verified:
+
+- signed-out Favorites route protection;
+- favorites stored under the authenticated UID;
+- favorites persist after refresh;
+- favorites persist across sign-out/sign-in;
+- favorite removal works;
+- empty Favorites state appears after removal;
+- Favorites were saved under the signed-in user’s UID. The database rules restrict access by UID. Cross-account isolation was not tested in the emulator.
+
+## API safeguards
+
+The OMDb API layer verifies:
+
+- input validation;
+- canonical IMDb IDs;
+- search-result enrichment;
+- caching;
+- in-flight request reuse;
+- maximum detail concurrency of three;
+- sanitized errors;
+- server-side OMDb credentials;
+- 15-second upstream timeout;
+- 60 uncached upstream requests per minute per running process.
+
+## Security/configuration
+
+- `.env.local` is ignored by Git.
+- The setup example now uses a placeholder for the OMDb key. An earlier commit exposed the key. Provider revocation and runtime replacement require separate verification.
+- `OMDB_API_KEY` remains server-side and does not use a `VITE_` prefix.
+- Firebase client configuration is supplied through environment variables.
+- Realtime Database rules restrict each user to their own path.
+
+## Reproducible implementation snapshot
+
+Implementation commit:
+
+`d2ced0c`
+
+Branch:
+
+`fe03-movie-app`
+
+## Screenshot
+
+The archived movie-detail JPEG is truncated and cannot be used as visual evidence. The submission index links to the movie-detail implementation and routing tests.

@@ -2,7 +2,7 @@
 
 ## Initial implementation review
 
-- The existing `App` rendered the FlyRank SEO dashboard, and the App-level test asserted dashboard headings; that assertion no longer described the requested Home screen.
+- The existing `App` rendered the previous dashboard prototype, and the App-level test asserted dashboard headings; that assertion no longer described the requested Home screen.
 - The same test file also covered the independent `NotificationSettings` component. Those tests were retained while the obsolete dashboard assertion was replaced with movie Home screen coverage.
 - The new UI has a labelled search input and buttons, but no browser routing or external movie-data service was introduced.
 
@@ -17,11 +17,51 @@ The changes in this log describe work performed by the coding assistant in respo
 
 ## Poster review follow-up
 
-- **Visual review — learner:** During mobile inspection, the learner observed “Poster unavailable” for Pulp Fiction and Interstellar while the other four sample posters rendered.
-- **Diagnosis — coding assistant:** The configured TMDB image URLs were checked directly. Both returned HTTP 404 with `text/html`: Pulp Fiction's `d5iIlFn5s0ImszYzBPb8JPIfbXP.jpg` and Interstellar's `gEU2QniE6E77NI6lCU6M.jpg`. For comparison, the checked Shawshank Redemption and The Dark Knight poster URLs returned HTTP 200 with `image/jpeg`.
-- **Fix — coding assistant:** Read each movie's poster path from its corresponding TMDB movie page (Pulp Fiction: https://www.themoviedb.org/movie/680-pulp-fiction; Interstellar: https://www.themoviedb.org/movie/157336-interstellar), then verified the resulting image URLs directly. The replacement Pulp Fiction path `vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg` and Interstellar path `yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg` both returned HTTP 200 with `image/jpeg`. Updated the sample data with those verified paths.
-- **Fallback — coding assistant:** Kept MovieCard's existing image-error fallback and added a component test confirming that a failed poster shows the accessible fallback while preserving the movie title and rating.
+Nicholas spotted the defect during a mobile review of the first six-film catalogue. *Pulp Fiction* and *Interstellar* showed “Poster unavailable” while the other four posters loaded. The coding assistant traced the failure to the two TMDB filenames in `src/data/movies.ts` and updated the sample records.
 
+| Movie | Original filename | Replacement filename |
+| --- | --- | --- |
+| Pulp Fiction | `d5iIlFn5s0ImszYzBPb8JPIfbXP.jpg` | `vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg` |
+| Interstellar | `gEU2QniE6E77NI6lCU6M.jpg` | `yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg` |
+
+During the original review, both old URLs returned HTTP 404 with an HTML response. The browser could not display an image, so the card showed its fallback. The assistant obtained the replacements from the TMDB pages for [Pulp Fiction](https://www.themoviedb.org/movie/680-pulp-fiction) and [Interstellar](https://www.themoviedb.org/movie/157336-interstellar). Each replacement returned HTTP 200 with an `image/jpeg` response and worked with the existing card. The [historical sample data](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/blob/c2a75213418bd4e147941838e243883e275cdc75/src/data/movies.ts) contains both corrected filenames.
+
+The assistant also added a [component test](../../src/components/MovieCard.test.tsx) that simulates an image-load error and checks that the fallback, film title and rating remain visible. That test exercises the card's behaviour without contacting TMDB.
+
+The [current catalogue](../../src/data/movies.ts) stores featured IMDb IDs. The app now obtains poster URLs from OMDb. The filename correction above applies to the earlier sample-data implementation.
+
+### Technical correction and evidence (25 November 2026 audit)
+
+**Observed defect:** In the original mobile review, two of the six movie cards displayed the unavailable-poster state, while the other four rendered images. This localized the problem to individual movie records rather than the entire catalogue or a general layout failure. The learner reported the observation and requested investigation; the coding assistant performed the diagnosis, edits and test.
+
+**Reconstructed before/after code:** In the original sample catalogue, `posterBaseUrl` was `https://image.tmdb.org/t/p/w500`. The following shows the two historical property replacements described in the review record. It is a reconstruction of the correction, not a literal Git parent-to-child diff: the retained implementation commit adds the sample file with the corrected values already present.
+
+```diff
+ // Pulp Fiction
+-posterUrl: `${posterBaseUrl}/d5iIlFn5s0ImszYzBPb8JPIfbXP.jpg`,
++posterUrl: `${posterBaseUrl}/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg`,
+
+ // Interstellar
+-posterUrl: `${posterBaseUrl}/gEU2QniE6E77NI6lCU6M.jpg`,
++posterUrl: `${posterBaseUrl}/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg`,
+```
+
+**Root cause and rationale:** The browser builds a complete image URL from the base path and the filename. The original review recorded HTTP 404 responses with HTML for the two old paths, whereas the corrected paths returned HTTP 200 with JPEG content. An image-load error activated the existing fallback. The narrow correction replaced only the bad image references; no CSS workaround, removal of the fallback, or change to the movie rating was required.
+
+**Regression protection:** The historical component test in `src/components/MovieCard.test.tsx` uses Testing Library to simulate an image error, rather than relying on a live external image server:
+
+```tsx
+fireEvent.error(screen.getByRole('img', { name: 'Poster for Pulp Fiction' }));
+expect(screen.getByRole('img', { name: 'Poster unavailable for Pulp Fiction' })).toBeTruthy();
+expect(screen.getByRole('heading', { name: 'Pulp Fiction' })).toBeTruthy();
+expect(screen.getByLabelText('Rated 8.9 out of 10')).toBeTruthy();
+```
+
+This verifies that an image failure does not erase the accessible fallback, movie title or rating. The current test additionally checks the fallback title and plot. The test protects UI resilience; it does not independently prove that a TMDB URL returns 200.
+
+**Evidence checked in the November audit:** [Historical implementation commit](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/commit/c2a75213418bd4e147941838e243883e275cdc75) contains the corrected sample records and original regression test. The [recorded prompt](prompts.md#poster-review-follow-up), [current regression test](../../src/components/MovieCard.test.tsx) and [current featured-ID catalogue](../../src/data/movies.ts) provide additional traceability. The current catalogue uses OMDb, so the historical filenames are not present in its current source. The HTTP outcomes are from the original review, not newly measured in this documentation audit. No new automated test execution or visual check is claimed.
+
+**Attribution and manual-improvement requirement:** This is evidence of learner-led defect discovery and AI-assisted implementation. It does not establish that the learner personally edited the two source lines. A learner-authored code improvement, if required, needs its own actual edit and verification record.
 
 ## Milestone 2 — AI code review and refactoring
 
@@ -54,4 +94,4 @@ Final live verification: the Vite /api/movies search endpoint returned HTTP 200,
 - **Problem → correction → reason → verification — unconstrained test workers were terminated in this Codespace:** Configured Vitest to run on a single thread. `npm test` then passed 41 tests across 8 files.
 - **Build/resource issue → correction → reason → verification:** Several build attempts were terminated while the Codespace was under memory pressure. After stopping the preview process and rerunning, standard `npm run build` passed for the current worktree (64 modules; Vite warned the 538.08 kB JS chunk exceeds 500 kB). A fresh production preview returned HTTP 200 for `/` and `/movies`; its live OMDb API returned 10 movies, 38 total matches, and verified genre/plot fields.
 - **Database rules/config — coding assistant:** Added UID-scoped read/write permissions and record shape/type validation in `database.rules.json`; `firebase.json` points to those rules and configures the database emulator port. JSON syntax validation passed. The workspace has no Firebase web configuration values and no Firebase CLI/emulator executable, so live authentication, persistence, and emulator isolation have not been verified.
-- **Learner review/manual edits:** This follow-up was implemented by the coding assistant. No manual code edits or visual review by the learner are claimed. The learner must still configure Firebase, review the implementation, and verify the deployed project before Assignment 3 is complete.
+- **Learner review/manual edits:** This follow-up was implemented by the coding assistant. No manual code edits or visual review by the learner are claimed. The [later verification record](verification.md#firebase-verification) documents the subsequent end-to-end Firebase check.

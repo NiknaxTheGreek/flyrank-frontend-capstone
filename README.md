@@ -1,10 +1,12 @@
 # Reel Good — Assignment 3
 
-Reel Good is a responsive movie discovery app built with React, TypeScript and Vite. Browse a small hand-picked collection by genre, search live OMDb movie data, inspect movie details, follow verified IMDb links, and (after Firebase setup) save personal favorites.
+[Assignment 3 submission note](./docs/assignment-3/submission.md)
+
+Reel Good is a responsive movie discovery app built with React, TypeScript and Vite. Browse 24 featured movies by genre, search live OMDb movie data, inspect movie details, follow verified IMDb links, and sign in to save personal favorites.
 
 ## Implemented features
 
-- Six sample movies with plot summaries, verified IMDb IDs, TMDB poster URLs, ratings, and clearly labelled genre sections.
+- The featured catalogue loads titles, posters, plots and genres from OMDb using verified IMDb IDs.
 - Accessible genre filtering, responsive poster cards, and a film-icon/title fallback for missing or failed posters.
 - Live title search with URL-backed query and page state, pagination, loading, empty and error states, retry, request cancellation and stale-response protection.
 - OMDb details enrichment supplies search results with genres and plots rather than inventing data omitted by OMDb search. The server caches requests, deduplicates detail lookups, limits concurrent detail requests to three, and bounds upstream calls.
@@ -12,7 +14,6 @@ Reel Good is a responsive movie discovery app built with React, TypeScript and V
 - Email/password Firebase sign-up, sign-in and sign-out; protected favorites; UID-scoped Realtime Database records keyed by IMDb ID.
 - Realtime Database rules restrict access to the authenticated owner and validate stored record fields.
 
-Assignment 3 is **not complete**: Firebase is not configured or live-verified in this workspace, and final learner review, manual browser checks and submission evidence still need to be completed.
 
 ## Requirements
 
@@ -75,7 +76,7 @@ npm run preview   # Serve dist using Vite preview (port 4173)
 
 - `/` and `/movies` — initial genre collection and movie search.
 - `/?q=Inception&page=2` — shareable search and page state.
-- `/movies/:movieId` — sample or live movie detail.
+- `/movies/:movieId` — movie detail by IMDb ID, for example `/movies/tt1375666`.
 - `/account` — register, sign in or sign out.
 - `/favorites` — protected, signed-in user's saved collection.
 
@@ -90,11 +91,6 @@ Unknown pages and movie IDs show a recovery path. Vite's SPA fallback serves app
 - `src/services/auth.ts`, `src/services/firebase.ts`, and `src/services/favorites.ts` wrap Firebase Auth and Realtime Database. Contexts observe auth/favorites and clear per-user state at UID changes.
 - `database.rules.json` checks ownership, IMDb-key consistency and the accepted movie-record shape.
 
-## Limitations and current verification status
+## Assignment verification
 
-- No Firebase web-app/database config is present, so live sign-up, sign-in, cross-user rules and persistence still require project setup and verification.
-- The AI's mocked tests do not replace learner review or real Firebase emulator tests.
-- Poster endpoints have been HTTP-checked; browser rendering, keyboard-only/mobile visual review, and screenshot evidence still need to be captured by the learner if required for submission.
-- OMDb availability, quota, and an activated key are external dependencies.
-
-See [Assignment 3 verification](./docs/assignment-3/verification.md), [review log](./docs/assignment-3/review-log.md), and [submission draft](./docs/assignment-3/submission.md).
+The test suite and production build passed. The manual Firebase check confirmed that a signed-in user could save a favorite, find it after refreshing and signing back in, and remove it. [Final verification](./docs/assignment-3/verification.md) · [Development review log](./docs/assignment-3/review-log.md)
