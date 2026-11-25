@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "functions": { "api/movie-chat.mjs": { "maxDuration": 60 } },
+  "rewrites": [
+    { "source": "/pick-a-movie", "destination": "/index.html" },
+    { "source": "/movies/:path*", "destination": "/index.html" },
+    { "source": "/favorites", "destination": "/index.html" },
+    { "source": "/account", "destination": "/index.html" }
+  ]
+}
