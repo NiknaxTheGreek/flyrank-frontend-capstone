@@ -1,0 +1,111 @@
+.home:has(.afterlight) { width: 100%; padding-bottom: 0; background: #070b17; }
+.home:has(.afterlight) > .site-header { width: min(1360px, 100% - 80px); margin-inline: auto; min-height: 88px; border-bottom: 0; }
+.home:has(.afterlight) .brand-mark { background: #eee6d9; color: #141520; border-radius: 50%; }
+.home:has(.afterlight) .site-navigation { gap: 24px; }
+.home:has(.afterlight) .site-navigation a { font-size: 0.875rem; font-weight: 500; }
+.home:has(.afterlight) .site-navigation a[href='/shader-lab'] { color: #ffd2b3; }
+
+.afterlight {
+  --light-one: #244b85;
+  --light-two: #d3704c;
+  --light-three: #4a3d78;
+  position: relative;
+  isolation: isolate;
+  min-height: max(720px, calc(100svh - 88px));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 36px max(40px, calc((100vw - 1360px) / 2)) 30px;
+  color: #faf4ea;
+  background:
+    linear-gradient(130deg, #080c1b 18%, transparent 78%),
+    radial-gradient(ellipse at 78% 39%, var(--light-two), transparent 52%),
+    radial-gradient(ellipse at 70% 67%, var(--light-one), transparent 64%),
+    radial-gradient(ellipse at 90% 90%, var(--light-three), #080c1b 80%);
+}
+.afterlight[data-mood='glacier'] { --light-one: #217e8d; --light-two: #585bd1; --light-three: #1c416c; }
+.afterlight[data-mood='ember'] { --light-one: #783054; --light-two: #cd7034; --light-three: #51274d; }
+.afterlight__canvas, .afterlight__shade, .afterlight__frame { position: absolute; pointer-events: none; }
+.afterlight__canvas { inset: 0; width: 100%; height: 100%; z-index: -3; opacity: 0; }
+.afterlight__canvas.is-ready { opacity: 1; }
+.afterlight__shade { inset: 0; z-index: -2; background: linear-gradient(90deg, rgba(5, 8, 19, 0.6), rgba(5, 8, 19, 0.2) 65%), linear-gradient(0deg, rgba(5, 8, 19, 0.7), transparent 30%, transparent 80%, rgba(5, 8, 19, 0.45)); }
+.afterlight__frame { inset: 18px; z-index: -1; border: 1px solid rgba(255, 231, 205, 0.12); }
+.afterlight__topline { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.afterlight__edition { color: #d0c4c2; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; }
+.afterlight__edition span { margin: 0 12px; color: #937c76; }
+.afterlight__signature { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 0.86rem; color: #cfc1c4; }
+.afterlight__content { position: relative; width: 100%; margin: auto 0; padding: 100px 0 110px; }
+.afterlight__eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 30px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; color: #ead7cd; }
+.afterlight__eyebrow > span { display: block; width: 24px; height: 1px; background: #d69a75; }
+.afterlight h1 { max-width: 1020px; margin: 0 0 30px; font-family: Georgia, 'Times New Roman', serif; font-weight: 400; font-size: clamp(3.7rem, 7.8vw, 8rem); line-height: 1.06; letter-spacing: -0.058em; text-wrap: balance; text-shadow: 0 2px 30px rgba(0,0,0,0.15); }
+.afterlight h1 em { font-weight: 400; color: #f0c6b0; }
+.afterlight h1:focus { outline: none; }
+.afterlight__copy { color: #d5cbd2; font-size: clamp(0.94rem, 1.15vw, 1.08rem); font-weight: 400; line-height: 1.9; margin-bottom: 34px; }
+.afterlight__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 30px; }
+.afterlight__primary, .afterlight__secondary { min-height: 48px; display: inline-flex; align-items: center; gap: 28px; font-size: 0.875rem; font-weight: 600; text-decoration: none; }
+.afterlight__primary { padding: 13px 22px; color: #151727; background: #f2e7d8; border: 1px solid #f2e7d8; border-radius: 2px; transition: transform 180ms ease, opacity 180ms ease; }
+.afterlight__primary:hover { transform: translateY(-2px); opacity: 0.92; }
+.afterlight__primary span { font-size: 1.2rem; font-weight: 400; }
+.afterlight__secondary { gap: 14px; color: #f2e5dc; border-bottom: 1px solid rgba(242, 229, 220, 0.38); }
+.afterlight__secondary:hover { opacity: 0.8; }
+.afterlight__caption { position: absolute; right: max(55px, calc((100vw - 1330px) / 2)); top: 48%; text-align: right; color: #d0c4d2; }
+.afterlight__caption > span { font-size: 0.56rem; letter-spacing: 0.19em; color: #c3a3a6; }
+.afterlight__caption p { margin: 16px 0 0; font-size: 0.78rem; line-height: 1.65; font-family: Georgia, 'Times New Roman', serif; font-style: italic; }
+.afterlight__footer { position: relative; display: flex; justify-content: space-between; align-items: end; gap: 24px; border-top: 1px solid rgba(255, 230, 207, 0.13); padding-top: 24px; }
+.afterlight__invitation { display: flex; align-items: center; gap: 16px; }
+.afterlight__invitation > span { font-size: 1.8rem; color: #e5b895; }
+.afterlight__invitation p { margin: 0; font-size: 0.875rem; color: #e8d9d5; }
+.afterlight__invitation small { display: block; color: #b8aab6; font-size: 0.75rem; margin-top: 5px; }
+.afterlight__controls { display: flex; gap: 30px; align-items: end; }
+.afterlight__moods { border: 0; padding: 0; margin: 0; display: flex; gap: 8px; }
+.afterlight__moods legend { padding: 0; margin-bottom: 9px; font-size: 0.75rem; color: #b8aab6; letter-spacing: 0.06em; }
+.afterlight__mood, .afterlight__pause { min-height: 44px; padding: 7px 10px; border: 1px solid transparent; background: rgba(6, 9, 23, 0.5); border-radius: 3px; color: #cdbec7; cursor: pointer; font-size: 0.875rem; }
+.afterlight__mood { display: inline-flex; align-items: center; gap: 7px; }
+.afterlight__mood[aria-pressed='true'] { color: #fff0e6; border-color: #987a73; background: rgba(242, 214, 191, 0.08); }
+.afterlight__mood:hover, .afterlight__pause:hover { background: rgba(242, 214, 191, 0.13); }
+.afterlight__mood > span { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, #4774c3, #f2aa6a); }
+.afterlight__mood > [data-swatch='1'] { background: linear-gradient(135deg, #36c2c4, #7779ea); }
+.afterlight__mood > [data-swatch='2'] { background: linear-gradient(135deg, #b24f79, #ffb45d); }
+.afterlight__pause { min-width: 80px; border-color: #756572; display: inline-flex; align-items: center; justify-content: center; gap: 9px; }
+.afterlight__pause span { font-size: 0.9rem; }
+.afterlight__still { min-height: 44px; display: flex; align-items: center; color: #c7b6c0; font-size: 0.75rem; }
+.afterlight a:focus-visible, .afterlight button:focus-visible { outline: 2px solid #ffe7a8; outline-offset: 5px; }
+.afterlight__sr-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+@media (min-width: 1600px) { .afterlight__content { padding-block: 125px; } }
+@media (max-width: 1100px) {
+  .afterlight__signature, .afterlight__caption { display: none; }
+  .afterlight__footer { align-items: center; }
+  .afterlight__controls { gap: 14px; }
+}
+@media (max-width: 760px) {
+  .home:has(.afterlight) > .site-header { width: calc(100% - 40px); padding: 18px 0; min-height: 112px; gap: 14px; flex-wrap: wrap; }
+  .home:has(.afterlight) .brand { font-size: 1rem; }
+  .home:has(.afterlight) .site-navigation { gap: 12px; }
+  .home:has(.afterlight) .site-navigation a { font-size: 0.875rem; }
+  .afterlight { min-height: max(760px, calc(100svh - 112px)); padding: 30px 26px 26px; }
+  .afterlight__frame { inset: 10px; }
+  .afterlight__topline { min-height: 20px; }
+  .afterlight__edition { font-size: 0.75rem; letter-spacing: 0.04em; }
+  .afterlight__edition span { margin: 0 7px; }
+  .afterlight__content { padding: 75px 0 65px; }
+  .afterlight__eyebrow { font-size: 0.75rem; letter-spacing: 0.06em; gap: 8px; margin-bottom: 26px; }
+  .afterlight__eyebrow > span { width: 17px; }
+  .afterlight h1 { font-size: clamp(3.1rem, 9.4vw, 4.7rem); margin-bottom: 24px; line-height: 1.12; }
+  .afterlight__copy { font-size: 1rem; margin-bottom: 24px; max-width: 360px; }
+  .afterlight__desktop-break { display: none; }
+  .afterlight__actions { gap: 15px; align-items: start; flex-direction: column; }
+  .afterlight__primary { min-height: 48px; padding: 10px 18px; }
+  .afterlight__secondary { min-height: 44px; }
+  .afterlight__footer { flex-direction: column; align-items: stretch; gap: 26px; }
+  .afterlight__invitation { gap: 10px; }
+  .afterlight__controls { align-items: start; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+  .afterlight__moods { gap: 3px; }
+  .afterlight__mood { padding: 7px; gap: 5px; font-size: 0.875rem; }
+  .afterlight__pause { min-width: 80px; padding: 7px; font-size: 0.875rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .afterlight__canvas { display: none; }
+  .afterlight__primary { transition: none; }
+  .afterlight__primary:hover { transform: none; }
+}

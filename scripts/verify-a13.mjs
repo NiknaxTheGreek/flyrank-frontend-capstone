@@ -1,0 +1,315 @@
+// Real-browser checks of GPU lifecycle and user-facing behaviour; no API calls.
+// Install playwright@1.62.1 and its Chromium, build, then: node scripts/verify-a13.mjs
+import assert from 'node:assert/strict';
+import { spawn } from 'node:child_process';
+import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { setTimeout as delay } from 'node:timers/promises';
+const { chromium } = await import(process.env.A13_PLAYWRIGHT_MODULE || 'playwright');
+
+const output = 'docs/assignment-13/evidence';
+await mkdir(output, { recursive: true });
+const checks = [];
+const errors = [];
+const base = process.env.A13_URL || 'http://127.0.0.1:4183';
+const server = process.env.A13_URL ? null : spawn('npm', ['run', 'preview', '--', '--host', '127.0.0.1', '--port', '4183'], { stdio: 'pipe', detached: process.platform !== 'win32' });
+let serverLog = '';
+server?.stdout.on('data', chunk => { serverLog += chunk; });
+server?.stderr.on('data', chunk => { serverLog += chunk; });
+let browser;
+let windowManager;
+
+// Instrument native calls in the test page only; the production app has no debug API.
+function instrument() {
+  window.__a13 = { draws: 0, contexts: 0, deletes: 0, pendingFrames: 0, uniforms: {} };
+  const pendingFrames = new Set();
+  const schedule = window.requestAnimationFrame.bind(window);
+  const cancel = window.cancelAnimationFrame.bind(window);
+  window.requestAnimationFrame = callback => {
+    const id = schedule(time => {
+      pendingFrames.delete(id);
+      window.__a13.pendingFrames = pendingFrames.size;
+      callback(time);
+    });
+    pendingFrames.add(id);
+    window.__a13.pendingFrames = pendingFrames.size;
+    return id;
+  };
+  window.cancelAnimationFrame = id => {
+    pendingFrames.delete(id);
+    window.__a13.pendingFrames = pendingFrames.size;
+    cancel(id);
+  };
+  const locations = new WeakMap();
+  const context = HTMLCanvasElement.prototype.getContext;
+  HTMLCanvasElement.prototype.getContext = function(type, ...args) {
+    if (type === 'webgl' || type === 'webgl2') window.__a13.contexts++;
+    return context.call(this, type, ...args);
+  };
+  const prototype = WebGLRenderingContext.prototype;
+  const getLocation = prototype.getUniformLocation;
+  prototype.getUniformLocation = function(program, name) {
+    const location = getLocation.call(this, program, name);
+    if (location) locations.set(location, name);
+    return location;
+  };
+  for (const method of ['uniform1f', 'uniform2f']) {
+    const original = prototype[method];
+    prototype[method] = function(location, ...values) {
+      const name = locations.get(location);
+      if (name) window.__a13.uniforms[name] = values;
+      return original.call(this, location, ...values);
+    };
+  }
+  const draw = prototype.drawArrays;
+  prototype.drawArrays = function(...args) { window.__a13.draws++; return draw.apply(this, args); };
+  const remove = prototype.deleteProgram;
+  prototype.deleteProgram = function(...args) { window.__a13.deletes++; return remove.apply(this, args); };
+}
+
+const state = page => page.evaluate(() => structuredClone(window.__a13));
+async function eventually(predicate, message) {
+  for (let attempt = 0; attempt < 80; attempt++) {
+    if (await predicate()) return;
+    await delay(75);
+  }
+  throw new Error(message);
+}
+async function noDraws(page, message) {
+  // GPU-heavy software rendering may delay observer delivery. Wait for the
+  // application's scheduler to stop, then verify that it stays stopped.
+  await eventually(async () => (await state(page)).pendingFrames === 0, message);
+  const before = (await state(page)).draws;
+  await delay(350);
+  assert.equal((await state(page)).draws, before, message);
+  return before;
+}
+function watch(page) {
+  page.on('pageerror', error => errors.push(error.message));
+  page.on('console', entry => { if (entry.type() === 'error') errors.push(entry.text()); });
+}
+
+async function verifyActualVisibility() {
+  // Focus emulation is per DevTools session: a second session cannot remove
+  // Playwright's existing capturer. Use an owned browser with no default overrides.
+  const profile = await mkdtemp(join(tmpdir(), 'a13-visibility-'));
+  const ownedChrome = spawn(chromium.executablePath(), [
+    '--remote-debugging-port=0', `--user-data-dir=${profile}`, '--no-first-run',
+    '--no-sandbox', '--disable-extensions', '--use-angle=swiftshader',
+    '--enable-unsafe-swiftshader', '--window-size=1000,1000', 'about:blank',
+  ], { stdio: 'ignore', detached: true });
+  let actualBrowser;
+  try {
+    let port;
+    await eventually(async () => {
+      try { port = (await readFile(join(profile, 'DevToolsActivePort'), 'utf8')).split('\n')[0]; return Boolean(port); }
+      catch { return false; }
+    }, 'Visibility browser did not start');
+    actualBrowser = await chromium.connectOverCDP(`http://127.0.0.1:${port}`, { noDefaults: true });
+    const actualContext = actualBrowser.contexts()[0];
+    await actualContext.addInitScript(instrument);
+    const actualPage = await actualContext.newPage();
+    watch(actualPage);
+    await actualPage.setViewportSize({ width: 1000, height: 900 });
+    await actualPage.goto(`${base}/shader-lab`, { waitUntil: 'networkidle' });
+    await actualPage.getByRole('button', { name: 'Pause animation' }).waitFor();
+    await eventually(async () => (await state(actualPage)).draws > 2, 'Visibility browser did not render shader');
+    const session = await actualContext.newCDPSession(actualPage);
+    const { windowId } = await session.send('Browser.getWindowForTarget');
+    await session.send('Browser.setWindowBounds', { windowId, bounds: { windowState: 'minimized' } });
+    await eventually(() => actualPage.evaluate(() => document.hidden), 'Minimized document did not become hidden');
+    const timeBeforeHide = (await state(actualPage)).uniforms.u_time[0];
+    await noDraws(actualPage, 'Hidden document kept drawing');
+    assert.equal((await state(actualPage)).pendingFrames, 0, 'Hidden document retained a scheduled animation frame');
+    await session.send('Browser.setWindowBounds', { windowId, bounds: { windowState: 'normal' } });
+    await actualPage.bringToFront();
+    await eventually(() => actualPage.evaluate(() => !document.hidden), 'Restored document did not become visible');
+    await eventually(async () => (await state(actualPage)).uniforms.u_time[0] > timeBeforeHide, 'Visible document did not resume');
+    assert((await state(actualPage)).uniforms.u_time[0] - timeBeforeHide < 0.4, 'Hidden time leaked into active animation');
+    checks.push({ name: 'Actual hidden document cancels scheduled frames and resumes without a time jump', passed: true });
+  } finally {
+    await actualBrowser?.close();
+    try { process.kill(-ownedChrome.pid, 'SIGTERM'); } catch {}
+    ownedChrome.unref();
+    await rm(profile, { recursive: true, force: true }).catch(() => {});
+  }
+}
+
+try {
+  if (server) {
+    let available = false;
+    for (let attempt = 0; attempt < 100; attempt++) {
+      try { available = (await fetch(base)).ok; } catch {}
+      if (available) break;
+      if (server.exitCode !== null) throw new Error(serverLog);
+      await delay(100);
+    }
+    assert(available, `Preview did not start: ${serverLog}`);
+  }
+  if (process.env.A13_HEADFUL === '1') {
+    // Xvfb supplies a display; Openbox supplies real minimize/restore events.
+    windowManager = spawn('openbox', ['--sm-disable'], { stdio: 'ignore' });
+    windowManager.on('error', error => { errors.push(`Window manager: ${error.message}`); });
+  }
+  browser = await chromium.launch({ headless: process.env.A13_HEADFUL !== '1', args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 2, reducedMotion: 'no-preference' });
+  await context.addInitScript(instrument);
+  const page = await context.newPage();
+  watch(page);
+  await page.goto(`${base}/shader-lab`, { waitUntil: 'networkidle' });
+  const pause = page.getByRole('button', { name: 'Pause animation' });
+  await pause.waitFor();
+  await eventually(async () => (await state(page)).draws >= 4, 'Shader did not draw');
+  const size = await page.locator('canvas').evaluate(el => ({ w: el.width, h: el.height, css: el.getBoundingClientRect().toJSON() }));
+  assert(size.w <= size.css.width * 1.5 && size.h <= size.css.height * 1.5);
+  assert(size.w * size.h <= 1_600_000);
+  assert.deepEqual((await state(page)).uniforms.u_resolution, [size.w, size.h]);
+  checks.push({ name: 'Real WebGL rendering and resolution caps at desktop DPR 2', buffer: [size.w, size.h], passed: true });
+  const drawStart = (await state(page)).draws;
+  const measuredAt = performance.now();
+  await delay(1100);
+  const elapsedSeconds = (performance.now() - measuredAt) / 1000;
+  const measuredDraws = (await state(page)).draws - drawStart;
+  assert(measuredDraws > 0 && measuredDraws <= Math.ceil(elapsedSeconds * 30) + 3);
+  checks.push({ name: 'GPU draw rate stays within the 30 fps budget', draws: measuredDraws, seconds: elapsedSeconds, passed: true });
+
+  await pause.click();
+  assert.equal(await pause.getAttribute('aria-pressed'), 'true');
+  await noDraws(page, 'Pause did not stop GPU draws');
+  await page.screenshot({ path: `${output}/desktop-afterlight.jpg`, type: 'jpeg', quality: 78, fullPage: true });
+  const first = await page.locator('canvas').screenshot();
+  await page.getByRole('button', { name: 'Glacier', exact: true }).click();
+  assert.deepEqual((await state(page)).uniforms.u_palette, [1]);
+  assert.notDeepEqual(await page.locator('canvas').screenshot(), first, 'Palette did not change the rendered image');
+  await noDraws(page, 'Palette change unexpectedly resumed animation');
+  await page.screenshot({ path: `${output}/desktop-glacier-paused.jpg`, type: 'jpeg', quality: 78, fullPage: true });
+  await pause.press('Space');
+  assert.equal(await pause.getAttribute('aria-pressed'), 'false');
+  const resumedAt = (await state(page)).draws;
+  await eventually(async () => (await state(page)).draws > resumedAt, 'Keyboard resume did not restart drawing');
+  checks.push({ name: 'Pause stops draws; colour redraws a still frame; Space resumes', passed: true });
+
+  const hero = await page.locator('.afterlight').boundingBox();
+  await page.mouse.move(hero.x + hero.width * 0.9, hero.y + hero.height * 0.2);
+  await eventually(async () => (await state(page)).uniforms.u_mouse[0] > 0.6, 'Mouse did not influence shader');
+  checks.push({ name: 'Pointer reaches the shader as a smoothed uniform', passed: true });
+
+  await page.evaluate(() => {
+    const spacer = document.createElement('div');
+    spacer.id = 'a13-verification-spacer';
+    spacer.style.height = '1600px';
+    document.body.append(spacer);
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+  await eventually(() => page.locator('canvas').evaluate(el => el.getBoundingClientRect().bottom <= 0), 'Hero did not scroll out of view');
+  await noDraws(page, 'Offscreen hero kept drawing');
+  const offscreenDraws = (await state(page)).draws;
+  await page.evaluate(() => { document.getElementById('a13-verification-spacer').remove(); window.scrollTo(0, 0); });
+  await eventually(async () => (await state(page)).draws > offscreenDraws, 'Returning hero did not resume');
+  checks.push({ name: 'Offscreen observer stops drawing and resumes when in view', passed: true });
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.getByText('Still edition', { exact: true }).waitFor();
+  await noDraws(page, 'Reduced-motion preference kept drawing');
+  assert.equal(await page.locator('canvas').isVisible(), false);
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await pause.waitFor();
+  const restarted = (await state(page)).draws;
+  await eventually(async () => (await state(page)).draws > restarted, 'Motion preference could not be reversed');
+  checks.push({ name: 'Live OS motion preference changes stop and restart the renderer cleanly', passed: true });
+
+  const atRouteChange = (await state(page)).draws;
+  await page.getByRole('link', { name: 'Motion lab', exact: true }).click();
+  await noDraws(page, 'Renderer survived route unmount');
+  assert((await state(page)).deletes > 0);
+  await page.getByRole('link', { name: 'Afterlight', exact: true }).click();
+  await pause.waitFor();
+  await eventually(async () => (await state(page)).draws > atRouteChange, 'Returning to shader route failed');
+  checks.push({ name: 'Route cleanup deletes GPU program and stops callbacks; return works', passed: true });
+
+  await page.evaluate(() => document.querySelector('canvas').getContext('webgl').getExtension('WEBGL_lose_context').loseContext());
+  await page.getByText('Still edition', { exact: true }).waitFor();
+  await noDraws(page, 'Lost WebGL context kept scheduling draws');
+  await page.getByRole('button', { name: 'Ember', exact: true }).click();
+  assert.equal(await page.locator('.afterlight').getAttribute('data-mood'), 'ember');
+  await page.screenshot({ path: `${output}/context-loss-fallback.jpg`, type: 'jpeg', quality: 78, fullPage: true });
+  checks.push({ name: 'GPU context loss exposes a working static fallback', passed: true });
+
+  const reduced = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
+  await reduced.addInitScript(instrument);
+  const still = await reduced.newPage();
+  watch(still);
+  const shaderRequests = [];
+  still.on('request', request => { if (request.url().includes('aurora-renderer')) shaderRequests.push(request.url()); });
+  await still.goto(`${base}/shader-lab`, { waitUntil: 'networkidle' });
+  assert.equal((await state(still)).contexts, 0);
+  assert.equal((await state(still)).draws, 0);
+  assert.deepEqual(shaderRequests, []);
+  assert.equal(await still.locator('canvas').isVisible(), false);
+  // Keyboard only from the focused heading: both links, then three moods.
+  for (const label of ['Find my next film', 'Explore the collection', 'Afterlight', 'Glacier', 'Ember']) {
+    await still.keyboard.press('Tab');
+    const active = await still.evaluate(() => document.activeElement.textContent);
+    assert(active.includes(label), `Unexpected keyboard focus: ${active}`);
+  }
+  await still.keyboard.press('Space');
+  assert.equal(await still.getByRole('button', { name: 'Ember', exact: true }).getAttribute('aria-pressed'), 'true');
+  await still.screenshot({ path: `${output}/desktop-reduced-motion.jpg`, type: 'jpeg', quality: 78, fullPage: true });
+  checks.push({ name: 'Reduced motion makes zero WebGL calls and no shader request; all actions reachable by keyboard', passed: true });
+
+  const mobile = await browser.newContext({ viewport: { width: 375, height: 812 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, reducedMotion: 'no-preference' });
+  await mobile.addInitScript(instrument);
+  const phone = await mobile.newPage();
+  watch(phone);
+  await phone.goto(`${base}/shader-lab`, { waitUntil: 'networkidle' });
+  await phone.getByRole('button', { name: 'Pause animation' }).waitFor();
+  assert.equal(await phone.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+  const mobileSize = await phone.locator('canvas').evaluate(el => ({ w: el.width, h: el.height, css: el.getBoundingClientRect().toJSON() }));
+  assert(mobileSize.w <= mobileSize.css.width * 1.5 && mobileSize.h <= mobileSize.css.height * 1.5);
+  assert(mobileSize.w * mobileSize.h <= 1_600_000);
+  await phone.getByRole('button', { name: 'Glacier', exact: true }).tap();
+  assert.equal(await phone.getByRole('button', { name: 'Glacier', exact: true }).getAttribute('aria-pressed'), 'true');
+  await phone.getByRole('button', { name: 'Pause animation' }).tap();
+  await phone.screenshot({ path: `${output}/phone-glacier.jpg`, type: 'jpeg', quality: 78, fullPage: true });
+  for (const width of [320, 360, 768]) {
+    await phone.setViewportSize({ width, height: 900 });
+    assert.equal(await phone.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `Horizontal overflow at ${width}px`);
+  }
+  checks.push({ name: 'Touch controls, DPR 3 cap and no horizontal overflow at 320/360/375/768px', buffer: [mobileSize.w, mobileSize.h], passed: true });
+
+  await verifyActualVisibility();
+
+  assert.deepEqual(errors, [], 'Application console errors');
+  checks.push({ name: 'Zero application console errors during all checks', passed: true });
+  const report = { status: 'passed', browser: browser.version(), desktopBuffer: [size.w, size.h], checks, errors };
+  await writeFile(`${output}/verification.json`, JSON.stringify(report, null, 2) + '\n');
+  console.log(JSON.stringify(report, null, 2));
+} catch (error) {
+  const report = { status: 'failed', checks, errors, failure: String(error.stack || error) };
+  await writeFile(`${output}/verification.json`, JSON.stringify(report, null, 2) + '\n');
+  console.error(JSON.stringify(report, null, 2));
+  process.exitCode = 1;
+} finally {
+  await browser?.close();
+  windowManager?.kill('SIGTERM');
+  // npm starts Vite as a child: terminate the owned group so no pipe keeps Node alive.
+  if (server?.pid) {
+    try {
+      if (process.platform === 'win32') server.kill('SIGTERM');
+      else process.kill(-server.pid, 'SIGTERM');
+    } catch {}
+    server.stdout.destroy();
+    server.stderr.destroy();
+    server.unref();
+  }
+  // Transport this assignment's screenshots in logs if Actions artifact quota is full.
+  // The agent saves these exact bytes back into the assignment's GitHub evidence folder.
+  for (const name of await readdir(output)) {
+    if (!/^(desktop-|phone-|context-loss-).*\.jpg$/.test(name) && name !== 'verification.json') continue;
+    const encoded = (await readFile(`${output}/${name}`)).toString('base64');
+    for (let offset = 0; offset < encoded.length; offset += 4000) {
+      console.log(`A13_EVIDENCE ${name} ${offset / 4000} ${encoded.slice(offset, offset + 4000)}`);
+    }
+  }
+}
