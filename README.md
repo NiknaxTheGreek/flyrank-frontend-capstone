@@ -1,38 +1,23 @@
-# Reel Good — Assignment 6
+# Reel Good — Assignment 7
 
-[Open the streaming movie picker preview](https://flyrank-frontend-capstone-lusu7g260-niknaxthegreek.vercel.app). Choose **Movie picker** in the navigation.
+[Open the public movie picker](https://flyrank-frontend-capstone-bwlejorqv-niknaxthegreek.vercel.app/pick-a-movie) and ask for Inception’s IMDb rating and runtime. The live lookup returned 8.8 and 148 minutes during the 21 November check. [Tool definition](server/lookup-movie-tool.mjs)
 
-## Screenshot evidence
+## Assignment 7 — Movie lookup in chat
 
-- [Movie recommendation and Jump to latest control](docs/assignment-6/evidence/movie-recommendation.png)
-- [Follow-up asking which film is least scary](docs/assignment-6/evidence/follow-up-question.png)
-- [Stopped generation with the partial response visible](docs/assignment-6/evidence/stopped-response.png)
+Open **Movie picker** (`/pick-a-movie`) and ask:
+“Show me Inception’s IMDb rating and runtime.”
 
-## Reviewing the chat
+- **Tool:** [`lookupMovie`](server/lookup-movie-tool.mjs), a read-only
+  server-side tool that fetches movie details from OMDb.
+- **Input:** `{ title: string }`, trimmed and validated with Zod. Titles
+  must be 2–100 characters long.
+- **Output:** `{ title, year, genre, runtime, rating, plot, imdbId }`.
+  All fields are strings except `rating`, which is a number from 0 to 10
+  or `null`. Missing descriptive fields are empty strings.
+- **Lifecycle:** Preparing lookup → Looking up a title → Movie card or
+  an inline error. A failed lookup leaves the chat ready for another request.
+- **Configuration:** Set `GEMINI_API_KEY` and `OMDB_API_KEY` server-side.
+  For local development, use `.env.local`.
 
-
-Choose **Try an example**, then send.
-The reply appears as it arrives. Choose **Stop generation** halfway through,
-then ask “Anything lighter?” to check that the follow-up uses the partial reply.
-Scroll up during a longer reply to check that the transcript keeps your place;
-**Jump to latest** resumes following new text.
-
-- [Chat component](src/components/MovieChat.tsx): what the user sees and clicks.
-- [API route](api/movie-chat.mjs) and [stream handler](server/movie-chat-handler.mjs):
-  validate the conversation, call Gemini, and stream the reply back.
-- [Model and instructions](server/movie-chat-config.mjs): server-only settings.
-
-Set `GEMINI_API_KEY` in your local `.env.local` for Vite and as a server-side
-**Preview** environment variable in Vercel. Redeploy the branch after setting it.
-`GEMINI_MODEL` is an optional server environment override. Never put the key
-in a `VITE_` variable. The movie picker does not require OMDb or Firebase
-credentials; those are for the existing search and favourites features.
-
-ChatGPT assisted with development. The app calls the Gemini streaming API at
-runtime. This replaces the Claude provider named in the original brief.
-Run `npm test` for the mocked streaming checks and `npm run build` to verify
-the production bundle. The preview needs its own API credentials for live testing.
-
-On Vercel, verify **Source** is `fe06-reel-good-movie-chat` as well as **Environment** being **Preview**. A Preview built from `main` shows the assignment index and does not include the movie picker.
-
-The default model is gemini-3.5-flash-lite. Keep Google Cloud billing disabled to use only your available free-tier quota; quota exhaustion returns an error, with no paid-provider fallback. Deploy branch fe06-reel-good-movie-chat, not main.
+Verified in Codespaces: Inception returned a movie card, an unknown title
+showed an inline error, and The Matrix returned a card in the same chat.

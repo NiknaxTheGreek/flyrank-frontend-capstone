@@ -1,10 +1,12 @@
 import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from 'react';
 import { readMovieChatEvents } from '../services/movie-chat-stream';
+import type { MovieToolPart } from '../services/movie-tool-part';
+import { MovieToolCard } from './MovieToolCard';
 
 type Message = {
   id: string;
   role: 'user' | 'assistant';
-  parts: [{ type: 'text'; text: string }];
+  parts: [{ type: 'text'; text: string }, ...MovieToolPart[]];
   outcome?: 'stopped' | 'interrupted';
 };
 
@@ -13,9 +15,15 @@ const makeMessage = (role: Message['role'], text: string): Message => ({
 });
 const starter = 'I want a clever sci-fi movie for tonight. Give me three spoiler-free picks and explain how they differ.';
 const latestContext = (messages: Message[]) => {
-  const recent = messages.filter(m => m.parts[0].text.trim()).slice(-20);
+  const recent = messages.map(m => {
+    const tool = m.parts[1];
+    const note = tool?.state === 'output-available'
+      ? `Movie lookup found ${tool.output.title} (${tool.output.year}), IMDb ID ${tool.output.imdbId}.`
+      : tool?.state === 'output-error' ? tool.errorText : '';
+    return { role: m.role, content: [m.parts[0].text, note].filter(Boolean).join('\n').slice(0, 8000) };
+  }).filter(m => m.content.trim()).slice(-20);
   while (recent[0]?.role === 'assistant') recent.shift();
-  return recent.map(m => ({ role: m.role, content: m.parts[0].text }));
+  return recent;
 };
 
 export default function MovieChat() {
@@ -67,6 +75,8 @@ export default function MovieChat() {
     setError('');
     setAnnouncement('Preparing movie recommendations.');
     let output = '';
+    let tool: MovieToolPart | undefined;
+    let finishedTool = false;
     let outcome: Message['outcome'];
     try {
       const response = await fetch('/api/movie-chat', {
@@ -81,26 +91,36 @@ export default function MovieChat() {
       }
       for await (const part of readMovieChatEvents(response)) {
         if (part.type === 'error') throw new Error(part.message);
+        if (part.type === 'tool') {
+          tool = part;
+          finishedTool = part.state === 'output-available' || part.state === 'output-error';
+          setMessages(current => current.map(m => m.id === assistant.id
+            ? { ...m, parts: [m.parts[0], part] } : m));
+          if (part.state === 'input-streaming' || part.state === 'input-available') {
+            await new Promise(resolve => setTimeout(resolve, 350));
+            controller.signal.throwIfAborted();
+          }
+        }
         if (part.type === 'text') {
           if (!output && part.delta) setAnnouncement('Movie recommendations are streaming.');
           output += part.delta;
           const snapshot = output;
           setMessages(current => current.map(m => m.id === assistant.id
-            ? { ...m, parts: [{ type: 'text', text: snapshot }] } : m));
+            ? { ...m, parts: [{ type: 'text', text: snapshot }, ...m.parts.slice(1) as MovieToolPart[]] } : m));
         }
       }
-      if (!output.trim()) throw new Error('The movie assistant returned an empty reply.');
-      setAnnouncement('Movie recommendations ready.');
+      if (!output.trim() && !finishedTool) throw new Error('The movie assistant returned an empty reply.');
+      setAnnouncement(tool?.state === 'output-error' ? '' : finishedTool ? 'Movie lookup complete.' : 'Movie recommendations ready.');
     } catch (cause) {
       outcome = controller.signal.aborted ? 'stopped' : 'interrupted';
       if (outcome === 'stopped') setAnnouncement('Generation stopped.');
       else {
         setAnnouncement('');
         setError(cause instanceof Error ? cause.message : 'The movie reply was interrupted.');
-        if (!output.trim()) setDraft(current => current || prompt);
+        if (!output.trim() && !tool) setDraft(current => current || prompt);
       }
     } finally {
-      if (outcome) setMessages(current => output.trim()
+      if (outcome) setMessages(current => output.trim() || tool
         ? current.map(m => m.id === assistant.id ? { ...m, outcome } : m)
         : current.filter(m => m.id !== assistant.id &&
           (outcome !== 'interrupted' || m.id !== conversation[conversation.length - 1].id)));
@@ -129,7 +149,9 @@ export default function MovieChat() {
           {messages.map(m => (
             <li key={m.id} className={`movie-chat-message movie-chat-${m.role}`}>
               <strong>{m.role === 'user' ? 'You' : 'Movie picker'}</strong>
-              <p>{m.parts.map(part => part.text || (m.id === activeId ? 'Thinking…' : '')).join('')}</p>
+              {m.parts[0].text && <p>{m.parts[0].text}</p>}
+              {!m.parts[0].text && m.parts.length === 1 && m.id === activeId && <p>Thinking…</p>}
+              {m.parts[1] && <MovieToolCard key={m.parts[1].toolCallId} part={m.parts[1]} interrupted={!!m.outcome} />}
               {m.outcome && <small>{m.outcome === 'stopped' ? 'Stopped · partial response' : 'Interrupted · partial response'}</small>}
             </li>
           ))}
