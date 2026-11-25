@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 
-type NotificationType = 'rankingChanges' | 'siteHealth' | 'competitorActivity' | 'weeklySummary';
+type NotificationType = 'movieReleases' | 'favoriteUpdates' | 'movieRecommendations' | 'weeklySummary';
 type DeliveryChannel = 'email' | 'inApp';
 
 type Preferences = {
@@ -17,32 +17,32 @@ const notificationOptions: {
   description: string;
 }[] = [
   {
-    id: 'rankingChanges',
-    title: 'Ranking changes',
-    description: 'When your tracked keywords move up or down in search results.',
+    id: 'movieReleases',
+    title: 'Movie releases',
+    description: 'New releases matching your favorite movie genres.',
   },
   {
-    id: 'siteHealth',
-    title: 'Site health alerts',
-    description: 'Important issues that could affect your site’s search performance.',
+    id: 'favoriteUpdates',
+    title: 'Favorite updates',
+    description: 'Updates about movies saved in your favorites.',
   },
   {
-    id: 'competitorActivity',
-    title: 'Competitor activity',
-    description: 'Notable ranking and content changes from your competitors.',
+    id: 'movieRecommendations',
+    title: 'Movie recommendations',
+    description: 'Movie suggestions based on your chosen interests.',
   },
   {
     id: 'weeklySummary',
-    title: 'Weekly performance summary',
-    description: 'A roundup of your traffic, rankings, and opportunities.',
+    title: 'Weekly movie digest',
+    description: 'A roundup of movie discoveries and saved favorites.',
   },
 ];
 
 const defaultPreferences: Preferences = {
   notifications: {
-    rankingChanges: { email: true, inApp: true },
-    siteHealth: { email: true, inApp: true },
-    competitorActivity: { email: false, inApp: true },
+    movieReleases: { email: true, inApp: true },
+    favoriteUpdates: { email: true, inApp: true },
+    movieRecommendations: { email: false, inApp: true },
     weeklySummary: { email: true, inApp: false },
   },
   frequency: 'immediately',
@@ -59,9 +59,9 @@ function isPreferences(value: unknown): value is Preferences {
   const candidate = value as Partial<Preferences>;
   const notifications = candidate.notifications;
   const notificationIds: NotificationType[] = [
-    'rankingChanges',
-    'siteHealth',
-    'competitorActivity',
+    'movieReleases',
+    'favoriteUpdates',
+    'movieRecommendations',
     'weeklySummary',
   ];
 
@@ -140,21 +140,21 @@ function App() {
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <div className="brand-wrap" aria-label="FlyRank">
-          <span className="brand-mark" aria-hidden="true">F</span>
+        <div className="brand-wrap" aria-label="Reel Good">
+          <span className="brand-mark" aria-hidden="true">R</span>
           <span>
-            <span className="eyebrow">Growth suite</span>
-            <span className="brand-name">FlyRank</span>
+            <span className="eyebrow">Movie discovery</span>
+            <span className="brand-name">Reel Good</span>
           </span>
         </div>
 
         <p className="nav-label">Workspace</p>
         <nav className="nav" aria-label="Main navigation">
           <button className="nav-item" type="button"><span aria-hidden="true">◫</span> Overview</button>
-          <button className="nav-item" type="button"><span aria-hidden="true">⌕</span> Keywords</button>
-          <button className="nav-item" type="button"><span aria-hidden="true">▤</span> Content</button>
-          <button className="nav-item" type="button"><span aria-hidden="true">♧</span> Competitors</button>
-          <button className="nav-item" type="button"><span aria-hidden="true">▥</span> Reports</button>
+          <button className="nav-item" type="button"><span aria-hidden="true">⌕</span> Movies</button>
+          <button className="nav-item" type="button"><span aria-hidden="true">▤</span> Genres</button>
+          <button className="nav-item" type="button"><span aria-hidden="true">♧</span> Favorites</button>
+          <button className="nav-item" type="button"><span aria-hidden="true">▥</span> Activity</button>
         </nav>
 
         <div className="sidebar-bottom">
