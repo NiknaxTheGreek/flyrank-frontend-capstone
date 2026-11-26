@@ -8,6 +8,8 @@
 - [Follow-up asking which film is least scary](docs/assignment-6/evidence/follow-up-question.png): the assistant responds with ParaNorman and continues the conversation in context.
 - [Stopped generation with the partial response visible](docs/assignment-6/evidence/stopped-response.png): the incomplete response is retained, marked Stopped, and the input has visible focus.
 
+- [Mobile stop and follow-up](docs/assignment-6/evidence/mobile-stop-and-follow-up.webp): the 26 November phone capture shows the retained stopped response, a subsequent user request and assistant reply, Jump to latest, and the visible input and controls.
+
 ## Reviewing the chat
 
 

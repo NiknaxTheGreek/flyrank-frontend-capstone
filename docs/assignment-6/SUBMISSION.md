@@ -19,11 +19,11 @@ The app directly calls Gemini's streaming endpoint, rather than the Claude SDK n
 | Stop and preserve partial text | AbortController on client, cancellation propagation on server, partial outcome label and focus returned to input. Screenshot shows a stopped partial reply. Component test exercises stop then send again and asserts retained history. |
 | Multi-turn context | Client sends up to 20 recent nonempty messages, server maps assistant to model role. Screenshot shows a contextual follow-up; mocked component/server tests assert history. |
 | Thinking and styled messages | Thinking text appears in an empty assistant message and is replaced by streamed text; distinct bubble styling and live status announcements. |
-| Auto-scroll | Source tracks pinned state, releases on upward scrolling and offers Jump to latest. Historical screenshot shows the control. A new live scroll-during-stream test was not completed. |
+| Auto-scroll | Source tracks pinned state, releases on upward scrolling and offers Jump to latest. Historical screenshot shows the control. The 26 November phone capture also shows the Jump to latest control; continuous scroll behavior is not established by a still image. |
 | Server-side key | Server reads GEMINI_API_KEY; .env.example has blank values, local env files are ignored, no VITE_ key for Gemini. Repository-wide historical secret remediation remains separate. |
-| Phone width | CSS uses bounded transcript width, wrapping controls, full-width textarea, 44px minimum button height and wrapping long text. No actual 375px viewport result or phone screenshot was verified. |
+| Phone width | CSS uses bounded transcript width, wrapping controls, full-width textarea, 44px minimum button height and wrapping long text. A learner-supplied Samsung Browser screenshot from 26 November shows readable messages, wrapped text, the input and both action buttons within the phone display. Exact CSS viewport width (375px) was not measured. |
 
-The Git-triggered Vercel deployment for source commit `e18541983098d320837a45a34315091c6581ea87` is READY. Build logs show TypeScript and Vite production build success; a large-bundle warning is non-fatal. The public branch preview returned the expected movie-picker content on 26 November without signing in. A fresh interactive live generation, stop/restart and phone-width test could not be completed in this audit. The source tests were inspected but not newly executed.
+The Git-triggered Vercel deployment for source commit `e18541983098d320837a45a34315091c6581ea87` is READY. Build logs show TypeScript and Vite production build success; a large-bundle warning is non-fatal. The public branch preview returned the expected movie-picker content on 26 November without signing in. The learner's subsequent live phone capture on 26 November demonstrates a retained stopped reply followed by another user message and an assistant reply. The audit did not independently measure live chunk timing or execute a fresh automated test suite.
 
 ## Original screenshot evidence — 12 November 2026
 
@@ -33,7 +33,11 @@ The Git-triggered Vercel deployment for source commit `e18541983098d320837a45a34
 | [Follow-up](evidence/follow-up-question.png) | User asks which suggestion is least scary; assistant recommends ParaNorman and offers a contextual next question. |
 | [Stopped response](evidence/stopped-response.png) | Incomplete generated text is retained with the Stopped · partial response label, and the textarea has visible focus. |
 
-All three original PNGs were retrieved and visually inspected on 26 November. These captures support the historical UI states and conversation behavior, not an independent fresh timing or phone-width test.
+All three original PNGs were retrieved and visually inspected on 26 November. These desktop captures support the historical UI states and conversation behavior, not independent timing measurements.
+
+## Mobile evidence — 26 November 2026
+
+[Original Samsung Browser screenshot](evidence/mobile-stop-and-follow-up.webp) (709 × 1536 image pixels, not CSS viewport pixels) shows the previous reply marked **Stopped · partial response**, a subsequent user request ('Something scary but not too scary.'), a new assistant reply, the **Jump to latest** control, and the visible textarea and Send/Stop buttons. It demonstrates actual phone use and continued conversation after stopping, with no apparent horizontal clipping of the visible controls. The original WebP bytes are preserved. This still image does not establish the exact CSS viewport width, chunk arrival timing, or the entire scrolling sequence.
 
 ## Reviewer checks
 
