@@ -1,12 +1,12 @@
 # Reel Good — Assignment 6
 
-[Open the streaming movie picker preview](https://flyrank-frontend-capstone-lusu7g260-niknaxthegreek.vercel.app). Choose **Movie picker** in the navigation.
+[Open the streaming movie picker preview](https://flyrank-frontend-capstone-git-fe06-reel-g-fc0292-niknaxthegreek.vercel.app/pick-a-movie). See the [submission and audit record](docs/assignment-6/SUBMISSION.md) for source links, screenshot descriptions and verification.
 
 ## Screenshot evidence
 
-- [Movie recommendation and Jump to latest control](docs/assignment-6/evidence/movie-recommendation.png)
-- [Follow-up asking which film is least scary](docs/assignment-6/evidence/follow-up-question.png)
-- [Stopped generation with the partial response visible](docs/assignment-6/evidence/stopped-response.png)
+- [Movie recommendation and Jump to latest control](docs/assignment-6/evidence/movie-recommendation.png): the transcript is scrolled up, showing the request for a scary but not too intense movie and a recommendation for Shaun of the Dead.
+- [Follow-up asking which film is least scary](docs/assignment-6/evidence/follow-up-question.png): the assistant responds with ParaNorman and continues the conversation in context.
+- [Stopped generation with the partial response visible](docs/assignment-6/evidence/stopped-response.png): the incomplete response is retained, marked Stopped, and the input has visible focus.
 
 ## Reviewing the chat
 
