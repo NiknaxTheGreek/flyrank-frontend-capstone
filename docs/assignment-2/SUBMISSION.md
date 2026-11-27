@@ -1,4 +1,6 @@
-# Assignment 2 — Submission deliverables
+# Assignment 2 — Prompt specification
+
+In this assignment, a broad prompt and a structured specification are compared through a notification-settings feature. The comparison illustrates how explicit requirements influence scope, accessibility, validation and test coverage.
 
 **Primary branch:** [`fe02-spec`](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe02-spec)  
 **Comparison branch:** [`fe02-vague`](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe02-vague)  
@@ -30,3 +32,7 @@ On 2026-11-21, with Node.js 24.22.3 and npm 11.19.1, the structured branch passe
 | --- | --- | --- |
 | Structured prompt | [Open dashboard](https://flyrank-frontend-capstone-git-fe02-spec-niknaxthegreek.vercel.app/) | [Dashboard and notification form](evidence/fe02-spec.jpg) |
 | Vague prompt | [Open settings](https://flyrank-frontend-capstone-git-fe02-vague-niknaxthegreek.vercel.app/) | [Notification settings](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/blob/fe02-vague/docs/assignment-2/evidence/fe02-vague.jpg) |
+
+## Reviewing the assignment
+
+Compare both versions, exercise the notification settings and read the workflow analysis.

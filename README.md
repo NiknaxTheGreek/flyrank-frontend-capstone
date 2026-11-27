@@ -1,4 +1,6 @@
-# A2 — Structured-specification implementation
+# Reel Good — Assignment 2: Prompt specification
+
+In this assignment, a broad prompt and a structured specification are compared through a notification-settings feature. The comparison illustrates how explicit requirements influence scope, accessibility, validation and test coverage.
 
 This branch is the **structured prompt** version of Assignment 2. It presents a Reel Good movie dashboard with illustrative demo values and adds a focused notification-settings component. The contrasting vague-prompt version is on [`fe02-vague`](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe02-vague).
 
@@ -30,3 +32,7 @@ Verified on 2026-11-21 with Node.js 24.22.3 and npm 11.19.1: `npm ci`, `npm test
 | --- | --- | --- |
 | Structured prompt | [Open dashboard](https://flyrank-frontend-capstone-git-fe02-spec-niknaxthegreek.vercel.app/) | [Dashboard and notification form](docs/assignment-2/evidence/fe02-spec.jpg) |
 | Vague prompt | [Open settings](https://flyrank-frontend-capstone-git-fe02-vague-niknaxthegreek.vercel.app/) | [Notification settings](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/blob/fe02-vague/docs/assignment-2/evidence/fe02-vague.jpg) |
+
+## Reviewing the assignment
+
+Compare both versions, exercise the notification settings and read the workflow analysis.
