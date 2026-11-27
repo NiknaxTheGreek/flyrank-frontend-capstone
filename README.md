@@ -1,4 +1,6 @@
-# Reel Good — Assignment 3
+# Reel Good — Assignment 3: Movie discovery application
+
+In this assignment, Reel Good becomes a working movie discovery application. It combines a responsive React interface, live movie information and authenticated favorites, establishing the core product that later assignments extend.
 
 [Assignment 3 submission note](./docs/assignment-3/submission.md)
 
@@ -94,3 +96,7 @@ Unknown pages and movie IDs show a recovery path. Vite's SPA fallback serves app
 ## Assignment verification
 
 The test suite and production build passed. The manual Firebase check confirmed that a signed-in user could save a favorite, find it after refreshing and signing back in, and remove it. [Final verification](./docs/assignment-3/verification.md) · [Development review log](./docs/assignment-3/review-log.md)
+
+## Reviewing the assignment
+
+Browse or search for a film of your choice, inspect its details, and sign in to save or remove favorites. Review the source, prompt record and development review log.
