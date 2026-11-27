@@ -1,4 +1,6 @@
-# Assignment 2 — Vague-prompt variant
+# Assignment 2 — Prompt specification — first variant
+
+In this assignment, two approaches to AI-assisted development are compared. This branch preserves the broadly prompted notification-settings implementation for comparison with the structured specification.
 
 This branch is the first variant in the prompt comparison. The source is `src/App.tsx`; it replaces the starter dashboard with a broad notification-settings experience.
 
@@ -19,3 +21,7 @@ No automated test script is defined for this variant.
 ## Preview and evidence
 
 [Live preview](https://flyrank-frontend-capstone-git-fe02-vague-niknaxthegreek.vercel.app/) · [Notification settings screenshot](evidence/fe02-vague.jpg)
+
+## Reviewing the assignment
+
+Exercise the settings and compare their behavior with the structured branch.

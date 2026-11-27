@@ -1,4 +1,6 @@
-# A2 — Vague-prompt implementation
+# Reel Good — Assignment 2: Prompt specification — first variant
+
+In this assignment, two approaches to AI-assisted development are compared. This branch preserves the broadly prompted notification-settings implementation for comparison with the structured specification.
 
 This branch preserves the first, broadly prompted version of the Assignment 2 notification-settings task. It replaces the starter dashboard view with notification preferences for email and in-app alerts, delivery frequency and quiet hours.
 
@@ -21,3 +23,7 @@ This variant's `package.json` has no test script or automated feature tests. Rev
 ## Preview and evidence
 
 [Live preview](https://flyrank-frontend-capstone-git-fe02-vague-niknaxthegreek.vercel.app/) · [Notification settings screenshot](docs/assignment-2/evidence/fe02-vague.jpg)
+
+## Reviewing the assignment
+
+Exercise the settings and compare their behavior with the structured branch.
