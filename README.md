@@ -1,4 +1,6 @@
-# Reel Good — Assignment 6
+# Reel Good — Assignment 6: Streaming interface
+
+In this assignment, Reel Good gains a conversational movie assistant that streams recommendations as they arrive. The interface gives users control over generation, retains conversational context and accommodates scrolling and phone-sized layouts.
 
 [Open the streaming movie picker preview](https://flyrank-frontend-capstone-git-fe06-reel-g-fc0292-niknaxthegreek.vercel.app/pick-a-movie). See the [submission and audit record](docs/assignment-6/SUBMISSION.md) for source links, screenshot descriptions and verification.
 
@@ -13,9 +15,7 @@
 ## Reviewing the chat
 
 
-Choose **Try an example**, then send.
-The reply appears as it arrives. Choose **Stop generation** halfway through,
-then ask “Anything lighter?” to check that the follow-up uses the partial reply.
+Enter a movie preference of your choice or use the example prompt. The reply appears as it arrives. Stop a longer response, then send a follow-up to explore how the conversation retains context.
 Scroll up during a longer reply to check that the transcript keeps your place;
 **Jump to latest** resumes following new text.
 

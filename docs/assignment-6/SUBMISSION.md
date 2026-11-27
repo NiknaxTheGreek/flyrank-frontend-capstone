@@ -1,4 +1,6 @@
-# Assignment 6 — Streaming movie picker
+# Assignment 6 — Streaming interface
+
+In this assignment, Reel Good gains a conversational movie assistant that streams recommendations as they arrive. The interface gives users control over generation, retains conversational context and accommodates scrolling and phone-sized layouts.
 
 **Source:** [fe06-reel-good-movie-chat](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe06-reel-good-movie-chat)  
 **Live preview:** [Movie picker](https://flyrank-frontend-capstone-git-fe06-reel-g-fc0292-niknaxthegreek.vercel.app/pick-a-movie)
