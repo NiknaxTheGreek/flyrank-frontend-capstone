@@ -1,30 +1,38 @@
-# Reel Good — Assignment 7: Movie lookup tool
+# Reel Good — Assignment 7: Tool Lifecycle UI
 
-[Open the public movie picker](https://flyrank-frontend-capstone-git-fe07-movie-8e393b-niknaxthegreek.vercel.app/pick-a-movie) and ask **“Show me Inception's IMDb rating and runtime.”** See the [submission and verification record](docs/assignment-7/SUBMISSION.md).
+Reel Good extends its streaming movie assistant into a generative interface that can look up factual movie information rather than relying on the model to recall it. This assignment focuses on connecting an AI conversation to a server-side tool, validating its inputs and making the tool's progress, results and failures understandable to the user. A successful lookup becomes a structured movie card inside the chat, not a raw JSON response.
+
+[Open the live movie picker](https://flyrank-frontend-capstone-git-fe07-movie-8e393b-niknaxthegreek.vercel.app/pick-a-movie) · [Submission and visual evidence](docs/assignment-7/SUBMISSION.md) · [Tool definition](server/lookup-movie-tool.mjs)
+
+## How the interaction works
+
+When a user asks for factual information about a named film, Gemini can invoke the read-only `lookupMovie` tool. The server validates the title, retrieves details from OMDb and sends typed server-sent events to the React client. General recommendation requests can still receive ordinary streamed text. The lookup supports different titles; no particular movie is required.
 
 ## Tool contract
 
-- **Name:** [`lookupMovie`](server/lookup-movie-tool.mjs), a read-only server tool that fetches factual movie details from OMDb.
-- **Input schema:** `z.object({ title: z.string().trim().min(2).max(100) })`. The model receives a JSON Schema declaration derived from the Zod schema; the server validates the arguments before calling execute.
-- **Execute:** validates the title, uses the private OMDb API key, enforces an eight-second upstream timeout and checks the response.
-- **Return shape:** `{ title, year, genre, runtime, rating, plot, imdbId }`. Descriptive fields are strings; missing descriptive information is represented by empty strings, and an unavailable rating is `null`. A non-null rating is a number between 0 and 10. IMDb IDs must match the verified identifier format.
-- **Failure:** unknown titles produce a recoverable no-match message; unavailable service, malformed provider data and missing credentials produce a generic lookup error without exposing credentials.
+- **Name:** [`lookupMovie`](server/lookup-movie-tool.mjs).
+- **Input schema:** `z.object({ title: z.string().trim().min(2).max(100) })`. A JSON Schema declaration is derived from Zod for Gemini.
+- **Execute:** validates input, requests OMDb using a server-side key, imposes an eight-second timeout and checks the returned movie record.
+- **Return shape:** `{ title, year, genre, runtime, rating, plot, imdbId }`. Fields are strings except rating (number between 0 and 10, or null). Missing descriptive values are empty strings; IMDb identifiers are format-validated.
+- **Errors:** unknown movies receive a no-match message. Unavailable service, malformed upstream data and missing credentials receive a recoverable generic lookup error.
 
-## Typed tool lifecycle
+## Four tool states
 
-| State | Presentation |
+| State | User experience |
 |---|---|
-| `input-streaming` | Preparing movie lookup; dashed border and pending indicator |
-| `input-available` | Checking OMDb, with the validated title and blue accent |
-| `output-available` | Structured movie card, green accent, rating, genre, runtime, plot and IMDb link |
-| `output-error` | Inline alert, red accent, explanation and recovery guidance |
+| `input-streaming` | Preparing the lookup; dashed border and pending indicator. |
+| `input-available` | Shows the validated title being checked against OMDb, with a blue accent. |
+| `output-available` | Structured movie card with a green accent, IMDb rating, genre, runtime, plot and IMDb link. |
+| `output-error` | Red-accented inline alert explaining the failure and how to recover. |
 
-The [server handler](server/movie-chat-handler.mjs) emits SSE events and the [Zod discriminated union](src/services/movie-tool-part.ts) validates them on the client. [MovieToolCard](src/components/MovieToolCard.tsx) renders the states. The preparing event is emitted when Gemini supplies the function call, rather than displaying incremental argument fragments. The client holds each pending state briefly (350 ms) to make it visible. A 200 ms content fade respects reduced-motion preferences.
+The [server handler](server/movie-chat-handler.mjs) emits events, the [typed tool-part schema](src/services/movie-tool-part.ts) validates them, and [MovieToolCard](src/components/MovieToolCard.tsx) renders the appropriate state. A short 200 ms fade respects reduced-motion preferences. The preparing state is emitted after Gemini supplies its function call rather than exposing partial argument fragments; a 350 ms presentation hold makes the pending states visible. Since the tool is read-only, confirmation before execution is not necessary.
 
-Gemini is the provider carried forward from A6. The lookup is read-only, so action confirmation is not required. No chart or second tool is implemented; those are optional stretch goals.
+## Reviewing the application
 
-## Run and review
+Open the preview and request factual details for a movie of your choice. Observe the pending states and the structured result. Try a title that has no matching movie to see the error treatment, then request another valid movie in the same conversation. The six screenshots and [lifecycle recording](docs/assignment-7/evidence/07-tool-lifecycle.mp4) document this interaction; their specific movie titles are illustrative, not required inputs.
 
-Use Node 24, `npm ci`, `npm test`, and `npm run build`. For local development set `GEMINI_API_KEY` and `OMDB_API_KEY` in ignored `.env.local`, or configure them server-side for the Vercel Preview environment. Never prefix these private keys with `VITE_`.
+## Local development
 
-Original recorded checks: Inception produced a card (8.8 IMDb rating, 148 minutes in the 21 November preview check), an unknown title displayed an inline error in Codespaces, and The Matrix returned a card in the same chat. The 26 November audit verified the source, current READY build and public route; it did not repeat an interactive tool call. See the submission record for scope and evidence.
+Use Node 24, `npm ci`, `npm test` and `npm run build`. Run `npm run dev` to start Vite. Configure `GEMINI_API_KEY` and `OMDB_API_KEY` server-side using ignored `.env.local` or the Vercel Preview environment; never prefix these keys with `VITE_`. Gemini is carried forward from Assignment 6.
+
+See the [submission record](docs/assignment-7/SUBMISSION.md) for the original evidence, verification scope and technical limitations.
