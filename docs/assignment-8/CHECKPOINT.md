@@ -40,9 +40,6 @@ Signed-out preview access and a live Inception lookup were verified on 21 Novemb
 - Automated tests make no real AI calls.
 - Browser layout-shift/CLS measurement was not performed.
 
-## Configuration defect found and fixed
-
-The first A8 preview inherited an older default OMDB_API_KEY. A7 had a corrected branch-specific override, so both nonexistent titles and Arrival returned the generic unavailable error on A8. The corrected key was made the active Preview default and A8 was redeployed. The old default remains scoped to the existing backup branch; A7 continues to resolve the corrected default. No key value was read, printed or committed. Live checks on the corrected deployment verified Arrival and the explicit no-match response.
 
 ## Retry contract
 

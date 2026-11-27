@@ -1,6 +1,6 @@
 # Reel Good — Assignment 8: Resilience checkpoint
 
-This assignment turns the streaming movie assistant into a more resilient user experience. AI requests can fail before a response arrives, stop unexpectedly during generation, return invalid data or take longer than expected. Reel Good addresses these cases by preserving the conversation, explaining failures clearly and giving the user a way to recover without restarting the entire chat.
+In this assignment, the streaming movie assistant becomes a more resilient application. Network failures, interrupted replies, slow requests and unavailable data are handled with clear feedback, preserved conversation history and a way to recover.
 
 [Open the live checkpoint](https://flyrank-frontend-capstone-git-fe08-resili-0333c8-niknaxthegreek.vercel.app/pick-a-movie) · [Checkpoint implementation](docs/assignment-8/CHECKPOINT.md) · [Submission summary](docs/assignment-8/SUBMISSION.md) · [Original visual evidence](docs/assignment-8/EVIDENCE.md)
 

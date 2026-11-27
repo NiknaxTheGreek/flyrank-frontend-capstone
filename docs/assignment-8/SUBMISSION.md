@@ -2,7 +2,7 @@
 
 ## Assignment overview
 
-The purpose of this checkpoint is to make an AI-powered application reliable when the primary interaction does not go as planned. Reel Good extends its streaming movie picker and structured lookup tool with recoverable failure states, retry behavior, loading feedback and clear onboarding. Users can continue exploring films even when a request fails, rather than losing the entire conversation.
+In this assignment, the streaming movie assistant becomes a more resilient application. Network failures, interrupted replies, slow requests and unavailable data are handled with clear feedback, preserved conversation history and a way to recover.
 
 **Live preview:** [Reel Good movie picker](https://flyrank-frontend-capstone-git-fe08-resili-0333c8-niknaxthegreek.vercel.app/pick-a-movie)  
 **Repository:** [fe08-resilience-checkpoint](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe08-resilience-checkpoint)
