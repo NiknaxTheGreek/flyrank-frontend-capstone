@@ -2,7 +2,7 @@
 
 In this assignment, asynchronous actions are designed through a reusable, accessible button component. Motion Lab demonstrates how idle, hover/focus, pressed, loading, success, error and disabled states communicate progress and recovery without distracting motion or layout shifts.
 
-[Live Motion Lab](https://flyrank-frontend-capstone-git-fe09-button-d06295-niknaxthegreek.vercel.app/motion-lab) · [Component and motion rationale](docs/assignment-9/README.md) · [Submission and evidence](docs/assignment-9/submission.md)
+[Live Motion Lab](https://flyrank-frontend-capstone-git-fe09-button-d06295-niknaxthegreek.vercel.app/motion-lab) · [Component and motion rationale](docs/assignment-9/README.md) · [Submission and evidence](docs/assignment-9/submission.md) · [Video demonstration](docs/assignment-9/evidence/motion-lab-demo.mp4)
 
 ## Implementation
 

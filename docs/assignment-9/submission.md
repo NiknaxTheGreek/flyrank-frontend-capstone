@@ -1,29 +1,34 @@
 # Assignment 9 — Button lifecycle
 
-In this assignment, asynchronous actions are designed as a reusable, accessible five-state button. Motion Lab demonstrates how idle, loading, success, error and disabled states communicate progress and recovery without distracting motion or layout shifts.
+In this assignment, asynchronous actions are designed through a reusable, accessible button component. Motion Lab demonstrates how idle, hover/focus, pressed, loading, success, error and disabled states communicate progress and recovery without distracting motion or layout shifts.
 
-- Demo: https://flyrank-frontend-capstone-git-fe09-button-d06295-niknaxthegreek.vercel.app/motion-lab
-- [Reusable button component](../../src/components/AsyncActionButton.tsx).
-- Motion rationale and checks: [README](README.md).
+- [Live Motion Lab](https://flyrank-frontend-capstone-git-fe09-button-d06295-niknaxthegreek.vercel.app/motion-lab)
+- [Reusable button component](../../src/components/AsyncActionButton.tsx)
+- [Motion rationale and verification](README.md)
+- [Video demonstration](evidence/motion-lab-demo.mp4)
 
 ## Reviewing the assignment
 
-Open the live demo and select success or failure to observe the button's feedback and recovery behavior. Test keyboard activation, repeated clicks, disabled controls and reduced motion. The Send and Save buttons share the same component while maintaining independent action states.
+Open the live demo and choose a simulated outcome. Observe the button's transitions through loading, success or error, and try recovery after a failure. Test keyboard activation, repeated clicks, disabled controls and the reduced-motion option. The Send and Save buttons share the same component while maintaining independent action states.
 
-The actions use a simulated 900–1800 ms delay. Random mode fails 20% of requests. Only transform and opacity are animated; the button reserves its size, all state faces remain mounted, success pauses for 900 ms, errors persist for retry, and reduced motion removes spatial/repeating animation while retaining feedback.
+The actions use a simulated 900–1800 ms delay. Random mode fails 20% of requests. Only transform and opacity are animated; the button reserves its size, success pauses for 900 ms, errors remain retryable, and reduced motion removes spatial/repeating animation while retaining feedback.
+
+## Visual evidence
+
+| Evidence | What it demonstrates |
+|---|---|
+| [Idle](evidence/desktop-idle.jpg) | Initial demo layout, available actions and outcome controls. |
+| [Loading](evidence/loading.png) | Sending feedback while a request is pending (recording, 12.4 s). |
+| [Success](evidence/success.png) | Completed action with confirmation feedback (13.2 s). |
+| [Error](evidence/desktop-error.jpg) | Persistent error and retry action after a simulated failure. |
+| [Disabled](evidence/disabled.png) | Both actions disabled through the demo controls (30.0 s). |
+| [Reduced-motion loading](evidence/reduced-loading.png) | Loading feedback retained with reduced-motion preview enabled (49.0 s). |
+| [Motion demonstration (MP4)](evidence/motion-lab-demo.mp4) | Normal and reduced-motion interaction, success, return to idle and disabled controls. |
+
+The four timed screenshots are frames from the learner's Chrome recording of 27 November 2026. The video preserves the screen resolution and sequence, compressed for repository storage. Motion is best reviewed in the recording or the live demo rather than still images.
 
 ## Verification
 
-The recorded verification found 64 tests passed and the production build passed. Desktop Chrome was checked live. Physical mobile browsers and OS-level reduced-motion emulation were not tested in this session.
+The recorded automated suite passed 64 tests and the production build passed. Earlier Chrome interaction checks covered failure/retry, keyboard focus and repeated-click protection. The 27 November recording additionally demonstrates loading, successful completion, return to idle and disabled controls, including the reduced-motion preview. Physical mobile browsers and OS-level reduced-motion emulation were not tested.
 
-The public demo opened without sign-in on 27 November 2026, and the current application-source build passed TypeScript and Vite. The original interactive Chrome verification and three screenshots support the lifecycle; the latest audit did not repeat the interactive checks.
-
-## Screenshot evidence
-
-| Screenshot | What it shows |
-|---|---|
-| [Idle state](evidence/desktop-idle.jpg) | Initial demo layout, available actions and outcome controls. |
-| [Error state](evidence/desktop-error.jpg) | Persistent error feedback and the retry action after a simulated failure. |
-| [Reduced-motion preview](evidence/reduced-motion-error.jpg) | Error feedback remains visible with the reduced-motion preview selected. |
-
-Each file is a separate capture. The still images illustrate visible states; transition timing, loading, success and keyboard behavior can be reviewed in the live demo and recorded checks.
+The public demo was verified to load without sign-in on 27 November 2026.
