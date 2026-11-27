@@ -2,10 +2,9 @@
 
 In this assignment, asynchronous actions are designed as a reusable, accessible five-state button. Motion Lab demonstrates how idle, loading, success, error and disabled states communicate progress and recovery without distracting motion or layout shifts.
 
-Branch: `fe09-button-lifecycle` (based on the completed A8 checkpoint).
 Demo route: `/motion-lab`. A reviewer can use it without credentials or API keys.
 
-## Try the complete flow
+## Reviewing the interaction
 
 1. Leave **Success** selected. Hover or Tab to **Send message**; activate with Space, Enter, or a pointer. It moves through loading and success, then returns to idle.
 2. Select **Failure** and send. The error stays visible. Select **Success**, then **Try again**, to demonstrate recovery.
@@ -35,8 +34,8 @@ A synchronous ref blocks duplicate requests before React renders. Loading and su
 - Production build: passed; TypeScript strict checking is part of `npm run build`.
 - Live Chrome verification at 1363 × 936: send success and automatic reset, persistent forced error, successful retry, double-click protection, retained keyboard focus, disabled controls, empty-input feedback, and the independent Save success state were observed.
 - Computed styles: send button content width remained **222 px** in idle, loading and error (224 px including borders). With the reduced-motion preview enabled, loading had no transform, spinner animation was `none`, the fade was **0.1 s**, and the error icon's animation was `none`.
-- Screenshots: [idle](evidence/desktop-idle.jpg), [persistent error](evidence/desktop-error.jpg), and [reduced-motion error](evidence/reduced-motion-error.jpg).
-- The CSS also respects the OS `prefers-reduced-motion` media query. OS-level emulation, a 375 px viewport and physical mobile browsers were not exercised in this cloud session.
+- [Screenshot evidence](submission.md#screenshot-evidence) documents the idle state and error feedback with and without the reduced-motion preview. Motion itself is demonstrated by the live demo and supported by the recorded interaction and computed-style checks.
+- The CSS also respects the OS `prefers-reduced-motion` media query. OS-level emulation, a 375 px viewport and physical mobile browsers were not tested in the recorded session.
 - Demo: https://flyrank-frontend-capstone-git-fe09-button-d06295-niknaxthegreek.vercel.app/motion-lab — the public branch alias was verified to load without sign-in or a share token on 27 November 2026. The Git-triggered deployment of `8bec92bf` reached READY with successful TypeScript/Vite compilation. The recorded interaction checks above are historical; this recheck verified public access and the build, not a new interactive session.
 
 Live browser verification was conducted in Chrome. No application errors were observed during the recorded demo flow.

@@ -1,6 +1,6 @@
 # Reel Good — Assignment 9: Button lifecycle
 
-In this assignment, asynchronous actions are designed as a reusable, accessible five-state button. Motion Lab demonstrates how idle, loading, success, error and disabled states communicate progress and recovery without distracting motion or layout shifts.
+In this assignment, asynchronous actions are designed through a reusable, accessible button component. Motion Lab demonstrates how idle, hover/focus, pressed, loading, success, error and disabled states communicate progress and recovery without distracting motion or layout shifts.
 
 [Live Motion Lab](https://flyrank-frontend-capstone-git-fe09-button-d06295-niknaxthegreek.vercel.app/motion-lab) · [Component and motion rationale](docs/assignment-9/README.md) · [Submission and evidence](docs/assignment-9/submission.md)
 
@@ -10,7 +10,7 @@ The reusable component provides five states, stable dimensions, keyboard and foc
 
 ## Reviewing the assignment
 
-Open Motion Lab and exercise success, failure and retry. Try keyboard activation, repeated activation and reduced motion. Both actions are simulated.
+Open Motion Lab, choose a simulated outcome, and observe the button's transitions through loading, success or error. Test recovery after a failure, keyboard activation, repeated clicks and the reduced-motion option. Both actions are simulated.
 
 ## Local development and verification
 
