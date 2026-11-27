@@ -1,4 +1,6 @@
-# Assignment 11 — Planet studio
+# Assignment 11 — Planet Studio
+
+In this assignment, Reel Good gains an interactive fictional world configurator using Three.js. The experience explores real 3D geometry, responsive controls, optional loading and accessible static fallbacks while respecting rendering budgets.
 
 Planet studio is an interactive world-building side quest inside Reel Good. Shape a fictional sci-fi setting: choose Dune, Ocean or Glacier, add or remove rings, move the sun, rotate the planet and adjust the camera. It uses React, TypeScript and raw Three.js at `/planet-studio`.
 
@@ -42,7 +44,7 @@ Budgets: scene chunk ≤150 KB gzip; zero scene downloads before opt-in; DPR ≤
 
 The inherited application entry chunk is about **167.53 KB gzip** (including existing features such as Firebase). It remains a separate optimization opportunity. Vite's 500 KB uncompressed chunk warning is retained and documented; lazy loading defers the cost rather than removing it.
 
-Verification: **70 Vitest tests passed**, including six new behavioural tests; the TypeScript/production build passed. **Eight browser checks passed**: four against the built capstone and four against public production, across desktop and phone profiles. These cover context-loss recovery, keyboard selection and reduced motion. The local execution sandbox blocked Chromium startup before page navigation; real browser execution ran in GitHub Actions. CI measures and captures the page, and final evidence is committed here instead of relying on temporary artifact downloads. See [PERFORMANCE.md](PERFORMANCE.md), `performance.json` and `submission.md`.
+Verification: **70 Vitest tests passed**, including six new behavioural tests; the TypeScript/production build passed. **Eight browser checks passed**: four against the built capstone and four against public production, across desktop and phone profiles. These cover context-loss recovery, keyboard selection and reduced motion. Browser verification ran in GitHub Actions. CI measures and captures the page, and final evidence is committed here instead of relying on temporary artifact downloads. See [PERFORMANCE.md](PERFORMANCE.md), `performance.json` and `submission.md`.
 
 The public release uses `src/planet-standalone.tsx`, `planet.html`, `vite.planet.config.ts` and `deploy/planet-vercel.json`. Build it with `npm run build:planet`. It is an isolated static deployment with no AI routes, authentication, Firebase initialization or environment credentials. The integrated capstone route remains available in this branch. The public URL was verified anonymously; the cloud browser's unavailable WebGL context also demonstrated the designed fallback.
 
@@ -62,7 +64,7 @@ Raw Three.js keeps the existing React 18 stack intact and makes resource disposa
 
 ![Desktop 3D scene](evidence/desktop-dune-3d.jpg)
 
-AI assistance: ChatGPT inspected the repository, designed and implemented the page, tests and deployment workflow, ran the suite, corrected the light slider's changing accessible name and ambiguous test query, and recorded actual results. Nicholas supplied the assignment; his final hands-on review is pending. No claim is made that Nicholas manually wrote or independently reviewed every line.
+AI assistance: ChatGPT assisted with the design, implementation, tests and deployment verification. The learner's final hands-on review is pending; independent implementation is not claimed.
 
 ## With more time
 

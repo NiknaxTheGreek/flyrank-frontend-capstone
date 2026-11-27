@@ -1,6 +1,6 @@
-# Assignment 11 submission — Planet studio
+# Assignment 11 — Planet Studio
 
-Status: **COMPLETE — AWAITING SUBMISSION**.
+In this assignment, Reel Good gains an interactive fictional world configurator using Three.js. The experience explores real 3D geometry, responsive controls, optional loading and accessible static fallbacks while respecting rendering budgets.
 
 - **Public URL:** https://reel-good-planet-studio.vercel.app/planet-studio
 - **Source branch:** https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe11-planet-studio
