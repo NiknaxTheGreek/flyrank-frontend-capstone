@@ -1,4 +1,6 @@
-# Reel Good — Frontend Capstone
+# Reel Good — Assignment 1: Project setup
+
+In this assignment, the foundation for Reel Good is established through a consistent development environment, repository conventions and an AI-assisted documentation review. These decisions make the later assignments reproducible and easier to maintain.
 
 FlyRank Frontend · Assignment 1 · Nicholas Perikli
 
@@ -6,7 +8,7 @@ Reel Good is a movie discovery app. Users browse by genre or search for a title,
 
 ## Project setup
 
-Reel Good is split into several frontend assignments, each with its own branch. Assignment 1 establishes the development environment, repository structure and Git conventions for the later assignments. It also records how an AI-assisted review improved the project README.
+The repository is organized into 14 assignments, each with its own branch or comparison variant.
 
 The [movie app branch](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe03-movie-app) contains the runnable React and TypeScript application.
 
@@ -31,3 +33,7 @@ With nvm installed, run `nvm install` and `nvm use` from the repository root to 
 - [Screenshot of the ChatGPT setup summary](docs/assignment-1/evidence/a1-setup-summary.webp)
 - [Submission file index](docs/assignment-1/SUBMISSION.md)
 - [MIT license](LICENSE)
+
+## Reviewing the assignment
+
+Inspect the setup files, the three initial Conventional Commits and the README review.
