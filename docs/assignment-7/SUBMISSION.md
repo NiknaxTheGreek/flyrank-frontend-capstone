@@ -2,7 +2,7 @@
 
 ## Assignment overview
 
-The goal of this assignment is to move beyond a conventional streaming chat interface by allowing the AI to invoke a real server-side tool and communicate its progress through purpose-built UI components. In Reel Good, this is implemented as a movie lookup that retrieves factual details from OMDb. Users can ask about different films and receive structured cards directly in the conversation. The interface also explains when a lookup fails and allows the user to continue without restarting the chat.
+In this assignment, Reel Good extends its streaming movie assistant into a generative interface that retrieves factual movie information through a validated server-side tool. Distinct visual states explain the lookup's progress, structured results and recoverable failures.
 
 **Live preview:** [Reel Good movie picker](https://flyrank-frontend-capstone-git-fe07-movie-8e393b-niknaxthegreek.vercel.app/pick-a-movie)  
 **Source branch:** [fe07-movie-lookup-tool](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe07-movie-lookup-tool)

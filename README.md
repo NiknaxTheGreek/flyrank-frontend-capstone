@@ -1,6 +1,6 @@
 # Reel Good — Assignment 7: Tool Lifecycle UI
 
-Reel Good extends its streaming movie assistant into a generative interface that can look up factual movie information rather than relying on the model to recall it. This assignment focuses on connecting an AI conversation to a server-side tool, validating its inputs and making the tool's progress, results and failures understandable to the user. A successful lookup becomes a structured movie card inside the chat, not a raw JSON response.
+In this assignment, Reel Good extends its streaming movie assistant into a generative interface that retrieves factual movie information through a validated server-side tool. Distinct visual states explain the lookup's progress, structured results and recoverable failures.
 
 [Open the live movie picker](https://flyrank-frontend-capstone-git-fe07-movie-8e393b-niknaxthegreek.vercel.app/pick-a-movie) · [Submission and visual evidence](docs/assignment-7/SUBMISSION.md) · [Tool definition](server/lookup-movie-tool.mjs)
 
