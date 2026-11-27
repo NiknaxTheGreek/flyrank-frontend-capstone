@@ -1,6 +1,6 @@
-# Assignment 12 submission readiness
+# Assignment 12 — Performance and accessibility
 
-**A12 COMPLETE — AWAITING SUBMISSION**
+In this assignment, the application is measured and improved using mobile Lighthouse, WAVE and keyboard verification. The goal is to reduce loading cost and improve access to the primary movie discovery and chat flows, with documented before/after results.
 
 - [AUDIT.md](../../AUDIT.md) contains measured deltas, fixes, actual before/after Lighthouse screenshots, WAVE evidence and keyboard results.
 - [Public assignment preview](https://flyrank-frontend-capstone-snowy.vercel.app/) · [movie picker](https://flyrank-frontend-capstone-snowy.vercel.app/pick-a-movie). The audit results below are from the recorded audit of the deployed source snapshot.
@@ -14,3 +14,6 @@
 - [Release verification](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44775059755) passed: TypeScript checks, 91/91 component/server tests, production build and 10/10 browser journeys; zero failures, skips or flaky tests. Additional scope and assistive-technology limits are documented in AUDIT.md.
 
 The learner can submit the public URL and the branch's AUDIT.md link. Nothing has been submitted to the learner portal by this work.
+## Reviewing the assignment
+
+Review the measured before/after reports and keyboard checks, then explore the application using keyboard navigation. The audit results refer to the dated source snapshot.
