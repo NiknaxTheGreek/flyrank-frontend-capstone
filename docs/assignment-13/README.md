@@ -1,4 +1,6 @@
-# Assignment 13 — Afterlight
+# Assignment 13 — Afterlight shader
+
+In this assignment, Reel Good gains a cinematic interactive hero driven by a custom GLSL fragment shader. The experience combines time, resolution and pointer uniforms with selectable palettes, a pause control and a static fallback that respects reduced motion.
 
 A cinematic, interactive fragment-shader hero for Reel Good, created for Nicholas Perikli.
 

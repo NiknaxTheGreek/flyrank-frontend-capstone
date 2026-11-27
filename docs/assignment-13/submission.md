@@ -1,6 +1,6 @@
-# Assignment 13 submission — Afterlight
+# Assignment 13 — Afterlight shader
 
-Status: **COMPLETED — PENDING SUBMISSION**.
+In this assignment, Reel Good gains a cinematic interactive hero driven by a custom GLSL fragment shader. The experience combines time, resolution and pointer uniforms with selectable palettes, a pause control and a static fallback that respects reduced motion.
 
 - Branch: https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe13-fragment-shader
 - Hero route: `/shader-lab`.
@@ -19,3 +19,7 @@ Fallback: Reduced motion and unavailable WebGL show a static gradient in the sel
 Reviewer access: Nicholas explicitly approved the non-expiring reviewer link. On 20 November 2026, Vercel confirmed that this Share link does not expire, and the live hero was opened without signing in to Vercel. Copy the complete reviewer URL, including its `_vercel_share` parameter, into the course submission. Access is scoped to this A13 preview. See [access verification](evidence/reviewer-access.json) and [live access screenshot](evidence/reviewer-access-verified.jpg).
 
 Validation: 64 regression tests, 12 real-browser checks, the production build and TypeScript checks passed. The evidence folder contains committed screenshots and a machine-readable report; it does not depend on workflow artifact retention.
+
+## Reviewing the assignment
+
+Open Afterlight, explore the color moods, pointer interaction and pause control, and compare the static reduced-motion fallback.
