@@ -1,6 +1,6 @@
 # A8 — Screenshot evidence inventory
 
-The original screenshots document the hosted resilience checkpoint on 19 November 2026. They are organized around a successful interaction, failure, recovery and mobile usability rather than prescribed film titles. The 27 November audit inspected all 12 supplied images and verified the nine selected originals against their Git blob hashes.
+The original screenshots document the hosted resilience checkpoint on 19 November 2026. They are organized around a successful interaction, failure, recovery and mobile usability rather than prescribed film titles. All nine original screenshots were verified against their Git blob hashes on 27 November 2026.
 
 | Evidence | Original upload | What it demonstrates |
 |---|---|---|
@@ -13,15 +13,3 @@ The original screenshots document the hosted resilience checkpoint on 19 Novembe
 | [No matching movie](screenshots/07-no-matching-movie.png) | `image(20261119-183216).png` | The corrected deployment returns a designed no-match tool card, with guidance and Retry failed message. |
 | [Successful lookup](screenshots/08-arrival-card.png) | `image(20261119-183241).png` | A structured movie card includes rating, genre, runtime, plot and an IMDb link on the corrected deployment. |
 | [Android mobile](screenshots/09-android-mobile.jpg) | `01-1000160253.jpg` | Real phone screenshot shows a readable recommendation, wrapped chat content, Jump to latest and the start of the composer. Reachability of the remaining controls and keyboard behavior were learner-confirmed separately. |
-
-## Selection and provenance
-
-The other three supplied PNGs are not included in the primary submission set:
-
-| Original filename | Reason |
-|---|---|
-| `image(20261119-182109).png` | Repeats the completed recommendation with DevTools Elements open; the Console capture is more directly relevant. |
-| `image(20261119-182715).png` | Earlier generic lookup-unavailable error before the documented OMDb configuration correction. |
-| `image(20261119-182822).png` | Earlier generic unavailable error for a valid title before the configuration correction. |
-
-The earlier configuration errors are useful backup evidence, but the corrected no-match and successful lookup captures better represent the final checkpoint. The original files in [screenshots/](screenshots/) have unchanged bytes; the older [cropped review copies](evidence/) are retained for compatibility and are not the primary submission set. The phone capture does not show the whole keyboard interaction; additional Android behavior was learner-confirmed in the original verification session. Safari/mobile Safari was not tested.

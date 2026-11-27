@@ -39,7 +39,7 @@ Original captures from 19 November 2026. All nine files were compared with the s
 | [Successful lookup](screenshots/08-arrival-card.png) | `image(20261119-183241).png` | A structured movie card includes rating, genre, runtime, plot and an IMDb link on the corrected deployment. |
 | [Android mobile](screenshots/09-android-mobile.jpg) | `01-1000160253.jpg` | Real phone screenshot shows a readable recommendation, wrapped chat content, Jump to latest and the start of the composer. Reachability of the remaining controls and keyboard behavior were learner-confirmed separately. |
 
-See the [evidence inventory](EVIDENCE.md) for selection details. The original screenshots are the primary submission evidence; no fresh captures were created.
+See the [evidence inventory](EVIDENCE.md) for the original screenshot links. The original screenshots are the primary submission evidence; no fresh captures were created.
 
 ## Verification scope
 
