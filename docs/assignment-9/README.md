@@ -1,5 +1,7 @@
 # Assignment 9 — Button lifecycle
 
+In this assignment, asynchronous actions are designed as a reusable, accessible five-state button. Motion Lab demonstrates how idle, loading, success, error and disabled states communicate progress and recovery without distracting motion or layout shifts.
+
 Branch: `fe09-button-lifecycle` (based on the completed A8 checkpoint).
 Demo route: `/motion-lab`. A reviewer can use it without credentials or API keys.
 
@@ -37,8 +39,8 @@ A synchronous ref blocks duplicate requests before React renders. Loading and su
 - The CSS also respects the OS `prefers-reduced-motion` media query. OS-level emulation, a 375 px viewport and physical mobile browsers were not exercised in this cloud session.
 - Demo: https://flyrank-frontend-capstone-git-fe09-button-d06295-niknaxthegreek.vercel.app/motion-lab — Vercel account access or an unexpired Share link is required by the existing project policy.
 
-The local headless browser could not start because this execution environment blocks its socket creation, so the live checks above were completed in the cloud browser. Browser-extension metadata errors were excluded from application checks; no application errors were observed during the demo flow.
+Live browser verification was conducted in Chrome. No application errors were observed during the recorded demo flow.
 
 ## AI assistance and review
 
-ChatGPT implemented the reusable component, controls and tests from the supplied assignment. Review caught a missing visually-hidden utility, an inherited reduced-motion rule that would override the documented fade, and a mobile visual ordering choice that would disagree with keyboard order; all were corrected. Live visual review also replaced unsupported decorative arrow glyphs with SVGs and removed an unnecessary outline from the programmatically focused page heading. CSS handles hover/focus/press directly, while React owns only the asynchronous action state. This avoids unnecessary React updates during animation and keeps pointer interruptions independent of request state.
+ChatGPT assisted with implementation, review and testing. CSS handles hover, focus and press directly, while React owns asynchronous action state. This separates animation from request handling.

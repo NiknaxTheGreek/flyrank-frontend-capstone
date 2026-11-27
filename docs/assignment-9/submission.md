@@ -1,6 +1,6 @@
-# Assignment 9 submission
+# Assignment 9 — Button lifecycle
 
-Status: implementation and live desktop verification complete; awaiting learner submission.
+In this assignment, asynchronous actions are designed as a reusable, accessible five-state button. Motion Lab demonstrates how idle, loading, success, error and disabled states communicate progress and recovery without distracting motion or layout shifts.
 
 - Demo: https://flyrank-frontend-capstone-git-fe09-button-d06295-niknaxthegreek.vercel.app/motion-lab
 - Branch: https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe09-button-lifecycle
@@ -14,4 +14,4 @@ The actions use a simulated 900–1800 ms delay. Random mode fails 20% of reques
 
 Validation: 64 tests passed and the production build passed. Desktop Chrome was checked live. Physical mobile browsers and OS-level reduced-motion emulation were not tested in this session.
 
-Access: a non-expiring review Share link was created for this branch on 19 November 2026 and verified to open the demo without Vercel sign-in. Vercel's share-link metadata has no expiry. The earlier temporary link was replaced. Use the permanent Share link supplied with the assignment for reviewer access. No share token is committed to source control.
+Access: a non-expiring review Share link was created for this branch on 19 November 2026 and verified to open the demo without Vercel sign-in. Vercel's share-link metadata has no expiry. Use the permanent Share link supplied with the assignment for reviewer access. No share token is committed to source control.
