@@ -1,10 +1,20 @@
 # Reel Good — Assignment 8: Resilience checkpoint
 
-**A8 complete — awaiting submission.** This branch records the movie chat resilience work: offline and failed-request handling, retry/recovery, interrupted generation, no-match behavior, and mobile layout.
+This assignment turns the streaming movie assistant into a more resilient user experience. AI requests can fail before a response arrives, stop unexpectedly during generation, return invalid data or take longer than expected. Reel Good addresses these cases by preserving the conversation, explaining failures clearly and giving the user a way to recover without restarting the entire chat.
 
-- [Checkpoint and implementation details](docs/assignment-8/CHECKPOINT.md)
-- [Evidence inventory and screenshot context](docs/assignment-8/EVIDENCE.md)
-- [Submission summary](docs/assignment-8/SUBMISSION.md)
-- [Original evidence screenshots](docs/assignment-8/evidence/)
+[Open the live checkpoint](https://flyrank-frontend-capstone-git-fe08-resili-0333c8-niknaxthegreek.vercel.app/pick-a-movie) · [Checkpoint implementation](docs/assignment-8/CHECKPOINT.md) · [Submission summary](docs/assignment-8/SUBMISSION.md) · [Original visual evidence](docs/assignment-8/EVIDENCE.md)
 
-The branch also retains earlier Reel Good features. This README is the entry point for A8; the assignment-specific notes above describe its scope.
+## What changed
+
+- Retry failed message resends the failed turn with its previous context and replaces the unsuccessful assistant attempt.
+- Interrupted output remains visible until retry; a synchronous in-flight guard prevents duplicate retry requests.
+- Loading skeletons and slow-response guidance explain pending requests.
+- Empty-state instructions, an example prompt and disabled blank-input submission provide a clear next action.
+- Route-level error boundaries, typed SSE validation and structured lookup errors support recovery.
+- Responsive sizing, wrapped controls and reduced-motion-aware styling improve usability on smaller screens.
+
+## Reviewing the application
+
+Open the movie picker and request recommendations or factual details about a film of your choice. To explore recovery, use browser network controls to simulate an offline request or interrupt a longer response. Restore connectivity and choose **Retry failed message**. The earlier conversation should remain intact. The [evidence inventory](docs/assignment-8/EVIDENCE.md) shows the original happy path, handled failures, recovery, clean-console capture and Android layout. The [checkpoint notes](docs/assignment-8/CHECKPOINT.md) explain the separate automated sabotage checks and their scope.
+
+The React/Vite implementation uses a route error boundary and local chat error state instead of Next.js `error.tsx` and `useChat.error`. The original verification recorded 53 passing tests and a successful build; the 27 November audit confirmed the current source, deployment and original evidence. Mobile Safari has not been tested.

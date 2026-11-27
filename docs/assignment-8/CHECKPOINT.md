@@ -2,11 +2,11 @@
 
 Status: implementation and available-device verification complete; awaiting Portal submission. Mobile Safari is explicitly untested because no Apple device was available.
 
-Public checkpoint preview: https://flyrank-frontend-capstone-28gj4vsrm-niknaxthegreek.vercel.app/pick-a-movie
+Public checkpoint preview: https://flyrank-frontend-capstone-git-fe08-resili-0333c8-niknaxthegreek.vercel.app/pick-a-movie
 Branch: fe08-resilience-checkpoint
 Verification date: 19 November 2026
 
-Signed-out preview access and a live Inception lookup were verified on 21 November 2026. Use the public checkpoint URL above; the original seven-day share-link instructions are superseded.
+Signed-out preview access and a live Inception lookup were verified on 21 November 2026. The branch alias above was independently read without sign-in on 27 November 2026; the Git-triggered Vercel deployment of `bed9ba3c` reached READY with TypeScript/Vite compilation. The original seven-day share-link instructions are superseded. This audit did not execute a fresh live generation or rerun automated tests. All nine original screenshots were hash-matched against the supplied ZIP.
 
 ## Verification results
 
@@ -32,7 +32,7 @@ Signed-out preview access and a live Inception lookup were verified on 21 Novemb
 
 429, malformed output, slow-timer and route-boundary sabotage were automated in the real React components using mocked network responses. They were not injected into the deployed browser. No public sabotage endpoint was added. The mid-stream screenshot shows an interrupted response while offline; its provider error message alone does not establish which upstream event caused the interruption. Transport-closure detection is separately verified by the automated test.
 
-## Final automated checks
+## Original automated checks — 19 November 2026
 
 - npm test: 53 tests passed across 11 files.
 - npm run build: passed, including TypeScript compilation.
@@ -54,7 +54,7 @@ The app uses React/Vite, React Router, Gemini REST streaming and a typed SSE con
 
 ## Evidence and submission
 
-All nine original screenshots are now packaged in [screenshots/](screenshots/). See [EVIDENCE.md](EVIDENCE.md) for direct links and [SUBMISSION.md](SUBMISSION.md) for the Portal text. Portal submission has not been performed.
+All nine original screenshots are packaged in [screenshots/](screenshots/) and were independently hash-verified against the supplied ZIP on 27 November. The original phone capture shows the transcript and beginning of the composer; the full keyboard/scroll interaction was learner-confirmed separately. See [EVIDENCE.md](EVIDENCE.md) for direct links and [SUBMISSION.md](SUBMISSION.md) for the Portal text. Portal submission has not been performed.
 
 ## AI assistance
 
