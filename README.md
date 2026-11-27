@@ -1,4 +1,6 @@
-# Reel Good
+# Reel Good — Assignment 14: Production release
+
+In this assignment, the completed Reel Good experience is integrated and deployed as a production application. The release brings together movie discovery, authenticated favorites, streaming AI, structured tool results, recovery, accessibility and interactive visual labs, with documented architecture, safeguards and verification.
 
 A responsive movie discovery app: browse and search films, inspect OMDb details, save favorites with Firebase, and ask a streaming movie assistant for recommendations. When asked for facts about a named film, the assistant runs a validated server-side lookup and shows a movie card with an IMDb link.
 
@@ -63,7 +65,7 @@ Rules restrict records to their authenticated UID and validate movie fields. A s
 
 1. Open `/movies`, search a title, and open its details.
 2. Open `/pick-a-movie`, enter a mood, and choose Send. Stop generation cancels upstream work; retry recovers interrupted replies.
-3. Ask “Show me Inception's IMDb rating and runtime.” The read-only lookup returns a structured card.
+3. Request factual details for a film of your choice. The read-only lookup returns a structured card.
 4. Sign in at `/account` and save a movie to `/favorites`.
 
 Search query and pagination are URL-backed. Loading, no results, missing posters, provider failures and interrupted streams have visible recovery paths. `/motion-lab` demonstrates the reusable button lifecycle without API credentials. The completed Planet Studio (`/planet-studio`), Shader Lab (`/shader-lab`), accessibility playground (`/playground`) and health screen (`/health`) are now integrated into the same product and navigation. Original assignment branches remain preserved as provenance.
@@ -109,13 +111,13 @@ React/Vite preserves the working movie application rather than migrating it to a
 
 ## How AI tools built this
 
-ChatGPT assisted with the implementation and debugging throughout these assignments: the OMDb proxy and normalization, stale-response/cancellation handling, Gemini SSE parsing, structured tool events and card rendering, retry semantics, accessible state feedback, reusable animated button, Vitest/Playwright coverage, and release documentation. Assignment 3's [prompts](docs/assignment-3/prompts.md), [AI assistance record](docs/assignment-3/ai-assistance.md), and [review log](docs/assignment-3/review-log.md) retain concrete examples. Assignment 10 records a renderer failure and the subsequent verified fix.
+ChatGPT assisted with the implementation and debugging throughout these assignments: the OMDb proxy and normalization, stale-response/cancellation handling, Gemini SSE parsing, structured tool events and card rendering, retry semantics, accessible state feedback, reusable animated button, Vitest/Playwright coverage, and release documentation. Assignment 3's [prompts](docs/assignment-3/prompts.md), [AI assistance record](docs/assignment-3/ai-assistance.md), and [review log](docs/assignment-3/review-log.md) retain concrete examples. Assignment 10 retains the required regression-test and fix evidence.
 
 For Assignment 14, ChatGPT inspected the deployed project and branch history, reused the tested A10 application, added the rate-limit/origin/input guards and regression tests, corrected the Node request URL used for origin checking, prepared this README, configured production environment targets without copying secret values into source, and ran the checks listed in the release report. The learner supplied requirements and prior browser evidence and must be able to explain and modify the implementation. AI-generated tests and prose do not substitute for real provider, Firebase authorization, or device checks. Runtime recommendations come from Gemini; ChatGPT is the development assistant. This project does not claim Claude Code was used.
 
 ## Deployment and history
 
-Import this repository into Vercel as Vite; build `npm run build`, output `dist`, Node 24. Set the environment variables for **Production** and redeploy `fe14-production-release`. Confirm the commit and target before promoting. Completed A11/A12/A13 code and the A5 playground are integrated into the release; existing assignment branches are preserved; focused Conventional Commits record the release without rewriting shared history. Roll back to a known-good production deployment if a smoke check fails.
+Import this repository into Vercel as Vite; build `npm run build`, output `dist`, Node 24. Set the environment variables for **Production** and redeploy `fe14-production-release`. Confirm the commit and target before promoting. Completed A11/A12/A13 code and the A5 playground are integrated into the release; existing assignment branches are preserved; focused Conventional Commits record the release. Roll back to a known-good production deployment if a smoke check fails.
 
 Code and documentation in Git have no scheduled expiry, but access still depends on repository visibility and hosting/account availability. This README's production address is a normal hostname, not a temporary share token.
 

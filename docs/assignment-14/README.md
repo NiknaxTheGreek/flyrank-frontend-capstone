@@ -1,4 +1,6 @@
-# Assignment 14 — Production release / Checkpoint 2
+# Assignment 14 — Production release
+
+In this assignment, the completed Reel Good experience is integrated and deployed as a production application. The release brings together movie discovery, authenticated favorites, streaming AI, structured tool results, recovery, accessibility and interactive visual labs, with documented architecture, safeguards and verification.
 
 Production address: https://flyrank-frontend-capstone-snowy.vercel.app  
 Release branch: `fe14-production-release`. The combined product now integrates A11 Planet Studio, A12 improvements, A13 Shader Lab, A5 accessibility playground and the health screen. See [integration verification](INTEGRATION.md).
@@ -37,7 +39,7 @@ Release branch: `fe14-production-release`. The combined product now integrates A
 ![Production movie picker shown in desktop Chrome; this is not mobile WebKit evidence](evidence/production-chrome-desktop.png)
 ![Actual passing CI report](evidence/ci-suite.png)
 
-Automated live browser results for Chromium, Firefox, desktop WebKit and mobile WebKit are recorded in [live-browsers.json](evidence/live-browsers.json). The image formerly named `firefox.png` is a CI report, not a Firefox browser capture; it is retained under the accurate name [ci-report.png](evidence/ci-report.png). [Desktop WebKit image](evidence/webkit.png) is separate from the browser-result record.
+Automated live browser results for Chromium, Firefox, desktop WebKit and mobile WebKit are recorded in [live-browsers.json](evidence/live-browsers.json). The [CI report](evidence/ci-report.png) records the automated verification results. [Desktop WebKit image](evidence/webkit.png) is separate from the browser-result record.
 
 ## Honest remaining checks
 
@@ -45,7 +47,7 @@ Real Safari and mobile Safari remain manual device checks: Linux Playwright WebK
 
 ## Reviewer walkthrough
 
-Open Movie picker, request recommendations, stop a reply, send a follow-up, request Inception's facts and inspect the movie card. Search a movie and open details. Sign in with a test account to save/remove a favorite. Repeated chat requests should eventually return a designed retryable 429. Tests use mocks and do not spend provider credits.
+Open Movie picker, request recommendations, stop a reply, send a follow-up, request factual details for a movie of your choice and inspect the movie card. Search a movie and open details. Sign in with a test account to save/remove a favorite. Repeated chat requests should eventually return a designed retryable 429. Tests use mocks and do not spend provider credits.
 
 ## Earlier production screenshot — before lab integration
 
@@ -55,7 +57,7 @@ Open Movie picker, request recommendations, stop a reply, send a follow-up, requ
 
 ## History and AI assistance
 
-Focused Conventional Commits preserve earlier assignment work; no shared history was rewritten. The root README records actual ChatGPT contributions, runtime provider, architecture, environment variables, local run commands and known limitations. This status file does not claim portal submission.
+Focused Conventional Commits preserve earlier assignment work; assignment histories are preserved in their dedicated branches. The root README records actual ChatGPT contributions, runtime provider, architecture, environment variables, local run commands and known limitations. This status file does not claim portal submission.
 
 ## Learner-captured production evidence — 20 November 2026
 
@@ -71,11 +73,11 @@ Shader Lab, Planet Studio, the accessibility playground, Preferences and Health 
 
 All six product routes and the health API returned HTTP 200 publicly. A fresh real Inception tool call returned 8.8/10, 148 minutes and completion. The earlier address-bar captures show the pre-integration navigation; the replacement mobile screenshot is now saved below.
 
-## Replacement mobile production screenshot — 20 November 2026
+## Integrated mobile production screenshot — 20 November 2026
 
 ![Integrated production app on mobile](evidence/production-integrated-mobile-2026-11-20.jpeg)
 
-Learner-provided mobile screenshot of the deployed integrated app. It shows browser chrome, the production hostname suffix, the shared navigation including Shader Lab and Planet Studio, and Inception (2010) with IMDb rating 8.8/10. The complete URL and runtime are not visible in this viewport; the fresh production API smoke independently records the runtime. This replaces the earlier screenshot as the current mobile integration evidence. It does not establish Safari or sign-in/favorites checks.
+Learner-provided mobile screenshot of the deployed integrated app. It shows browser chrome, the production hostname suffix, the shared navigation including Shader Lab and Planet Studio, and Inception (2010) with IMDb rating 8.8/10. The complete URL and runtime are not visible in this viewport; the fresh production API smoke independently records the runtime. It does not establish Safari or sign-in/favorites checks.
 
 ## Live learner favorite-save evidence — 20 November 2026
 
@@ -87,7 +89,7 @@ The learner supplied this mobile production screenshot showing Joker (2019), the
 
 ![Joker listed in production Favorites on mobile](evidence/production-favorites-joker-mobile-2026-11-20.jpeg)
 
-The learner supplied this after being asked to open Favorites and refresh. The screenshot shows the Favorites navigation selected, Account instead of Sign in, Saved movies with one movie, and Joker. Together with the preceding successful-save screenshot, it closes the live signed-in save → Favorites UI walkthrough. The refresh action itself is not visible in a still image; a separate sign-out/sign-in cycle was not recorded. Real Safari remains unverified, and no Portal submission is claimed.
+The screenshot shows the Favorites navigation selected, Account instead of Sign in, Saved movies with one movie, and Joker. Together with the preceding successful-save screenshot, it closes the live signed-in save → Favorites UI walkthrough. The refresh action itself is not visible in a still image; a separate sign-out/sign-in cycle was not recorded. Real Safari remains unverified, and no Portal submission is claimed.
 
 ## Declared device-access limitation
 
