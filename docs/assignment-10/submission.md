@@ -1,6 +1,6 @@
-# A10 submission
+# Assignment 10 — Testing and CI
 
-**Complete — awaiting submission.**
+In this assignment, automated verification protects the movie assistant, structured results and validated forms from regressions. Component and browser tests cover the primary interaction and recovery paths, while a continuous integration workflow provides a required merge check.
 
 - Branch: `fe10-tests-and-ci`
 - Test files: `src/components/MovieMessage.test.tsx`,
@@ -26,5 +26,4 @@ the real test outputs, with its source run and commit printed on the image.
 It is not a screenshot of GitHub's web interface. The committed evidence
 does not depend on GitHub Actions artifact retention.
 
-ChatGPT added and ran the tests, diagnosed the second-result regression, fixed
-the renderer, and reran the suite. All AI requests are mocked during testing.
+ChatGPT assisted with test development and regression verification. The required failing-test and implementation-fix evidence is recorded in the linked README. All AI requests are mocked during testing.

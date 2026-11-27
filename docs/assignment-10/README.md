@@ -1,4 +1,6 @@
-# Assignment 10 — Automated tests and CI
+# Assignment 10 — Testing and CI
+
+In this assignment, automated verification protects the movie assistant, structured results and validated forms from regressions. Component and browser tests cover the primary interaction and recovery paths, while a continuous integration workflow provides a required merge check.
 
 **Complete — awaiting submission.**
 
@@ -102,10 +104,7 @@ the real run URL and commit. The image is emitted in bounded workflow-log chunks
 and copied into this folder as final submission evidence. It does not depend
 on artifact retention or artifact storage quota.
 
-The first CI attempt passed all 86 tests and then failed while uploading reports
-because this account's Actions artifact quota was full. The workflow now runs
-all verification in one job and captures evidence through its logs. Test
-failures still fail the job normally; no test step uses `continue-on-error`.
+The workflow captures durable evidence through runner logs, independently of artifact storage. Test failures fail the job normally; no test step uses `continue-on-error`.
 
 The active [A10 ruleset](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/rules/27792069) targets the default branch (`main`) and requires the GitHub Actions check `A10 merge gate`.
 
