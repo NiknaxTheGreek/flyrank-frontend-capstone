@@ -11,7 +11,8 @@ In this assignment, automated verification protects the movie assistant, structu
   `.github/workflows/tests.yml`.
 - Full coverage and actual failure/fix evidence: [README](./README.md).
 - Local checks: 86 Vitest tests, application/test type checks and production build pass.
-- [Successful CI run](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44602615431)
+- [Successful 27 November push workflow](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/46014127073) (audited source `fdccb215`; all steps passed).
+- [Original successful CI run](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44602615431)
 - [Successful pull-request CI run](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44602627425)
 - [Screenshot of the actual CI results](./evidence/ci-suite.png)
 - [Machine-readable CI result](./evidence/ci-verified-results.json)
@@ -19,7 +20,7 @@ In this assignment, automated verification protects the movie assistant, structu
 - CI passed: 86/86 Vitest tests and 4/4 Playwright executions, covering both
   primary flow and interrupted-response retry at desktop and 375px phone widths.
 - Application and test TypeScript and the production build passed in CI too.
-- The active [A10 ruleset](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/rules/27792069) targets the default branch (`main`) and requires the GitHub Actions check `A10 merge gate`.
+- The active [A10 ruleset](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/rules/27792069) targets the default branch (`main`) and requires the GitHub Actions check `A10 merge gate`, verified active on 27 November 2026. It does not target every assignment branch.
 
 The CI screenshot is a labelled report rendered in the GitHub runner from
 the real test outputs, with its source run and commit printed on the image.
