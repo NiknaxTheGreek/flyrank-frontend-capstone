@@ -2,7 +2,6 @@
 
 In this assignment, accessible interaction patterns are explored by implementing a custom disclosure, tabs and modal in React and TypeScript, then comparing them with shadcn/Radix. The goal is to understand keyboard behavior, focus management and semantic UI before relying on a component library.
 
-**Source branch:** [fe05-accessibility-playground](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe05-accessibility-playground)  
 **Public preview:** [Playground](https://flyrank-frontend-capstone-git-fe05-access-b552f6-niknaxthegreek.vercel.app/playground)
 
 ## Deliverables
