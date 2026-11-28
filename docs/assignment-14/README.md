@@ -1,96 +1,50 @@
-# Assignment 14 — Production release
+# Release verification
 
-In this assignment, the completed Reel Good experience is integrated and deployed as a production application. The release brings together movie discovery, authenticated favorites, streaming AI, structured tool results, recovery, accessibility and interactive visual labs, with documented architecture, safeguards and verification.
+**Production:** https://flyrank-frontend-capstone-snowy.vercel.app
 
-Production address: https://flyrank-frontend-capstone-snowy.vercel.app  
-Release branch: `fe14-production-release`. The combined product now integrates A11 Planet Studio, A12 improvements, A13 Shader Lab, A5 accessibility playground and the health screen. See [integration verification](INTEGRATION.md).
+## Verification results
 
-## Safeguards
+| Check | Result |
+| --- | --- |
+| TypeScript and production build | Passed |
+| Component/server tests | 100/100 |
+| Browser journeys | 24 passed; six intentional GPU-specific skips outside Chromium |
+| Live movie lookup | Chromium, Firefox, desktop WebKit and mobile WebKit passed |
+| Firebase authorization | Owner write/read passed; anonymous and other-user reads rejected |
+| Public routes and health API | HTTP 200 in the combined release smoke test |
+| Manual production review | Completed on 28 November 2026; no page errors reported |
 
-- 10 chat requests/minute/client IP and 1,000/hour/warm instance, bounded memory, HTTP 429 + Retry-After.
-- Same-origin browser requests; POST only; 192 KB body, 20 messages, 8,000 characters/message, 32,000 total characters.
-- 700 output tokens, one read-only validated movie tool, 40-second upstream deadline, 60-second Vercel maxDuration.
-- Cancellation on disconnect/Stop; sanitized errors; provider secrets remain server-side.
-- Rate counters are per-instance and reset on cold starts. Provider quotas or shared storage/firewall rules are required for an account-wide budget.
+The combined release was tested on 20 November 2026. Regression CI and the live browser workflow passed again on 25 November. The application source remained unchanged during subsequent documentation updates.
 
-## Initial release checks — 19 November 2026
+[Combined release CI](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44790607562) · [Latest recorded regression CI](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/45669501719) · [Live browser workflow](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/45669501603)
 
-- Clean `npm ci` succeeded on Node 24.22.3.
-- Application and test TypeScript checks passed.
-- 89 Vitest tests passed across 17 files, including rate limit, origin rejection and oversized-input checks.
-- Production bundle built successfully. The main JS bundle is approximately 650 KB uncompressed; Vite's size warning is a known performance follow-up.
-- Local Playwright launch was blocked by the workspace's socket restrictions; no local browser pass is claimed. A release workflow runs the same mocked journey in Chromium, Firefox, desktop WebKit and iPhone-sized WebKit on GitHub Actions.
-- Production OMDb and Firebase environment targets were configured; existing production Gemini credential retained. Values were not committed.
+## Evidence
 
-## Release results — 19 November 2026
+| Evidence | Record |
+| --- | --- |
+| Integrated production interface | [Mobile screenshot](evidence/production-integrated-mobile-2026-11-20.jpeg) |
+| Live movie lookup and full production address | [Desktop screenshot before lab integration](evidence/production-inception-live-chrome-2026-11-20.jpg) |
+| Save a movie | [Signed-in confirmation](evidence/production-joker-favorite-saved-mobile-2026-11-20.jpeg) |
+| View saved movies | [Favorites list](evidence/production-favorites-joker-mobile-2026-11-20.jpeg) |
+| Combined regression results | [CI screenshot](evidence/integrated-ci-suite.png) |
+| Combined browser journey | [Mocked CI screenshot](evidence/integrated-movie-picker-fixture.png) |
+| Production API and route checks | [Smoke results](evidence/integrated-production-smoke.json) |
+| Cross-browser live lookup | [Browser results](evidence/live-browsers.json) |
+| Firebase access controls | [Authorization results](evidence/firebase-smoke.json) |
 
-- Production deployment `dpl_BahYrzoPYiLx815NW1EQPooJTLhG`: READY, source `d03e1ec9d7f755e474ef5e084a3da10765666728`, Node 24, Vite; remote build about 35 seconds. Later release commits add documentation/evidence/test improvements and page metadata.
-- Public `/pick-a-movie` returned HTTP 200 without authentication or a share token.
-- Live OMDb request returned Inception, rating 8.8, and full details.
-- Live Gemini request returned all lookup lifecycle events, Inception's 148-minute runtime and verified IMDb ID, then completion.
-- Foreign origin returned HTTP 403; oversized message returned HTTP 400 before model invocation.
-- Live browser smoke passed in **Chromium, Firefox, desktop WebKit and iPhone-sized WebKit**, with real tool calls, no page exceptions and no horizontal overflow. [Workflow](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44603529178).
-- Release CI passed: **89/89 Vitest tests and 10/10 Playwright journeys**, no skips or retries/flaky results. [Workflow](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44603529128), source `a1d1fc39af88f40672bf59dd79a14b879271821c`.
-- Live Firebase REST check: two temporary users created; owner wrote/read a favorite; anonymous and other-user reads rejected with 401; test favorite and both users deleted successfully. [Results](evidence/firebase-smoke.json).
-- Runtime error/fatal log scan for the production deployment returned no matching entries at the time checked. This is a point-in-time check, not continuous monitoring; no new log drain was configured.
-- Eleven sequential invalid live requests returned 400; this slow run did not demonstrate a live 429. Deterministic tests verify the limiter's 429/Retry-After behavior. Cold starts and multiple instances remain a documented limitation.
+The screenshots record individual test cases. The interface supports any available movie, not only the titles shown in these captures.
 
-![Live movie picker in Chromium](evidence/chromium.png)
-![Production movie picker shown in desktop Chrome; this is not mobile WebKit evidence](evidence/production-chrome-desktop.png)
-![Actual passing CI report](evidence/ci-suite.png)
+## Scope and limitations
 
-Automated live browser results for Chromium, Firefox, desktop WebKit and mobile WebKit are recorded in [live-browsers.json](evidence/live-browsers.json). The [CI report](evidence/ci-report.png) records the automated verification results. [Desktop WebKit image](evidence/webkit.png) is separate from the browser-result record.
+- Real Safari and iPhone Safari were not tested because Apple devices were unavailable. Playwright desktop/mobile WebKit passed.
+- GPU tests ran in Chromium; other engines tested static and reduced-motion fallbacks.
+- The signed-in save and Favorites-list flow was observed. A separate sign-out/sign-in cycle was not captured; backend persistence and isolation passed.
+- Live invalid requests returned HTTP 400. Unit tests verify HTTP 429 and `Retry-After`; a live 429 was not reproduced. Rate limits are per instance.
+- The earlier accessibility and performance measurements apply to their audited deployment.
+- A separate automated page-inspection environment returned route error screens on 28 November. Manual production checks succeeded, and the unchanged deployment had passed independent browser tests. The discrepancy remains unconfirmed outside that inspection environment.
 
-## Honest remaining checks
+## Review
 
-Real Safari and mobile Safari remain manual device checks: Linux Playwright WebKit is not the Safari app on Apple hardware. Live Firebase backend persistence/isolation passed. Learner mobile screenshots now confirm the live signed-in save → Favorites-list flow; a separate sign-out/sign-in cycle was not captured. The source repository is public; no reviewer GitHub access grant is needed. The public website itself needs no login for movie search/chat. No Portal submission has been performed.
+Explore the movie catalogue, submit a recommendation request, stop or retry a reply and request a movie lookup. Sign in to save or remove a movie of your choice. Explore the integrated labs and preferences.
 
-## Reviewer walkthrough
-
-Open Movie picker, request recommendations, stop a reply, send a follow-up, request factual details for a movie of your choice and inspect the movie card. Search a movie and open details. Sign in with a test account to save/remove a favorite. Repeated chat requests should eventually return a designed retryable 429. Tests use mocks and do not spend provider credits.
-
-## Earlier production screenshot — before lab integration
-
-[Open the live Chrome capture](evidence/production-inception-live-chrome-2026-11-20.jpg). It shows the production address bar, Inception (2010), 8.8/10, 148 minutes and IMDb link after a live lookup on 20 November 2026.
-
-![Earlier production Inception lookup with the address bar visible](evidence/production-inception-live-chrome-2026-11-20.jpg)
-
-## History and AI assistance
-
-Focused Conventional Commits preserve earlier assignment work; assignment histories are preserved in their dedicated branches. The root README records actual ChatGPT contributions, runtime provider, architecture, environment variables, local run commands and known limitations. This status file does not claim portal submission.
-
-## Learner-captured production evidence — 20 November 2026
-
-Pre-integration evidence (superseded for the current product): the learner supplied this Chrome screenshot showing the public production hostname in the address bar and a completed Inception lookup (8.8/10, 148 minutes). This verifies the displayed production result; it does not establish Stop behavior, Safari testing, or sign-in/favorites interactions.
-
-![Production URL and completed Inception lookup](evidence/production-chrome-address-bar-2026-11-20.png)
-
-## Combined product release — 20 November 2026
-
-Shader Lab, Planet Studio, the accessibility playground, Preferences and Health are integrated into the same navigation, with A12 improvements preserved. Production deployment `dpl_3hpwnrctEscMCNfBWN8HE2fjeNdD` is READY at source `86c8b2e686f4e5aa503a8a01d6ac20b4e9b6a065`.
-
-[Full integration verification](INTEGRATION.md) · [Actual CI report](evidence/integrated-ci-suite.png) · [Production smoke results](evidence/integrated-production-smoke.json).
-
-All six product routes and the health API returned HTTP 200 publicly. A fresh real Inception tool call returned 8.8/10, 148 minutes and completion. The earlier address-bar captures show the pre-integration navigation; the replacement mobile screenshot is now saved below.
-
-## Integrated mobile production screenshot — 20 November 2026
-
-![Integrated production app on mobile](evidence/production-integrated-mobile-2026-11-20.jpeg)
-
-Learner-provided mobile screenshot of the deployed integrated app. It shows browser chrome, the production hostname suffix, the shared navigation including Shader Lab and Planet Studio, and Inception (2010) with IMDb rating 8.8/10. The complete URL and runtime are not visible in this viewport; the fresh production API smoke independently records the runtime. It does not establish Safari or sign-in/favorites checks.
-
-## Live learner favorite-save evidence — 20 November 2026
-
-![Joker saved to favorites on production mobile](evidence/production-joker-favorite-saved-mobile-2026-11-20.jpeg)
-
-The learner supplied this mobile production screenshot showing Joker (2019), the confirmation “Joker saved to favorites.” and the action “Remove from favorites”. It confirms a successful save in the signed-in UI. It does not by itself demonstrate the Favorites list, persistence after reload, sign-out/sign-in, or cross-user isolation. The subsequent Favorites-list screenshot below closes that manual UI capture gap.
-
-## Live Favorites-list evidence — 20 November 2026
-
-![Joker listed in production Favorites on mobile](evidence/production-favorites-joker-mobile-2026-11-20.jpeg)
-
-The screenshot shows the Favorites navigation selected, Account instead of Sign in, Saved movies with one movie, and Joker. Together with the preceding successful-save screenshot, it closes the live signed-in save → Favorites UI walkthrough. The refresh action itself is not visible in a still image; a separate sign-out/sign-in cycle was not recorded. Real Safari remains unverified, and no Portal submission is claimed.
-
-## Declared device-access limitation
-
-The learner states that they do not have access to Safari or an iPhone. Real Safari and iPhone Safari testing was therefore not performed. Automated desktop and mobile WebKit checks passed, but are not presented as real Apple-device testing. Implementation, production deployment, README and the available evidence pack are complete; Checkpoint 2 submission is pending, with this limitation disclosed. Evaluator acceptance of the limitation has not been confirmed.
+Checkpoint 2 is ready for submission, with the device-access limitation disclosed.
