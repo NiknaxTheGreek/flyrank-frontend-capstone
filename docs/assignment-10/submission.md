@@ -27,4 +27,4 @@ the real test outputs, with its source run and commit printed on the image.
 It is not a screenshot of GitHub's web interface. The committed evidence
 does not depend on GitHub Actions artifact retention.
 
-ChatGPT assisted with test development and regression verification. The required failing-test and implementation-fix evidence is recorded in the linked README. All AI requests are mocked during testing.
+ChatGPT was used for test development and regression verification. The required failing-test and implementation-fix evidence is recorded in the linked README. All AI requests are mocked during testing.
