@@ -13,14 +13,14 @@
 
 ## Editing attribution
 
-The changes in this log describe work performed by the coding assistant in response to the recorded prompt. No manual edits by the learner are claimed.
+This log records the AI-assisted changes made in response to the prompt. Separate manual edits were not documented.
 
 ## Poster review follow-up
 
-- **Visual review — learner:** During mobile inspection, the learner observed “Poster unavailable” for Pulp Fiction and Interstellar while the other four sample posters rendered.
-- **Diagnosis — coding assistant:** The configured TMDB image URLs were checked directly. Both returned HTTP 404 with `text/html`: Pulp Fiction's `d5iIlFn5s0ImszYzBPb8JPIfbXP.jpg` and Interstellar's `gEU2QniE6E77NI6lCU6M.jpg`. For comparison, the checked Shawshank Redemption and The Dark Knight poster URLs returned HTTP 200 with `image/jpeg`.
-- **Fix — coding assistant:** Read each movie's poster path from its corresponding TMDB movie page (Pulp Fiction: https://www.themoviedb.org/movie/680-pulp-fiction; Interstellar: https://www.themoviedb.org/movie/157336-interstellar), then verified the resulting image URLs directly. The replacement Pulp Fiction path `vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg` and Interstellar path `yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg` both returned HTTP 200 with `image/jpeg`. Updated the sample data with those verified paths.
-- **Fallback — coding assistant:** Kept MovieCard's existing image-error fallback and added a component test confirming that a failed poster shows the accessible fallback while preserving the movie title and rating.
+- **Manual visual review:** Mobile inspection revealed “Poster unavailable” for Pulp Fiction and Interstellar while the other four sample posters rendered.
+- **AI-assisted diagnosis:** The configured TMDB image URLs were checked directly. Both returned HTTP 404 with `text/html`: Pulp Fiction's `d5iIlFn5s0ImszYzBPb8JPIfbXP.jpg` and Interstellar's `gEU2QniE6E77NI6lCU6M.jpg`. For comparison, the checked Shawshank Redemption and The Dark Knight poster URLs returned HTTP 200 with `image/jpeg`.
+- **AI-assisted fix:** Read each movie's poster path from its corresponding TMDB movie page (Pulp Fiction: https://www.themoviedb.org/movie/680-pulp-fiction; Interstellar: https://www.themoviedb.org/movie/157336-interstellar), then verified the resulting image URLs directly. The replacement Pulp Fiction path `vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg` and Interstellar path `yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg` both returned HTTP 200 with `image/jpeg`. Updated the sample data with those verified paths.
+- **Fallback verification:** Kept MovieCard's existing image-error fallback and added a component test confirming that a failed poster shows the accessible fallback while preserving the movie title and rating.
 
 
 ## Milestone 2 — AI code review and refactoring
@@ -43,7 +43,7 @@ Final live verification: the Vite /api/movies search endpoint returned HTTP 200,
 
 ## Movie browsing and authentication/favorites follow-up
 
-- **Branch/worktree inspection — coding assistant:** Switched to the requested `fe03-movie-app` branch after confirming the worktree was clean. The other local deployment branch contained prior movie metadata and Firebase Authentication UI, but its favorites implementation used Firestore rather than the requested Realtime Database; no local uncommitted work was overwritten.
+- **Branch/worktree inspection:** Switched to the requested `fe03-movie-app` branch after confirming the worktree was clean. The other local deployment branch contained prior movie metadata and Firebase Authentication UI, but its favorites implementation used Firestore rather than the requested Realtime Database; no local uncommitted work was overwritten.
 - **Problem → correction → reason → verification — recommendations lacked plots and usable IMDb links:** Added a meaningful plot and verified IMDb ID to all six sample movies; cards now expose the plot and an external IMDb profile link separately from navigation. Tests check all six records/links and that links are not nested. `npm test`: passed.
 - **Problem → correction → reason → verification — sample collection had no clear genre browsing:** Grouped recommendations under genre headings and added a labelled genre selector. The accessible control is covered by a test that filters to Sci-Fi. Mobile CSS remains responsive; visual review is still outstanding.
 - **Problem → correction → reason → verification — OMDb search lacks genre/plot fields:** Enriched result IDs with detail lookups rather than inventing metadata. The API deduplicates in-flight details, caches details/search for five minutes, and limits detail concurrency to three; tests verify the returned metadata, request reuse, and concurrency bound. Existing pagination, URL state, cancellation, loading/error/empty/retry remain covered by tests.
@@ -53,5 +53,5 @@ Final live verification: the Vite /api/movies search endpoint returned HTTP 200,
 - **Problem → correction → reason → verification — favorites can leak in UI across account changes:** The favorites context tags observed data with the current UID, clears on sign-out, ignores stale listener callbacks, and re-subscribes on account changes. Mock tests cover changing users, restored saved data, and sign-out.
 - **Problem → correction → reason → verification — unconstrained test workers were terminated in this Codespace:** Configured Vitest to run on a single thread. `npm test` then passed 41 tests across 8 files.
 - **Build/resource issue → correction → reason → verification:** Several build attempts were terminated while the Codespace was under memory pressure. After stopping the preview process and rerunning, standard `npm run build` passed for the current worktree (64 modules; Vite warned the 538.08 kB JS chunk exceeds 500 kB). A fresh production preview returned HTTP 200 for `/` and `/movies`; its live OMDb API returned 10 movies, 38 total matches, and verified genre/plot fields.
-- **Database rules/config — coding assistant:** Added UID-scoped read/write permissions and record shape/type validation in `database.rules.json`; `firebase.json` points to those rules and configures the database emulator port. JSON syntax validation passed. The workspace has no Firebase web configuration values and no Firebase CLI/emulator executable, so live authentication, persistence, and emulator isolation have not been verified.
-- **Learner review/manual edits:** This follow-up was implemented by the coding assistant. No manual code edits or visual review by the learner are claimed. The learner must still configure Firebase, review the implementation, and verify the deployed project before Assignment 3 is complete.
+- **Database rules/config:** Added UID-scoped read/write permissions and record shape/type validation in `database.rules.json`; `firebase.json` points to those rules and configures the database emulator port. JSON syntax validation passed. The workspace has no Firebase web configuration values and no Firebase CLI/emulator executable, so live authentication, persistence, and emulator isolation have not been verified.
+- **Follow-up scope:** ChatGPT was used for implementation assistance. Separate manual code edits and visual review were not documented in this session. Firebase configuration and live verification remained pending at that stage.

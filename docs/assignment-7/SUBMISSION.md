@@ -5,7 +5,6 @@
 In this assignment, Reel Good extends its streaming movie assistant into a generative interface that retrieves factual movie information through a validated server-side tool. Distinct visual states explain the lookup's progress, structured results and recoverable failures.
 
 **Live preview:** [Reel Good movie picker](https://flyrank-frontend-capstone-git-fe07-movie-8e393b-niknaxthegreek.vercel.app/pick-a-movie)  
-**Source branch:** [fe07-movie-lookup-tool](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe07-movie-lookup-tool)
 
 ## Implementation and deliverables
 
@@ -43,7 +42,7 @@ The evidence below was captured on 19 November 2026 during development and hoste
 | [Development verification](evidence/06-test-and-push.png) | The terminal records 46 passing tests across 10 files and a successful push of the change that makes pending states visible. The suite is inherited coverage, not a dedicated four-state tool test. |
 | [Live lifecycle recording](evidence/07-tool-lifecycle.mp4) | The 22-second recording shows request submission, a recoverable request error, resubmission, preparing lookup (about 18.0 s), checking OMDb (about 18.4 s), and a structured Arrival result. |
 
-All six screenshots are unchanged from the supplied originals. The repository video is a full-resolution re-encode of the original recording (1920 × 1020, approximately 22.3 seconds), prepared for the repository transfer limit. Both pending states were visually checked in the re-encoded file. The original recording is retained separately by the learner. The video includes browser development tools and a handled request error; it does not establish a clean console.
+All six screenshots are unchanged from the supplied originals. The repository video is a full-resolution re-encode of the original recording (1920 × 1020, approximately 22.3 seconds), prepared for the repository transfer limit. Both pending states were visually checked in the re-encoded file. The original recording is retained separately. The video includes browser development tools and a handled request error; it does not establish a clean console.
 
 ## Verification scope
 

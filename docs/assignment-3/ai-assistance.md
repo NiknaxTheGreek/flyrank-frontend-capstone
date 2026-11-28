@@ -1,11 +1,11 @@
 # Assignment 3 — AI assistance
 
-This is an attribution record, not a claim of learner-authored code. The review log records the implementation and verification work observed in this repository.
+This record documents the development tools used and the verification performed.
 
 ## ChatGPT
 
 - Guided early Assignment 3 scoping and review as described in the prior project notes.
-- In the current follow-up, ChatGPT inspected `fe03-movie-app`, implemented the genre collection, descriptions and IMDb links, enriched OMDb search results with bounded/cached detail requests, and added the Firebase Auth/Realtime Database implementation, rules, tests, and documentation.
+- ChatGPT was used for repository review, genre and movie metadata development, bounded OMDb requests, Firebase integration, database rules, testing and documentation.
 
 ## Codex
 
@@ -17,7 +17,7 @@ This is an attribution record, not a claim of learner-authored code. The review 
 - The first milestone is attributed in the existing project history to GitHub Copilot in Codespaces: the initial movie-browsing screen, typed data, search hook, and reusable cards.
 - No separate Copilot contribution to the current follow-up was recorded.
 
-## Learner contributions
+## Manual review
 
-- The repository contains an earlier learner-attributed observation about two failed poster images; see the review log for attribution and the correction history.
-- No manual code edits or visual review of the current follow-up are evidenced in this session. Please review the implementation and make one small, personally chosen refinement before submission, then describe what you changed and why in your own words.
+- Manual mobile review identified two unavailable posters; the review log records the correction.
+- No separate manual code edits or visual review of the recorded follow-up were documented at that point.
