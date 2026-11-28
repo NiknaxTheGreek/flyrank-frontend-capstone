@@ -16,7 +16,7 @@ assignments use Next.js where their manifests specify it. Use Node.js 24 and npm
 Keep movie API credentials server-side and protect per-user favorites.
 
 ## Development conventions
-- Explain each change and its purpose to the learner.
+- Explain each change and its purpose clearly.
 - Use Conventional Commits: chore:, docs:, feat:, fix:, test:, refactor:.
 - Keep commits focused; preserve meaningful history.
 - Use npm and commit its lockfile once the app is scaffolded.

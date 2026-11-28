@@ -2,7 +2,6 @@
 
 In this assignment, a broad prompt and a structured specification are compared through a notification-settings feature. The comparison illustrates how explicit requirements influence scope, accessibility, validation and test coverage.
 
-**Primary branch:** [`fe02-spec`](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe02-spec)  
 **Comparison branch:** [`fe02-vague`](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe02-vague)  
 **Shared baseline:** `059c8fa`
 
