@@ -14,7 +14,7 @@ The [movie app branch](https://github.com/NiknaxTheGreek/flyrank-frontend-capsto
 
 The app uses Vite and React Router, OMDb for movie data, and Firebase Authentication and Realtime Database for accounts and favorites. Component tests use Vitest and React Testing Library.
 
-Development uses Node.js 24, npm, Git and VS Code in GitHub Codespaces. ChatGPT authored the setup files, reviewed the README and applied improvements.
+Development uses Node.js 24, npm, Git and VS Code in GitHub Codespaces. ChatGPT was used as a tool for project setup, README review and refinements.
 
 ## Inspect the branch
 

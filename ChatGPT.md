@@ -20,7 +20,7 @@ Inspect the target application's package.json before choosing commands or
 changing dependencies; this setup branch has no runnable app.
 
 ## Conventions
-- Explain changes and their purpose clearly to the learner.
+- Explain changes and their purpose clearly.
 - Use Conventional Commits and preserve meaningful history.
 - Inspect existing files before edits; preserve unrelated work.
 - Keep assignment deliverables on their appropriate branches.
