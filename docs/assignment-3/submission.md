@@ -4,7 +4,6 @@ In this assignment, Reel Good becomes a working movie discovery application. It 
 
 The application supports 24 featured movies, live title search and personal favorites.
 
-- [Assignment 3 source branch](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe03-movie-app)
 - [Setup instructions and app routes](../../README.md)
 - [Development prompts](prompts.md), [AI assistance](ai-assistance.md), and [review log](review-log.md)
 - [Verification record](verification.md)

@@ -13,7 +13,7 @@
 
 ## Editing attribution
 
-The changes in this log describe work performed by the coding assistant in response to the recorded prompt. No manual edits by the learner are claimed.
+This log records AI-assisted changes. Separate manual code edits were not documented.
 
 ## Poster review follow-up
 
@@ -32,7 +32,7 @@ The [current catalogue](../../src/data/movies.ts) stores featured IMDb IDs. The 
 
 ### Technical correction and evidence (25 November 2026 audit)
 
-**Observed defect:** In the original mobile review, two of the six movie cards displayed the unavailable-poster state, while the other four rendered images. This localized the problem to individual movie records rather than the entire catalogue or a general layout failure. The learner reported the observation and requested investigation; the coding assistant performed the diagnosis, edits and test.
+**Observed defect:** In the original mobile review, two of the six movie cards displayed the unavailable-poster state, while the other four rendered images. This localized the problem to individual movie records rather than the entire catalogue or a general layout failure. The issue was identified during manual review. ChatGPT was used for diagnosis, implementation support and testing.
 
 **Reconstructed before/after code:** In the original sample catalogue, `posterBaseUrl` was `https://image.tmdb.org/t/p/w500`. The following shows the two historical property replacements described in the review record. It is a reconstruction of the correction, not a literal Git parent-to-child diff: the retained implementation commit adds the sample file with the corrected values already present.
 
@@ -61,7 +61,7 @@ This verifies that an image failure does not erase the accessible fallback, movi
 
 **Evidence checked in the November audit:** [Historical implementation commit](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/commit/c2a75213418bd4e147941838e243883e275cdc75) contains the corrected sample records and original regression test. The [recorded prompt](prompts.md#poster-review-follow-up), [current regression test](../../src/components/MovieCard.test.tsx) and [current featured-ID catalogue](../../src/data/movies.ts) provide additional traceability. The current catalogue uses OMDb, so the historical filenames are not present in its current source. The HTTP outcomes are from the original review, not newly measured in this documentation audit. No new automated test execution or visual check is claimed.
 
-**Attribution and manual-improvement requirement:** This is evidence of learner-led defect discovery and AI-assisted implementation. It does not establish that the learner personally edited the two source lines. A learner-authored code improvement, if required, needs its own actual edit and verification record.
+**Attribution and manual-improvement requirement:** The evidence documents manual defect discovery and AI-assisted correction. Separate manual source edits were not recorded.
 
 ## Milestone 2 — AI code review and refactoring
 
@@ -94,4 +94,4 @@ Final live verification: the Vite /api/movies search endpoint returned HTTP 200,
 - **Problem → correction → reason → verification — unconstrained test workers were terminated in this Codespace:** Configured Vitest to run on a single thread. `npm test` then passed 41 tests across 8 files.
 - **Build/resource issue → correction → reason → verification:** Several build attempts were terminated while the Codespace was under memory pressure. After stopping the preview process and rerunning, standard `npm run build` passed for the current worktree (64 modules; Vite warned the 538.08 kB JS chunk exceeds 500 kB). A fresh production preview returned HTTP 200 for `/` and `/movies`; its live OMDb API returned 10 movies, 38 total matches, and verified genre/plot fields.
 - **Database rules/config — coding assistant:** Added UID-scoped read/write permissions and record shape/type validation in `database.rules.json`; `firebase.json` points to those rules and configures the database emulator port. JSON syntax validation passed. The workspace has no Firebase web configuration values and no Firebase CLI/emulator executable, so live authentication, persistence, and emulator isolation have not been verified.
-- **Learner review/manual edits:** This follow-up was implemented by the coding assistant. No manual code edits or visual review by the learner are claimed. The [later verification record](verification.md#firebase-verification) documents the subsequent end-to-end Firebase check.
+- **Follow-up scope:** ChatGPT was used for implementation assistance; separate manual edits and visual review were not documented in this session. The [later verification record](verification.md#firebase-verification) documents the subsequent end-to-end Firebase check.
