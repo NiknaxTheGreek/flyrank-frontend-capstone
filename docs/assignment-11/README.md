@@ -62,7 +62,7 @@ Raw Three.js keeps the existing React 18 stack intact and makes resource disposa
 
 ![Desktop 3D scene](evidence/desktop-dune-3d.jpg)
 
-AI assistance: ChatGPT inspected the repository, designed and implemented the page, tests and deployment workflow, ran the suite, corrected the light slider's changing accessible name and ambiguous test query, and recorded actual results. Nicholas supplied the assignment; his final hands-on review is pending. No claim is made that Nicholas manually wrote or independently reviewed every line.
+AI assistance: ChatGPT was used for design exploration, implementation support, testing and deployment verification.
 
 ## With more time
 

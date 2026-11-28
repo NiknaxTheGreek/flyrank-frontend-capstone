@@ -125,6 +125,6 @@ Run `node scripts/audit-keyboard.mjs` for the local streaming fixture, and `node
 
 For a new deployed measurement, set `AUDIT_URL` to the deployment, `AUDIT_PHASE` to a descriptive name and `AUDIT_OUTPUT` to a new evidence directory; run `npm run audit:lighthouse`. Set `WAVE_EXTENSION` to an unpacked official Chrome extension before running `npm run audit:wave`. The `A12 deployed mobile and accessibility audit` workflow runs both against the public application and exports the report images and JSON. Use a new directory to preserve these dated before/after measurements.
 
-No learner-portal submission was performed. The implementation, public deployment and audit evidence are ready for submission.
+Portal submission remains pending. The implementation, public deployment and audit evidence are ready for submission.
 
 **Evidence note — 21 November 2026:** Three local-before Lighthouse JSON exports had a stale page-description excerpt. That excerpt was redacted to keep branch content scoped to Reel Good; measured scores and other report data were not changed.

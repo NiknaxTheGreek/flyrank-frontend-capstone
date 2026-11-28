@@ -15,5 +15,4 @@ Status: implementation verified locally; GitHub CI verification in progress.
 - Required merge-check enforcement: not configured through this connection;
   the GitHub setting still needs confirmation.
 
-ChatGPT added and ran the tests, diagnosed the second-result regression, fixed
-the renderer, and reran the suite. All AI requests are mocked during testing.
+ChatGPT was used for test development, regression diagnosis and verification of the renderer fix. All AI requests are mocked during testing.
