@@ -36,10 +36,10 @@ A synchronous ref blocks duplicate requests before React renders. Loading and su
 - Computed styles: send button content width remained **222 px** in idle, loading and error (224 px including borders). With the reduced-motion preview enabled, loading had no transform, spinner animation was `none`, the fade was **0.1 s**, and the error icon's animation was `none`.
 - [Visual evidence](submission.md#visual-evidence): six distinct screenshots cover idle, loading, success, error, disabled and reduced-motion loading. The [27 November video](evidence/motion-lab-demo.mp4) demonstrates the normal and reduced-motion transitions, successful completion, return to idle and disabled controls. Earlier interaction and computed-style checks support keyboard and retry behavior.
 - The CSS also respects the OS `prefers-reduced-motion` media query. OS-level emulation, a 375 px viewport and physical mobile browsers were not tested in the recorded session.
-- Demo: https://flyrank-frontend-capstone-git-fe09-button-d06295-niknaxthegreek.vercel.app/motion-lab — the public branch alias was verified to load without sign-in or a share token on 27 November 2026. The Git-triggered deployment of `8bec92bf` reached READY with successful TypeScript/Vite compilation. The learner's 27 November recording provides additional live interaction evidence.
+- Demo: https://flyrank-frontend-capstone-git-fe09-button-d06295-niknaxthegreek.vercel.app/motion-lab — the public branch alias was verified to load without sign-in or a share token on 27 November 2026. The Git-triggered deployment of `8bec92bf` reached READY with successful TypeScript/Vite compilation. The 27 November recording provides additional live interaction evidence.
 
 Live browser verification was conducted in Chrome. No application errors were observed during the recorded demo flow.
 
 ## AI assistance and review
 
-ChatGPT assisted with implementation, review and testing. CSS handles hover, focus and press directly, while React owns asynchronous action state. This separates animation from request handling.
+ChatGPT was used for implementation assistance, review and testing. CSS handles hover, focus and press directly, while React owns asynchronous action state. This separates animation from request handling.

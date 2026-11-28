@@ -25,7 +25,7 @@ The actions use a simulated 900–1800 ms delay. Random mode fails 20% of reques
 | [Reduced-motion loading](evidence/reduced-loading.png) | Loading feedback retained with reduced-motion preview enabled (49.0 s). |
 | [Motion demonstration (MP4)](evidence/motion-lab-demo.mp4) | Normal and reduced-motion interaction, success, return to idle and disabled controls. |
 
-The four timed screenshots are frames from the learner's Chrome recording of 27 November 2026. The video preserves the screen resolution and sequence, compressed for repository storage. Motion is best reviewed in the recording or the live demo rather than still images.
+The four timed screenshots are frames from the Chrome recording of 27 November 2026. The video preserves the screen resolution and sequence, compressed for repository storage. Motion is best reviewed in the recording or the live demo rather than still images.
 
 ## Verification
 
