@@ -21,13 +21,13 @@ The original screenshots supplied by Nicholas in the A4 chat are now packaged in
 | 1280px responsive layout | Complete — desktop layout reviewed | [1280px screenshot](evidence/responsive-1280px.png) |
 | Deployed health fetch | Success — fetched record #1 displayed | [Health success](evidence/health-success.png) |
 
-These are learner-provided browser captures, not a newly executed automated browser suite. The responsive captures show the configured widths and visible layout; they do not independently prove every route or a clean console. Console messages are retained in the unedited captures. The typed Transformers query is not submitted in these captures and is not evidence of a live catalogue search.
+These are manual browser captures, not a newly executed automated browser suite. The responsive captures show the configured widths and visible layout; they do not independently prove every route or a clean console. Console messages are retained in the unedited captures. The typed Transformers query is not submitted in these captures and is not evidence of a live catalogue search.
 
 See the [submission record](submission.md) for the preview and separate public-access/final-tag status.
 
 ## Historical checkpoints
 
-The dated pending items below describe earlier states and are superseded by the current verification above for the completed responsive checks and deployed health success. The assistant-runtime browser limitation remains historical and does not negate the learner's browser evidence.
+The dated pending items below describe earlier states and are superseded by the current verification above for the completed responsive checks and deployed health success. The assistant-runtime browser limitation remains historical and does not negate the manual browser evidence.
 
 ### Starting state
 - Branch: fe04-scaffold-deploy

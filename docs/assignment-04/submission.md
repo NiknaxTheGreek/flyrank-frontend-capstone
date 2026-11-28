@@ -5,7 +5,6 @@ In this assignment, the movie application is organized into a deployable Next.js
 **Scaffold deployed; Git-triggered build and live route checks verified on 25 November 2026. Responsive evidence from 11 November is packaged.**
 
 Repository: https://github.com/NiknaxTheGreek/flyrank-frontend-capstone  
-Branch: https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe04-scaffold-deploy  
 Application snapshot verified: `d4f0ac7aef3dfda81ffca562b30833c465075506`
 
 ## Preview
