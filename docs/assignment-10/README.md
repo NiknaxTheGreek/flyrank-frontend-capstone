@@ -64,10 +64,7 @@ existing implementation rendered only `parts[1]`, although the type allowed
 several tool parts. The test failed because the second film's heading,
 `Arrival (2016)`, was absent. The other nine renderer tests passed.
 
-ChatGPT ran the test, read its failure, and changed the renderer to destructure
-the text part and map every remaining tool part using `toolCallId` as its key.
-The second movie now renders, without changing the single-lookup server contract.
-ChatGPT reran the entire suite: 86/86 passed.
+ChatGPT was used to run the failing test, diagnose the regression and assist with the correction. The renderer now separates the text part and maps every tool part using `toolCallId`. The second movie renders without changing the single-lookup server contract. The full suite then passed: 86/86.
 
 - [Actual failing test output](./evidence/renderer-before-fix.txt)
 - [Full passing Vitest output after the fix](./evidence/vitest-after-fix.txt)

@@ -58,4 +58,4 @@ Screenshots were uploaded in the A8 conversation. See EVIDENCE.md for the attach
 
 ## AI assistance
 
-ChatGPT inspected A7, added recovery and a route boundary, ran deterministic sabotage tests, and diagnosed the Preview environment mismatch. The learner manually tested the deployed app, captured desktop/mobile evidence, and confirmed keyboard and scrolling behavior. Ambiguous text queries and raw Zod validation messages found during the first test run were corrected.
+ChatGPT was used for recovery design, route error handling, deterministic failure tests and configuration diagnosis. Manual deployment checks confirmed keyboard and scrolling behavior, with desktop and mobile evidence captured.
