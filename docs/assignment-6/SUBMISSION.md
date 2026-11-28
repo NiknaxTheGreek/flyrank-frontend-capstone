@@ -2,7 +2,6 @@
 
 In this assignment, Reel Good gains a conversational movie assistant that streams recommendations as they arrive. The interface gives users control over generation, retains conversational context and accommodates scrolling and phone-sized layouts.
 
-**Source:** [fe06-reel-good-movie-chat](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe06-reel-good-movie-chat)  
 **Live preview:** [Movie picker](https://flyrank-frontend-capstone-git-fe06-reel-g-fc0292-niknaxthegreek.vercel.app/pick-a-movie)
 
 ## Deliverables
@@ -23,9 +22,9 @@ The app directly calls Gemini's streaming endpoint, rather than the Claude SDK n
 | Thinking and styled messages | Thinking text appears in an empty assistant message and is replaced by streamed text; distinct bubble styling and live status announcements. |
 | Auto-scroll | Source tracks pinned state, releases on upward scrolling and offers Jump to latest. Historical screenshot shows the control. The 26 November phone capture also shows the Jump to latest control; continuous scroll behavior is not established by a still image. |
 | Server-side key | Server reads GEMINI_API_KEY; .env.example has blank values, local env files are ignored, no VITE_ key for Gemini. Repository-wide historical secret remediation remains separate. |
-| Phone width | CSS uses bounded transcript width, wrapping controls, full-width textarea, 44px minimum button height and wrapping long text. A learner-supplied Samsung Browser screenshot from 26 November shows readable messages, wrapped text, the input and both action buttons within the phone display. Exact CSS viewport width (375px) was not measured. |
+| Phone width | CSS uses bounded transcript width, wrapping controls, full-width textarea, 44px minimum button height and wrapping long text. A Samsung Browser screenshot from 26 November shows readable messages, wrapped text, the input and both action buttons within the phone display. Exact CSS viewport width (375px) was not measured. |
 
-The Git-triggered Vercel deployment for source commit `e18541983098d320837a45a34315091c6581ea87` is READY. Build logs show TypeScript and Vite production build success; a large-bundle warning is non-fatal. The public branch preview returned the expected movie-picker content on 26 November without signing in. The learner's subsequent live phone capture on 26 November demonstrates a retained stopped reply followed by another user message and an assistant reply. The audit did not independently measure live chunk timing or execute a fresh automated test suite.
+The Git-triggered Vercel deployment for source commit `e18541983098d320837a45a34315091c6581ea87` is READY. Build logs show TypeScript and Vite production build success; a large-bundle warning is non-fatal. The public branch preview returned the expected movie-picker content on 26 November without signing in. The subsequent live phone capture on 26 November demonstrates a retained stopped reply followed by another user message and an assistant reply. The audit did not independently measure live chunk timing or execute a fresh automated test suite.
 
 ## Original screenshot evidence — 12 November 2026
 

@@ -30,7 +30,7 @@ Set `GEMINI_API_KEY` in your local `.env.local` for Vite and as a server-side
 in a `VITE_` variable. The movie picker does not require OMDb or Firebase
 credentials; those are for the existing search and favourites features.
 
-ChatGPT assisted with development. The app calls the Gemini streaming API at
+ChatGPT was used as a development tool. The app calls the Gemini streaming API at
 runtime. This replaces the Claude provider named in the original brief.
 Run `npm test` for the mocked streaming checks and `npm run build` to verify
 the production bundle. The preview needs its own API credentials for live testing.
