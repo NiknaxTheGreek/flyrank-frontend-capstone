@@ -51,8 +51,8 @@ The app uses React/Vite, React Router, Gemini REST streaming and a typed SSE con
 
 ## Evidence and submission
 
-All nine original screenshots are packaged in [screenshots/](screenshots/) and were independently hash-verified against the supplied ZIP on 27 November. The original phone capture shows the transcript and beginning of the composer; the full keyboard/scroll interaction was learner-confirmed separately. See [EVIDENCE.md](EVIDENCE.md) for direct links and [SUBMISSION.md](SUBMISSION.md) for the Portal text. Portal submission has not been performed.
+All nine original screenshots are packaged in [screenshots/](screenshots/) and were independently hash-verified against the supplied ZIP on 27 November. The original phone capture shows the transcript and beginning of the composer; the full keyboard/scroll interaction was confirmed separately during manual testing. See [EVIDENCE.md](EVIDENCE.md) for direct links and [SUBMISSION.md](SUBMISSION.md) for the Portal text. Portal submission has not been performed.
 
 ## AI assistance
 
-ChatGPT inspected A7, added recovery and a route boundary, ran deterministic sabotage tests, and diagnosed the Preview environment mismatch. The learner manually tested the deployed app, captured desktop/mobile evidence, and confirmed keyboard and scrolling behavior. Ambiguous text queries and raw Zod validation messages found during the first test run were corrected.
+ChatGPT was used for recovery design, route error handling, failure tests and configuration diagnosis. Manual deployment checks confirmed keyboard and scrolling behavior, with desktop and mobile evidence captured.

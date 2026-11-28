@@ -5,7 +5,6 @@
 In this assignment, the streaming movie assistant becomes a more resilient application. Network failures, interrupted replies, slow requests and unavailable data are handled with clear feedback, preserved conversation history and a way to recover.
 
 **Live preview:** [Reel Good movie picker](https://flyrank-frontend-capstone-git-fe08-resili-0333c8-niknaxthegreek.vercel.app/pick-a-movie)  
-**Repository:** [fe08-resilience-checkpoint](https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe08-resilience-checkpoint)
 
 ## Implementation and evaluation
 
@@ -15,7 +14,7 @@ In this assignment, the streaming movie assistant becomes a more resilient appli
 | Mid-stream failure and retry | Partial output is retained and a designed error offers Retry failed message. The historical browser captures and mocked component test document failure and recovery. |
 | Useful empty states | Instructions and a click-to-fill example guide first-time users; blank input cannot be submitted; missing movie titles receive correction guidance. |
 | Clean happy-path console | Original completed-request screenshot shows an empty DevTools Console; this is scoped to the recorded happy path. |
-| Responsive interaction | Original Android phone capture and learner-reported keyboard/scroll checks; mobile-safe sizing and wrapping in the source. Safari/mobile Safari remain untested. |
+| Responsive interaction | Original Android phone capture and reported manual keyboard/scroll checks; mobile-safe sizing and wrapping in the source. Safari/mobile Safari remain untested. |
 
 The application also handles offline requests, HTTP 429, malformed structured output, premature stream closure, slow responses and route rendering failures. See the [failure inventory and retry contract](CHECKPOINT.md) and [component sabotage tests](../../src/components/MovieChat.test.tsx). The original development verification recorded 53 passing tests across 11 files. The latest audited Git-triggered deployment of `bed9ba3c` reached READY and compiled TypeScript/Vite successfully. No fresh automated test run, interactive generation or browser-console session was performed in the 27 November audit.
 
@@ -37,7 +36,7 @@ Original captures from 19 November 2026. All nine files were compared with the s
 | [Happy-path console](screenshots/06-clean-console.png) | `image(20261119-181933).png` | A completed recommendation alongside the visible, empty DevTools Console. This supports the recorded clean-console check for that request, not all possible requests. |
 | [No matching movie](screenshots/07-no-matching-movie.png) | `image(20261119-183216).png` | The corrected deployment returns a designed no-match tool card, with guidance and Retry failed message. |
 | [Successful lookup](screenshots/08-arrival-card.png) | `image(20261119-183241).png` | A structured movie card includes rating, genre, runtime, plot and an IMDb link on the corrected deployment. |
-| [Android mobile](screenshots/09-android-mobile.jpg) | `01-1000160253.jpg` | Real phone screenshot shows a readable recommendation, wrapped chat content, Jump to latest and the start of the composer. Reachability of the remaining controls and keyboard behavior were learner-confirmed separately. |
+| [Android mobile](screenshots/09-android-mobile.jpg) | `01-1000160253.jpg` | Real phone screenshot shows a readable recommendation, wrapped chat content, Jump to latest and the start of the composer. Reachability of the remaining controls and keyboard behavior were confirmed separately during manual testing. |
 
 See the [evidence inventory](EVIDENCE.md) for the original screenshot links. The original screenshots are the primary submission evidence; no fresh captures were created.
 
