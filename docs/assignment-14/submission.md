@@ -15,8 +15,8 @@ In this assignment, Reel Good is deployed as a complete production application w
 
 ## Review
 
-Browse and search for films of your choice. Request recommendations or factual details in the movie picker, test cancellation and retry, and manage favorites after signing in. Explore the integrated visual labs and accessibility controls.
+Browse films, request recommendations or movie details, test Stop and retry, and manage favorites. Explore the visual labs and accessibility controls.
 
-The implementation and evidence pack are complete. Real Safari and iPhone Safari were not tested due to device availability; desktop and mobile WebKit checks passed.
+Device limitation: real Safari and iPhone Safari were unavailable. Desktop and mobile WebKit tests passed.
 
 **Status:** Ready for submission.

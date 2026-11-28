@@ -13,34 +13,57 @@ Reel Good is a responsive movie discovery app. Browse films, explore movie detai
 Requirements: Git, Node.js 24 LTS, npm and provider accounts for live features.
 
 ```sh
-git clone --branch fe14-production-release https://github.com/NiknaxTheGreek/flyrank-frontend-capstone.git
-cd flyrank-frontend-capstone
+owner=NiknaxTheGreek
+repo=flyrank-frontend-capstone
+git clone \
+  -b fe14-production-release \
+  "https://github.com/$owner/$repo.git"
+cd "$repo"
 npm ci
 cp .env.example .env.local
-# Set the environment variables below.
+```
+
+Set the credentials below, then run:
+
+```sh
 npm run dev
 ```
 
-Open http://localhost:5173. Restart after changing environment variables. Without credentials, live provider features display configuration errors. Tests require no credentials.
+Open http://localhost:5173.
+
+Restart after changing credentials. Automated tests require no API keys.
 
 ## Environment variables
 
-| Variable | Purpose | Source |
-| --- | --- | --- |
-| `OMDB_API_KEY` | Movie catalogue, details and lookup | OMDb server secret |
-| `GEMINI_API_KEY` | Streaming recommendations | Google AI Studio server secret |
-| `GEMINI_MODEL` | Optional model override | Default: `gemini-3.5-flash-lite` |
-| `VITE_FIREBASE_API_KEY` | Firebase web configuration | Firebase console |
-| `VITE_FIREBASE_AUTH_DOMAIN` | Authentication domain | Firebase console |
-| `VITE_FIREBASE_PROJECT_ID` | Project ID | Firebase console |
-| `VITE_FIREBASE_APP_ID` | Web app ID | Firebase console |
-| `VITE_FIREBASE_DATABASE_URL` | Realtime Database URL | Firebase console |
+Copy the required values into `.env.local` using [the environment template](.env.example).
 
-Keep provider secrets server-side. Never prefix them with `VITE_`. The ignored `.env.local` file holds local credentials.
+**Server configuration**
 
-Enable Email/Password Authentication in Firebase and create a Realtime Database. Copy the web configuration above and add the deployment hostname to the authorized domains.
+| Variable | Value |
+| --- | --- |
+| `OMDB_API_KEY` | OMDb key |
+| `GEMINI_API_KEY` | Google AI Studio key |
+| `GEMINI_MODEL` | Optional model override |
 
-Deploy the [database rules](database.rules.json) to your Firebase project:
+Default model: `gemini-3.5-flash-lite`.
+
+**Firebase configuration**
+
+Prefix each variable below with `VITE_FIREBASE_`.
+
+| Suffix | Value |
+| --- | --- |
+| `API_KEY` | Web API key |
+| `AUTH_DOMAIN` | Auth domain |
+| `PROJECT_ID` | Project ID |
+| `APP_ID` | Web app ID |
+| `DATABASE_URL` | Database URL |
+
+Get these values from the Firebase console. Enable email/password authentication and Realtime Database. Add the production hostname to authorized domains.
+
+Keep OMDb and Gemini keys server-side. The local environment file is ignored by Git.
+
+Deploy the [database rules](database.rules.json):
 
 ```sh
 npx firebase-tools login
@@ -48,7 +71,7 @@ npx firebase-tools use --add
 npx firebase-tools deploy --only database
 ```
 
-The rules validate movie records and restrict access to the authenticated user's UID.
+The rules validate movie records and restrict access to each user's own data.
 
 ## Explore the application
 
@@ -79,16 +102,12 @@ flowchart TD
   Tool --> OMDb
 ```
 
-| Component | Responsibility |
-| --- | --- |
-| `src/pages`, `src/components` | UI, accessibility, route recovery and tool cards |
-| `src/services/movie-chat-stream.ts` | SSE parsing |
-| `api/movie-chat.mjs`, `server/movie-chat-handler.mjs` | Streaming, cancellation and validated requests |
-| `server/movie-chat-config.mjs` | Model, instructions and output budget |
-| `server/lookup-movie-tool.mjs` | Validated, read-only OMDb lookup |
-| `api/movies.mjs` | Catalogue queries, caching and bounded concurrency |
-| Firebase contexts | Authentication and isolated favorites |
-| `vercel.json` | API duration limits and deep-link rewrites |
+- `src/pages` and `src/components`: UI and accessibility.
+- `src/services`: streaming and client services.
+- `api/` and `server/`: validated server-side APIs.
+- Firebase: authentication and isolated favorites.
+- `vercel.json`: API duration limits and route rewrites.
+
 
 ## Production safeguards
 
@@ -131,7 +150,9 @@ See the [release verification](docs/assignment-14/README.md) for results, eviden
 
 ## How AI tools were used
 
-I used ChatGPT as a development tool for planning, code suggestions, debugging, test design and documentation. Specific applications included the OMDb proxy, SSE parsing, typed tool results, accessible feedback, rate limiting and deployment checks.
+I used ChatGPT to support planning, code suggestions, debugging, testing and documentation.
+
+Examples include the OMDb proxy, streaming parser, tool cards, accessibility feedback and rate limiting.
 
 The [prompt record](docs/assignment-3/prompts.md), [AI assistance record](docs/assignment-3/ai-assistance.md) and [review log](docs/assignment-3/review-log.md) document earlier development work. The [testing record](docs/assignment-10/README.md) includes a regression failure and its correction.
 
@@ -139,9 +160,16 @@ Gemini powers the runtime movie assistant. ChatGPT is a development tool, not th
 
 ## Deploy
 
-Import the repository into Vercel using the Vite preset, Node 24, build command `npm run build` and output directory `dist`. Configure the Production environment variables, deploy the release branch and verify the public routes.
+Use Vercel with these settings:
 
-Use the [release verification](docs/assignment-14/README.md) and [integration record](docs/assignment-14/INTEGRATION.md) to inspect the deployed build. Roll back if a smoke test fails.
+- Framework: Vite
+- Node: 24
+- Build: `npm run build`
+- Output: `dist`
+
+Set the production environment variables, deploy and verify the public routes. Roll back if a smoke test fails.
+
+[Integration record](docs/assignment-14/INTEGRATION.md)
 
 ## Assignment integration
 
