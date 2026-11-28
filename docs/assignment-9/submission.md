@@ -1,6 +1,6 @@
 # Assignment 9 submission
 
-Status: implementation and live desktop verification complete; awaiting learner submission.
+Status: implementation and live desktop verification complete; awaiting submission.
 
 - Demo: https://flyrank-frontend-capstone-git-fe09-button-d06295-niknaxthegreek.vercel.app/motion-lab
 - Branch: https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe09-button-lifecycle

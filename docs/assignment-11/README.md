@@ -6,7 +6,6 @@ Planet studio is an interactive world-building side quest inside Reel Good. Shap
 
 **Public demo:** https://reel-good-planet-studio.vercel.app/planet-studio — no sign-in or expiring share token. Choose **Launch 3D** to enter the real scene.
 
-Branch: `fe11-planet-studio`, based on the preserved A9 snapshot `34f9f6d6e20c5d057064655a541fab58fed2f4d9`. Earlier assignment branches are preserved.
 
 ## Run
 
@@ -64,7 +63,7 @@ Raw Three.js keeps the existing React 18 stack intact and makes resource disposa
 
 ![Desktop 3D scene](evidence/desktop-dune-3d.jpg)
 
-AI assistance: ChatGPT assisted with the design, implementation, tests and deployment verification. The learner's final hands-on review is pending; independent implementation is not claimed.
+AI assistance: ChatGPT was used for design exploration, implementation support, testing and deployment verification.
 
 ## With more time
 

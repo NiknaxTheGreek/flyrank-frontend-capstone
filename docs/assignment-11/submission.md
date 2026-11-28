@@ -3,7 +3,6 @@
 In this assignment, Reel Good gains an interactive fictional world configurator using Three.js. The experience explores real 3D geometry, responsive controls, optional loading and accessible static fallbacks while respecting rendering budgets.
 
 - **Public URL:** https://reel-good-planet-studio.vercel.app/planet-studio
-- **Source branch:** https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/fe11-planet-studio
 - **Runtime source snapshot:** https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/tree/0dbe2b5980d7b2c93c8beb3c03d4d2ae55c1e530
 - **Green CI:** https://github.com/NiknaxTheGreek/flyrank-frontend-capstone/actions/runs/44603515494
 - **README:** [what was built, run instructions, decisions and future work](README.md).
