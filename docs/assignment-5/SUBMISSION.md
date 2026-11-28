@@ -12,7 +12,7 @@ In this assignment, accessible interaction patterns are explored by implementing
 
 ## Screenshot evidence
 
-Original learner captures from 12 November 2026. The screenshots document successive implementation stages in Codespaces; the light theme appears after shadcn installation.
+Original browser captures from 12 November 2026. The screenshots document successive implementation stages in Codespaces; the light theme appears after shadcn installation.
 
 | Screenshot | What it demonstrates |
 |---|---|
@@ -24,7 +24,7 @@ Original learner captures from 12 November 2026. The screenshots document succes
 
 ## Verification
 
-The custom components use React and TypeScript without component libraries. NOTES.md records learner keyboard checks of disclosure, tabs, modal focus containment and restoration, plus three concrete gaps relative to shadcn. Implementation was AI-assisted.
+The custom components use React and TypeScript without component libraries. NOTES.md records manual keyboard checks of disclosure, tabs, modal focus containment and restoration, plus three concrete gaps relative to shadcn. Implementation was AI-assisted.
 
 The Git-triggered Vercel deployment of source commit `42e58e61c44ff42d8f4771a6f2d91eea85179709` reached READY on 25 November 2026. Next.js compilation and TypeScript checks passed, including generation of `/playground`. Manual keyboard results refer to the original testing session; no fresh post-correction keyboard or screen-reader pass is claimed.
 
